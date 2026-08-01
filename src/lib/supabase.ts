@@ -3,13 +3,22 @@ import { createClient, SupabaseClient } from "@supabase/supabase-js";
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
 
-// Create client only if env vars are set — prevents crash on missing config
-export const supabase: SupabaseClient = createClient(
-  supabaseUrl || "https://placeholder.supabase.co",
-  supabaseAnonKey || "placeholder-key"
-);
+export const isSupabaseConfigured = !!(supabaseUrl && supabaseAnonKey);
 
-export const isSupabaseConfigured = !!(supabaseUrl && supabaseAnonKey && supabaseUrl !== "https://placeholder.supabase.co");
+// Placeholder key in valid JWT format to prevent createClient from throwing
+const PLACEHOLDER_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBsYWNlaG9sZGVyIiwicm9sZSI6ImFub24iLCJpYXQiOjE2MDAwMDAwMDAsImV4cCI6MjAwMDAwMDAwMH0.placeholder";
+
+let _supabase: SupabaseClient;
+try {
+  _supabase = createClient(
+    supabaseUrl || "https://placeholder.supabase.co",
+    supabaseAnonKey || PLACEHOLDER_KEY
+  );
+} catch {
+  _supabase = createClient("https://placeholder.supabase.co", PLACEHOLDER_KEY);
+}
+
+export const supabase = _supabase;
 
 // Database types
 export interface DBProfile {
