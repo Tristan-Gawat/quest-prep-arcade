@@ -8,6 +8,7 @@ import { addXP, updateStreak, updateQuestionStats, completeModule as dbCompleteM
 import { User } from "@supabase/supabase-js";
 import AuthScreen from "@/components/AuthScreen";
 import ArenaScreen from "@/components/ArenaScreen";
+import LearnNewScreen from "@/components/LearnNewScreen";
 import StartScreen from "@/components/StartScreen";
 import CourseSelect from "@/components/CourseSelect";
 import LessonScreen from "@/components/LessonScreen";
@@ -205,6 +206,15 @@ export default function Home() {
             state={state}
             updateState={updateState}
             navigate={navigate}
+          />
+        )}
+
+        {state.currentScreen === "learn-new" && (
+          <LearnNewScreen
+            state={state}
+            updateState={updateState}
+            navigate={navigate}
+            userId={user?.id || null}
           />
         )}
       </div>

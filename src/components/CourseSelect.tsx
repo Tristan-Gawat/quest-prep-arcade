@@ -83,8 +83,14 @@ export default function CourseSelect({
         <div className="text-center mt-10">
           <div className="flex gap-3 justify-center flex-wrap">
             <button
-              onClick={() => navigate("arena")}
+              onClick={() => navigate("learn-new")}
               className="btn-primary text-sm"
+            >
+              🧠 Learn Something New
+            </button>
+            <button
+              onClick={() => navigate("arena")}
+              className="btn-secondary text-sm"
             >
               ⚔️ Code Arena
             </button>
