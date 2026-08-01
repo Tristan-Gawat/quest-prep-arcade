@@ -21,9 +21,10 @@
   --color-border-focus: #8ab4f8;
   --font-sans: 'Inter', 'Google Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
+  --font-display: 'Space Grotesk', 'Inter', sans-serif;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;700&display=swap');
 
 * {
   font-family: var(--font-sans);

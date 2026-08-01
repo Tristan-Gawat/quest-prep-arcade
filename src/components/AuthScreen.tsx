@@ -14,7 +14,7 @@ export default function AuthScreen({ onSkip }: AuthScreenProps) {
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
       <div className="w-full max-w-md text-center fade-in">
-        <h1 className="text-2xl md:text-3xl font-semibold text-text-primary mb-2">
+        <h1 className="text-2xl md:text-3xl font-bold text-text-primary mb-2" style={{ fontFamily: 'var(--font-display)' }}>
           CodeLapse
         </h1>
         <p className="text-sm text-accent-purple font-medium mb-10">
