@@ -26,7 +26,8 @@ export type Screen =
   | "settings"
   | "results"
   | "profile"
-  | "leaderboard";
+  | "leaderboard"
+  | "arena";
 
 const STORAGE_KEY = "codelapse-state";
 

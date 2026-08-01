@@ -7,6 +7,7 @@ import { supabase } from "@/lib/supabase";
 import { addXP, updateStreak, updateQuestionStats, completeModule as dbCompleteModule } from "@/lib/auth";
 import { User } from "@supabase/supabase-js";
 import AuthScreen from "@/components/AuthScreen";
+import ArenaScreen from "@/components/ArenaScreen";
 import StartScreen from "@/components/StartScreen";
 import CourseSelect from "@/components/CourseSelect";
 import LessonScreen from "@/components/LessonScreen";
@@ -196,6 +197,14 @@ export default function Home() {
             state={state}
             navigate={navigate}
             userId={user?.id || null}
+          />
+        )}
+
+        {state.currentScreen === "arena" && (
+          <ArenaScreen
+            state={state}
+            updateState={updateState}
+            navigate={navigate}
           />
         )}
       </div>

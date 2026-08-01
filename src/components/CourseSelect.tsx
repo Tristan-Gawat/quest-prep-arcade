@@ -83,6 +83,12 @@ export default function CourseSelect({
         <div className="text-center mt-10">
           <div className="flex gap-3 justify-center flex-wrap">
             <button
+              onClick={() => navigate("arena")}
+              className="btn-primary text-sm"
+            >
+              ⚔️ Code Arena
+            </button>
+            <button
               onClick={() => navigate("leaderboard")}
               className="btn-secondary text-sm"
             >
