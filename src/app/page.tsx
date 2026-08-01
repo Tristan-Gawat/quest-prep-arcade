@@ -109,11 +109,13 @@ export default function Home() {
     );
   }
 
-  // Auth screen (no sidebar)
-  if (!user && state.currentScreen === "start") {
+  const [skippedAuth, setSkippedAuth] = useState(false);
+
+  // Auth screen (no sidebar) — show if not logged in and haven't skipped
+  if (!user && !skippedAuth) {
     return (
       <main className="min-h-screen">
-        <AuthScreen onSkip={() => navigate("course-select")} />
+        <AuthScreen onSkip={() => { setSkippedAuth(true); navigate("course-select"); }} />
       </main>
     );
   }
