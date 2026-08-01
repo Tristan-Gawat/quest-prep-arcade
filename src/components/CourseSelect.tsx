@@ -23,16 +23,18 @@ export default function CourseSelect({
   };
 
   return (
-    <div className="flex-1 flex items-center justify-center p-4">
-      <div className="w-full max-w-3xl fade-in">
-        <h2 className="text-xl md:text-2xl font-semibold text-text-primary text-center mb-2">
-          Select Your Course
-        </h2>
-        <p className="text-sm text-text-secondary text-center mb-10">
-          Choose a language to master
-        </p>
+    <div className="flex-1 p-4 md:p-8 overflow-y-auto relative z-10">
+      <div className="max-w-6xl mx-auto fade-in">
+        <div className="mb-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-text-primary mb-2" style={{ fontFamily: 'var(--font-display)' }}>
+            Your Courses
+          </h2>
+          <p className="text-sm text-text-secondary">
+            Choose a language to master — or let the AI teach you something new
+          </p>
+        </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 md:gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-4">
           {courses.map((course) => {
             const dynamicModules = state.generatedModules[course.id] || [];
             const allModules = [...course.modules, ...dynamicModules];
@@ -46,32 +48,32 @@ export default function CourseSelect({
               <button
                 key={course.id}
                 onClick={() => handleSelectCourse(course.id)}
-                className="card p-5 md:p-6 text-left transition-all hover:translate-y-[-2px] hover:shadow-lg cursor-pointer"
+                className="card p-4 text-left transition-all hover:translate-y-[-2px] hover:border-accent-blue/50 cursor-pointer group"
               >
-                <span className="text-3xl md:text-4xl block mb-4">
+                <span className="text-2xl md:text-3xl block mb-3 group-hover:scale-110 transition-transform">
                   {course.icon}
                 </span>
-                <h3 className="text-sm md:text-base font-medium text-text-primary mb-1">
+                <h3 className="text-xs md:text-sm font-semibold text-text-primary mb-0.5">
                   {course.name}
                 </h3>
-                <p className="text-xs text-text-secondary mb-4">
+                <p className="text-[10px] text-text-muted mb-3 line-clamp-1">
                   {course.description}
                 </p>
 
                 {/* Progress bar */}
-                <div className="w-full h-2 bg-bg-elevated rounded-full overflow-hidden">
+                <div className="w-full h-1.5 bg-bg-elevated rounded-full overflow-hidden">
                   <div
                     className="h-full bg-accent-green rounded-full transition-all"
                     style={{ width: `${progress}%` }}
                   />
                 </div>
-                <div className="flex justify-between mt-2">
-                  <p className="text-xs text-text-muted">
-                    {completed}/{total} modules
+                <div className="flex justify-between mt-1.5">
+                  <p className="text-[10px] text-text-muted">
+                    {completed}/{total}
                   </p>
-                  {completed >= course.modules.length && (
-                    <p className="text-xs text-accent-purple font-medium">
-                      ∞ Expanding
+                  {completed >= course.modules.length && completed > 0 && (
+                    <p className="text-[10px] text-accent-purple font-medium">
+                      ∞
                     </p>
                   )}
                 </div>
@@ -80,8 +82,8 @@ export default function CourseSelect({
           })}
         </div>
 
-        <div className="text-center mt-10">
-          <div className="flex gap-3 justify-center flex-wrap">
+        <div className="mt-8">
+          <div className="flex gap-3 flex-wrap">
             <button
               onClick={() => navigate("learn-new")}
               className="btn-primary text-sm"
@@ -93,24 +95,6 @@ export default function CourseSelect({
               className="btn-secondary text-sm"
             >
               ⚔️ Code Arena
-            </button>
-            <button
-              onClick={() => navigate("leaderboard")}
-              className="btn-secondary text-sm"
-            >
-              🏆 Leaderboard
-            </button>
-            <button
-              onClick={() => navigate("profile")}
-              className="btn-secondary text-sm"
-            >
-              👤 Profile
-            </button>
-            <button
-              onClick={() => navigate("settings")}
-              className="btn-secondary text-sm"
-            >
-              ⚙ Settings
             </button>
           </div>
         </div>

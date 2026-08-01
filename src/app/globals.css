@@ -1,30 +1,30 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-bg-primary: #1a1a2e;
-  --color-bg-secondary: #16213e;
-  --color-bg-card: #1f2937;
-  --color-bg-elevated: #252d3d;
-  --color-bg-input: #0f1419;
-  --color-text-primary: #e8eaed;
-  --color-text-secondary: #9aa0a6;
-  --color-text-muted: #5f6368;
-  --color-accent-blue: #8ab4f8;
-  --color-accent-green: #81c995;
-  --color-accent-purple: #c58af9;
-  --color-accent-yellow: #fdd663;
-  --color-accent-red: #f28b82;
-  --color-accent-cyan: #78d9ec;
-  --color-accent-orange: #fcad70;
-  --color-accent-pink: #ff7eb3;
-  --color-border: #3c4043;
-  --color-border-focus: #8ab4f8;
-  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --color-bg-primary: #0f0f1a;
+  --color-bg-secondary: #161625;
+  --color-bg-card: #1c1c2e;
+  --color-bg-elevated: #25253a;
+  --color-bg-input: #0a0a14;
+  --color-text-primary: #eef0f4;
+  --color-text-secondary: #a1a7b4;
+  --color-text-muted: #5c6370;
+  --color-accent-blue: #6ea8fe;
+  --color-accent-green: #7dd3a0;
+  --color-accent-purple: #b387ff;
+  --color-accent-yellow: #ffd56b;
+  --color-accent-red: #ff6b6b;
+  --color-accent-cyan: #6ecfdc;
+  --color-accent-orange: #ffa06b;
+  --color-accent-pink: #ff6eaa;
+  --color-border: #2a2a40;
+  --color-border-focus: #6ea8fe;
+  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
-  --font-display: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
+  --font-display: 'Sora', 'Outfit', sans-serif;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Sora:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 
 * {
   font-family: var(--font-sans);
@@ -32,7 +32,26 @@
 
 body {
   background-color: var(--color-bg-primary);
+  background-image:
+    radial-gradient(ellipse at 20% 0%, rgba(110, 168, 254, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 100%, rgba(179, 135, 255, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(110, 207, 220, 0.02) 0%, transparent 70%);
+  background-attachment: fixed;
   color: var(--color-text-primary);
+  min-height: 100vh;
+}
+
+/* Subtle grid pattern overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255,255,255,0.01) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.01) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* Scrollbar */

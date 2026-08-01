@@ -140,8 +140,8 @@ export default function QuizScreen({
   };
 
   return (
-    <div className="flex-1 flex items-center justify-center p-4">
-      <div className="w-full max-w-2xl">
+    <div className="flex-1 flex items-start justify-center p-4 md:p-8 relative z-10">
+      <div className="w-full max-w-3xl">
         <div
           className={`card p-6 md:p-8 relative ${containerFlash}`}
           onAnimationEnd={() => setContainerFlash("")}
