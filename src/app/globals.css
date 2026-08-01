@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-arcade-bg: #1E1E1E;
+  --color-arcade-card: #2A2A2A;
+  --color-arcade-yellow: #FFDE4D;
+  --color-arcade-cyan: #00E5FF;
+  --color-arcade-purple: #A259FF;
+  --color-arcade-green: #39FF14;
+  --color-arcade-red: #FF4A4A;
+  --color-arcade-pink: #FF6B9D;
+  --font-pixel: 'Press Start 2P', cursive;
+}
+
+@font-face {
+  font-family: 'Press Start 2P';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/pressstart2p/v15/e3t4euO8T-267oIAQAu6jDQyK3nVivM.woff2) format('woff2');
+}
+
+* {
+  font-family: var(--font-pixel);
+}
+
+body {
+  background-color: var(--color-arcade-bg);
+  color: #ffffff;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #1E1E1E;
+}
+::-webkit-scrollbar-thumb {
+  background: #A259FF;
+  border: 2px solid #000;
+}
+
+/* Animations */
+@keyframes flashGreen {
+  0%, 100% { background-color: #39FF14; }
+  50% { background-color: #FFDE4D; }
+}
+@keyframes flashRed {
+  0%, 100% { background-color: #FF4A4A; }
+  50% { background-color: #FFDE4D; }
+}
+@keyframes flashCyan {
+  0%, 100% { background-color: #00E5FF; }
+  50% { background-color: #FFDE4D; }
+}
+@keyframes popUp {
+  0% { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(-40px) scale(1.3); }
+}
+@keyframes ticker {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 6px 6px 0px 0px #000; }
+  50% { box-shadow: 6px 6px 0px 0px #A259FF, 0 0 20px #A259FF; }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.flash-green { animation: flashGreen 0.4s ease 3; }
+.flash-red { animation: flashRed 0.4s ease 3; }
+.flash-cyan { animation: flashCyan 0.4s ease 3; }
+.pop-up { animation: popUp 1.2s ease forwards; }
+.ticker-scroll { animation: ticker 18s linear infinite; }
+.pulse-glow { animation: pulse-glow 2s ease infinite; }
+.blink { animation: blink 1s step-end infinite; }
+
+/* Code editor styling */
+.code-editor {
+  background: #0d1117;
+  color: #39FF14;
+  border: 4px solid #000;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  line-height: 1.6;
+  padding: 16px;
+  resize: none;
+  outline: none;
+  min-height: 120px;
+}
+.code-editor:focus {
+  box-shadow: 0 0 0 2px #A259FF;
+}
+
+/* Arcade card base */
+.arcade-card {
+  border: 4px solid #000;
+  border-radius: 0;
+  box-shadow: 6px 6px 0px 0px #000;
+}
