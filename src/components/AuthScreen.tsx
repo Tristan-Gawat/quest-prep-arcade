@@ -2,6 +2,25 @@
 
 import { signInWithGoogle } from "@/lib/auth";
 
+function AboutCreator() {
+  // Auto-updates year level: started 1st year in 2026
+  const startYear = 2026;
+  const currentYear = new Date().getFullYear();
+  const yearLevel = Math.min(Math.max(currentYear - startYear + 1, 1), 4);
+  const suffix = yearLevel === 1 ? "1st" : yearLevel === 2 ? "2nd" : yearLevel === 3 ? "3rd" : "4th";
+
+  return (
+    <>
+      <p className="text-[10px] text-text-muted leading-relaxed mb-2">
+        Built by <span className="text-text-secondary font-medium">Tristan Gawat</span> — a {suffix} year BITCF student at <span className="text-text-secondary font-medium">UPHSL Philippines</span>.
+      </p>
+      <p className="text-[10px] text-text-muted leading-relaxed">
+        Made with the help of <span className="text-text-secondary font-medium">Claude AI</span> (Anthropic) via <span className="text-text-secondary font-medium">Kiro</span> — an AI-powered development assistant. The entire codebase, curriculum, ranking system, and AI integration were designed and engineered collaboratively between human creativity and AI capability.
+      </p>
+    </>
+  );
+}
+
 interface AuthScreenProps {
   onSkip: () => void;
 }
@@ -60,9 +79,7 @@ export default function AuthScreen({ onSkip }: AuthScreenProps) {
             I built CodeLapse because I believe everyone deserves access to quality coding education — for free. Whether you&apos;re a complete beginner or an experienced dev picking up a new language, this platform adapts to your level and grows with you. The AI learns new topics and teaches them back, so the curriculum never stops expanding. Learn at your own pace, compete on leaderboards, and join a community of coders leveling up together.
           </p>
           <div className="border-t border-border pt-3">
-            <p className="text-[10px] text-text-muted leading-relaxed">
-              Built by <span className="text-text-secondary font-medium">Tristan Gawat</span> with the help of <span className="text-text-secondary font-medium">Claude AI</span> (Anthropic) via <span className="text-text-secondary font-medium">Kiro</span> — an AI-powered development assistant. The entire codebase, curriculum, ranking system, and AI integration were designed and engineered collaboratively between human creativity and AI capability.
-            </p>
+            <AboutCreator />
           </div>
         </div>
       </div>
