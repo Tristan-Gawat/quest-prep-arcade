@@ -24,7 +24,9 @@ export type Screen =
   | "quiz"
   | "challenge"
   | "settings"
-  | "results";
+  | "results"
+  | "profile"
+  | "leaderboard";
 
 const STORAGE_KEY = "quest-prep-arcade-state";
 
