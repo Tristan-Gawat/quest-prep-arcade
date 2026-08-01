@@ -17,32 +17,32 @@ export const RANK_ORDER: RankTier[] = ["BEGINNER", "ROOKIE", "ELITE", "MASTER", 
 
 // XP thresholds for each rank tier + division
 const RANK_THRESHOLDS: { tier: RankTier; division: number; xpRequired: number }[] = [
-  // BEGINNER (0 - 149 XP)
+  // BEGINNER (0 - 499 XP)
   { tier: "BEGINNER", division: 0, xpRequired: 0 },
-  // ROOKIE (150 - 899 XP)
-  { tier: "ROOKIE", division: 3, xpRequired: 150 },
-  { tier: "ROOKIE", division: 2, xpRequired: 400 },
-  { tier: "ROOKIE", division: 1, xpRequired: 650 },
-  // ELITE (900 - 2399 XP)
-  { tier: "ELITE", division: 5, xpRequired: 900 },
-  { tier: "ELITE", division: 4, xpRequired: 1200 },
-  { tier: "ELITE", division: 3, xpRequired: 1500 },
-  { tier: "ELITE", division: 2, xpRequired: 1800 },
-  { tier: "ELITE", division: 1, xpRequired: 2100 },
-  // MASTER (2400 - 4899 XP)
-  { tier: "MASTER", division: 5, xpRequired: 2400 },
-  { tier: "MASTER", division: 4, xpRequired: 2900 },
-  { tier: "MASTER", division: 3, xpRequired: 3400 },
-  { tier: "MASTER", division: 2, xpRequired: 3900 },
-  { tier: "MASTER", division: 1, xpRequired: 4400 },
-  // GRANDMASTER (4900 - 9899 XP)
-  { tier: "GRANDMASTER", division: 5, xpRequired: 4900 },
-  { tier: "GRANDMASTER", division: 4, xpRequired: 5900 },
-  { tier: "GRANDMASTER", division: 3, xpRequired: 6900 },
-  { tier: "GRANDMASTER", division: 2, xpRequired: 7900 },
-  { tier: "GRANDMASTER", division: 1, xpRequired: 8900 },
-  // CHAMPION (9900+ XP)
-  { tier: "CHAMPION", division: 0, xpRequired: 9900 },
+  // ROOKIE (500 - 2499 XP)
+  { tier: "ROOKIE", division: 3, xpRequired: 500 },
+  { tier: "ROOKIE", division: 2, xpRequired: 1000 },
+  { tier: "ROOKIE", division: 1, xpRequired: 1750 },
+  // ELITE (2500 - 6499 XP)
+  { tier: "ELITE", division: 5, xpRequired: 2500 },
+  { tier: "ELITE", division: 4, xpRequired: 3300 },
+  { tier: "ELITE", division: 3, xpRequired: 4100 },
+  { tier: "ELITE", division: 2, xpRequired: 5000 },
+  { tier: "ELITE", division: 1, xpRequired: 5900 },
+  // MASTER (6500 - 14999 XP)
+  { tier: "MASTER", division: 5, xpRequired: 6500 },
+  { tier: "MASTER", division: 4, xpRequired: 8000 },
+  { tier: "MASTER", division: 3, xpRequired: 9700 },
+  { tier: "MASTER", division: 2, xpRequired: 11500 },
+  { tier: "MASTER", division: 1, xpRequired: 13500 },
+  // GRANDMASTER (15000 - 29999 XP)
+  { tier: "GRANDMASTER", division: 5, xpRequired: 15000 },
+  { tier: "GRANDMASTER", division: 4, xpRequired: 18000 },
+  { tier: "GRANDMASTER", division: 3, xpRequired: 21500 },
+  { tier: "GRANDMASTER", division: 2, xpRequired: 25000 },
+  { tier: "GRANDMASTER", division: 1, xpRequired: 28500 },
+  // CHAMPION (30000+ XP)
+  { tier: "CHAMPION", division: 0, xpRequired: 30000 },
 ];
 
 export function getRankFromXP(xp: number): Rank {
@@ -79,7 +79,7 @@ export function getRankColor(tier: RankTier): string {
 
 export function getXPForNextRank(xp: number): { current: number; next: number; progress: number } {
   let currentThreshold = 0;
-  let nextThreshold = RANK_THRESHOLDS[1]?.xpRequired || 150;
+  let nextThreshold = RANK_THRESHOLDS[1]?.xpRequired || 500;
 
   for (let i = 0; i < RANK_THRESHOLDS.length; i++) {
     if (xp >= RANK_THRESHOLDS[i].xpRequired) {
