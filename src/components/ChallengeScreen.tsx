@@ -4,6 +4,8 @@ import { useState } from "react";
 import { GameState, Screen } from "@/lib/state";
 import { courses } from "@/data/courses";
 import { generateHint } from "@/lib/ai";
+import CodeEditor from "@/components/CodeEditor";
+import CodeBlock from "@/components/CodeBlock";
 
 interface ChallengeScreenProps {
   state: GameState;
@@ -154,22 +156,22 @@ export default function ChallengeScreen({
 
   return (
     <div className="flex-1 p-4 md:p-8 overflow-y-auto">
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-3xl mx-auto slide-up">
         {/* Header */}
         <div className="flex items-center gap-3 mb-6">
-          <span className="arcade-card bg-arcade-card text-arcade-green text-[8px] px-3 py-1">
+          <span className="bg-bg-elevated text-accent-green text-xs font-medium px-3 py-1 rounded-full border border-border">
             {currentModule.tier}
           </span>
-          <span className="text-[8px] text-gray-400">CODE CHALLENGE</span>
+          <span className="text-xs text-text-muted">Code Challenge</span>
         </div>
 
-        <h2 className="text-xs md:text-sm text-arcade-yellow mb-4">
+        <h2 className="text-lg md:text-xl font-semibold text-text-primary mb-4">
           🎮 {challenge.title}
         </h2>
 
         {/* Challenge Description */}
-        <div className="arcade-card bg-arcade-card p-5 mb-6">
-          <p className="text-[9px] md:text-[10px] text-gray-200 leading-relaxed">
+        <div className="card p-5 mb-6">
+          <p className="text-sm text-text-secondary leading-relaxed">
             {challenge.description}
           </p>
         </div>
@@ -177,19 +179,18 @@ export default function ChallengeScreen({
         {/* Code Editor */}
         <div className="mb-4">
           <div className="flex justify-between items-center mb-2">
-            <span className="text-[8px] text-arcade-cyan">
-              ✏️ YOUR CODE ({challenge.language.toUpperCase()})
+            <span className="text-xs text-accent-cyan font-medium">
+              Your Code ({challenge.language.toUpperCase()})
             </span>
-            <span className="text-[8px] text-gray-500">
-              {code.split("\n").length} LINES
+            <span className="text-xs text-text-muted">
+              {code.split("\n").length} lines
             </span>
           </div>
-          <textarea
+          <CodeEditor
             value={code}
-            onChange={(e) => setCode(e.target.value)}
+            onChange={setCode}
+            language={challenge.language}
             placeholder={challenge.starterCode.replace(/\\n/g, "\n")}
-            className="code-editor w-full min-h-[180px] md:min-h-[220px]"
-            spellCheck={false}
             disabled={passed}
           />
         </div>
@@ -201,47 +202,47 @@ export default function ChallengeScreen({
               <button
                 onClick={handleSubmit}
                 disabled={!code.trim()}
-                className="arcade-card bg-arcade-green px-5 py-3 text-[9px] text-black hover:bg-green-300 transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                className="btn-success text-sm px-5 py-2.5"
               >
-                ▶ RUN & CHECK
+                ▶ Run & Check
               </button>
               <button
                 onClick={handleGetHint}
-                className="arcade-card bg-arcade-yellow px-5 py-3 text-[9px] text-black hover:bg-yellow-300 transition-colors cursor-pointer"
+                className="btn-secondary text-sm px-5 py-2.5"
               >
-                💡 HINT ({hintIndex + 1}/{challenge.hints.length})
+                💡 Hint ({hintIndex + 1}/{challenge.hints.length})
               </button>
               {state.aiApiKey && (
                 <button
                   onClick={handleAIHint}
                   disabled={aiLoading}
-                  className="arcade-card bg-arcade-purple px-5 py-3 text-[9px] text-white hover:bg-purple-400 transition-colors cursor-pointer disabled:opacity-50"
+                  className="btn-secondary text-sm px-5 py-2.5"
                 >
-                  {aiLoading ? "🤖 THINKING..." : "🤖 AI HINT"}
+                  {aiLoading ? "🤖 Thinking..." : "🤖 AI Hint"}
                 </button>
               )}
               <button
                 onClick={() => setShowSolution(!showSolution)}
-                className="arcade-card bg-arcade-card px-5 py-3 text-[9px] text-gray-300 hover:bg-gray-600 transition-colors cursor-pointer"
+                className="btn-secondary text-sm px-5 py-2.5"
               >
-                👁 {showSolution ? "HIDE" : "SHOW"} SOLUTION
+                👁 {showSolution ? "Hide" : "Show"} Solution
               </button>
             </>
           ) : (
             <button
               onClick={handleNextModule}
-              className="arcade-card bg-arcade-cyan px-6 py-4 text-[10px] text-black hover:bg-cyan-300 transition-colors cursor-pointer"
+              className="btn-primary text-sm px-8 py-3"
             >
-              NEXT MODULE →
+              Next Module →
             </button>
           )}
         </div>
 
         {/* Hints */}
         {showHint && (
-          <div className="arcade-card bg-arcade-yellow/20 p-4 mb-4">
-            <p className="text-[8px] text-arcade-yellow mb-2">💡 HINT:</p>
-            <p className="text-[9px] text-gray-200">
+          <div className="card p-4 mb-4 border-l-4 border-l-accent-yellow fade-in">
+            <p className="text-xs font-medium text-accent-yellow mb-1">💡 Hint</p>
+            <p className="text-sm text-text-secondary">
               {challenge.hints[hintIndex]}
             </p>
           </div>
@@ -249,11 +250,11 @@ export default function ChallengeScreen({
 
         {/* AI Hint */}
         {aiHint && (
-          <div className="arcade-card bg-arcade-purple/20 p-4 mb-4">
-            <p className="text-[8px] text-arcade-purple mb-2">
-              🤖 AI SAYS:
+          <div className="card p-4 mb-4 border-l-4 border-l-accent-purple fade-in">
+            <p className="text-xs font-medium text-accent-purple mb-1">
+              🤖 AI Suggests
             </p>
-            <p className="text-[9px] text-gray-200 whitespace-pre-wrap">
+            <p className="text-sm text-text-secondary whitespace-pre-wrap">
               {aiHint}
             </p>
           </div>
@@ -262,14 +263,16 @@ export default function ChallengeScreen({
         {/* Result Feedback */}
         {submitted && (
           <div
-            className={`arcade-card p-5 mb-4 ${
-              passed ? "bg-arcade-green" : "bg-arcade-red"
+            className={`card p-5 mb-4 fade-in ${
+              passed
+                ? "border-l-4 border-l-accent-green bg-accent-green/5"
+                : "border-l-4 border-l-accent-red bg-accent-red/5"
             }`}
           >
-            <p className="text-[10px] text-black font-bold mb-1">
-              {passed ? "✅ CHALLENGE PASSED! +250 XP" : "❌ NOT QUITE RIGHT"}
+            <p className={`text-sm font-medium mb-1 ${passed ? "text-accent-green" : "text-accent-red"}`}>
+              {passed ? "✅ Challenge Passed! +250 XP" : "❌ Not quite right"}
             </p>
-            <p className="text-[8px] text-black/70">
+            <p className="text-xs text-text-secondary">
               {passed
                 ? "Great job! You've mastered this concept!"
                 : "Check your code and try again. Use hints if stuck!"}
@@ -279,13 +282,12 @@ export default function ChallengeScreen({
 
         {/* Solution */}
         {showSolution && (
-          <div className="arcade-card bg-[#0d1117] p-5">
-            <p className="text-[8px] text-arcade-green mb-3">
-              📋 SOLUTION:
-            </p>
-            <pre className="text-[9px] text-arcade-green leading-relaxed font-mono whitespace-pre-wrap">
-              {challenge.solution.replace(/\\n/g, "\n")}
-            </pre>
+          <div className="mb-4 fade-in">
+            <CodeBlock
+              code={challenge.solution.replace(/\\n/g, "\n")}
+              language={challenge.language}
+              label="Solution"
+            />
           </div>
         )}
       </div>

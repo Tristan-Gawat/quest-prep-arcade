@@ -58,8 +58,8 @@ export default function QuizScreen({
   if (loading) {
     return (
       <div className="flex-1 flex items-center justify-center">
-        <p className="text-arcade-yellow text-xs blink">
-          LOADING QUESTIONS...
+        <p className="text-accent-blue text-sm pulse-soft">
+          Loading questions...
         </p>
       </div>
     );
@@ -70,16 +70,17 @@ export default function QuizScreen({
     // All questions answered - proceed to challenge
     return (
       <div className="flex-1 flex items-center justify-center p-4">
-        <div className="arcade-card bg-arcade-yellow p-8 text-center max-w-md">
-          <p className="text-sm text-black mb-4">QUIZ COMPLETE!</p>
-          <p className="text-[9px] text-black/70 mb-6">
-            READY FOR THE CODE CHALLENGE?
+        <div className="card p-8 text-center max-w-md fade-in">
+          <div className="text-4xl mb-4">🎉</div>
+          <p className="text-lg font-semibold text-text-primary mb-2">Quiz Complete!</p>
+          <p className="text-sm text-text-secondary mb-6">
+            Ready for the code challenge?
           </p>
           <button
             onClick={() => navigate("challenge")}
-            className="arcade-card bg-arcade-green px-6 py-3 text-[10px] text-black hover:bg-green-300 transition-colors cursor-pointer"
+            className="btn-success text-sm px-8 py-3"
           >
-            START CHALLENGE →
+            Start Challenge →
           </button>
         </div>
       </div>
@@ -99,12 +100,12 @@ export default function QuizScreen({
 
       if (newConsecutive >= 2) {
         newTier = promoteRank(state.tier);
-        setContainerFlash("flash-cyan");
+        setContainerFlash("flash-correct");
       } else {
-        setContainerFlash("flash-green");
+        setContainerFlash("flash-correct");
       }
 
-      setFeedback("+100 XP! GOOD GAME!");
+      setFeedback("+100 XP! Great work!");
       updateState({
         score: state.score + 100,
         streak: state.streak + 1,
@@ -114,8 +115,8 @@ export default function QuizScreen({
         totalCorrect: state.totalCorrect + 1,
       });
     } else {
-      setContainerFlash("flash-red");
-      setFeedback("WRONG! KEEP PUSHING!");
+      setContainerFlash("flash-wrong");
+      setFeedback("Not quite — keep pushing!");
       updateState({
         streak: 0,
         consecutiveCorrect: 0,
@@ -137,21 +138,21 @@ export default function QuizScreen({
     <div className="flex-1 flex items-center justify-center p-4">
       <div className="w-full max-w-2xl">
         <div
-          className={`arcade-card bg-arcade-yellow p-6 md:p-8 relative ${containerFlash}`}
+          className={`card p-6 md:p-8 relative ${containerFlash}`}
           onAnimationEnd={() => setContainerFlash("")}
         >
           {/* Header */}
           <div className="flex justify-between items-center mb-6">
-            <span className="arcade-card bg-arcade-card text-arcade-green text-[8px] px-3 py-1">
+            <span className="bg-bg-elevated text-accent-green text-xs font-medium px-3 py-1 rounded-full border border-border">
               {state.tier}
             </span>
-            <span className="text-[8px] text-black">
-              Q: {currentQIndex + 1}/{questions.length}
+            <span className="text-xs text-text-muted">
+              Question {currentQIndex + 1} of {questions.length}
             </span>
           </div>
 
           {/* Question */}
-          <p className="text-[10px] md:text-xs text-black leading-relaxed mb-8">
+          <p className="text-sm md:text-base text-text-primary leading-relaxed mb-8 font-medium">
             {currentQuestion.question}
           </p>
 
@@ -159,19 +160,22 @@ export default function QuizScreen({
           <div className="space-y-3">
             {currentQuestion.choices.map((choice, i) => {
               let btnClass =
-                "w-full arcade-card bg-white p-3 md:p-4 text-[9px] md:text-[10px] text-black text-left transition-colors cursor-pointer hover:bg-gray-100";
+                "w-full p-4 text-sm text-text-primary text-left rounded-lg border transition-all cursor-pointer ";
 
               if (showResult) {
                 if (i === currentQuestion.correct) {
-                  btnClass =
-                    "w-full arcade-card bg-arcade-green p-3 md:p-4 text-[9px] md:text-[10px] text-black text-left";
+                  btnClass +=
+                    "bg-accent-green/10 border-accent-green text-accent-green";
                 } else if (i === selected && i !== currentQuestion.correct) {
-                  btnClass =
-                    "w-full arcade-card bg-arcade-red p-3 md:p-4 text-[9px] md:text-[10px] text-white text-left";
+                  btnClass +=
+                    "bg-accent-red/10 border-accent-red text-accent-red";
                 } else {
-                  btnClass =
-                    "w-full arcade-card bg-gray-200 p-3 md:p-4 text-[9px] md:text-[10px] text-gray-500 text-left";
+                  btnClass +=
+                    "bg-bg-card border-border text-text-muted opacity-60";
                 }
+              } else {
+                btnClass +=
+                  "bg-bg-card border-border hover:border-border-focus hover:bg-bg-elevated";
               }
 
               const labels = ["A", "B", "C", "D"];
@@ -182,7 +186,8 @@ export default function QuizScreen({
                   className={btnClass}
                   disabled={showResult}
                 >
-                  {labels[i]}) {choice}
+                  <span className="text-text-muted mr-3">{labels[i]}.</span>
+                  {choice}
                 </button>
               );
             })}
@@ -190,28 +195,28 @@ export default function QuizScreen({
 
           {/* Feedback */}
           {showResult && (
-            <div className="mt-6">
+            <div className="mt-6 fade-in">
               <p
-                className={`text-[10px] font-bold mb-2 ${
+                className={`text-sm font-medium mb-2 ${
                   selected === currentQuestion.correct
-                    ? "text-green-800"
-                    : "text-red-800"
+                    ? "text-accent-green"
+                    : "text-accent-red"
                 }`}
               >
                 {feedback}
               </p>
               {currentQuestion.explanation && (
-                <p className="text-[8px] text-black/70 mb-4">
+                <p className="text-xs text-text-secondary mb-4">
                   💡 {currentQuestion.explanation}
                 </p>
               )}
               <button
                 onClick={handleNext}
-                className="arcade-card bg-arcade-cyan px-5 py-3 text-[9px] text-black hover:bg-cyan-300 transition-colors cursor-pointer"
+                className="btn-primary text-sm px-6 py-2.5"
               >
                 {currentQIndex + 1 < questions.length
-                  ? "NEXT QUESTION →"
-                  : "FINISH QUIZ →"}
+                  ? "Next Question →"
+                  : "Finish Quiz →"}
               </button>
             </div>
           )}

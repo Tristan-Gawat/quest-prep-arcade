@@ -4,6 +4,7 @@ import { useState } from "react";
 import { GameState, Screen } from "@/lib/state";
 import { courses } from "@/data/courses";
 import { generateExplanation } from "@/lib/ai";
+import CodeBlock from "@/components/CodeBlock";
 
 interface LessonScreenProps {
   state: GameState;
@@ -39,52 +40,49 @@ export default function LessonScreen({ state, navigate }: LessonScreenProps) {
 
   return (
     <div className="flex-1 p-4 md:p-8 overflow-y-auto">
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-3xl mx-auto slide-up">
         {/* Module header */}
         <div className="flex items-center gap-3 mb-6">
-          <span className="arcade-card bg-arcade-card text-arcade-green text-[8px] px-3 py-1">
+          <span className="bg-bg-elevated text-accent-green text-xs font-medium px-3 py-1 rounded-full border border-border">
             {currentModule.tier}
           </span>
-          <span className="text-[8px] text-gray-400">
-            MODULE {state.currentModuleIndex + 1}/{allModules.length}
+          <span className="text-xs text-text-muted">
+            Module {state.currentModuleIndex + 1}/{allModules.length}
           </span>
         </div>
 
         {/* Lesson Title */}
-        <h2 className="text-sm md:text-lg text-arcade-yellow mb-6">
+        <h2 className="text-xl md:text-2xl font-semibold text-text-primary mb-6">
           📖 {lesson.title}
         </h2>
 
         {/* Concept Card */}
-        <div className="arcade-card bg-arcade-yellow p-5 md:p-6 mb-6">
-          <p className="text-[9px] md:text-[10px] text-black font-bold mb-3">
-            💡 KEY CONCEPT
+        <div className="card p-5 md:p-6 mb-6 border-l-4 border-l-accent-yellow">
+          <p className="text-xs font-medium text-accent-yellow mb-2">
+            Key Concept
           </p>
-          <p className="text-[9px] md:text-[10px] text-black leading-relaxed">
+          <p className="text-sm text-text-primary leading-relaxed">
             {lesson.concept}
           </p>
         </div>
 
         {/* Explanation */}
-        <div className="arcade-card bg-arcade-card p-5 md:p-6 mb-6">
-          <p className="text-[9px] md:text-[10px] text-arcade-cyan mb-3">
-            📝 EXPLANATION
+        <div className="card p-5 md:p-6 mb-6">
+          <p className="text-xs font-medium text-accent-cyan mb-3">
+            Explanation
           </p>
-          <p className="text-[9px] md:text-[10px] text-gray-200 leading-relaxed whitespace-pre-wrap">
+          <p className="text-sm text-text-secondary leading-relaxed whitespace-pre-wrap">
             {lesson.explanation}
           </p>
         </div>
 
         {/* Code Example */}
-        <div className="arcade-card bg-[#0d1117] p-5 md:p-6 mb-6">
-          <div className="flex justify-between items-center mb-3">
-            <p className="text-[9px] text-arcade-green">
-              💻 CODE EXAMPLE ({lesson.language.toUpperCase()})
-            </p>
-          </div>
-          <pre className="text-[9px] md:text-[10px] text-arcade-green leading-relaxed overflow-x-auto font-mono">
-            {lesson.codeExample}
-          </pre>
+        <div className="mb-6">
+          <CodeBlock
+            code={lesson.codeExample}
+            language={lesson.language}
+            label="Code Example"
+          />
         </div>
 
         {/* AI Explanation (optional) */}
@@ -94,18 +92,18 @@ export default function LessonScreen({ state, navigate }: LessonScreenProps) {
               <button
                 onClick={handleAskAI}
                 disabled={aiLoading}
-                className="arcade-card bg-arcade-purple px-4 py-3 text-[9px] text-white hover:bg-purple-400 transition-colors cursor-pointer disabled:opacity-50 w-full"
+                className="btn-secondary w-full text-sm"
               >
                 {aiLoading
-                  ? "🤖 AI IS THINKING..."
-                  : "🤖 ASK AI FOR MORE EXPLANATION"}
+                  ? "🤖 AI is thinking..."
+                  : "🤖 Ask AI for more explanation"}
               </button>
             ) : (
-              <div className="arcade-card bg-arcade-purple/20 border-arcade-purple p-5">
-                <p className="text-[9px] text-arcade-purple mb-3">
-                  🤖 AI TUTOR SAYS:
+              <div className="card p-5 border-l-4 border-l-accent-purple">
+                <p className="text-xs font-medium text-accent-purple mb-3">
+                  🤖 AI Tutor
                 </p>
-                <p className="text-[9px] text-gray-200 leading-relaxed whitespace-pre-wrap">
+                <p className="text-sm text-text-secondary leading-relaxed whitespace-pre-wrap">
                   {aiExplanation}
                 </p>
               </div>
@@ -114,12 +112,12 @@ export default function LessonScreen({ state, navigate }: LessonScreenProps) {
         )}
 
         {/* Navigation */}
-        <div className="flex gap-4 justify-center">
+        <div className="flex gap-4 justify-center pt-4">
           <button
             onClick={() => navigate("quiz")}
-            className="arcade-card bg-arcade-cyan px-6 py-4 text-[10px] md:text-xs text-black hover:bg-cyan-300 transition-colors cursor-pointer"
+            className="btn-primary text-sm px-8 py-3"
           >
-            TAKE THE QUIZ →
+            Take the Quiz →
           </button>
         </div>
       </div>

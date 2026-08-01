@@ -11,19 +11,19 @@ export default function Ticker({ state }: TickerProps) {
 
   if (state.streak >= 3) {
     message =
-      "YOU ARE SMASHING IT! REMEMBER: EDUCATION IS FREE AND EQUITABLE FOR ALL!";
+      "You're on fire! Remember: education is free and equitable for all.";
   } else if (state.tier === "ROOKIE" && state.totalQuestionsAnswered > 0) {
     message =
-      "KEEP GOING ACADEMY STUDENT! FAILURE IS JUST A STEP TOWARDS MASTERING THE LEVEL!";
+      "Keep going! Failure is just a step towards mastering the level.";
   } else {
     message =
-      "WELCOME TO QUEST PREP ARCADE! LEARN TO CODE, LEVEL UP YOUR SKILLS, CHANGE THE WORLD!";
+      "Welcome to Quest Prep! Learn to code, level up your skills, change the world.";
   }
 
   return (
-    <div className="m-3 md:m-4 arcade-card bg-arcade-purple p-3 overflow-hidden">
-      <div className="whitespace-nowrap">
-        <span className="ticker-scroll inline-block text-[8px] md:text-[9px] text-white">
+    <div className="mx-3 md:mx-4 mb-3 md:mb-4">
+      <div className="bg-bg-card border border-border rounded-lg px-4 py-2.5 text-center">
+        <span className="text-xs text-text-secondary">
           {message}
         </span>
       </div>

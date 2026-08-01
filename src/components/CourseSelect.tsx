@@ -24,15 +24,15 @@ export default function CourseSelect({
 
   return (
     <div className="flex-1 flex items-center justify-center p-4">
-      <div className="w-full max-w-3xl">
-        <h2 className="text-lg md:text-xl text-arcade-yellow text-center mb-2">
-          SELECT YOUR QUEST
+      <div className="w-full max-w-3xl fade-in">
+        <h2 className="text-xl md:text-2xl font-semibold text-text-primary text-center mb-2">
+          Select Your Course
         </h2>
-        <p className="text-[9px] text-arcade-cyan text-center mb-8">
-          CHOOSE A LANGUAGE TO MASTER
+        <p className="text-sm text-text-secondary text-center mb-10">
+          Choose a language to master
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 md:gap-6">
           {courses.map((course) => {
             const dynamicModules = state.generatedModules[course.id] || [];
             const allModules = [...course.modules, ...dynamicModules];
@@ -46,33 +46,32 @@ export default function CourseSelect({
               <button
                 key={course.id}
                 onClick={() => handleSelectCourse(course.id)}
-                className="arcade-card p-4 md:p-6 text-left transition-transform hover:translate-y-[-4px] cursor-pointer"
-                style={{ backgroundColor: course.color }}
+                className="card p-5 md:p-6 text-left transition-all hover:translate-y-[-2px] hover:shadow-lg cursor-pointer"
               >
-                <span className="text-2xl md:text-3xl block mb-3">
+                <span className="text-3xl md:text-4xl block mb-4">
                   {course.icon}
                 </span>
-                <h3 className="text-[9px] md:text-xs text-black mb-1">
+                <h3 className="text-sm md:text-base font-medium text-text-primary mb-1">
                   {course.name}
                 </h3>
-                <p className="text-[7px] md:text-[8px] text-black/70 mb-3">
+                <p className="text-xs text-text-secondary mb-4">
                   {course.description}
                 </p>
 
                 {/* Progress bar */}
-                <div className="w-full h-2 md:h-3 bg-black/20 border-2 border-black">
+                <div className="w-full h-2 bg-bg-elevated rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-black/40 transition-all"
+                    className="h-full bg-accent-green rounded-full transition-all"
                     style={{ width: `${progress}%` }}
                   />
                 </div>
-                <div className="flex justify-between mt-1">
-                  <p className="text-[6px] md:text-[7px] text-black/60">
-                    {completed}/{total} MODULES
+                <div className="flex justify-between mt-2">
+                  <p className="text-xs text-text-muted">
+                    {completed}/{total} modules
                   </p>
                   {completed >= course.modules.length && (
-                    <p className="text-[6px] md:text-[7px] text-black font-bold">
-                      ∞ EXPANDING
+                    <p className="text-xs text-accent-purple font-medium">
+                      ∞ Expanding
                     </p>
                   )}
                 </div>
@@ -81,12 +80,12 @@ export default function CourseSelect({
           })}
         </div>
 
-        <div className="text-center mt-8">
+        <div className="text-center mt-10">
           <button
             onClick={() => navigate("settings")}
-            className="text-[9px] text-gray-400 hover:text-arcade-purple transition-colors cursor-pointer"
+            className="btn-secondary text-sm"
           >
-            ⚙ SETTINGS & AI CONFIG
+            ⚙ Settings & AI Config
           </button>
         </div>
       </div>

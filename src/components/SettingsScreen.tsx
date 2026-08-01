@@ -43,109 +43,109 @@ export default function SettingsScreen({
 
   return (
     <div className="flex-1 flex items-center justify-center p-4">
-      <div className="w-full max-w-2xl">
-        <h2 className="text-sm md:text-lg text-arcade-yellow text-center mb-8">
-          ⚙ SETTINGS
+      <div className="w-full max-w-2xl fade-in">
+        <h2 className="text-xl md:text-2xl font-semibold text-text-primary text-center mb-8">
+          Settings
         </h2>
 
         {/* AI Configuration */}
-        <div className="arcade-card bg-arcade-card p-6 mb-6">
-          <h3 className="text-[10px] text-arcade-purple mb-4">
-            🤖 AI TUTOR CONFIGURATION
+        <div className="card p-6 mb-6">
+          <h3 className="text-sm font-medium text-accent-purple mb-2">
+            🤖 AI Tutor Configuration
           </h3>
-          <p className="text-[8px] text-gray-400 mb-4">
+          <p className="text-xs text-text-muted mb-5">
             Add your API key to unlock AI-powered explanations, dynamic
             questions, and smart hints. Your key is stored locally and never
             sent to our servers.
           </p>
 
           {/* Provider Selection */}
-          <div className="mb-4">
-            <label className="text-[8px] text-gray-300 block mb-2">
-              PROVIDER:
+          <div className="mb-5">
+            <label className="text-xs text-text-secondary block mb-2">
+              Provider
             </label>
             <div className="flex gap-3">
               <button
                 onClick={() => setProvider("openai")}
-                className={`arcade-card px-4 py-2 text-[8px] cursor-pointer transition-colors ${
+                className={`px-4 py-2 text-sm rounded-lg border cursor-pointer transition-all ${
                   provider === "openai"
-                    ? "bg-arcade-green text-black"
-                    : "bg-arcade-card text-gray-400 hover:bg-gray-600"
+                    ? "bg-accent-blue/10 border-accent-blue text-accent-blue"
+                    : "bg-bg-card border-border text-text-secondary hover:border-border-focus"
                 }`}
               >
-                OPENAI
+                OpenAI
               </button>
               <button
                 onClick={() => setProvider("anthropic")}
-                className={`arcade-card px-4 py-2 text-[8px] cursor-pointer transition-colors ${
+                className={`px-4 py-2 text-sm rounded-lg border cursor-pointer transition-all ${
                   provider === "anthropic"
-                    ? "bg-arcade-green text-black"
-                    : "bg-arcade-card text-gray-400 hover:bg-gray-600"
+                    ? "bg-accent-blue/10 border-accent-blue text-accent-blue"
+                    : "bg-bg-card border-border text-text-secondary hover:border-border-focus"
                 }`}
               >
-                ANTHROPIC
+                Anthropic
               </button>
             </div>
           </div>
 
           {/* API Key Input */}
-          <div className="mb-4">
-            <label className="text-[8px] text-gray-300 block mb-2">
-              API KEY:
+          <div className="mb-5">
+            <label className="text-xs text-text-secondary block mb-2">
+              API Key
             </label>
             <input
               type="password"
               value={apiKey}
               onChange={(e) => setApiKey(e.target.value)}
               placeholder="sk-... or sk-ant-..."
-              className="w-full bg-black border-4 border-black text-arcade-green text-[9px] p-3 outline-none focus:border-arcade-purple"
+              className="w-full bg-bg-input border border-border rounded-lg text-sm text-text-primary p-3 outline-none focus:border-border-focus focus:ring-1 focus:ring-border-focus transition-all"
             />
           </div>
 
           <div className="flex gap-3 items-center">
             <button
               onClick={handleSave}
-              className="arcade-card bg-arcade-green px-5 py-3 text-[9px] text-black hover:bg-green-300 transition-colors cursor-pointer"
+              className="btn-primary text-sm px-5 py-2.5"
             >
-              SAVE CONFIG
+              Save Configuration
             </button>
             {saved && (
-              <span className="text-[8px] text-arcade-green">
-                ✓ SAVED!
+              <span className="text-xs text-accent-green font-medium">
+                ✓ Saved!
               </span>
             )}
           </div>
 
           {state.aiApiKey && (
-            <p className="text-[7px] text-arcade-green mt-3">
-              ✓ AI TUTOR ACTIVE ({state.aiProvider.toUpperCase()})
+            <p className="text-xs text-accent-green mt-3">
+              ✓ AI Tutor Active ({state.aiProvider.toUpperCase()})
             </p>
           )}
         </div>
 
         {/* Stats Overview */}
-        <div className="arcade-card bg-arcade-card p-6 mb-6">
-          <h3 className="text-[10px] text-arcade-cyan mb-4">
-            📊 YOUR STATS
+        <div className="card p-6 mb-6">
+          <h3 className="text-sm font-medium text-accent-cyan mb-4">
+            📊 Your Stats
           </h3>
-          <div className="grid grid-cols-2 gap-4 text-[8px]">
-            <div>
-              <span className="text-gray-400">TOTAL SCORE:</span>
-              <span className="text-arcade-yellow ml-2">{state.score}</span>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="flex justify-between items-center py-2 border-b border-border">
+              <span className="text-xs text-text-secondary">Total Score</span>
+              <span className="text-sm font-medium text-accent-yellow">{state.score}</span>
             </div>
-            <div>
-              <span className="text-gray-400">CURRENT RANK:</span>
-              <span className="text-arcade-purple ml-2">{state.tier}</span>
+            <div className="flex justify-between items-center py-2 border-b border-border">
+              <span className="text-xs text-text-secondary">Current Rank</span>
+              <span className="text-sm font-medium text-accent-purple">{state.tier}</span>
             </div>
-            <div>
-              <span className="text-gray-400">QUESTIONS:</span>
-              <span className="text-arcade-cyan ml-2">
+            <div className="flex justify-between items-center py-2 border-b border-border">
+              <span className="text-xs text-text-secondary">Questions</span>
+              <span className="text-sm font-medium text-accent-cyan">
                 {state.totalQuestionsAnswered}
               </span>
             </div>
-            <div>
-              <span className="text-gray-400">ACCURACY:</span>
-              <span className="text-arcade-green ml-2">
+            <div className="flex justify-between items-center py-2 border-b border-border">
+              <span className="text-xs text-text-secondary">Accuracy</span>
+              <span className="text-sm font-medium text-accent-green">
                 {state.totalQuestionsAnswered > 0
                   ? Math.round(
                       (state.totalCorrect / state.totalQuestionsAnswered) *
@@ -155,29 +155,29 @@ export default function SettingsScreen({
                 %
               </span>
             </div>
-            <div>
-              <span className="text-gray-400">MODULES DONE:</span>
-              <span className="text-arcade-yellow ml-2">
+            <div className="flex justify-between items-center py-2 border-b border-border">
+              <span className="text-xs text-text-secondary">Modules Done</span>
+              <span className="text-sm font-medium text-accent-yellow">
                 {state.completedModules.length}
               </span>
             </div>
-            <div>
-              <span className="text-gray-400">BEST STREAK:</span>
-              <span className="text-arcade-cyan ml-2">{state.streak}</span>
+            <div className="flex justify-between items-center py-2 border-b border-border">
+              <span className="text-xs text-text-secondary">Best Streak</span>
+              <span className="text-sm font-medium text-accent-cyan">{state.streak}</span>
             </div>
           </div>
         </div>
 
         {/* Danger Zone */}
-        <div className="arcade-card bg-arcade-red/20 p-6 mb-6">
-          <h3 className="text-[10px] text-arcade-red mb-4">
-            ⚠ DANGER ZONE
+        <div className="card p-6 mb-6 border-accent-red/30">
+          <h3 className="text-sm font-medium text-accent-red mb-4">
+            ⚠ Danger Zone
           </h3>
           <button
             onClick={handleReset}
-            className="arcade-card bg-arcade-red px-5 py-3 text-[9px] text-white hover:bg-red-400 transition-colors cursor-pointer"
+            className="px-5 py-2.5 text-sm rounded-lg bg-accent-red/10 border border-accent-red/30 text-accent-red hover:bg-accent-red/20 transition-all cursor-pointer"
           >
-            {confirmReset ? "CONFIRM RESET?" : "RESET ALL PROGRESS"}
+            {confirmReset ? "Confirm Reset?" : "Reset All Progress"}
           </button>
         </div>
 
@@ -185,9 +185,9 @@ export default function SettingsScreen({
         <div className="text-center">
           <button
             onClick={() => navigate("course-select")}
-            className="arcade-card bg-arcade-yellow px-6 py-3 text-[9px] text-black hover:bg-yellow-300 transition-colors cursor-pointer"
+            className="btn-secondary text-sm"
           >
-            ← BACK TO COURSES
+            ← Back to Courses
           </button>
         </div>
       </div>
