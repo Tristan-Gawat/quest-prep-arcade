@@ -52,6 +52,13 @@ export default function AuthScreen({ onSkip }: AuthScreenProps) {
         <p className="text-xs text-text-muted">
           Your rank is visible to other players on the leaderboard
         </p>
+
+        <div className="card p-5 mt-6 text-left max-w-md mx-auto">
+          <p className="text-xs font-medium text-accent-purple mb-2">Why CodeLapse?</p>
+          <p className="text-xs text-text-muted leading-relaxed">
+            I built CodeLapse because I believe everyone deserves access to quality coding education — for free. Whether you&apos;re a complete beginner or an experienced dev picking up a new language, this platform adapts to your level and grows with you. The AI learns new topics and teaches them back, so the curriculum never stops expanding. Learn at your own pace, compete on leaderboards, and join a community of coders leveling up together.
+          </p>
+        </div>
       </div>
     </div>
   );

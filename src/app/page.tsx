@@ -146,29 +146,36 @@ export default function Home() {
       {/* Main content area */}
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
         {/* Top bar: rank + XP + settings */}
-        <header className="shrink-0 flex items-center justify-between px-4 md:px-6 py-3 border-b border-border bg-bg-secondary/30 relative z-10">
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2">
-              <span className="text-sm" style={{ color: getRankColor(rank.tier) }}>
-                {getRankBadgeEmoji(rank.tier)} {getRankDisplay(rank)}
-              </span>
+        <header className="shrink-0 border-b border-border bg-bg-secondary/30 relative z-10">
+          <div className="flex items-center justify-between px-4 md:px-6 py-3">
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2">
+                <span className="text-sm" style={{ color: getRankColor(rank.tier) }}>
+                  {getRankBadgeEmoji(rank.tier)} {getRankDisplay(rank)}
+                </span>
+              </div>
+              <div className="hidden sm:flex items-center gap-3 text-xs text-text-muted">
+                <span>XP: <strong className="text-accent-yellow">{state.score.toLocaleString()}</strong></span>
+                <span>Streak: <strong className="text-accent-cyan">{state.streak}</strong></span>
+              </div>
             </div>
-            <div className="hidden sm:flex items-center gap-3 text-xs text-text-muted">
-              <span>XP: <strong className="text-accent-yellow">{state.score.toLocaleString()}</strong></span>
-              <span>Streak: <strong className="text-accent-cyan">{state.streak}</strong></span>
-            </div>
-          </div>
 
-          <button
-            onClick={() => navigate("settings")}
-            className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-bg-elevated transition-colors cursor-pointer text-text-muted hover:text-text-primary"
-            title="Settings"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="12" cy="12" r="3"/>
-              <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-            </svg>
-          </button>
+            <button
+              onClick={() => navigate("settings")}
+              className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-bg-elevated transition-colors cursor-pointer text-text-muted hover:text-text-primary"
+              title="Settings"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+              </svg>
+            </button>
+          </div>
+          <div className="px-4 md:px-6 pb-3">
+            <p className="text-xs text-text-secondary">
+              Welcome to CodeLapse! Learn to code, level up your skills, change the world.
+            </p>
+          </div>
         </header>
 
         {/* Scrollable content */}
