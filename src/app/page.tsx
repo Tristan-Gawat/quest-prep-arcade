@@ -30,6 +30,7 @@ export default function Home() {
   const [mounted, setMounted] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const [authChecked, setAuthChecked] = useState(false);
+  const [skippedAuth, setSkippedAuth] = useState(false);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -118,8 +119,6 @@ export default function Home() {
       </div>
     );
   }
-
-  const [skippedAuth, setSkippedAuth] = useState(false);
 
   // Auth screen (no sidebar) — show if not logged in and haven't skipped
   if (!user && !skippedAuth) {
