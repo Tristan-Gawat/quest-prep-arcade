@@ -5,6 +5,7 @@ import { GameState, Screen, promoteRank, demoteRank } from "@/lib/state";
 import { courses } from "@/data/courses";
 import { QuizQuestion } from "@/data/curriculum";
 import { generateDynamicQuestion } from "@/lib/ai";
+import { getQuizXP, formatXPGain } from "@/lib/xp";
 
 interface QuizScreenProps {
   state: GameState;
@@ -105,9 +106,13 @@ export default function QuizScreen({
         setContainerFlash("flash-correct");
       }
 
-      setFeedback("+100 XP! Great work!");
+      // Calculate XP based on module difficulty tier
+      const moduleTier = currentModule?.tier || "ROOKIE";
+      const xpReward = getQuizXP(moduleTier, state.streak);
+
+      setFeedback(formatXPGain(xpReward.total, xpReward.bonus));
       updateState({
-        score: state.score + 100,
+        score: state.score + xpReward.total,
         streak: state.streak + 1,
         consecutiveCorrect: newConsecutive >= 2 ? 0 : newConsecutive,
         tier: newTier,

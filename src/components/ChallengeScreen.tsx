@@ -4,6 +4,7 @@ import { useState } from "react";
 import { GameState, Screen } from "@/lib/state";
 import { courses } from "@/data/courses";
 import { generateHint } from "@/lib/ai";
+import { getChallengeXP } from "@/lib/xp";
 import CodeEditor from "@/components/CodeEditor";
 import CodeBlock from "@/components/CodeBlock";
 
@@ -63,9 +64,10 @@ export default function ChallengeScreen({
     setPassed(isPassing);
 
     if (isPassing) {
+      const xpReward = getChallengeXP(currentModule.tier);
       const newCompleted = [...state.completedModules, currentModule.id];
       updateState({
-        score: state.score + 250,
+        score: state.score + xpReward.total,
         completedModules: newCompleted,
       });
     }
@@ -270,7 +272,7 @@ export default function ChallengeScreen({
             }`}
           >
             <p className={`text-sm font-medium mb-1 ${passed ? "text-accent-green" : "text-accent-red"}`}>
-              {passed ? "✅ Challenge Passed! +250 XP" : "❌ Not quite right"}
+              {passed ? `✅ Challenge Passed! +${getChallengeXP(currentModule.tier).total} XP` : "❌ Not quite right"}
             </p>
             <p className="text-xs text-text-secondary">
               {passed
