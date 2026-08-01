@@ -26,7 +26,9 @@ export default function QuizScreen({
   const [loading, setLoading] = useState(true);
 
   const course = courses.find((c) => c.id === state.currentCourseId);
-  const currentModule = course?.modules[state.currentModuleIndex];
+  const dynamicModules = state.generatedModules[course?.id || ""] || [];
+  const allModules = course ? [...course.modules, ...dynamicModules] : [];
+  const currentModule = allModules[state.currentModuleIndex];
 
   useEffect(() => {
     async function loadQuestions() {

@@ -13,6 +13,8 @@ export interface GameState {
   totalCorrect: number;
   aiApiKey: string | null;
   aiProvider: "openai" | "anthropic";
+  generatedModules: Record<string, import("@/data/curriculum").Module[]>;
+  totalModulesGenerated: number;
 }
 
 export type Screen =
@@ -42,6 +44,8 @@ export function getInitialState(): GameState {
     totalCorrect: 0,
     aiApiKey: null,
     aiProvider: "openai",
+    generatedModules: {},
+    totalModulesGenerated: 0,
   };
 }
 

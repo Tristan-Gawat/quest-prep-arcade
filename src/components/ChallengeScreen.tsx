@@ -26,7 +26,9 @@ export default function ChallengeScreen({
   const [showSolution, setShowSolution] = useState(false);
 
   const course = courses.find((c) => c.id === state.currentCourseId);
-  const currentModule = course?.modules[state.currentModuleIndex];
+  const dynamicModules = state.generatedModules[course?.id || ""] || [];
+  const allModules = course ? [...course.modules, ...dynamicModules] : [];
+  const currentModule = allModules[state.currentModuleIndex];
 
   if (!course || !currentModule) return null;
   const { challenge } = currentModule;
@@ -96,15 +98,57 @@ export default function ChallengeScreen({
     setAiLoading(false);
   };
 
-  const handleNextModule = () => {
+  const handleNextModule = async () => {
     const nextIndex = state.currentModuleIndex + 1;
-    if (nextIndex < (course?.modules.length || 0)) {
+    if (nextIndex < allModules.length) {
       updateState({
         currentModuleIndex: nextIndex,
         currentScreen: "lesson",
       });
     } else {
-      navigate("course-select");
+      // All modules completed — generate a new one!
+      if (state.aiApiKey) {
+        // Try AI generation
+        const { generateModuleWithAI } = await import("@/lib/generator");
+        const newModule = await generateModuleWithAI(
+          course.id,
+          course.name,
+          state.tier,
+          state.completedModules,
+          state.aiApiKey,
+          state.aiProvider
+        );
+        if (newModule) {
+          const existing = state.generatedModules[course.id] || [];
+          updateState({
+            generatedModules: {
+              ...state.generatedModules,
+              [course.id]: [...existing, newModule],
+            },
+            currentModuleIndex: nextIndex,
+            currentScreen: "lesson",
+            totalModulesGenerated: state.totalModulesGenerated + 1,
+          });
+          return;
+        }
+      }
+      // Fallback: procedural generation
+      const { generateModuleProcedural } = await import("@/lib/generator");
+      const newModule = generateModuleProcedural(
+        course.id,
+        state.tier,
+        state.completedModules
+      );
+      const existing = state.generatedModules[course.id] || [];
+      updateState({
+        generatedModules: {
+          ...state.generatedModules,
+          [course.id]: [...existing, newModule],
+        },
+        currentModuleIndex: nextIndex,
+        currentScreen: "lesson",
+        totalModulesGenerated: state.totalModulesGenerated + 1,
+      });
     }
   };
 

@@ -17,7 +17,9 @@ export default function LessonScreen({ state, navigate }: LessonScreenProps) {
   const course = courses.find((c) => c.id === state.currentCourseId);
   if (!course) return null;
 
-  const currentModule = course.modules[state.currentModuleIndex];
+  const dynamicModules = state.generatedModules[course.id] || [];
+  const allModules = [...course.modules, ...dynamicModules];
+  const currentModule = allModules[state.currentModuleIndex];
   if (!currentModule) return null;
 
   const { lesson } = currentModule;
@@ -44,7 +46,7 @@ export default function LessonScreen({ state, navigate }: LessonScreenProps) {
             {currentModule.tier}
           </span>
           <span className="text-[8px] text-gray-400">
-            MODULE {state.currentModuleIndex + 1}/{course.modules.length}
+            MODULE {state.currentModuleIndex + 1}/{allModules.length}
           </span>
         </div>
 
