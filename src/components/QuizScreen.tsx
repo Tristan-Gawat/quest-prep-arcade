@@ -48,7 +48,21 @@ export default function QuizScreen({
           qs.push(aiQ);
         }
       }
-      setQuestions(qs);
+
+      // Randomize answer positions so correct answer isn't always B/C
+      const shuffled = qs.map((q) => {
+        const indices = q.choices.map((_, i) => i);
+        // Fisher-Yates shuffle
+        for (let i = indices.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [indices[i], indices[j]] = [indices[j], indices[i]];
+        }
+        const newChoices = indices.map((i) => q.choices[i]);
+        const newCorrect = indices.indexOf(q.correct);
+        return { ...q, choices: newChoices, correct: newCorrect };
+      });
+
+      setQuestions(shuffled);
       setLoading(false);
     }
     loadQuestions();
