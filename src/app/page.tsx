@@ -192,11 +192,11 @@ export default function Home() {
         {/* Scrollable content */}
         <div className="flex-1 overflow-y-auto">
           {state.currentScreen === "start" && (
-            <CourseSelect state={state} updateState={updateState} navigate={navigate} />
+            <CourseSelect state={state} updateState={updateState} navigate={navigate} userEmail={user?.email} />
           )}
 
           {state.currentScreen === "course-select" && (
-            <CourseSelect state={state} updateState={updateState} navigate={navigate} />
+            <CourseSelect state={state} updateState={updateState} navigate={navigate} userEmail={user?.email} />
           )}
 
           {state.currentScreen === "lesson" && (
