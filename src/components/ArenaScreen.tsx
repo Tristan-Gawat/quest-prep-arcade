@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { GameState, Screen } from "@/lib/state";
 import { courses } from "@/data/courses";
-import { askAI } from "@/lib/ai";
 import CodeEditor from "@/components/CodeEditor";
 
 interface ArenaScreenProps {
@@ -51,20 +50,13 @@ export default function ArenaScreen({ state, updateState, navigate }: ArenaScree
     setSubmitted(false);
     setLoading(true);
 
-    if (state.aiApiKey) {
-      // Use AI to generate a unique challenge
-      const result = await askAI(
-        "Generate a short coding challenge for a student. Just give the task description in 1-2 sentences. Make it practical and fun. Don't include any code or solution. Examples: reverse a string, check if prime, find duplicates, etc.",
-        state.aiApiKey,
-        state.aiProvider
-      );
-      if (result.success) {
-        setChallenge(result.content);
-      } else {
-        setChallenge(ARENA_PROMPTS[Math.floor(Math.random() * ARENA_PROMPTS.length)]);
-      }
+    // Try built-in AI first (free for all users)
+    const { builtinGenerateChallenge } = await import("@/lib/ai-builtin");
+    const aiChallenge = await builtinGenerateChallenge();
+    if (aiChallenge) {
+      setChallenge(aiChallenge);
     } else {
-      // Use pre-built challenges
+      // Fallback to pre-built challenges
       setChallenge(ARENA_PROMPTS[Math.floor(Math.random() * ARENA_PROMPTS.length)]);
     }
     setLoading(false);
@@ -73,15 +65,13 @@ export default function ArenaScreen({ state, updateState, navigate }: ArenaScree
   const handleSubmitCode = async () => {
     setSubmitted(true);
 
-    if (state.aiApiKey && code.trim()) {
+    if (code.trim()) {
       setLoading(true);
-      const result = await askAI(
-        `Review this ${selectedLang} code for the challenge: "${challenge}"\n\nCode:\n\`\`\`\n${code}\n\`\`\`\n\nGive brief feedback: does it solve the challenge? Any improvements? Rate it out of 10. Keep response under 100 words.`,
-        state.aiApiKey,
-        state.aiProvider
-      );
-      if (result.success) {
-        setAiResponse(result.content);
+      // Use built-in AI (free for all users)
+      const { builtinReviewCode } = await import("@/lib/ai-builtin");
+      const review = await builtinReviewCode(challenge || "", code, selectedLang || "");
+      if (review) {
+        setAiResponse(review);
       }
       setLoading(false);
     }
@@ -120,7 +110,7 @@ export default function ArenaScreen({ state, updateState, navigate }: ArenaScree
           </div>
           {!state.aiApiKey && (
             <p className="text-xs text-text-muted mt-4">
-              Add an AI API key in Settings for unique AI-generated challenges!
+              Powered by AI — free for all users!
             </p>
           )}
         </div>
@@ -247,7 +237,7 @@ export default function ArenaScreen({ state, updateState, navigate }: ArenaScree
           <div className="card p-5 border-l-4 border-l-accent-yellow fade-in">
             <p className="text-xs font-medium text-accent-yellow mb-2">✅ Submitted! +50 XP</p>
             <p className="text-sm text-text-secondary">
-              Add an AI API key in Settings to get feedback on your code!
+              Great attempt! Keep practicing to improve your skills.
             </p>
           </div>
         )}

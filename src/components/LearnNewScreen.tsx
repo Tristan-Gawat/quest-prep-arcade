@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { GameState, Screen } from "@/lib/state";
 import { courses } from "@/data/courses";
-import { autoGenerateModule, fetchCommunityModules } from "@/lib/curriculum-engine";
+import { fetchCommunityModules } from "@/lib/curriculum-engine";
 import { Module } from "@/data/curriculum";
 
 interface LearnNewScreenProps {
@@ -33,30 +33,60 @@ export default function LearnNewScreen({ state, updateState, navigate, userId }:
   }
 
   async function handleGenerate() {
-    if (!state.aiApiKey || !selectedLang) return;
+    if (!selectedLang) return;
     setGenerating(true);
     setGeneratedModule(null);
 
-    const result = await autoGenerateModule(
-      selectedLang,
-      state.aiApiKey,
-      state.aiProvider,
-      mode === "request" ? "user-request" : "auto",
-      userId,
-      mode === "request" && topic.trim() ? topic.trim() : undefined
+    // Use built-in AI (free for all users)
+    const { askBuiltinAI } = await import("@/lib/ai-builtin");
+
+    // Discover or use provided topic
+    let topicToUse = mode === "request" && topic.trim() ? topic.trim() : null;
+
+    if (!topicToUse) {
+      const { builtinDiscoverTopic } = await import("@/lib/ai-builtin");
+      topicToUse = await builtinDiscoverTopic(selectedLang);
+    }
+
+    if (!topicToUse) {
+      topicToUse = "useful programming patterns";
+    }
+
+    // Generate the module via built-in AI
+    const langName = selectedLang === "htmlcss" ? "HTML/CSS" : selectedLang === "csharp" ? "C#" : selectedLang;
+    const codeLang = selectedLang === "htmlcss" ? "html" : selectedLang === "tailwind" ? "css" : selectedLang;
+
+    const result = await askBuiltinAI(
+      `Create a programming lesson about "${topicToUse}" for ${langName}. Return ONLY valid JSON (no markdown) with this structure:
+{"title":"${topicToUse}","lesson":{"title":"${topicToUse}","concept":"One sentence","explanation":"2-3 sentences","codeExample":"code with \\n for newlines","language":"${codeLang}"},"quiz":[{"question":"q","choices":["a","b","c","d"],"correct":1,"explanation":"why"}],"challenge":{"title":"Practice","description":"task","starterCode":"// start\\n","expectedOutput":"output","hints":["h1","h2","h3"],"solution":"solution code","language":"${codeLang}"}}`,
+      1000
     );
 
-    if (result) {
-      setGeneratedModule(result.module_data);
-      // Add to local state so user can immediately play it
-      const existing = state.generatedModules[selectedLang] || [];
-      updateState({
-        generatedModules: {
-          ...state.generatedModules,
-          [selectedLang]: [...existing, result.module_data],
-        },
-        totalModulesGenerated: state.totalModulesGenerated + 1,
-      });
+    if (result.success) {
+      try {
+        const data = JSON.parse(result.content);
+        const moduleId = `${selectedLang}-ai-${Date.now()}`;
+        const newModule = {
+          id: moduleId,
+          title: data.title || topicToUse,
+          tier: "MEDIUM" as const,
+          lesson: data.lesson,
+          quiz: Array.isArray(data.quiz) ? data.quiz : [data.quiz],
+          challenge: data.challenge,
+        };
+        setGeneratedModule(newModule);
+
+        const existing = state.generatedModules[selectedLang] || [];
+        updateState({
+          generatedModules: {
+            ...state.generatedModules,
+            [selectedLang]: [...existing, newModule],
+          },
+          totalModulesGenerated: state.totalModulesGenerated + 1,
+        });
+      } catch {
+        // JSON parse failed
+      }
     }
     setGenerating(false);
   }
@@ -78,28 +108,8 @@ export default function LearnNewScreen({ state, updateState, navigate, userId }:
     }
   }
 
-  // No API key
-  if (!state.aiApiKey) {
-    return (
-      <div className="flex-1 flex items-center justify-center p-4">
-        <div className="card p-8 text-center max-w-md fade-in">
-          <div className="text-4xl mb-4">🧠</div>
-          <h2 className="text-lg font-semibold text-text-primary mb-2">AI Learning Engine</h2>
-          <p className="text-sm text-text-secondary mb-6">
-            This feature requires an AI API key to generate new lessons. Add one in Settings to unlock the self-learning curriculum engine!
-          </p>
-          <div className="flex gap-3 justify-center">
-            <button onClick={() => navigate("settings")} className="btn-primary text-sm">
-              ⚙ Go to Settings
-            </button>
-            <button onClick={() => navigate("course-select")} className="btn-secondary text-sm">
-              ← Back
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  // AI is built-in and free for all users
+  const hasAI = true;
 
   return (
     <div className="flex-1 p-4 md:p-8 overflow-y-auto">
