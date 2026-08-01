@@ -4,7 +4,7 @@ export const rubyModules: Module[] = [
   {
     id: "ruby-blocks",
     title: "Blocks & Procs",
-    tier: "ROOKIE",
+    tier: "EASY",
     lesson: {
       title: "Blocks & Procs",
       concept: "Blocks are anonymous chunks of code passed to methods; Procs and Lambdas store them as reusable objects.",
@@ -60,7 +60,7 @@ puts result.inspect # [3, 6, 9]`,
   {
     id: "ruby-classes",
     title: "Classes & Modules",
-    tier: "ROOKIE",
+    tier: "EASY",
     lesson: {
       title: "Classes & Modules",
       concept: "Classes define objects with state and behavior; modules provide namespacing and mixins for shared functionality.",
@@ -147,7 +147,7 @@ hero.heal(20)`,
   {
     id: "ruby-hashes",
     title: "Hashes",
-    tier: "CHAMPI0N",
+    tier: "MEDIUM",
     lesson: {
       title: "Hashes",
       concept: "Hashes are key-value collections that provide fast lookup — Ruby's equivalent of dictionaries or maps.",
@@ -216,7 +216,7 @@ puts settings # {difficulty: "hard", sound: true, music: false}`,
   {
     id: "ruby-symbols",
     title: "Symbols",
-    tier: "CHAMPI0N",
+    tier: "MEDIUM",
     lesson: {
       title: "Symbols",
       concept: "Symbols are immutable, reusable identifiers that are faster and more memory-efficient than strings for labels and keys.",
@@ -283,7 +283,7 @@ puts player.send(:fetch, :level)  # 42`,
   {
     id: "ruby-gems",
     title: "Gems & Bundler",
-    tier: "ELITE",
+    tier: "HARD",
     lesson: {
       title: "Gems & Bundler",
       concept: "Gems are Ruby's package system; Bundler manages project dependencies with version locking for reproducible environments.",
@@ -358,7 +358,7 @@ puts ArcadeUtils.format_score(1234567) # "1,234,567"`,
   {
     id: "ruby-metaprogramming",
     title: "Metaprogramming",
-    tier: "ELITE",
+    tier: "HARD",
     lesson: {
       title: "Metaprogramming",
       concept: "Metaprogramming lets Ruby code write code — defining methods, modifying classes, and creating DSLs at runtime.",

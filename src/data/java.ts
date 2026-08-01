@@ -4,7 +4,7 @@ export const javaModules: Module[] = [
   {
     id: "java-classes",
     title: "Classes & Objects",
-    tier: "ROOKIE",
+    tier: "EASY",
     lesson: {
       title: "Classes & Objects",
       concept: "Classes are blueprints for creating objects — the core building blocks of Java.",
@@ -51,7 +51,7 @@ hero.takeDamage(25);`,
   {
     id: "java-oop",
     title: "Inheritance & Polymorphism",
-    tier: "ROOKIE",
+    tier: "EASY",
     lesson: {
       title: "Inheritance & Polymorphism",
       concept: "Inheritance lets classes share behavior; polymorphism lets objects take many forms.",
@@ -104,7 +104,7 @@ System.out.println(e.attack());`,
   {
     id: "java-collections",
     title: "Collections Framework",
-    tier: "CHAMPI0N",
+    tier: "MEDIUM",
     lesson: {
       title: "Collections Framework",
       concept: "Java Collections provide powerful data structures for storing and manipulating groups of objects.",
@@ -150,7 +150,7 @@ System.out.println(visited.size()); // 1`,
   {
     id: "java-streams",
     title: "Streams & Lambdas",
-    tier: "CHAMPI0N",
+    tier: "MEDIUM",
     lesson: {
       title: "Streams & Lambdas",
       concept: "Streams provide a functional way to process collections; lambdas enable concise anonymous functions.",
@@ -196,7 +196,7 @@ int total = scores.stream()
   {
     id: "java-generics",
     title: "Generics",
-    tier: "ELITE",
+    tier: "HARD",
     lesson: {
       title: "Generics",
       concept: "Generics enable type-safe reusable code that works with any type.",
@@ -248,7 +248,7 @@ public static double sum(List<? extends Number> list) {
   {
     id: "java-exceptions",
     title: "Exception Handling",
-    tier: "ELITE",
+    tier: "HARD",
     lesson: {
       title: "Exception Handling",
       concept: "Exceptions handle errors gracefully without crashing your program.",

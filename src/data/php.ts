@@ -4,7 +4,7 @@ export const phpModules: Module[] = [
   {
     id: "php-variables",
     title: "Variables & Arrays",
-    tier: "ROOKIE",
+    tier: "EASY",
     lesson: {
       title: "Variables & Arrays",
       concept: "PHP variables start with $ and are dynamically typed. Arrays are versatile ordered maps that can be indexed or associative.",
@@ -61,7 +61,7 @@ $hasStaff = in_array("Staff", $weapons); // true
   {
     id: "php-functions",
     title: "Functions",
-    tier: "ROOKIE",
+    tier: "EASY",
     lesson: {
       title: "Functions",
       concept: "Functions in PHP encapsulate reusable logic and support default parameters, type hints, and variable-length arguments.",
@@ -117,7 +117,7 @@ echo $addBonus(100); // 110
   {
     id: "php-oop",
     title: "Object-Oriented PHP",
-    tier: "CHAMPI0N",
+    tier: "MEDIUM",
     lesson: {
       title: "Object-Oriented PHP",
       concept: "PHP supports full OOP with classes, interfaces, traits, abstract classes, and visibility modifiers.",
@@ -197,7 +197,7 @@ $warrior->heal(20);
   {
     id: "php-database",
     title: "Database Queries (PDO)",
-    tier: "CHAMPI0N",
+    tier: "MEDIUM",
     lesson: {
       title: "Database Queries (PDO)",
       concept: "PDO (PHP Data Objects) provides a secure, database-agnostic interface for querying databases with prepared statements.",
@@ -260,7 +260,7 @@ try {
   {
     id: "php-sessions",
     title: "Sessions & Cookies",
-    tier: "ELITE",
+    tier: "HARD",
     lesson: {
       title: "Sessions & Cookies",
       concept: "Sessions store user data server-side across requests; cookies store small data client-side in the browser.",
@@ -326,7 +326,7 @@ session_regenerate_id(true);
   {
     id: "php-modern",
     title: "Modern PHP 8 Features",
-    tier: "ELITE",
+    tier: "HARD",
     lesson: {
       title: "Modern PHP 8 Features",
       concept: "PHP 8 introduced powerful features: named arguments, match expressions, union types, constructor promotion, enums, and fibers.",

@@ -5,7 +5,7 @@ export const pythonModules: Module[] = [
   {
     id: "py-variables",
     title: "Variables & Data Types",
-    tier: "ROOKIE",
+    tier: "EASY",
     lesson: {
       title: "Variables & Data Types",
       concept: "Variables are containers that store data values.",
@@ -59,7 +59,7 @@ print(type(score))`,
   {
     id: "py-print",
     title: "Print & Input",
-    tier: "ROOKIE",
+    tier: "EASY",
     lesson: {
       title: "Print & Input",
       concept: "print() displays output, input() reads user input.",
@@ -117,7 +117,7 @@ print("Score:", 100, "Lives:", 3)`,
   {
     id: "py-conditionals",
     title: "Conditionals (if/elif/else)",
-    tier: "CHAMPI0N",
+    tier: "MEDIUM",
     lesson: {
       title: "Conditionals",
       concept: "Conditionals let your code make decisions based on conditions.",
@@ -173,7 +173,7 @@ print(f"Your rank: {rank}")`,
   {
     id: "py-loops",
     title: "Loops (for & while)",
-    tier: "CHAMPI0N",
+    tier: "MEDIUM",
     lesson: {
       title: "Loops",
       concept: "Loops repeat code multiple times automatically.",
@@ -232,7 +232,7 @@ print("Game Over!")`,
   {
     id: "py-functions",
     title: "Functions & Returns",
-    tier: "ELITE",
+    tier: "HARD",
     lesson: {
       title: "Functions",
       concept: "Functions are reusable blocks of code that perform specific tasks.",
@@ -290,7 +290,7 @@ print(f"Normal hit: {normal_hit}")`,
   {
     id: "py-lists",
     title: "Lists & List Methods",
-    tier: "ELITE",
+    tier: "HARD",
     lesson: {
       title: "Lists & Methods",
       concept: "Lists store ordered collections of items that can be modified.",

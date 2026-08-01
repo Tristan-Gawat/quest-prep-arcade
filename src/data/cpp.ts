@@ -4,7 +4,7 @@ export const cppModules: Module[] = [
   {
     id: "cpp-pointers",
     title: "Pointers & References",
-    tier: "ROOKIE",
+    tier: "EASY",
     lesson: {
       title: "Pointers & References",
       concept: "Pointers store memory addresses; references are aliases to existing variables.",
@@ -50,7 +50,7 @@ int main() {
   {
     id: "cpp-memory",
     title: "Dynamic Memory",
-    tier: "ROOKIE",
+    tier: "EASY",
     lesson: {
       title: "Dynamic Memory",
       concept: "Dynamic memory allocation lets you create objects whose lifetime you control.",
@@ -98,7 +98,7 @@ int main() {
   {
     id: "cpp-classes",
     title: "Classes & OOP",
-    tier: "CHAMPI0N",
+    tier: "MEDIUM",
     lesson: {
       title: "Classes & OOP",
       concept: "C++ classes combine data and behavior with fine-grained memory control.",
@@ -155,7 +155,7 @@ delete e;  // virtual destructor ensures proper cleanup`,
   {
     id: "cpp-stl",
     title: "STL Containers",
-    tier: "CHAMPI0N",
+    tier: "MEDIUM",
     lesson: {
       title: "STL Containers",
       concept: "The Standard Template Library provides powerful, generic data structures.",
@@ -210,7 +210,7 @@ int main() {
   {
     id: "cpp-templates",
     title: "Templates",
-    tier: "ELITE",
+    tier: "HARD",
     lesson: {
       title: "Templates",
       concept: "Templates enable compile-time generic programming — write once, use with any type.",
@@ -267,7 +267,7 @@ int main() {
   {
     id: "cpp-raii",
     title: "RAII & Move Semantics",
-    tier: "ELITE",
+    tier: "HARD",
     lesson: {
       title: "RAII & Move Semantics",
       concept: "RAII ties resource lifetime to object lifetime; move semantics enable efficient transfers.",

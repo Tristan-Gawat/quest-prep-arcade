@@ -4,7 +4,7 @@ export const swiftModules: Module[] = [
   {
     id: "swift-optionals",
     title: "Optionals",
-    tier: "ROOKIE",
+    tier: "EASY",
     lesson: {
       title: "Optionals",
       concept: "Optionals represent values that might be absent — Swift's way of handling nil safely at compile time.",
@@ -60,7 +60,7 @@ let definite: String = playerName! // Crashes if nil`,
   {
     id: "swift-structs-classes",
     title: "Structs & Classes",
-    tier: "ROOKIE",
+    tier: "EASY",
     lesson: {
       title: "Structs & Classes",
       concept: "Structs are value types (copied on assignment) while classes are reference types (shared). Swift favors structs for most data.",
@@ -124,7 +124,7 @@ print(player1.name) // "Changed" (shared!)`,
   {
     id: "swift-protocols",
     title: "Protocols",
-    tier: "CHAMPI0N",
+    tier: "MEDIUM",
     lesson: {
       title: "Protocols",
       concept: "Protocols define a contract of properties and methods that conforming types must implement — Swift's approach to polymorphism.",
@@ -194,7 +194,7 @@ func battleReady(_ entity: any Damageable & Attackable) -> Bool {
   {
     id: "swift-closures",
     title: "Closures",
-    tier: "CHAMPI0N",
+    tier: "MEDIUM",
     lesson: {
       title: "Closures",
       concept: "Closures are self-contained blocks of code that capture and store references to variables from their surrounding context.",
@@ -256,7 +256,7 @@ print(counter()) // 3`,
   {
     id: "swift-enums",
     title: "Enums with Associated Values",
-    tier: "ELITE",
+    tier: "HARD",
     lesson: {
       title: "Enums with Associated Values",
       concept: "Swift enums are powerful algebraic data types that can hold associated values, conform to protocols, and contain methods.",
@@ -328,7 +328,7 @@ for e in Element.allCases {
   {
     id: "swift-generics",
     title: "Generics",
-    tier: "ELITE",
+    tier: "HARD",
     lesson: {
       title: "Generics",
       concept: "Generics let you write flexible, reusable code that works with any type while maintaining full type safety.",

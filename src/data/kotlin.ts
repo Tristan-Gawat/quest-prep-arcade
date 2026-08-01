@@ -4,7 +4,7 @@ export const kotlinModules: Module[] = [
   {
     id: "kotlin-null-safety",
     title: "Null Safety",
-    tier: "ROOKIE",
+    tier: "EASY",
     lesson: {
       title: "Null Safety",
       concept: "Kotlin's type system distinguishes nullable (String?) from non-nullable (String) types, eliminating NullPointerExceptions at compile time.",
@@ -63,7 +63,7 @@ val forced: String = weapon!! // KotlinNullPointerException if null`,
   {
     id: "kotlin-data-classes",
     title: "Data Classes",
-    tier: "ROOKIE",
+    tier: "EASY",
     lesson: {
       title: "Data Classes",
       concept: "Data classes automatically generate equals(), hashCode(), toString(), copy(), and destructuring — perfect for holding data.",
@@ -121,7 +121,7 @@ val highLevel = roster.filter { it.level >= 30 }`,
   {
     id: "kotlin-coroutines",
     title: "Coroutines",
-    tier: "CHAMPI0N",
+    tier: "MEDIUM",
     lesson: {
       title: "Coroutines",
       concept: "Coroutines provide lightweight, non-blocking concurrency that makes asynchronous code sequential and readable.",
@@ -187,7 +187,7 @@ launch(Dispatchers.Main) { /* UI updates (Android) */ }`,
   {
     id: "kotlin-extensions",
     title: "Extension Functions",
-    tier: "CHAMPI0N",
+    tier: "MEDIUM",
     lesson: {
       title: "Extension Functions",
       concept: "Extension functions add new methods to existing classes without modifying their source code or using inheritance.",
@@ -254,7 +254,7 @@ println(player) // Player(name=Hero the Brave, level=5, hp=200)`,
   {
     id: "kotlin-sealed",
     title: "Sealed Classes",
-    tier: "ELITE",
+    tier: "HARD",
     lesson: {
       title: "Sealed Classes",
       concept: "Sealed classes restrict inheritance to a fixed set of subclasses, enabling exhaustive when expressions and type-safe state modeling.",
@@ -318,7 +318,7 @@ println(handleState(state))`,
   {
     id: "kotlin-higher-order",
     title: "Higher-Order Functions",
-    tier: "ELITE",
+    tier: "HARD",
     lesson: {
       title: "Higher-Order Functions",
       concept: "Higher-order functions take functions as parameters or return them, enabling powerful abstractions and DSL-style code.",

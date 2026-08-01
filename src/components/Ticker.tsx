@@ -12,7 +12,7 @@ export default function Ticker({ state }: TickerProps) {
   if (state.streak >= 3) {
     message =
       "You're on fire! Remember: education is free and equitable for all.";
-  } else if (state.tier === "ROOKIE" && state.totalQuestionsAnswered > 0) {
+  } else if (state.tier === "EASY" && state.totalQuestionsAnswered > 0) {
     message =
       "Keep going! Failure is just a step towards mastering the level.";
   } else {

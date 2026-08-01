@@ -4,7 +4,7 @@ export const rustModules: Module[] = [
   {
     id: "rust-ownership",
     title: "Ownership",
-    tier: "ROOKIE",
+    tier: "EASY",
     lesson: {
       title: "Ownership",
       concept: "Every value in Rust has exactly one owner — when the owner goes out of scope, the value is dropped.",
@@ -50,7 +50,7 @@ export const rustModules: Module[] = [
   {
     id: "rust-borrowing",
     title: "Borrowing & References",
-    tier: "ROOKIE",
+    tier: "EASY",
     lesson: {
       title: "Borrowing & References",
       concept: "References let you use values without taking ownership — borrowing instead of moving.",
@@ -98,7 +98,7 @@ export const rustModules: Module[] = [
   {
     id: "rust-structs",
     title: "Structs & Methods",
-    tier: "CHAMPI0N",
+    tier: "MEDIUM",
     lesson: {
       title: "Structs & Methods",
       concept: "Structs group related data; impl blocks add methods and associated functions.",
@@ -158,7 +158,7 @@ fn main() {
   {
     id: "rust-enums",
     title: "Enums & Pattern Matching",
-    tier: "CHAMPI0N",
+    tier: "MEDIUM",
     lesson: {
       title: "Enums & Pattern Matching",
       concept: "Rust enums can hold data in each variant; match expressions handle every case exhaustively.",
@@ -211,7 +211,7 @@ fn main() {
   {
     id: "rust-traits",
     title: "Traits",
-    tier: "ELITE",
+    tier: "HARD",
     lesson: {
       title: "Traits",
       concept: "Traits define shared behavior — like interfaces with optional default implementations.",
@@ -273,7 +273,7 @@ fn main() {
   {
     id: "rust-lifetimes",
     title: "Lifetimes",
-    tier: "ELITE",
+    tier: "HARD",
     lesson: {
       title: "Lifetimes",
       concept: "Lifetimes tell the compiler how long references are valid — preventing dangling references.",

@@ -5,7 +5,7 @@ export const htmlcssModules: Module[] = [
   {
     id: "html-structure",
     title: "HTML Structure & Tags",
-    tier: "ROOKIE",
+    tier: "EASY",
     lesson: {
       title: "HTML Structure",
       concept: "HTML uses tags to structure content on web pages.",
@@ -62,7 +62,7 @@ export const htmlcssModules: Module[] = [
   {
     id: "css-basics",
     title: "CSS Selectors & Properties",
-    tier: "ROOKIE",
+    tier: "EASY",
     lesson: {
       title: "CSS Basics",
       concept: "CSS styles HTML elements using selectors and property-value pairs.",
@@ -129,7 +129,7 @@ h1 {
   {
     id: "css-flexbox",
     title: "Flexbox Layout",
-    tier: "CHAMPI0N",
+    tier: "MEDIUM",
     lesson: {
       title: "Flexbox",
       concept: "Flexbox is a 1D layout system for arranging items in rows or columns.",
@@ -196,7 +196,7 @@ h1 {
   {
     id: "html-forms",
     title: "Forms & Inputs",
-    tier: "CHAMPI0N",
+    tier: "MEDIUM",
     lesson: {
       title: "HTML Forms",
       concept: "Forms collect user input through various input types.",
@@ -257,7 +257,7 @@ h1 {
   {
     id: "css-grid",
     title: "CSS Grid Layout",
-    tier: "ELITE",
+    tier: "HARD",
     lesson: {
       title: "CSS Grid",
       concept: "Grid is a 2D layout system for creating complex page layouts.",
@@ -322,7 +322,7 @@ h1 {
   {
     id: "css-animations",
     title: "CSS Animations & Transitions",
-    tier: "ELITE",
+    tier: "HARD",
     lesson: {
       title: "CSS Animations",
       concept: "Animations bring pages to life with smooth transitions and keyframe sequences.",

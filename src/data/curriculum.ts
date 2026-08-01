@@ -1,4 +1,4 @@
-export type Tier = "ROOKIE" | "CHAMPI0N" | "ELITE";
+export type Tier = "EASY" | "MEDIUM" | "HARD" | "EXPERT";
 
 export interface Lesson {
   title: string;

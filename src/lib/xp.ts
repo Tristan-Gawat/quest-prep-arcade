@@ -9,15 +9,17 @@ interface XPRange {
 }
 
 const QUIZ_XP: Record<Tier, XPRange> = {
-  ROOKIE: { min: 10, max: 15 },
-  "CHAMPI0N": { min: 25, max: 40 },
-  ELITE: { min: 50, max: 75 },
+  EASY: { min: 10, max: 15 },
+  MEDIUM: { min: 25, max: 40 },
+  HARD: { min: 50, max: 75 },
+  EXPERT: { min: 80, max: 120 },
 };
 
 const CHALLENGE_XP: Record<Tier, XPRange> = {
-  ROOKIE: { min: 30, max: 50 },
-  "CHAMPI0N": { min: 75, max: 120 },
-  ELITE: { min: 150, max: 250 },
+  EASY: { min: 30, max: 50 },
+  MEDIUM: { min: 75, max: 120 },
+  HARD: { min: 150, max: 250 },
+  EXPERT: { min: 250, max: 400 },
 };
 
 // Streak bonus: extra XP for consecutive correct answers

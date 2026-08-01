@@ -4,7 +4,7 @@ export const goModules: Module[] = [
   {
     id: "go-goroutines",
     title: "Goroutines",
-    tier: "ROOKIE",
+    tier: "EASY",
     lesson: {
       title: "Goroutines",
       concept: "Goroutines are lightweight concurrent functions — spawn thousands without heavy threads.",
@@ -57,7 +57,7 @@ func main() {
   {
     id: "go-channels",
     title: "Channels",
-    tier: "ROOKIE",
+    tier: "EASY",
     lesson: {
       title: "Channels",
       concept: "Channels are typed conduits for communication between goroutines — share by communicating.",
@@ -116,7 +116,7 @@ func main() {
   {
     id: "go-interfaces",
     title: "Interfaces",
-    tier: "CHAMPI0N",
+    tier: "MEDIUM",
     lesson: {
       title: "Interfaces",
       concept: "Interfaces define behavior — any type with the right methods automatically implements them.",
@@ -176,7 +176,7 @@ func main() {
   {
     id: "go-structs",
     title: "Structs & Embedding",
-    tier: "CHAMPI0N",
+    tier: "MEDIUM",
     lesson: {
       title: "Structs & Embedding",
       concept: "Structs are Go's custom types; embedding provides composition over inheritance.",
@@ -245,7 +245,7 @@ func main() {
   {
     id: "go-slices",
     title: "Slices & Maps",
-    tier: "ELITE",
+    tier: "HARD",
     lesson: {
       title: "Slices & Maps",
       concept: "Slices are dynamic views into arrays; maps are hash tables — Go's core collection types.",
@@ -303,7 +303,7 @@ func main() {
   {
     id: "go-errors",
     title: "Error Handling",
-    tier: "ELITE",
+    tier: "HARD",
     lesson: {
       title: "Error Handling",
       concept: "Go handles errors explicitly with return values — no exceptions, no hidden control flow.",

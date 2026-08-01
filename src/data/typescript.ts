@@ -4,7 +4,7 @@ export const typescriptModules: Module[] = [
   {
     id: "ts-basics",
     title: "Type Annotations",
-    tier: "ROOKIE",
+    tier: "EASY",
     lesson: {
       title: "Type Annotations",
       concept: "TypeScript adds static types to JavaScript for safer code.",
@@ -40,7 +40,7 @@ function greet(name: string): string {
   {
     id: "ts-interfaces",
     title: "Interfaces & Types",
-    tier: "ROOKIE",
+    tier: "EASY",
     lesson: {
       title: "Interfaces & Types",
       concept: "Interfaces define the shape of objects — what properties and types they must have.",
@@ -82,7 +82,7 @@ let myRank: Rank = "CHAMPION";`,
   {
     id: "ts-generics",
     title: "Generics",
-    tier: "CHAMPI0N",
+    tier: "MEDIUM",
     lesson: {
       title: "Generics",
       concept: "Generics let you write reusable code that works with multiple types.",
@@ -121,7 +121,7 @@ interface Inventory<T> {
   {
     id: "ts-utility-types",
     title: "Utility Types",
-    tier: "CHAMPI0N",
+    tier: "MEDIUM",
     lesson: {
       title: "Utility Types",
       concept: "TypeScript provides built-in utility types to transform existing types.",
@@ -165,7 +165,7 @@ const scores: Leaderboard = { "Hero": 100 };`,
   {
     id: "ts-advanced",
     title: "Conditional & Mapped Types",
-    tier: "ELITE",
+    tier: "HARD",
     lesson: {
       title: "Advanced Types",
       concept: "Conditional and mapped types enable powerful type-level programming.",
@@ -204,7 +204,7 @@ type StringStats = Stringify<Stats>;
   {
     id: "ts-decorators",
     title: "Enums & Type Guards",
-    tier: "ELITE",
+    tier: "HARD",
     lesson: {
       title: "Enums & Type Guards",
       concept: "Enums define named constants; type guards narrow types at runtime.",

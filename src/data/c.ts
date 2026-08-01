@@ -4,7 +4,7 @@ export const cModules: Module[] = [
   {
     id: "c-variables",
     title: "Variables & Types",
-    tier: "ROOKIE",
+    tier: "EASY",
     lesson: {
       title: "Variables & Types",
       concept: "C is a statically typed language where every variable must be declared with a specific type before use.",
@@ -57,7 +57,7 @@ int main() {
   {
     id: "c-pointers",
     title: "Pointers",
-    tier: "ROOKIE",
+    tier: "EASY",
     lesson: {
       title: "Pointers",
       concept: "Pointers store memory addresses and give you direct access to manipulate data in memory.",
@@ -108,7 +108,7 @@ int main() {
   {
     id: "c-memory",
     title: "Dynamic Memory Allocation",
-    tier: "CHAMPI0N",
+    tier: "MEDIUM",
     lesson: {
       title: "Dynamic Memory Allocation",
       concept: "Dynamic memory allocation lets you request memory at runtime from the heap using malloc, calloc, realloc, and free.",
@@ -168,7 +168,7 @@ int main() {
   {
     id: "c-structs",
     title: "Structs",
-    tier: "CHAMPI0N",
+    tier: "MEDIUM",
     lesson: {
       title: "Structs",
       concept: "Structs group related variables of different types into a single composite data type.",
@@ -228,7 +228,7 @@ int main() {
   {
     id: "c-fileio",
     title: "File I/O",
-    tier: "ELITE",
+    tier: "HARD",
     lesson: {
       title: "File I/O",
       concept: "C provides low-level file operations through FILE pointers and functions like fopen, fclose, fprintf, and fscanf.",
@@ -289,7 +289,7 @@ int main() {
   {
     id: "c-preprocessor",
     title: "Preprocessor Directives",
-    tier: "ELITE",
+    tier: "HARD",
     lesson: {
       title: "Preprocessor Directives",
       concept: "The C preprocessor transforms source code before compilation using directives like #define, #include, and #ifdef.",

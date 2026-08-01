@@ -4,7 +4,7 @@ export const sqlModules: Module[] = [
   {
     id: "sql-select",
     title: "SELECT Basics",
-    tier: "ROOKIE",
+    tier: "EASY",
     lesson: {
       title: "SELECT Basics",
       concept: "SELECT retrieves data from tables — the most fundamental SQL operation.",
@@ -52,7 +52,7 @@ FROM heroes;`,
   {
     id: "sql-where",
     title: "WHERE & Filtering",
-    tier: "ROOKIE",
+    tier: "EASY",
     lesson: {
       title: "WHERE & Filtering",
       concept: "WHERE filters rows based on conditions — only matching rows are returned.",
@@ -99,7 +99,7 @@ WHERE completed_at IS NULL;  -- incomplete quests`,
   {
     id: "sql-joins",
     title: "JOINs",
-    tier: "CHAMPI0N",
+    tier: "MEDIUM",
     lesson: {
       title: "JOINs",
       concept: "JOINs combine rows from multiple tables based on related columns.",
@@ -146,7 +146,7 @@ JOIN players b ON a.zone = b.zone AND a.id < b.id;`,
   {
     id: "sql-groupby",
     title: "GROUP BY & Aggregates",
-    tier: "CHAMPI0N",
+    tier: "MEDIUM",
     lesson: {
       title: "GROUP BY & Aggregates",
       concept: "GROUP BY collapses rows into groups; aggregate functions compute values across each group.",
@@ -197,7 +197,7 @@ ORDER BY zone, count DESC;`,
   {
     id: "sql-subqueries",
     title: "Subqueries & CTEs",
-    tier: "ELITE",
+    tier: "HARD",
     lesson: {
       title: "Subqueries & CTEs",
       concept: "Subqueries nest queries inside queries; CTEs create named temporary result sets for clarity.",
@@ -256,7 +256,7 @@ WHERE EXISTS (
   {
     id: "sql-indexes",
     title: "Indexes & Performance",
-    tier: "ELITE",
+    tier: "HARD",
     lesson: {
       title: "Indexes & Performance",
       concept: "Indexes speed up queries dramatically — but choose wisely as they slow down writes.",

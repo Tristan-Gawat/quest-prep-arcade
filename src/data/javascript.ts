@@ -5,7 +5,7 @@ export const javascriptModules: Module[] = [
   {
     id: "js-variables",
     title: "Variables (let, const, var)",
-    tier: "ROOKIE",
+    tier: "EASY",
     lesson: {
       title: "Variables in JavaScript",
       concept: "JavaScript has three ways to declare variables: let, const, and var.",
@@ -66,7 +66,7 @@ typeof true;       // "boolean"`,
   {
     id: "js-arrays",
     title: "Arrays & Methods",
-    tier: "ROOKIE",
+    tier: "EASY",
     lesson: {
       title: "Arrays in JavaScript",
       concept: "Arrays store ordered lists of values and have powerful built-in methods.",
@@ -126,7 +126,7 @@ console.log(long); // ["Dragon", "Goblin", "Wizard"]`,
   {
     id: "js-functions",
     title: "Functions & Arrow Functions",
-    tier: "CHAMPI0N",
+    tier: "MEDIUM",
     lesson: {
       title: "Functions & Arrow Syntax",
       concept: "Functions encapsulate reusable logic. Arrow functions provide concise syntax.",
@@ -189,7 +189,7 @@ console.log(double(50));`,
   {
     id: "js-objects",
     title: "Objects & Destructuring",
-    tier: "CHAMPI0N",
+    tier: "MEDIUM",
     lesson: {
       title: "Objects & Destructuring",
       concept: "Objects store key-value pairs. Destructuring extracts values elegantly.",
@@ -249,7 +249,7 @@ console.log(\`\${name} leveled up to \${upgraded.level}!\`);`,
   {
     id: "js-async",
     title: "Async/Await & Promises",
-    tier: "ELITE",
+    tier: "HARD",
     lesson: {
       title: "Async/Await",
       concept: "Async operations let code run without blocking, using Promises.",
@@ -313,7 +313,7 @@ async function startQuest() {
   {
     id: "js-dom",
     title: "DOM Manipulation",
-    tier: "ELITE",
+    tier: "HARD",
     lesson: {
       title: "DOM Manipulation",
       concept: "The DOM lets JavaScript interact with and modify HTML elements.",

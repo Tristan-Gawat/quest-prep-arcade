@@ -107,7 +107,7 @@ export default function QuizScreen({
       }
 
       // Calculate XP based on module difficulty tier
-      const moduleTier = currentModule?.tier || "ROOKIE";
+      const moduleTier = currentModule?.tier || "EASY";
       const xpReward = getQuizXP(moduleTier, state.streak);
 
       setFeedback(formatXPGain(xpReward.total, xpReward.bonus));

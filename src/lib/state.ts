@@ -30,14 +30,14 @@ export type Screen =
 
 const STORAGE_KEY = "quest-prep-arcade-state";
 
-export const TIERS: Tier[] = ["ROOKIE", "CHAMPI0N", "ELITE"];
+export const TIERS: Tier[] = ["EASY", "MEDIUM", "HARD", "EXPERT"];
 
 export function getInitialState(): GameState {
   return {
     score: 0,
     streak: 0,
     consecutiveCorrect: 0,
-    tier: "ROOKIE",
+    tier: "EASY",
     currentCourseId: null,
     currentModuleIndex: 0,
     currentScreen: "start",
@@ -59,7 +59,7 @@ export function loadState(): GameState {
       const parsed = JSON.parse(saved);
       // Reset invalid tier values from old versions
       if (parsed.tier && !TIERS.includes(parsed.tier)) {
-        parsed.tier = "ROOKIE";
+        parsed.tier = "EASY";
         parsed.score = 0;
       }
       return { ...getInitialState(), ...parsed };
