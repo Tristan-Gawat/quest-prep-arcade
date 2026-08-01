@@ -5,6 +5,9 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 export const metadata: Metadata = {
   title: "CodeLapse",
   description: "AI-powered programming learning platform - Learn Python, JavaScript, and 12+ languages with adaptive quizzes and code challenges",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({

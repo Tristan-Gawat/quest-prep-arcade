@@ -14,6 +14,7 @@ export default function AuthScreen({ onSkip }: AuthScreenProps) {
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
       <div className="w-full max-w-md text-center fade-in">
+        <img src="/logo.svg" alt="CodeLapse" className="w-16 h-16 mx-auto mb-4" />
         <h1 className="text-2xl md:text-3xl font-bold text-text-primary mb-2" style={{ fontFamily: 'var(--font-display)' }}>
           CodeLapse
         </h1>
@@ -55,9 +56,14 @@ export default function AuthScreen({ onSkip }: AuthScreenProps) {
 
         <div className="card p-5 mt-6 text-left max-w-md mx-auto">
           <p className="text-xs font-medium text-accent-purple mb-2">Why CodeLapse?</p>
-          <p className="text-xs text-text-muted leading-relaxed">
+          <p className="text-xs text-text-muted leading-relaxed mb-4">
             I built CodeLapse because I believe everyone deserves access to quality coding education — for free. Whether you&apos;re a complete beginner or an experienced dev picking up a new language, this platform adapts to your level and grows with you. The AI learns new topics and teaches them back, so the curriculum never stops expanding. Learn at your own pace, compete on leaderboards, and join a community of coders leveling up together.
           </p>
+          <div className="border-t border-border pt-3">
+            <p className="text-[10px] text-text-muted leading-relaxed">
+              Built by <span className="text-text-secondary font-medium">Tristan Gawat</span> with the help of <span className="text-text-secondary font-medium">Claude AI</span> (Anthropic) via <span className="text-text-secondary font-medium">Kiro</span> — an AI-powered development assistant. The entire codebase, curriculum, ranking system, and AI integration were designed and engineered collaboratively between human creativity and AI capability.
+            </p>
+          </div>
         </div>
       </div>
     </div>

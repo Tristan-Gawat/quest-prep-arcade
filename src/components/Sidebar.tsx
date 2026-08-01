@@ -22,13 +22,15 @@ export default function Sidebar({ currentScreen, navigate, user }: SidebarProps)
     <aside className="w-16 md:w-56 shrink-0 h-full bg-bg-secondary/50 border-r border-border flex flex-col relative z-10">
       {/* Logo */}
       <div className="p-3 md:px-5 md:py-5 border-b border-border">
-        <h1
-          className="hidden md:block text-lg font-bold text-text-primary truncate"
-          style={{ fontFamily: "var(--font-display)" }}
-        >
-          CodeLapse
-        </h1>
-        <span className="md:hidden text-xl block text-center">⚡</span>
+        <div className="flex items-center gap-2">
+          <img src="/logo.svg" alt="CodeLapse" className="w-7 h-7 md:w-8 md:h-8" />
+          <h1
+            className="hidden md:block text-lg font-bold text-text-primary truncate"
+            style={{ fontFamily: "var(--font-display)" }}
+          >
+            CodeLapse
+          </h1>
+        </div>
       </div>
 
       {/* Navigation */}
