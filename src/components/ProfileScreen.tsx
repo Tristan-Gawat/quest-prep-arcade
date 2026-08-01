@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { GameState, Screen } from "@/lib/state";
 import { getProfile, getUserLanguageProgress, signOut, signInWithGoogle } from "@/lib/auth";
 import { DBProfile, DBLanguageProgress } from "@/lib/supabase";
-import { getRankDisplay, getRankColor, getRankBadgeEmoji, getXPForNextRank } from "@/lib/ranking";
+import { getRankDisplay, getRankColor, getRankBadgeEmoji, getXPForNextRank, RankTier } from "@/lib/ranking";
 import { courses } from "@/data/courses";
 
 interface ProfileScreenProps {
@@ -70,7 +70,7 @@ export default function ProfileScreen({ state, navigate, userId, onSignOut }: Pr
     );
   }
 
-  const rank = { tier: profile.rank_tier as "ROOKIE" | "ELITE" | "MASTER" | "GRANDMASTER" | "CHAMPION", division: profile.rank_division };
+  const rank = { tier: profile.rank_tier as RankTier, division: profile.rank_division };
   const rankProgress = getXPForNextRank(profile.total_xp);
   const accuracy = profile.questions_answered > 0
     ? Math.round((profile.questions_correct / profile.questions_answered) * 100)
@@ -149,7 +149,7 @@ export default function ProfileScreen({ state, navigate, userId, onSignOut }: Pr
             <div className="space-y-3">
               {langProgress.map((lp) => {
                 const course = courses.find(c => c.id === lp.language_id);
-                const lpRank = { tier: lp.rank_tier as "ROOKIE" | "ELITE" | "MASTER" | "GRANDMASTER" | "CHAMPION", division: lp.rank_division };
+                const lpRank = { tier: lp.rank_tier as RankTier, division: lp.rank_division };
                 return (
                   <div key={lp.id} className="flex items-center justify-between py-2 border-b border-border last:border-0">
                     <div className="flex items-center gap-3">

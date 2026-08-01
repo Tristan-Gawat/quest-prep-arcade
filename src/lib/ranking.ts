@@ -1,26 +1,28 @@
 // Ranking System
+// BEGINNER (starting rank - no divisions)
 // ROOKIE III → II → I
 // ELITE V → IV → III → II → I
 // MASTER V → IV → III → II → I
 // GRANDMASTER V → IV → III → II → I
 // CHAMPION (single tier - the pinnacle)
 
-export type RankTier = "ROOKIE" | "ELITE" | "MASTER" | "GRANDMASTER" | "CHAMPION";
+export type RankTier = "BEGINNER" | "ROOKIE" | "ELITE" | "MASTER" | "GRANDMASTER" | "CHAMPION";
 
 export interface Rank {
   tier: RankTier;
-  division: number; // 3,2,1 for ROOKIE; 5,4,3,2,1 for others; 0 for CHAMPION
+  division: number; // 0 for BEGINNER/CHAMPION; 3,2,1 for ROOKIE; 5,4,3,2,1 for others
 }
 
-export const RANK_ORDER: RankTier[] = ["ROOKIE", "ELITE", "MASTER", "GRANDMASTER", "CHAMPION"];
+export const RANK_ORDER: RankTier[] = ["BEGINNER", "ROOKIE", "ELITE", "MASTER", "GRANDMASTER", "CHAMPION"];
 
 // XP thresholds for each rank tier + division
-// Each sub-rank requires progressively more XP
 const RANK_THRESHOLDS: { tier: RankTier; division: number; xpRequired: number }[] = [
-  // ROOKIE (0 - 899 XP)
-  { tier: "ROOKIE", division: 3, xpRequired: 0 },
-  { tier: "ROOKIE", division: 2, xpRequired: 300 },
-  { tier: "ROOKIE", division: 1, xpRequired: 600 },
+  // BEGINNER (0 - 149 XP)
+  { tier: "BEGINNER", division: 0, xpRequired: 0 },
+  // ROOKIE (150 - 899 XP)
+  { tier: "ROOKIE", division: 3, xpRequired: 150 },
+  { tier: "ROOKIE", division: 2, xpRequired: 400 },
+  { tier: "ROOKIE", division: 1, xpRequired: 650 },
   // ELITE (900 - 2399 XP)
   { tier: "ELITE", division: 5, xpRequired: 900 },
   { tier: "ELITE", division: 4, xpRequired: 1200 },
@@ -44,7 +46,7 @@ const RANK_THRESHOLDS: { tier: RankTier; division: number; xpRequired: number }[
 ];
 
 export function getRankFromXP(xp: number): Rank {
-  let result: Rank = { tier: "ROOKIE", division: 3 };
+  let result: Rank = { tier: "BEGINNER", division: 0 };
   for (const threshold of RANK_THRESHOLDS) {
     if (xp >= threshold.xpRequired) {
       result = { tier: threshold.tier, division: threshold.division };
@@ -57,6 +59,7 @@ export function getRankFromXP(xp: number): Rank {
 
 export function getRankDisplay(rank: Rank): string {
   if (rank.tier === "CHAMPION") return "CHAMPION";
+  if (rank.tier === "BEGINNER") return "BEGINNER";
   const romanNumerals: Record<number, string> = {
     1: "I", 2: "II", 3: "III", 4: "IV", 5: "V",
   };
@@ -65,6 +68,7 @@ export function getRankDisplay(rank: Rank): string {
 
 export function getRankColor(tier: RankTier): string {
   switch (tier) {
+    case "BEGINNER": return "#6b7280";    // darker gray
     case "ROOKIE": return "#9aa0a6";      // gray
     case "ELITE": return "#8ab4f8";       // blue
     case "MASTER": return "#c58af9";      // purple
@@ -75,7 +79,7 @@ export function getRankColor(tier: RankTier): string {
 
 export function getXPForNextRank(xp: number): { current: number; next: number; progress: number } {
   let currentThreshold = 0;
-  let nextThreshold = RANK_THRESHOLDS[1]?.xpRequired || 300;
+  let nextThreshold = RANK_THRESHOLDS[1]?.xpRequired || 150;
 
   for (let i = 0; i < RANK_THRESHOLDS.length; i++) {
     if (xp >= RANK_THRESHOLDS[i].xpRequired) {
@@ -98,6 +102,7 @@ export function getXPForNextRank(xp: number): { current: number; next: number; p
 
 export function getRankBadgeEmoji(tier: RankTier): string {
   switch (tier) {
+    case "BEGINNER": return "🌱";
     case "ROOKIE": return "🔰";
     case "ELITE": return "⚔️";
     case "MASTER": return "👑";
