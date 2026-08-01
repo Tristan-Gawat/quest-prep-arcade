@@ -1,5 +1,7 @@
 "use client";
 
+import { courses } from "@/data/courses";
+
 interface StartScreenProps {
   onStart: () => void;
 }
@@ -21,24 +23,20 @@ export default function StartScreen({ onStart }: StartScreenProps) {
           <p className="text-base md:text-lg text-accent-blue font-medium mb-8">
             Learn to code, level up your skills
           </p>
-          <div className="grid grid-cols-3 gap-6 mb-8">
-            <div className="text-center">
-              <span className="text-3xl md:text-4xl block mb-3">🐍</span>
-              <span className="text-xs text-text-secondary">Python</span>
-            </div>
-            <div className="text-center">
-              <span className="text-3xl md:text-4xl block mb-3">⚡</span>
-              <span className="text-xs text-text-secondary">JavaScript</span>
-            </div>
-            <div className="text-center">
-              <span className="text-3xl md:text-4xl block mb-3">🎨</span>
-              <span className="text-xs text-text-secondary">HTML/CSS</span>
-            </div>
+          <div className="grid grid-cols-3 md:grid-cols-5 gap-4 mb-8">
+            {courses.slice(0, 9).map((course) => (
+              <div key={course.id} className="text-center">
+                <span className="text-2xl md:text-3xl block mb-2">{course.icon}</span>
+                <span className="text-[10px] md:text-xs text-text-secondary">{course.name}</span>
+              </div>
+            ))}
           </div>
           <div className="space-y-3 text-sm text-text-secondary text-left max-w-md mx-auto">
-            <p>✦ Interactive lessons & code examples</p>
+            <p>✦ 9 programming languages with 50+ modules</p>
             <p>✦ Adaptive quizzes that level up with you</p>
-            <p>✦ Hands-on code challenges</p>
+            <p>✦ Hands-on code challenges with syntax highlighting</p>
+            <p>✦ Ranked system: Rookie → Elite → Master → Grandmaster → Champion</p>
+            <p>✦ Global & per-language leaderboards</p>
             <p>✦ AI tutor (bring your own key)</p>
           </div>
         </div>

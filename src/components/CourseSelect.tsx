@@ -81,12 +81,26 @@ export default function CourseSelect({
         </div>
 
         <div className="text-center mt-10">
-          <button
-            onClick={() => navigate("settings")}
-            className="btn-secondary text-sm"
-          >
-            ⚙ Settings & AI Config
-          </button>
+          <div className="flex gap-3 justify-center flex-wrap">
+            <button
+              onClick={() => navigate("leaderboard")}
+              className="btn-secondary text-sm"
+            >
+              🏆 Leaderboard
+            </button>
+            <button
+              onClick={() => navigate("profile")}
+              className="btn-secondary text-sm"
+            >
+              👤 Profile
+            </button>
+            <button
+              onClick={() => navigate("settings")}
+              className="btn-secondary text-sm"
+            >
+              ⚙ Settings
+            </button>
+          </div>
         </div>
       </div>
     </div>

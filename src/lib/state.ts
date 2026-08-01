@@ -56,7 +56,13 @@ export function loadState(): GameState {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
-      return { ...getInitialState(), ...JSON.parse(saved) };
+      const parsed = JSON.parse(saved);
+      // Reset invalid tier values from old versions
+      if (parsed.tier && !TIERS.includes(parsed.tier)) {
+        parsed.tier = "ROOKIE";
+        parsed.score = 0;
+      }
+      return { ...getInitialState(), ...parsed };
     }
   } catch {}
   return getInitialState();
