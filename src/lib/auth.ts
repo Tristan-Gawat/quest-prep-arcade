@@ -1,7 +1,8 @@
-import { supabase, DBProfile, DBLanguageProgress } from "./supabase";
+import { supabase, DBProfile, DBLanguageProgress, isSupabaseConfigured } from "./supabase";
 import { getRankFromXP } from "./ranking";
 
 export async function signInWithGoogle() {
+  if (!isSupabaseConfigured) return { data: null, error: new Error("Supabase not configured") };
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "google",
     options: {

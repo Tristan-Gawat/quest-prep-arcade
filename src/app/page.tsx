@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { GameState, loadState, saveState, getInitialState } from "@/lib/state";
 import { Screen } from "@/lib/state";
-import { supabase } from "@/lib/supabase";
+import { supabase, isSupabaseConfigured } from "@/lib/supabase";
 import { addXP, updateStreak, updateQuestionStats, completeModule as dbCompleteModule } from "@/lib/auth";
 import { getRankFromXP, getRankDisplay, getRankColor, getRankBadgeEmoji } from "@/lib/ranking";
 import { User } from "@supabase/supabase-js";
@@ -33,11 +33,21 @@ export default function Home() {
 
   useEffect(() => {
     const checkAuth = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      setUser(session?.user || null);
+      if (!isSupabaseConfigured) {
+        setAuthChecked(true);
+        return;
+      }
+      try {
+        const { data: { session } } = await supabase.auth.getSession();
+        setUser(session?.user || null);
+      } catch {
+        // Supabase not reachable — continue without auth
+      }
       setAuthChecked(true);
     };
     checkAuth();
+
+    if (!isSupabaseConfigured) return;
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user || null);
