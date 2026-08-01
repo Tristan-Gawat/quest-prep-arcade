@@ -100,15 +100,15 @@ print("Score:", 100, "Lives:", 3)`,
     challenge: {
       title: "Greeting Generator",
       description:
-        'Use an f-string to print: "Welcome to Quest Prep, [name]! You have [xp] XP." where name="Arcade" and xp=500.',
+        'Use an f-string to print: "Welcome to CodeLapse, [name]! You have [xp] XP." where name="Arcade" and xp=500.',
       starterCode: `name = "Arcade"\nxp = 500\n# Print the welcome message using an f-string\n`,
-      expectedOutput: "Welcome to Quest Prep, Arcade! You have 500 XP.",
+      expectedOutput: "Welcome to CodeLapse, Arcade! You have 500 XP.",
       hints: [
         "Use f before the opening quote",
         "Put variables inside {curly braces}",
         "The whole thing goes inside print()",
       ],
-      solution: `name = "Arcade"\nxp = 500\nprint(f"Welcome to Quest Prep, {name}! You have {xp} XP.")`,
+      solution: `name = "Arcade"\nxp = 500\nprint(f"Welcome to CodeLapse, {name}! You have {xp} XP.")`,
       language: "python",
     },
   },

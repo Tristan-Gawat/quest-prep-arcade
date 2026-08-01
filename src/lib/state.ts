@@ -28,7 +28,7 @@ export type Screen =
   | "profile"
   | "leaderboard";
 
-const STORAGE_KEY = "quest-prep-arcade-state";
+const STORAGE_KEY = "codelapse-state";
 
 export const TIERS: Tier[] = ["EASY", "MEDIUM", "HARD", "EXPERT"];
 

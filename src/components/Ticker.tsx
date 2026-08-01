@@ -17,7 +17,7 @@ export default function Ticker({ state }: TickerProps) {
       "Keep going! Failure is just a step towards mastering the level.";
   } else {
     message =
-      "Welcome to Quest Prep! Learn to code, level up your skills, change the world.";
+      "Welcome to CodeLapse! Learn to code, level up your skills, change the world.";
   }
 
   return (

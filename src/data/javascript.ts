@@ -50,15 +50,15 @@ typeof true;       // "boolean"`,
     challenge: {
       title: "Player Stats Setup",
       description:
-        'Declare a const `GAME_TITLE` set to "Quest Prep", a let `playerHP` set to 100, and log them in a template literal: "[GAME_TITLE] - HP: [playerHP]".',
+        'Declare a const `GAME_TITLE` set to "CodeLapse", a let `playerHP` set to 100, and log them in a template literal: "[GAME_TITLE] - HP: [playerHP]".',
       starterCode: `// Declare your variables\n\n\n// Log with template literal\n`,
-      expectedOutput: "Quest Prep - HP: 100",
+      expectedOutput: "CodeLapse - HP: 100",
       hints: [
         "Use const for GAME_TITLE since it won't change",
         "Use let for playerHP since HP can change",
         "Use backticks with ${} for template literals",
       ],
-      solution: `const GAME_TITLE = "Quest Prep";\nlet playerHP = 100;\nconsole.log(\`\${GAME_TITLE} - HP: \${playerHP}\`);`,
+      solution: `const GAME_TITLE = "CodeLapse";\nlet playerHP = 100;\nconsole.log(\`\${GAME_TITLE} - HP: \${playerHP}\`);`,
       language: "javascript",
     },
   },

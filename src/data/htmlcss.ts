@@ -17,7 +17,7 @@ export const htmlcssModules: Module[] = [
     <title>My Game</title>
   </head>
   <body>
-    <h1>Quest Prep Arcade</h1>
+    <h1>CodeLapse</h1>
     <p>Learn to code!</p>
     <button>Start Game</button>
   </body>
@@ -47,15 +47,15 @@ export const htmlcssModules: Module[] = [
     challenge: {
       title: "Build a Game Card",
       description:
-        'Write HTML with an <h2> containing "QUEST PREP", a <p> with "Level 1 - Variables", and a <button> saying "START". Just the body content, no full document needed.',
+        'Write HTML with an <h2> containing "CODELAPSE", a <p> with "Level 1 - Variables", and a <button> saying "START". Just the body content, no full document needed.',
       starterCode: `<!-- Write your HTML here -->\n`,
-      expectedOutput: '<h2>QUEST PREP</h2><p>Level 1 - Variables</p><button>START</button>',
+      expectedOutput: '<h2>CODELAPSE</h2><p>Level 1 - Variables</p><button>START</button>',
       hints: [
         "h2 is a heading tag",
         "p is for paragraph text",
         "button creates a clickable button",
       ],
-      solution: `<h2>QUEST PREP</h2>\n<p>Level 1 - Variables</p>\n<button>START</button>`,
+      solution: `<h2>CODELAPSE</h2>\n<p>Level 1 - Variables</p>\n<button>START</button>`,
       language: "html",
     },
   },

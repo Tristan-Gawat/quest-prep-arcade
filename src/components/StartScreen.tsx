@@ -12,7 +12,7 @@ export default function StartScreen({ onStart }: StartScreenProps) {
       <div className="w-full max-w-2xl text-center fade-in">
         <div className="mb-10">
           <h1 className="text-3xl md:text-5xl font-semibold text-text-primary mb-3 tracking-tight">
-            Quest Prep
+            CodeLapse
           </h1>
           <p className="text-sm md:text-base text-accent-purple font-medium">
             AI-Powered Learning Platform
