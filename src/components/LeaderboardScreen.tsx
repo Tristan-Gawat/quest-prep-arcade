@@ -39,7 +39,7 @@ export default function LeaderboardScreen({ state, navigate, userId }: Leaderboa
     setLoading(true);
     if (tab === "global") {
       const data = await getGlobalLeaderboard(50);
-      setGlobalData(data);
+      setGlobalData(data.filter(p => p.total_xp > 0));
     } else {
       const data = await getLanguageLeaderboard(tab, 50);
       setLangData(data as unknown as LanguageEntry[]);

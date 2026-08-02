@@ -230,6 +230,15 @@ export default function ProfileScreen({ state, navigate, userId, userEmail, onSi
           )}
         </div>
 
+        {/* Bio */}
+        {(profile as unknown as Record<string, unknown>).bio && (
+          <div className="card p-4 mb-6 text-center">
+            <p className="text-sm text-text-secondary italic">
+              "{(profile as unknown as Record<string, string>).bio}"
+            </p>
+          </div>
+        )}
+
         {/* Member since */}
         <div className="card p-4 mb-6 text-center">
           <p className="text-xs text-text-muted">

@@ -69,17 +69,13 @@ export default function FriendsScreen({ state, navigate, userId }: FriendsScreen
   // Debounced search
   useEffect(() => {
     if (!userId || activeTab !== "find") return;
-    if (!searchQuery.trim()) {
-      setSearchResults([]);
-      return;
-    }
 
     setLoadingSearch(true);
     const timer = setTimeout(async () => {
       const results = await searchUsers(searchQuery, userId);
       setSearchResults(results);
       setLoadingSearch(false);
-    }, 500);
+    }, searchQuery.trim() ? 500 : 0);
 
     return () => clearTimeout(timer);
   }, [searchQuery, userId, activeTab]);
@@ -426,9 +422,40 @@ export default function FriendsScreen({ state, navigate, userId }: FriendsScreen
                   </div>
                 ))}
               </div>
+            ) : !searchQuery.trim() && searchResults.length > 0 ? (
+              <div>
+                <h3 className="text-sm font-medium text-text-secondary mb-3">Suggested Players</h3>
+                <div className="card overflow-hidden divide-y divide-border">
+                  {searchResults.map((user) => (
+                    <div key={user.id} className="flex items-center gap-3 px-4 py-3">
+                      {user.avatar_url ? (
+                        <img src={user.avatar_url} alt="" className="w-10 h-10 rounded-full" />
+                      ) : (
+                        <div className="w-10 h-10 rounded-full bg-bg-elevated flex items-center justify-center text-sm text-text-secondary">
+                          {user.username.charAt(0).toUpperCase()}
+                        </div>
+                      )}
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-medium text-text-primary truncate">
+                          {user.username}
+                        </p>
+                        <p className="text-xs text-text-muted">
+                          {user.total_xp.toLocaleString()} XP
+                        </p>
+                      </div>
+                      <button
+                        onClick={() => handleSendRequest(user.id)}
+                        className="inline-flex items-center gap-1 text-xs font-medium text-accent-green hover:text-accent-green/80 cursor-pointer bg-bg-card border border-border rounded-lg px-3 py-1.5 hover:bg-bg-elevated transition-all"
+                      >
+                        + Add Friend
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
             ) : !searchQuery.trim() ? (
               <div className="card p-8 text-center">
-                <p className="text-sm text-text-muted">Type a username to search for players</p>
+                <p className="text-sm text-text-muted pulse-soft">Loading suggested players...</p>
               </div>
             ) : null}
           </div>
