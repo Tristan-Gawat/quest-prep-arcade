@@ -1,0 +1,142 @@
+// UPHSL BITCF - Multimedia Arts & Technology Specialization
+// Each topic can be learned in any programming language the user picks
+
+import { SpecModule } from "./uphsl-cybersec";
+
+export const multimediaModules: SpecModule[] = [
+  // ANIMATION
+  {
+    id: "mm-3d-modeling",
+    title: "3D Modeling Fundamentals",
+    category: "animation",
+    difficulty: "EASY",
+    description: "Create 3D assets from scratch — polygonal modeling, UV mapping, and basic sculpting techniques.",
+    concepts: ["polygonal modeling techniques", "UV unwrapping and mapping", "mesh topology and edge flow", "modifiers and non-destructive workflows", "export formats and optimization"],
+  },
+  {
+    id: "mm-animation-principles",
+    title: "12 Principles of Animation",
+    category: "animation",
+    difficulty: "EASY",
+    description: "Master Disney's foundational animation principles — squash and stretch, timing, anticipation, and more.",
+    concepts: ["squash and stretch", "timing and spacing", "anticipation and follow-through", "arcs and staging", "appeal and exaggeration"],
+  },
+  {
+    id: "mm-motion-graphics",
+    title: "Motion Graphics Design",
+    category: "animation",
+    difficulty: "MEDIUM",
+    description: "Create dynamic animated graphics — kinetic typography, logo reveals, infographics, and broadcast design.",
+    concepts: ["keyframe animation principles", "easing curves and motion paths", "shape layer animation", "expression-based automation", "compositing for motion design"],
+  },
+  {
+    id: "mm-storyboarding",
+    title: "Storyboarding & Pre-Production",
+    category: "animation",
+    difficulty: "EASY",
+    description: "Plan visual narratives before production — shot composition, camera angles, and sequential storytelling.",
+    concepts: ["shot composition rules", "camera angles and movement", "visual continuity", "animatic creation", "narrative pacing in frames"],
+  },
+
+  // VIDEO
+  {
+    id: "mm-video-editing",
+    title: "Video Editing & Compositing",
+    category: "video",
+    difficulty: "EASY",
+    description: "Edit and composite video professionally — cutting, transitions, layering, and multi-track timelines.",
+    concepts: ["non-linear editing workflow", "cut types and transitions", "multi-track compositing", "keyframe-based effects", "render settings and codecs"],
+  },
+  {
+    id: "mm-color-grading",
+    title: "Color Grading & Correction",
+    category: "video",
+    difficulty: "MEDIUM",
+    description: "Shape the mood of your footage through color — primary correction, secondary grading, and LUT workflows.",
+    concepts: ["color theory for film", "primary color correction", "secondary/selective grading", "LUT creation and application", "scopes (waveform, vectorscope, histogram)"],
+  },
+  {
+    id: "mm-vfx",
+    title: "Visual Effects (VFX)",
+    category: "video",
+    difficulty: "HARD",
+    description: "Create photorealistic visual effects — green screen compositing, motion tracking, and particle systems.",
+    concepts: ["chroma keying and rotoscoping", "3D motion tracking", "particle systems and simulations", "digital matte painting", "match moving and camera solve"],
+  },
+  {
+    id: "mm-cinematography",
+    title: "Digital Cinematography",
+    category: "video",
+    difficulty: "MEDIUM",
+    description: "Master the art of digital filmmaking — camera systems, lighting setups, and cinematic composition.",
+    concepts: ["camera sensor and lens selection", "three-point lighting", "frame composition and rule of thirds", "depth of field control", "white balance and exposure"],
+  },
+
+  // AUDIO
+  {
+    id: "mm-audio-engineering",
+    title: "Audio Engineering & Mixing",
+    category: "audio",
+    difficulty: "MEDIUM",
+    description: "Record, mix, and master professional audio — signal flow, EQ, compression, and spatial effects.",
+    concepts: ["signal flow and gain staging", "EQ and frequency management", "compression and dynamics", "reverb and spatial effects", "mixing workflow and bus routing"],
+  },
+  {
+    id: "mm-sound-design",
+    title: "Sound Design & Synthesis",
+    category: "audio",
+    difficulty: "HARD",
+    description: "Create original sounds from scratch — synthesis techniques, Foley recording, and layered sound design.",
+    concepts: ["subtractive and FM synthesis", "Foley recording techniques", "sound layering and texturing", "envelope design (ADSR)", "field recording and processing"],
+  },
+  {
+    id: "mm-streaming-tech",
+    title: "Streaming & Broadcast Technology",
+    category: "audio",
+    difficulty: "MEDIUM",
+    description: "Build live streaming pipelines — encoding, protocols, CDN delivery, and adaptive bitrate streaming.",
+    concepts: ["video encoding (H.264, H.265)", "streaming protocols (HLS, DASH, RTMP)", "CDN architecture", "adaptive bitrate streaming", "live production switching"],
+  },
+
+  // INTERACTIVE
+  {
+    id: "mm-ar-vr",
+    title: "AR/VR Development",
+    category: "interactive",
+    difficulty: "HARD",
+    description: "Build immersive augmented and virtual reality experiences — spatial UI, 3D interaction, and XR frameworks.",
+    concepts: ["XR frameworks (WebXR, ARKit, ARCore)", "spatial UI/UX design", "3D interaction patterns", "head and hand tracking", "performance optimization for XR"],
+  },
+  {
+    id: "mm-interactive-media",
+    title: "Interactive Media Design",
+    category: "interactive",
+    difficulty: "MEDIUM",
+    description: "Create engaging interactive experiences — installations, kiosks, touchscreen apps, and sensor-driven media.",
+    concepts: ["interaction design principles", "sensor input (touch, motion, proximity)", "real-time generative visuals", "physical computing basics", "user engagement metrics"],
+  },
+  {
+    id: "mm-typography-motion",
+    title: "Typography in Motion",
+    category: "interactive",
+    difficulty: "HARD",
+    description: "Animate text as a storytelling medium — kinetic typography, expressive lettering, and typographic hierarchy in motion.",
+    concepts: ["kinetic typography techniques", "typographic hierarchy in motion", "text animation timing", "font pairing for video", "expressive lettering animation"],
+  },
+  {
+    id: "mm-digital-illustration",
+    title: "Digital Illustration & Concept Art",
+    category: "interactive",
+    difficulty: "EXPERT",
+    description: "Create professional digital artwork — illustration techniques, concept art pipelines, and digital painting fundamentals.",
+    concepts: ["digital painting techniques", "concept art workflows", "color theory and palette design", "perspective and composition", "brush customization and texturing"],
+  },
+  {
+    id: "mm-web-animation",
+    title: "Web Animation (CSS/JS)",
+    category: "interactive",
+    difficulty: "EXPERT",
+    description: "Build performant web animations — CSS transitions, JavaScript animation libraries, scroll-driven effects, and SVG animation.",
+    concepts: ["CSS transitions and keyframes", "JavaScript animation (GSAP, Framer Motion)", "scroll-driven animations", "SVG path animation", "performance optimization (GPU layers, requestAnimationFrame)"],
+  },
+];

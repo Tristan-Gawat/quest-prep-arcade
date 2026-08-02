@@ -51,8 +51,7 @@ export default function CourseSelect({
   const handleSelectCourse = (courseId: string) => {
     updateState({
       currentCourseId: courseId,
-      currentModuleIndex: 0,
-      currentScreen: "lesson",
+      currentScreen: "course-modules",
     });
   };
 
@@ -96,7 +95,7 @@ export default function CourseSelect({
                     {program.description}
                   </p>
                   <span className="inline-block mt-3 text-[9px] font-medium px-2 py-0.5 rounded-full" style={{ color: program.color, background: program.color + "15" }}>
-                    Coming Soon
+                    {program.id === "uphsl-cybersec" || program.id === "uphsl-gamedev" || program.id === "uphsl-compsci" || program.id === "uphsl-multimedia" ? "16 Modules" : "Coming Soon"}
                   </span>
                 </button>
               ))}

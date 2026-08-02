@@ -3,6 +3,9 @@
 import { useState } from "react";
 import { GameState, Screen } from "@/lib/state";
 import { cybersecModules, SpecModule } from "@/data/uphsl-cybersec";
+import { gamedevModules } from "@/data/uphsl-gamedev";
+import { compsciModules } from "@/data/uphsl-compsci";
+import { multimediaModules } from "@/data/uphsl-multimedia";
 import { courses } from "@/data/courses";
 import { askBuiltinAI } from "@/lib/ai-builtin";
 import CodeEditor from "@/components/CodeEditor";
@@ -15,16 +18,32 @@ interface SpecModulesScreenProps {
 
 const SPEC_DATA: Record<string, { title: string; icon: string; modules: SpecModule[] }> = {
   "uphsl-cybersec": { title: "Cybersecurity & Forensics", icon: "🛡️", modules: cybersecModules },
-  "uphsl-gamedev": { title: "Game Development", icon: "🎮", modules: [] },
-  "uphsl-compsci": { title: "Computer Science (Data Science)", icon: "🧬", modules: [] },
-  "uphsl-multimedia": { title: "Entertainment & Multimedia", icon: "🎬", modules: [] },
+  "uphsl-gamedev": { title: "Game Development", icon: "🎮", modules: gamedevModules },
+  "uphsl-compsci": { title: "Computer Science (Data Science)", icon: "🧬", modules: compsciModules },
+  "uphsl-multimedia": { title: "Entertainment & Multimedia", icon: "🎬", modules: multimediaModules },
 };
 
 const CATEGORY_LABELS: Record<string, { label: string; color: string }> = {
+  // Cybersecurity
   fundamentals: { label: "Fundamentals", color: "#7dd3a0" },
   offense: { label: "Ethical Hacking", color: "#ff6b6b" },
   defense: { label: "Defense", color: "#6ea8fe" },
   forensics: { label: "Forensics", color: "#b387ff" },
+  // Game Development
+  design: { label: "Design", color: "#ff6eaa" },
+  programming: { label: "Programming", color: "#6ea8fe" },
+  art: { label: "Art & Audio", color: "#ffd56b" },
+  production: { label: "Production", color: "#7dd3a0" },
+  // Computer Science
+  algorithms: { label: "Algorithms", color: "#ff6b6b" },
+  data: { label: "Data", color: "#6ea8fe" },
+  ml: { label: "Machine Learning", color: "#b387ff" },
+  systems: { label: "Systems", color: "#7dd3a0" },
+  // Multimedia
+  animation: { label: "Animation", color: "#ff6eaa" },
+  video: { label: "Video", color: "#6ea8fe" },
+  audio: { label: "Audio", color: "#ffd56b" },
+  interactive: { label: "Interactive", color: "#b387ff" },
 };
 
 type QuizMode = "none" | "quiz" | "code-challenge";

@@ -20,6 +20,7 @@ import ArenaScreen from "@/components/ArenaScreen";
 import LearnNewScreen from "@/components/LearnNewScreen";
 import SpecModulesScreen from "@/components/SpecModulesScreen";
 import SpecLessonScreen from "@/components/SpecLessonScreen";
+import CourseModulesScreen from "@/components/CourseModulesScreen";
 import Ticker from "@/components/Ticker";
 
 export default function Home() {
@@ -199,6 +200,10 @@ export default function Home() {
 
           {state.currentScreen === "course-select" && (
             <CourseSelect state={state} updateState={updateState} navigate={navigate} userEmail={user?.email} />
+          )}
+
+          {state.currentScreen === "course-modules" && (
+            <CourseModulesScreen state={state} updateState={updateState} navigate={navigate} />
           )}
 
           {state.currentScreen === "lesson" && (

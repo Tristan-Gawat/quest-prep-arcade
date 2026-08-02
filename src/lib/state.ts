@@ -23,6 +23,7 @@ export interface GameState {
 export type Screen =
   | "start"
   | "course-select"
+  | "course-modules"
   | "lesson"
   | "quiz"
   | "challenge"
