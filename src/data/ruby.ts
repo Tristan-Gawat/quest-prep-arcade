@@ -40,6 +40,7 @@ damage.call("Dragon", 99)
 multiplier = proc { |x| x * 3 }
 result = [1, 2, 3].map(&multiplier)
 puts result.inspect # [3, 6, 9]`,
+      breakdown: "",
       language: "ruby",
     },
     quiz: [
@@ -128,6 +129,7 @@ hero = Mage.new("Wizard", 80, 120)
 puts hero
 hero.cast_spell("Fireball")
 hero.heal(20)`,
+      breakdown: "",
       language: "ruby",
     },
     quiz: [
@@ -198,6 +200,7 @@ defaults = { difficulty: "normal", sound: true, music: true }
 custom = { difficulty: "hard", music: false }
 settings = defaults.merge(custom)
 puts settings # {difficulty: "hard", sound: true, music: false}`,
+      breakdown: "",
       language: "ruby",
     },
     quiz: [
@@ -266,6 +269,7 @@ puts upper.inspect # ["HELLO", "WORLD", "RUBY"]
 # Symbols for method references
 puts player.respond_to?(:name)    # true
 puts player.send(:fetch, :level)  # 42`,
+      breakdown: "",
       language: "ruby",
     },
     quiz: [
@@ -342,6 +346,7 @@ module ArcadeUtils
 end
 
 puts ArcadeUtils.format_score(1234567) # "1,234,567"`,
+      breakdown: "",
       language: "ruby",
     },
     quiz: [
@@ -443,6 +448,7 @@ class Quest
   def reward(r); @reward = r; end
   def difficulty(d); @difficulty = d; end
 end`,
+      breakdown: "",
       language: "ruby",
     },
     quiz: [

@@ -41,6 +41,7 @@ array_push($weapons, "Axe");
 $sorted = sort($weapons);
 $hasStaff = in_array("Staff", $weapons); // true
 ?>`,
+      breakdown: "",
       language: "php",
     },
     quiz: [
@@ -98,6 +99,7 @@ $bonus = 10;
 $addBonus = fn(int $score) => $score + $bonus;
 echo $addBonus(100); // 110
 ?>`,
+      breakdown: "",
       language: "php",
     },
     quiz: [
@@ -179,6 +181,7 @@ echo $warrior->attack(); // 50
 echo $warrior->specialAbility();
 $warrior->heal(20);
 ?>`,
+      breakdown: "",
       language: "php",
     },
     quiz: [
@@ -243,6 +246,7 @@ try {
   echo "Transaction failed: " . $e->getMessage();
 }
 ?>`,
+      breakdown: "",
       language: "php",
     },
     quiz: [
@@ -310,6 +314,7 @@ function logout(): void {
 // Session security: regenerate ID to prevent fixation
 session_regenerate_id(true);
 ?>`,
+      breakdown: "",
       language: "php",
     },
     quiz: [
@@ -388,6 +393,7 @@ function processId(int|string $id): string {
   return "ID: $id";
 }
 ?>`,
+      breakdown: "",
       language: "php",
     },
     quiz: [

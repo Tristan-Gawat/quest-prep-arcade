@@ -32,6 +32,7 @@ export const tailwindModules: Module[] = [
   text-2xl   = font-size: 1.5rem
   font-bold  = font-weight: 700
 -->`,
+      breakdown: "",
       language: "css",
     },
     quiz: [
@@ -112,6 +113,7 @@ challenge: {
 <div class="text-blue-100">Very light blue</div>
 <div class="text-blue-500">Medium blue</div>
 <div class="text-blue-900">Very dark blue</div>`,
+      breakdown: "",
       language: "css",
     },
     quiz: [
@@ -190,6 +192,7 @@ challenge: {
   <div>Item 2</div>
   <div>Item 3</div>
 </div>`,
+      breakdown: "",
       language: "css",
     },
     quiz: [
@@ -271,6 +274,7 @@ challenge: {
   <div class="p-3 bg-gray-100">Quest 2</div>
   <div class="p-3 bg-gray-100">Quest 3</div>
 </div>`,
+      breakdown: "",
       language: "css",
     },
     quiz: [
@@ -357,6 +361,7 @@ challenge: {
   <aside class="row-span-2 bg-gray-200 p-4">Sidebar</aside>
   <main class="col-span-3 row-span-2 bg-white p-4">Main Content</main>
 </div>`,
+      breakdown: "",
       language: "css",
     },
     quiz: [
@@ -429,6 +434,7 @@ challenge: {
     <main class="w-full md:w-3/4">Content</main>
   </div>
 </div>`,
+      breakdown: "",
       language: "css",
     },
     quiz: [
@@ -512,6 +518,7 @@ challenge: {
   focus:border-blue-500 focus:ring-2 focus:ring-blue-200
   transition duration-150"
   placeholder="Enter hero name" />`,
+      breakdown: "",
       language: "css",
     },
     quiz: [
@@ -605,6 +612,7 @@ module.exports = {
   // ...
 }
 -->`,
+      breakdown: "",
       language: "css",
     },
     quiz: [
@@ -697,6 +705,7 @@ challenge: {
     },
   },
 -->`,
+      breakdown: "",
       language: "css",
     },
     quiz: [
@@ -794,6 +803,7 @@ challenge: {
     focus:ring-2 focus:ring-blue-300;
 }
 -->`,
+      breakdown: "",
       language: "css",
     },
     quiz: [
@@ -905,6 +915,7 @@ module.exports = {
 // <div class="bg-game-primary text-xp-gold font-pixel animate-float">
 // <div class="w-[calc(100%-2rem)] h-[300px]">  ← arbitrary values
 // <div class="mt-18 w-88">  ← custom spacing`,
+      breakdown: "",
       language: "css",
     },
     quiz: [
@@ -1021,6 +1032,7 @@ module.exports = {
     Adapts to container size, not viewport!
   </div>
 </div>`,
+      breakdown: "",
       language: "css",
     },
     quiz: [

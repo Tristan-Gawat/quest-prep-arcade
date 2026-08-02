@@ -5,6 +5,7 @@ export interface Lesson {
   concept: string;
   explanation: string;
   codeExample: string;
+  breakdown: string;
   language: string;
 }
 

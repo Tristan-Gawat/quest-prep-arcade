@@ -40,6 +40,7 @@ print(nameLength ?? 0) // 10
 
 // Force unwrap (dangerous — only when certain)
 let definite: String = playerName! // Crashes if nil`,
+      breakdown: "",
       language: "swift",
     },
     quiz: [
@@ -105,6 +106,7 @@ let player1 = Player(name: "Hero", health: 100)
 let player2 = player1 // Same reference!
 player2.name = "Changed"
 print(player1.name) // "Changed" (shared!)`,
+      breakdown: "",
       language: "swift",
     },
     quiz: [
@@ -176,6 +178,7 @@ func heal(_ entity: inout any Damageable, amount: Int) {
 func battleReady(_ entity: any Damageable & Attackable) -> Bool {
   return entity.health > 0 && entity.attackPower > 0
 }`,
+      breakdown: "",
       language: "swift",
     },
     quiz: [
@@ -239,6 +242,7 @@ let counter = makeCounter()
 print(counter()) // 1
 print(counter()) // 2
 print(counter()) // 3`,
+      breakdown: "",
       language: "swift",
     },
     quiz: [
@@ -312,6 +316,7 @@ print("\\(elem.rawValue) weak to \\(elem.weakness.rawValue)")
 for e in Element.allCases {
   print(e.rawValue)
 }`,
+      breakdown: "",
       language: "swift",
     },
     quiz: [
@@ -390,6 +395,7 @@ extension Array where Element: Numeric {
 
 let scores = [100, 250, 75, 300]
 print(scores.total()) // 725`,
+      breakdown: "",
       language: "swift",
     },
     quiz: [

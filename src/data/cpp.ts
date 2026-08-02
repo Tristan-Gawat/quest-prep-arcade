@@ -30,6 +30,7 @@ int main() {
   cout << "Health now: " << health << endl; // 50
   return 0;
 }`,
+      breakdown: "",
       language: "cpp",
     },
     quiz: [
@@ -79,6 +80,7 @@ int main() {
 
   return 0;
 }`,
+      breakdown: "",
       language: "cpp",
     },
     quiz: [
@@ -137,6 +139,7 @@ public:
 Entity* e = new Warrior("Knight", 100, 50);
 cout << e->battleCry() << endl;
 delete e;  // virtual destructor ensures proper cleanup`,
+      breakdown: "",
       language: "cpp",
     },
     quiz: [
@@ -193,6 +196,7 @@ int main() {
 
   return 0;
 }`,
+      breakdown: "",
       language: "cpp",
     },
     quiz: [
@@ -251,6 +255,7 @@ int main() {
   cout << bag.pop() << endl;  // Bow
   return 0;
 }`,
+      breakdown: "",
       language: "cpp",
     },
     quiz: [
@@ -314,6 +319,7 @@ int main() {
   cout << "buf2 size: " << buf2.getSize() << endl;
   return 0;
 }`,
+      breakdown: "",
       language: "cpp",
     },
     quiz: [

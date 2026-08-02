@@ -32,6 +32,7 @@ SELECT
   hp * 2 AS double_hp,
   UPPER(guild) AS guild_name
 FROM heroes;`,
+      breakdown: "",
       language: "sql",
     },
     quiz: [
@@ -80,6 +81,7 @@ WHERE name LIKE 'Dragon%';  -- starts with Dragon
 -- NULL handling
 SELECT * FROM quests
 WHERE completed_at IS NULL;  -- incomplete quests`,
+      breakdown: "",
       language: "sql",
     },
     quiz: [
@@ -128,6 +130,7 @@ WHERE i.rarity = 'epic';
 SELECT a.name AS player1, b.name AS player2, a.zone
 FROM players a
 JOIN players b ON a.zone = b.zone AND a.id < b.id;`,
+      breakdown: "",
       language: "sql",
     },
     quiz: [
@@ -180,6 +183,7 @@ SELECT zone, class, COUNT(*) AS count
 FROM players
 GROUP BY zone, class
 ORDER BY zone, count DESC;`,
+      breakdown: "",
       language: "sql",
     },
     quiz: [
@@ -240,6 +244,7 @@ WHERE EXISTS (
   SELECT 1 FROM quests q
   WHERE q.player_id = p.id AND q.status = 'completed'
 );`,
+      breakdown: "",
       language: "sql",
     },
     quiz: [
@@ -290,6 +295,7 @@ ON players(name) WHERE is_active = true;
 
 -- Drop index when no longer needed
 DROP INDEX idx_players_level;`,
+      breakdown: "",
       language: "sql",
     },
     quiz: [

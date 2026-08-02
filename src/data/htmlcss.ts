@@ -22,6 +22,7 @@ export const htmlcssModules: Module[] = [
     <button>Start Game</button>
   </body>
 </html>`,
+      breakdown: "",
       language: "html",
     },
     quiz: [
@@ -88,6 +89,7 @@ h1 {
   color: #39FF14;
   font-weight: bold;
 }`,
+      breakdown: "",
       language: "css",
     },
     quiz: [
@@ -158,6 +160,7 @@ challenge: {
   align-items: center;
   min-height: 100vh;
 }`,
+      breakdown: "",
       language: "css",
     },
     quiz: [
@@ -218,6 +221,7 @@ challenge: {
 
   <button type="submit">Save</button>
 </form>`,
+      breakdown: "",
       language: "html",
     },
     quiz: [
@@ -286,6 +290,7 @@ challenge: {
     repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
 }`,
+      breakdown: "",
       language: "css",
     },
     quiz: [
@@ -351,6 +356,7 @@ challenge: {
 .glowing {
   animation: glow 2s ease infinite;
 }`,
+      breakdown: "",
       language: "css",
     },
     quiz: [

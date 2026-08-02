@@ -37,6 +37,7 @@ int main() {
 
   return 0;
 }`,
+      breakdown: "",
       language: "c",
     },
     quiz: [
@@ -89,6 +90,7 @@ int main() {
 
   return 0;
 }`,
+      breakdown: "",
       language: "c",
     },
     quiz: [
@@ -150,6 +152,7 @@ int main() {
 
   return 0;
 }`,
+      breakdown: "",
       language: "c",
     },
     quiz: [
@@ -211,6 +214,7 @@ int main() {
 
   return 0;
 }`,
+      breakdown: "",
       language: "c",
     },
     quiz: [
@@ -273,6 +277,7 @@ int main() {
 
   return 0;
 }`,
+      breakdown: "",
       language: "c",
     },
     quiz: [
@@ -332,6 +337,7 @@ int main() {
 
   return 0;
 }`,
+      breakdown: "",
       language: "c",
     },
     quiz: [

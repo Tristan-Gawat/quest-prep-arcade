@@ -27,6 +27,7 @@ console.log(\`2 + 2 = \${2 + 2}\`);
 // Other console methods
 console.warn("Low health!");
 console.error("Game over!");`,
+      breakdown: "",
       language: "javascript",
     },
     quiz: [
@@ -96,6 +97,7 @@ typeof undefined; // "undefined"
 "5" + 3;   // "53" (string concat)
 "5" - 3;   // 2 (numeric)
 Boolean(""); // false`,
+      breakdown: "",
       language: "javascript",
     },
     quiz: [
@@ -166,6 +168,7 @@ switch (rank) {
   case "A": console.log("Ace"); break;
   default: console.log("Rookie");
 }`,
+      breakdown: "",
       language: "javascript",
     },
     quiz: [
@@ -247,6 +250,7 @@ console.log(long); // ["Dragon", "Goblin", "Wizard"]
 // find - first match
 const found = quests.find(q => q.startsWith("G"));
 console.log(found); // "Goblin"`,
+      breakdown: "",
       language: "javascript",
     },
     quiz: [
@@ -326,6 +330,7 @@ while (countdown > 0) {
   console.log(countdown);
   countdown--;
 }`,
+      breakdown: "",
       language: "javascript",
     },
     quiz: [
@@ -401,6 +406,7 @@ const calcXP = (base, multiplier = 1) => {
 console.log(greet("Coder"));   // "Hello, Coder!"
 console.log(double(50));        // 100
 console.log(calcXP(200, 1.5)); // 300`,
+      breakdown: "",
       language: "javascript",
     },
     quiz: [
@@ -477,6 +483,7 @@ const x = 10, y = 20;
 const point = { x, y }; // same as { x: x, y: y }
 
 console.log(\`\${name} leveled up to \${upgraded.level}!\`);`,
+      breakdown: "",
       language: "javascript",
     },
     quiz: [
@@ -552,6 +559,7 @@ btn.addEventListener("click", (event) => {
 
 // Remove elements
 item.remove();`,
+      breakdown: "",
       language: "javascript",
     },
     quiz: [
@@ -640,6 +648,7 @@ const [quest1, quest2] = await Promise.all([
 // fetch API
 const response = await fetch("https://api.example.com/data");
 const data = await response.json();`,
+      breakdown: "",
       language: "javascript",
     },
     quiz: [
@@ -730,6 +739,7 @@ class Warrior extends Character {
 
 const w = new Warrior("Tank");
 console.log(w.health); // 150`,
+      breakdown: "",
       language: "javascript",
     },
     quiz: [
@@ -815,6 +825,7 @@ const loadLevel = async (id) => {
 // Re-exporting
 export { add, PI } from './math.js';
 export { default as Player } from './player.js';`,
+      breakdown: "",
       language: "javascript",
     },
     quiz: [
@@ -914,6 +925,7 @@ fib.next().value; // 1
 let obj = { data: "important" };
 const ref = new WeakRef(obj);
 ref.deref(); // { data: "important" }`,
+      breakdown: "",
       language: "javascript",
     },
     quiz: [

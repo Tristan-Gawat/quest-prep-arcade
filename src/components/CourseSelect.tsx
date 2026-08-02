@@ -47,7 +47,9 @@ export default function CourseSelect({
   navigate,
   userEmail,
 }: CourseSelectProps) {
-  const isUPHSL = userEmail?.endsWith("@uphsl.edu.ph") || false;
+  const DEVELOPER_EMAILS = ["tjgawat0113@gmail.com", "tristangawatschool@gmail.com", "c1-241-00124@uphsl.edu.ph"];
+  const isDeveloper = userEmail ? DEVELOPER_EMAILS.includes(userEmail.toLowerCase()) : false;
+  const isUPHSL = userEmail?.endsWith("@uphsl.edu.ph") || isDeveloper;
   const handleSelectCourse = (courseId: string) => {
     updateState({
       currentCourseId: courseId,

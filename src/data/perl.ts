@@ -22,6 +22,7 @@ print "HP: $health\\n";
 my $level = "5";
 my $next_level = $level + 1;  # 6 (numeric context)
 print "Next level: $next_level\\n";`,
+      breakdown: "",
       language: "perl",
     },
     quiz: [
@@ -89,6 +90,7 @@ $stats{magic} = 10;  # Update
 for my $key (keys %stats) {
   print "$key => $stats{$key}\\n";
 }`,
+      breakdown: "",
       language: "perl",
     },
     quiz: [
@@ -153,6 +155,7 @@ print "$msg\\n";  # Game On
 my $loot = "gold gold silver gold";
 my $count = () = $loot =~ /gold/g;
 print "Gold count: $count\\n";  # 3`,
+      breakdown: "",
       language: "perl",
     },
     quiz: [
@@ -224,6 +227,7 @@ close($in);
 open(my $log, '>>', 'quest_log.txt') or die "Cannot append: $!";
 print $log "Quest completed at " . localtime() . "\\n";
 close($log);`,
+      breakdown: "",
       language: "perl",
     },
     quiz: [
@@ -303,6 +307,7 @@ sub get_position {
   return (42, 17);  # x, y
 }
 my ($x, $y) = get_position();`,
+      breakdown: "",
       language: "perl",
     },
     quiz: [
@@ -378,6 +383,7 @@ sub describe {
 my $hero = Hero->new(name => "PixelBlade");
 $hero->take_damage(20);
 print $hero->describe() . "\\n";`,
+      breakdown: "",
       language: "perl",
     },
     quiz: [
@@ -448,6 +454,7 @@ my @party = (
   { name => "Healer", role => "support" },
 );
 print $party[1]{role} . "\\n";  # support`,
+      breakdown: "",
       language: "perl",
     },
     quiz: [
@@ -517,6 +524,7 @@ my @scores = map { /: (\\d+)/; $1 } @lines;
 my $total = 0;
 $total += $_ for @scores;
 print "Total: $total\\n";`,
+      breakdown: "",
       language: "perl",
     },
     quiz: [
@@ -599,6 +607,7 @@ try {
 } catch {
   print "Caught: $_\\n";
 };`,
+      breakdown: "",
       language: "perl",
     },
     quiz: [
@@ -683,6 +692,7 @@ try {
 
 # warn for non-fatal issues
 warn "Low mana warning!" if $mana < 10;`,
+      breakdown: "",
       language: "perl",
     },
     quiz: [
@@ -767,6 +777,7 @@ print "$secret\\n";  # Secret Level
 # pack/unpack for binary
 my $packed = pack("A5 n", "HERO!", 42);
 my ($name, $val) = unpack("A5 n", $packed);`,
+      breakdown: "",
       language: "perl",
     },
     quiz: [
@@ -859,6 +870,7 @@ my $result = flexible();  # "scalar mode"
 # Forcing context
 my @data = (5, 3, 8, 1);
 print "Items: " . scalar(@data) . "\\n";`,
+      breakdown: "",
       language: "perl",
     },
     quiz: [

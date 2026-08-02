@@ -37,6 +37,7 @@ func main() {
     wg.Wait()
     fmt.Println("All enemies defeated!")
 }`,
+      breakdown: "",
       language: "go",
     },
     quiz: [
@@ -97,6 +98,7 @@ func main() {
         fmt.Println("Score:", s)
     }
 }`,
+      breakdown: "",
       language: "go",
     },
     quiz: [
@@ -158,6 +160,7 @@ func main() {
         fmt.Println("It's a mage:", mage.Name)
     }
 }`,
+      breakdown: "",
       language: "go",
     },
     quiz: [
@@ -228,6 +231,7 @@ func main() {
     data, _ := json.Marshal(item)
     fmt.Println(string(data))
 }`,
+      breakdown: "",
       language: "go",
     },
     quiz: [
@@ -287,6 +291,7 @@ func main() {
     delete(scores, "Player1")
     fmt.Println("Remaining:", len(scores))
 }`,
+      breakdown: "",
       language: "go",
     },
     quiz: [
@@ -350,6 +355,7 @@ func main() {
     }
     fmt.Println(msg)
 }`,
+      breakdown: "",
       language: "go",
     },
     quiz: [

@@ -22,6 +22,22 @@ print("Score:", 100)
 
 # Print with separator
 print("A", "B", "C", sep="-")`,
+      breakdown: `Line by line:
+
+• print("Hello, World!") — This calls Python's built-in print() function. Whatever you put inside the parentheses gets displayed on screen. The text inside quotes is called a 'string'.
+
+• print(42) — You can print numbers too, not just text. No quotes needed for numbers.
+
+• print("Score:", 100) — When you separate values with commas inside print(), Python automatically adds a space between them. So this outputs: Score: 100
+
+• print("A", "B", "C", sep="-") — The sep parameter changes what goes between values. Instead of spaces, this uses hyphens. Output: A-B-C
+
+Key concepts:
+- print() is a FUNCTION — you call it with parentheses ()
+- Strings (text) need quotes around them: "hello" or 'hello'
+- Numbers don't need quotes: 42, 3.14
+- sep= changes the separator between multiple values
+- Each print() creates a new line by default`,
       language: "python",
     },
     quiz: [
@@ -83,6 +99,26 @@ print(type(score))  # <class 'int'>
 # Reassigning variables
 score = score + 50
 print(score)  # 150`,
+      breakdown: `Line by line:
+
+• name = "Player One" — Creates a variable called 'name' and stores the text "Player One" in it. The = sign means 'assign this value'. It's a string (str) because it's in quotes.
+
+• score = 100 — Stores the whole number 100. This is an integer (int). No quotes = number, not text.
+
+• health = 99.5 — A decimal number. Python calls these 'float' (floating point number).
+
+• alive = True — A boolean value. Can only be True or False (capitalized!). Used for yes/no conditions.
+
+• print(type(name)) — type() tells you what kind of data a variable holds. This outputs: <class 'str'>
+
+• score = score + 50 — Takes the current value of score (100), adds 50 to it, and stores the new value (150) back into score. The old value is overwritten.
+
+Key concepts:
+- Variables are like labeled boxes that store data
+- Python auto-detects the type (you don't declare it)
+- 4 basic types: str (text), int (whole number), float (decimal), bool (True/False)
+- = means 'assign' (NOT 'equals' — that's ==)
+- Variable names should be descriptive: player_score not x`,
       language: "python",
     },
     quiz: [
@@ -144,6 +180,24 @@ print(f"Next year you'll be {age + 1}.")
 # .format() method
 template = "Player: {} | Score: {}"
 print(template.format(name, 100))`,
+      breakdown: `Line by line:
+
+• name = input("Enter your name: ") — Pauses the program and shows "Enter your name: " on screen. Whatever the user types gets stored in the 'name' variable AS A STRING (always text, even if they type numbers).
+
+• age = int(input("Enter your age: ")) — input() gets text, then int() converts that text to a number. Without int(), "25" would be text not the number 25, and you couldn't do math with it.
+
+• print(f"Hello, {name}! You are {age} years old.") — This is an f-string (notice the f before the quote). Anything inside {curly braces} gets replaced with the variable's value. So if name="Alex" and age=25, it prints: Hello, Alex! You are 25 years old.
+
+• print(f"Next year you'll be {age + 1}.") — You can put EXPRESSIONS (math) inside the {} too, not just variable names.
+
+• template.format(name, 100) — The older way to format strings. {} placeholders get filled in order with the values you pass to .format().
+
+Key concepts:
+- input() ALWAYS returns a string (text)
+- Use int() or float() to convert input to numbers
+- f-strings: put f before quotes, use {variable} to embed values
+- You can do math inside {}: {age + 1}, {price * 0.9}
+- .format() is the older way — f-strings are preferred in modern Python`,
       language: "python",
     },
     quiz: [
@@ -210,6 +264,24 @@ has_key = True
 level = 5
 if has_key and level >= 5:
     print("Door unlocked!")`,
+      breakdown: `Line by line:
+
+• if score >= 1000: — Checks if score is greater than or equal to 1000. The colon : starts the code block. Everything indented below this runs ONLY if this condition is True.
+
+• elif score >= 500: — 'elif' means 'else if'. Only checked if the previous if was False. Checks the next condition down.
+
+• else: — Catches everything that didn't match any if/elif above. No condition needed — it's the 'fallback'.
+
+• rank = "ELITE" — This line is INDENTED (4 spaces). Indentation tells Python it belongs to the if/elif/else block above it. Wrong indentation = error!
+
+• has_key and level >= 5 — 'and' means BOTH conditions must be True. 'or' means at least one must be True. 'not' flips True to False.
+
+Key concepts:
+- if/elif/else controls which code runs based on conditions
+- Indentation (4 spaces) defines code blocks — NOT curly braces like other languages
+- Comparison operators: == (equal), != (not equal), > < >= <=
+- Logical operators: and (both true), or (either true), not (opposite)
+- Only ONE branch runs — Python checks top to bottom and stops at the first True`,
       language: "python",
     },
     quiz: [
@@ -276,6 +348,7 @@ for i in range(1, 11):
     if i % 2 == 0:
         continue
     print(i, end=" ")  # 1 3 5 7 9`,
+      breakdown: "",
       language: "python",
     },
     quiz: [
@@ -343,6 +416,7 @@ def get_stats():
     return 100, 50, 25
 
 hp, mp, stamina = get_stats()`,
+      breakdown: "",
       language: "python",
     },
     quiz: [
@@ -411,6 +485,7 @@ print(levels)  # [10, 20, 30, 40, 50]
 # Filtering with comprehension
 high = [x for x in levels if x > 20]
 print(high)  # [30, 40, 50]`,
+      breakdown: "",
       language: "python",
     },
     quiz: [
@@ -484,6 +559,7 @@ a = {1, 2, 3}
 b = {2, 3, 4}
 print(a & b)  # intersection: {2, 3}
 print(a | b)  # union: {1, 2, 3, 4}`,
+      breakdown: "",
       language: "python",
     },
     quiz: [
@@ -560,6 +636,7 @@ def set_age(age):
 # Custom exception
 class InsufficientMana(Exception):
     pass`,
+      breakdown: "",
       language: "python",
     },
     quiz: [
@@ -633,6 +710,7 @@ with open("data.csv", "w", newline="") as f:
     writer = csv.writer(f)
     writer.writerow(["Name", "Score"])
     writer.writerow(["Alice", 95])`,
+      breakdown: "",
       language: "python",
     },
     quiz: [
@@ -714,6 +792,7 @@ class Mage(Character):
 
 wizard = Mage("Gandalf")
 print(wizard)  # Gandalf (HP: 80)`,
+      breakdown: "",
       language: "python",
     },
     quiz: [
@@ -799,6 +878,7 @@ def multiplier(factor):
 
 double = multiplier(2)
 print(double(5))  # 10`,
+      breakdown: "",
       language: "python",
     },
     quiz: [

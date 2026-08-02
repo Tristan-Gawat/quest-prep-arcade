@@ -30,6 +30,7 @@ export const rustModules: Module[] = [
     let score2 = score;
     println!("{} {}", score, score2); // Both valid!
 }`,
+      breakdown: "",
       language: "rust",
     },
     quiz: [
@@ -79,6 +80,7 @@ challenge: {
     print_score(&score);
     println!("Still have score: {}", score); // Not moved!
 }`,
+      breakdown: "",
       language: "rust",
     },
     quiz: [
@@ -140,6 +142,7 @@ fn main() {
     hero.take_damage(30);
     println!("Alive: {}", hero.is_alive());
 }`,
+      breakdown: "",
       language: "rust",
     },
     quiz: [
@@ -194,6 +197,7 @@ fn main() {
         println!("Found: {}", t);
     }
 }`,
+      breakdown: "",
       language: "rust",
     },
     quiz: [
@@ -257,6 +261,7 @@ fn main() {
     announce(&w);
     announce(&m);
 }`,
+      breakdown: "",
       language: "rust",
     },
     quiz: [
@@ -321,6 +326,7 @@ fn main() {
         println!("Longest: {}", result);
     }
 }`,
+      breakdown: "",
       language: "rust",
     },
     quiz: [

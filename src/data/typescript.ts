@@ -20,6 +20,7 @@ function greet(name: string): string {
 
 // Error! Type 'number' is not assignable to 'string'
 // let bad: string = 42;`,
+      breakdown: "",
       language: "typescript",
     },
     quiz: [
@@ -63,6 +64,7 @@ const hero: Player = {
 // Type alias with union
 type Rank = "ROOKIE" | "CHAMPION" | "ELITE";
 let myRank: Rank = "CHAMPION";`,
+      breakdown: "",
       language: "typescript",
     },
     quiz: [
@@ -103,6 +105,7 @@ interface Inventory<T> {
   items: T[];
   add(item: T): void;
 }`,
+      breakdown: "",
       language: "typescript",
     },
     quiz: [
@@ -148,6 +151,7 @@ type Solo = Omit<Player, "guild">;
 // Record: map of scores
 type Leaderboard = Record<string, number>;
 const scores: Leaderboard = { "Hero": 100 };`,
+      breakdown: "",
       language: "typescript",
     },
     quiz: [
@@ -188,6 +192,7 @@ type Stringify<T> = {
 interface Stats { hp: number; mp: number; }
 type StringStats = Stringify<Stats>;
 // { hp: string; mp: string; }`,
+      breakdown: "",
       language: "typescript",
     },
     quiz: [
@@ -235,6 +240,7 @@ function area(s: Shape): number {
     case "square": return s.side ** 2;
   }
 }`,
+      breakdown: "",
       language: "typescript",
     },
     quiz: [

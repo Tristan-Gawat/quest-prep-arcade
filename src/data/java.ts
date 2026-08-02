@@ -31,6 +31,7 @@ export const javaModules: Module[] = [
 
 Player hero = new Player("Arcade Knight", 100);
 hero.takeDamage(25);`,
+      breakdown: "",
       language: "java",
     },
     quiz: [
@@ -85,6 +86,7 @@ public class Boss extends Enemy {
 
 Enemy e = new Boss("Dragon", 50);
 System.out.println(e.attack());`,
+      breakdown: "",
       language: "java",
     },
     quiz: [
@@ -132,6 +134,7 @@ Set<String> visited = new HashSet<>();
 visited.add("Dungeon");
 visited.add("Dungeon"); // ignored!
 System.out.println(visited.size()); // 1`,
+      breakdown: "",
       language: "java",
     },
     quiz: [
@@ -179,6 +182,7 @@ List<String> ranks = scores.stream()
 // Reduce: aggregate to single value
 int total = scores.stream()
   .reduce(0, Integer::sum);`,
+      breakdown: "",
       language: "java",
     },
     quiz: [
@@ -232,6 +236,7 @@ public static <T extends Comparable<T>> T max(T a, T b) {
 public static double sum(List<? extends Number> list) {
   return list.stream().mapToDouble(Number::doubleValue).sum();
 }`,
+      breakdown: "",
       language: "java",
     },
     quiz: [
@@ -287,6 +292,7 @@ public void takeDamage(int hp, int damage) throws GameOverException {
     throw new GameOverException("Player defeated!", hp);
   }
 }`,
+      breakdown: "",
       language: "java",
     },
     quiz: [

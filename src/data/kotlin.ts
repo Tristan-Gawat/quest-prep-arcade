@@ -43,6 +43,7 @@ val leaderName = player?.guild?.leader?.name ?: "No leader"
 
 // Non-null assertion (dangerous!)
 val forced: String = weapon!! // KotlinNullPointerException if null`,
+      breakdown: "",
       language: "kotlin",
     },
     quiz: [
@@ -102,6 +103,7 @@ val roster = listOf(
   Player("Rogue", 28, 90)
 )
 val highLevel = roster.filter { it.level >= 30 }`,
+      breakdown: "",
       language: "kotlin",
     },
     quiz: [
@@ -169,6 +171,7 @@ suspend fun fetchPlayerData(id: String): Player {
 launch(Dispatchers.IO) { /* Network/disk operations */ }
 launch(Dispatchers.Default) { /* CPU-intensive work */ }
 launch(Dispatchers.Main) { /* UI updates (Android) */ }`,
+      breakdown: "",
       language: "kotlin",
     },
     quiz: [
@@ -237,6 +240,7 @@ val player = Player("Hero", 1, 100).apply {
   name = "\${name} the Brave"
 }
 println(player) // Player(name=Hero the Brave, level=5, hp=200)`,
+      breakdown: "",
       language: "kotlin",
     },
     quiz: [
@@ -302,6 +306,7 @@ fun <T> handleResult(result: NetworkResult<T>) {
 
 val state = GameState.Playing(level = 5, score = 2500)
 println(handleState(state))`,
+      breakdown: "",
       language: "kotlin",
     },
     quiz: [
@@ -385,6 +390,7 @@ val topScores = listOf(45, 82, 91, 67, 55, 98, 73)
   .take(3)
   .mapIndexed { i, score -> "#\${i+1}: $score" }
 println(topScores) // [#1: 98, #2: 91, #3: 82]`,
+      breakdown: "",
       language: "kotlin",
     },
     quiz: [

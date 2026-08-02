@@ -28,6 +28,7 @@ Console.WriteLine($"HP: {health} | Speed: {speed}");
 int? mana = null;
 mana = 50;
 Console.WriteLine($"Mana: {mana ?? 0}");  // null-coalescing`,
+      breakdown: "",
       language: "csharp",
     },
     quiz: [
@@ -102,6 +103,7 @@ else
 double score = 1234.5678;
 Console.WriteLine($"Score: {score:F2}");  // 1234.57
 Console.WriteLine($"Score: {score,10:F1}");  // padded`,
+      breakdown: "",
       language: "csharp",
     },
     quiz: [
@@ -185,6 +187,7 @@ string rank = playerHP switch
     _    => "D Rank"
 };
 Console.WriteLine($"Rank: {rank}");`,
+      breakdown: "",
       language: "csharp",
     },
     quiz: [
@@ -266,6 +269,7 @@ for (int i = 0; i < 10; i++)
     if (i == 7) break;     // stop at 7
     Console.Write($"{i} ");
 }`,
+      breakdown: "",
       language: "csharp",
     },
     quiz: [
@@ -357,6 +361,7 @@ Console.WriteLine(CalculateDamage(10, 5));  // 20
 Console.WriteLine(FormatHP(75));            // 75/100 HP
 Console.WriteLine(IsAlive(1));              // True
 Console.WriteLine(TotalDamage(5, 10, 15)); // 30`,
+      breakdown: "",
       language: "csharp",
     },
     quiz: [
@@ -452,6 +457,7 @@ challenge: {
 var hero = new Hero("ByteKnight", 10, 100);
 hero.HP -= 30;
 Console.WriteLine(hero.GetStatus());`,
+      breakdown: "",
       language: "csharp",
     },
     quiz: [
@@ -544,6 +550,7 @@ public class Dragon : GameEntity
 
 var dragon = new Dragon { Name = "Smaug", HP = 500, FirePower = 90 };
 dragon.TakeDamage(100);  // Takes 50`,
+      breakdown: "",
       language: "csharp",
     },
     quiz: [
@@ -624,6 +631,7 @@ var highest = players.Max(p => p.Score);
 // Any/All checks
 bool anyPro = players.Any(p => p.Level >= 20);  // true
 bool allActive = players.All(p => p.Score > 0); // true`,
+      breakdown: "",
       language: "csharp",
     },
     quiz: [
@@ -715,6 +723,7 @@ async Task RiskyQuestAsync()
         Console.WriteLine($"Caught: {ex.Message}");
     }
 }`,
+      breakdown: "",
       language: "csharp",
     },
     quiz: [
@@ -806,6 +815,7 @@ weaponBag.Add("Mjolnir");
 Console.WriteLine(weaponBag.Count);  // 2
 
 string pick = ChooseRandom(new[] { "Fire", "Ice", "Thunder" });`,
+      breakdown: "",
       language: "csharp",
     },
     quiz: [
@@ -898,6 +908,7 @@ game.OnLevelUp += (sender, level) =>
 
 game.DefeatEnemy("Goblin");
 game.GainLevel(5);`,
+      breakdown: "",
       language: "csharp",
     },
     quiz: [
@@ -993,6 +1004,7 @@ var description = combo switch
     { Length: > 5 } => "Long combo",
     _               => "Basic"
 };`,
+      breakdown: "",
       language: "csharp",
     },
     quiz: [
