@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { GameState, Screen } from "@/lib/state";
+import { signOut } from "@/lib/auth";
 
 interface SettingsScreenProps {
   state: GameState;
@@ -32,6 +33,7 @@ export default function SettingsScreen({
 
   const handleReset = () => {
     if (confirmReset) {
+      signOut();
       resetProgress();
       setConfirmReset(false);
       navigate("start");
@@ -168,16 +170,16 @@ export default function SettingsScreen({
           </div>
         </div>
 
-        {/* Danger Zone */}
+        {/* Account */}
         <div className="card p-6 mb-6 border-accent-red/30">
           <h3 className="text-sm font-medium text-accent-red mb-4">
-            ⚠ Danger Zone
+            Account
           </h3>
           <button
             onClick={handleReset}
             className="px-5 py-2.5 text-sm rounded-lg bg-accent-red/10 border border-accent-red/30 text-accent-red hover:bg-accent-red/20 transition-all cursor-pointer"
           >
-            {confirmReset ? "Confirm Reset?" : "Reset All Progress"}
+            {confirmReset ? "Are you sure?" : "Log Out"}
           </button>
         </div>
 
