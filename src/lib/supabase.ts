@@ -57,3 +57,35 @@ export interface DBLeaderboardEntry {
   total_xp: number;
   modules_completed: number;
 }
+
+export interface DBFriendship {
+  id: string;
+  requester_id: string;
+  addressee_id: string;
+  status: "pending" | "accepted" | "rejected" | "blocked";
+  created_at: string;
+  updated_at: string;
+}
+
+export interface DBCodeBattle {
+  id: string;
+  challenger_id: string;
+  opponent_id: string | null;
+  status: "pending" | "active" | "completed" | "cancelled" | "expired";
+  language: string;
+  problem_title: string;
+  problem_description: string;
+  expected_output: string;
+  starter_code: string;
+  time_limit_seconds: number;
+  winner_id: string | null;
+  challenger_code: string | null;
+  opponent_code: string | null;
+  challenger_output: string | null;
+  opponent_output: string | null;
+  challenger_completed_at: string | null;
+  opponent_completed_at: string | null;
+  started_at: string | null;
+  ended_at: string | null;
+  created_at: string;
+}

@@ -4,7 +4,8 @@ import { useState, useEffect, useCallback } from "react";
 import { GameState, loadState, saveState, getInitialState } from "@/lib/state";
 import { Screen } from "@/lib/state";
 import { supabase, isSupabaseConfigured } from "@/lib/supabase";
-import { addXP, updateStreak, updateQuestionStats, completeModule as dbCompleteModule } from "@/lib/auth";
+import { addXP, updateStreak, updateQuestionStats, completeModule as dbCompleteModule, ensureProfile } from "@/lib/auth";
+import { updateLastSeen } from "@/lib/friends";
 import { getRankFromXP, getRankDisplay, getRankColor, getRankBadgeEmoji } from "@/lib/ranking";
 import { User } from "@supabase/supabase-js";
 import AuthScreen from "@/components/AuthScreen";
@@ -23,6 +24,9 @@ import SpecLessonScreen from "@/components/SpecLessonScreen";
 import CourseModulesScreen from "@/components/CourseModulesScreen";
 import Ticker from "@/components/Ticker";
 import AdminConsole from "@/components/AdminConsole";
+import FriendsScreen from "@/components/FriendsScreen";
+import BattleLobbyScreen from "@/components/BattleLobbyScreen";
+import CodeBattleScreen from "@/components/CodeBattleScreen";
 import AdminUsers from "@/components/AdminUsers";
 
 export default function Home() {
@@ -36,6 +40,7 @@ export default function Home() {
   const [user, setUser] = useState<User | null>(null);
   const [authChecked, setAuthChecked] = useState(false);
   const [skippedAuth, setSkippedAuth] = useState(false);
+  const [currentBattleId, setCurrentBattleId] = useState<string | null>(null);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -46,6 +51,14 @@ export default function Home() {
       try {
         const { data: { session } } = await supabase.auth.getSession();
         setUser(session?.user || null);
+        // Ensure profile exists for the logged-in user
+        if (session?.user) {
+          ensureProfile(
+            session.user.id,
+            session.user.email,
+            session.user.user_metadata?.avatar_url || null
+          );
+        }
       } catch {
         // Supabase not reachable — continue without auth
       }
@@ -57,8 +70,17 @@ export default function Home() {
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user || null);
-      if (session?.user && state.currentScreen === "start") {
-        setState(prev => ({ ...prev, currentScreen: "course-select" }));
+      if (session?.user) {
+        // User just authenticated — navigate to courses if on start screen
+        if (state.currentScreen === "start") {
+          setState(prev => ({ ...prev, currentScreen: "course-select" }));
+        }
+        // Ensure profile exists for newly authenticated users
+        ensureProfile(
+          session.user.id,
+          session.user.email,
+          session.user.user_metadata?.avatar_url || null
+        );
       }
     });
 
@@ -69,6 +91,16 @@ export default function Home() {
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Update last_seen every 2 minutes for online status tracking
+  useEffect(() => {
+    if (!user) return;
+    updateLastSeen(user.id);
+    const interval = setInterval(() => {
+      updateLastSeen(user.id);
+    }, 2 * 60 * 1000);
+    return () => clearInterval(interval);
+  }, [user]);
 
   useEffect(() => {
     if (mounted) saveState(state);
@@ -255,6 +287,18 @@ export default function Home() {
 
           {state.currentScreen === "admin-users" && (
             <AdminUsers callerRole={userRole} />
+          )}
+
+          {state.currentScreen === "friends" && (
+            <FriendsScreen state={state} navigate={navigate} userId={user?.id || null} />
+          )}
+
+          {state.currentScreen === "battle-lobby" && (
+            <BattleLobbyScreen state={state} navigate={navigate} userId={user?.id || null} setBattleId={(id) => { setCurrentBattleId(id); }} />
+          )}
+
+          {state.currentScreen === "code-battle" && currentBattleId && (
+            <CodeBattleScreen state={state} navigate={navigate} userId={user?.id || null} battleId={currentBattleId} />
           )}
         </div>
 

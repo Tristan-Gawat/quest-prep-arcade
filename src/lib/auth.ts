@@ -32,6 +32,47 @@ export async function getProfile(userId: string): Promise<DBProfile | null> {
   return data;
 }
 
+/**
+ * Ensures a profile row exists for the given user. Creates one if missing.
+ * This should be called after every successful authentication to handle first-time sign-ins.
+ */
+export async function ensureProfile(userId: string, email?: string | null, avatarUrl?: string | null): Promise<DBProfile | null> {
+  // First check if profile already exists
+  const existing = await getProfile(userId);
+  if (existing) return existing;
+
+  // Profile doesn't exist — create one for this new user
+  const username = email
+    ? email.split("@")[0] // Use email prefix as default username
+    : `Player_${userId.slice(0, 6)}`;
+
+  const { data, error } = await supabase
+    .from("profiles")
+    .upsert({
+      id: userId,
+      username,
+      avatar_url: avatarUrl || null,
+      rank_tier: "IRON",
+      rank_division: 4,
+      total_xp: 0,
+      streak_best: 0,
+      streak_current: 0,
+      modules_completed: 0,
+      questions_answered: 0,
+      questions_correct: 0,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+    }, { onConflict: "id" })
+    .select()
+    .single();
+
+  if (error) {
+    console.error("Failed to create profile:", error);
+    return null;
+  }
+  return data;
+}
+
 export async function updateProfile(userId: string, updates: Partial<DBProfile>) {
   const { error } = await supabase
     .from("profiles")
