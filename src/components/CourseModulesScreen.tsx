@@ -4,7 +4,7 @@ import { useState } from "react";
 import { GameState, Screen } from "@/lib/state";
 import { courses } from "@/data/courses";
 import { Module } from "@/data/curriculum";
-import { askBuiltinAI } from "@/lib/ai-builtin";
+import { generateFullLesson } from "@/lib/lesson-generator";
 import CodeBlock from "@/components/CodeBlock";
 
 interface CourseModulesScreenProps {
@@ -61,72 +61,9 @@ export default function CourseModulesScreen({ state, updateState, navigate }: Co
     const subLessons = selectedModule.subLessons || [selectedModule.lesson.title];
     const subTopic = subLessons[index];
     const langName = course.name;
-    const codeLang = course.id === "htmlcss" ? "html" : course.id === "csharp" ? "csharp" : course.id;
 
-    const prompt = `You are teaching a student about "${subTopic}" (part of "${selectedModule.title}") using ${langName}.
-
-Write a COMPLETE, DETAILED lesson. You MUST include ALL 4 sections exactly as labeled below:
-
-OVERVIEW:
-Write 2-3 paragraphs explaining what ${subTopic} is, why it matters, and where it is used in real applications. Be thorough and beginner-friendly.
-
-CODE:
-Write a COMPLETE, WORKING ${langName} code example (25-40 lines) that demonstrates ${subTopic}. Include comments explaining key lines. Do NOT use markdown backticks around the code.
-
-BREAKDOWN:
-Explain the code section by section:
-- Line 1-3: what these imports/setup do
-- Line 4-8: what this function/block does
-- Continue for every meaningful section
-- Explain what each variable name means
-- Explain what would happen if you changed a value
-- Explain any keywords or built-in functions used
-
-TOGETHER:
-Write 1-2 paragraphs explaining how all the pieces connect. Describe the full execution flow from start to finish. Explain what the program outputs and why.
-
-IMPORTANT: You MUST write the exact labels "OVERVIEW:", "CODE:", "BREAKDOWN:", and "TOGETHER:" on their own lines to separate each section.`;
-
-    const result = await askBuiltinAI(prompt, 2000);
-
-    if (result.success && result.content) {
-      const overviewMatch = result.content.match(/OVERVIEW:\s*([\s\S]*?)(?=\nCODE:)/i);
-      const codeMatch = result.content.match(/CODE:\s*([\s\S]*?)(?=\nBREAKDOWN:)/i);
-      const breakdownMatch = result.content.match(/BREAKDOWN:\s*([\s\S]*?)(?=\nTOGETHER:)/i);
-      const togetherMatch = result.content.match(/TOGETHER:\s*([\s\S]*?)$/i);
-
-      let overview = (overviewMatch?.[1] || "").trim();
-      let code = (codeMatch?.[1] || "").trim();
-      let breakdown = (breakdownMatch?.[1] || "").trim();
-      let together = (togetherMatch?.[1] || "").trim();
-
-      code = code.replace(/^```[\w]*\n?/, "").replace(/\n?```$/, "").trim();
-
-      if (!overview && !code) {
-        const content = result.content;
-        const codeBlockMatch = content.match(/```[\w]*\n([\s\S]*?)\n```/);
-        if (codeBlockMatch) {
-          code = codeBlockMatch[1];
-          overview = content.slice(0, content.indexOf("```")).trim();
-          breakdown = content.slice(content.lastIndexOf("```") + 3).trim();
-        } else {
-          overview = content;
-          code = `# ${subTopic}\n# Code example`;
-        }
-      }
-
-      if (!overview) overview = `This lesson covers ${subTopic} as part of ${selectedModule.title}.`;
-      if (!code) code = `# ${subTopic}\n# ${langName} example`;
-
-      setLesson({ explanation: overview, code, breakdown, together });
-    } else {
-      setLesson({
-        explanation: `This lesson covers: ${subTopic}\n\nThe AI is currently unavailable — try again in a moment.`,
-        code: `# ${subTopic}\n# ${langName} example\n# AI will generate code when available`,
-        breakdown: "",
-        together: "",
-      });
-    }
+    const result = await generateFullLesson(subTopic, selectedModule.title, langName);
+    setLesson(result);
   };
 
   const completed = allModules.filter((m) => state.completedModules.includes(m.id)).length;

@@ -7,7 +7,7 @@ import { gamedevModules } from "@/data/uphsl-gamedev";
 import { compsciModules } from "@/data/uphsl-compsci";
 import { multimediaModules } from "@/data/uphsl-multimedia";
 import { courses } from "@/data/courses";
-import { askBuiltinAI } from "@/lib/ai-builtin";
+import { generateFullLesson } from "@/lib/lesson-generator";
 import CodeBlock from "@/components/CodeBlock";
 
 interface SpecLessonScreenProps {
@@ -88,79 +88,10 @@ export default function SpecLessonScreen({ state, updateState, navigate }: SpecL
     setLesson(null);
 
     const subTopic = subLessons[index];
-    const secNote = state.currentSpecId === "uphsl-cybersec" ? " This is for educational purposes only — always get proper authorization." : "";
-    const prompt = `You are teaching a student about "${subTopic}" (part of "${specModule!.title}") using ${langName}.
+    const secNote = state.currentSpecId === "uphsl-cybersec" ? " (Educational only — get proper authorization.)" : undefined;
 
-Write a COMPLETE, DETAILED lesson. You MUST include ALL 4 sections exactly as labeled below:
-
-OVERVIEW:
-Write 2-3 paragraphs explaining what ${subTopic} is, why it matters, and where it is used in real applications. Be thorough and beginner-friendly.
-
-CODE:
-Write a COMPLETE, WORKING ${langName} code example (25-40 lines) that demonstrates ${subTopic}. Include comments explaining key lines. Do NOT use markdown backticks around the code.
-
-BREAKDOWN:
-Explain the code section by section:
-- Line 1-3: what these imports/setup do
-- Line 4-8: what this function/block does
-- Continue for every meaningful section
-- Explain what each variable name means
-- Explain what would happen if you changed a value
-- Explain any keywords or built-in functions used
-
-TOGETHER:
-Write 1-2 paragraphs explaining how all the pieces connect. Describe the full execution flow from start to finish. Explain what the program outputs and why.${secNote}
-
-IMPORTANT: You MUST write the exact labels "OVERVIEW:", "CODE:", "BREAKDOWN:", and "TOGETHER:" on their own lines to separate each section.`;
-
-    const result = await askBuiltinAI(prompt, 2000);
-
-    if (result.success && result.content) {
-      // Try structured parsing first
-      const overviewMatch = result.content.match(/OVERVIEW:\s*([\s\S]*?)(?=\nCODE:)/i);
-      const codeMatch = result.content.match(/CODE:\s*([\s\S]*?)(?=\nBREAKDOWN:)/i);
-      const breakdownMatch = result.content.match(/BREAKDOWN:\s*([\s\S]*?)(?=\nTOGETHER:)/i);
-      const togetherMatch = result.content.match(/TOGETHER:\s*([\s\S]*?)$/i);
-
-      let overview = (overviewMatch?.[1] || "").trim();
-      let code = (codeMatch?.[1] || "").trim();
-      let breakdown = (breakdownMatch?.[1] || "").trim();
-      let together = (togetherMatch?.[1] || "").trim();
-
-      // Clean code block markers
-      code = code.replace(/^```[\w]*\n?/, "").replace(/\n?```$/, "").trim();
-
-      // If structured parsing failed (no sections found), try to split intelligently
-      if (!overview && !code) {
-        const content = result.content;
-        // Look for any code block
-        const codeBlockMatch = content.match(/```[\w]*\n([\s\S]*?)\n```/);
-        if (codeBlockMatch) {
-          code = codeBlockMatch[1];
-          const beforeCode = content.slice(0, content.indexOf("```")).trim();
-          const afterCode = content.slice(content.lastIndexOf("```") + 3).trim();
-          overview = beforeCode;
-          breakdown = afterCode;
-        } else {
-          // No code block found — treat entire response as overview
-          overview = content;
-          code = `# ${subTopic} - ${langName}\n# The AI response did not include a separate code block.\n# Try regenerating this lesson.`;
-        }
-      }
-
-      // Ensure we have meaningful content
-      if (!overview) overview = `This lesson covers ${subTopic} as part of ${specModule!.title}.`;
-      if (!code) code = `# ${subTopic}\n# ${langName} example`;
-
-      setLesson({ explanation: overview, code, breakdown, together });
-    } else {
-      setLesson({
-        explanation: `This sub-lesson covers: ${subTopic}\n\nThe AI is currently unavailable — try again in a moment.`,
-        code: `// ${subTopic}\n// ${langName} example\n// AI will generate code when available`,
-        breakdown: "",
-        together: "",
-      });
-    }
+    const result = await generateFullLesson(subTopic, specModule!.title, langName, secNote);
+    setLesson(result);
   };
 
   if (loading) {
