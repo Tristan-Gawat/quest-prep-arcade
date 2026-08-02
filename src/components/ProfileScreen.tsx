@@ -141,8 +141,8 @@ export default function ProfileScreen({ state, navigate, userId, userEmail, onSi
             <div className="w-full h-24 md:h-32 bg-gradient-to-r from-accent-blue/20 via-accent-purple/20 to-accent-cyan/20" />
           )}
 
-          {/* Profile info row: avatar on left, name/tag on right */}
-          <div className="px-6 pb-6 md:pb-8 -mt-6">
+          {/* Profile info row: avatar + name on left, XP progress on right */}
+          <div className="px-6 pb-0 -mt-6">
             <div className="flex items-end gap-4">
               {/* Left side: Avatar */}
               <div className="relative w-20 h-20 shrink-0 group">
@@ -171,11 +171,10 @@ export default function ProfileScreen({ state, navigate, userId, userEmail, onSi
                 </button>
               </div>
 
-              {/* Right side: Name + rank tag */}
+              {/* Middle: Name + rank tag + edit */}
               <div className="flex-1 min-w-0 pt-8">
                 <h2 className="text-xl md:text-2xl font-semibold text-text-primary truncate">{profile.username}</h2>
-                {/* Rank tag below name */}
-                <div className="flex items-center gap-2 mt-1.5">
+                <div className="flex items-center gap-2 mt-1">
                   <span
                     className="inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-full"
                     style={{ color: getRankColor(rank.tier), backgroundColor: getRankColor(rank.tier) + "18", border: `1px solid ${getRankColor(rank.tier)}40` }}
@@ -185,23 +184,31 @@ export default function ProfileScreen({ state, navigate, userId, userEmail, onSi
                 </div>
                 <button
                   onClick={() => setShowEditModal(true)}
-                  className="text-xs text-accent-blue hover:text-accent-blue/80 mt-2 cursor-pointer"
+                  className="text-xs text-accent-blue hover:text-accent-blue/80 mt-1.5 cursor-pointer"
                 >
                   Edit Profile
                 </button>
               </div>
+
+              {/* Right side: XP progress (hidden for developers) */}
+              {rank.tier !== "DEVELOPER" && (
+                <div className="hidden sm:block shrink-0 w-36 pt-8">
+                  <div className="w-full h-2 bg-bg-elevated rounded-full overflow-hidden mb-1">
+                    <div
+                      className="h-full rounded-full transition-all"
+                      style={{ width: `${rankProgress.progress}%`, backgroundColor: getRankColor(rank.tier) }}
+                    />
+                  </div>
+                  <p className="text-[10px] text-text-muted text-right">
+                    {profile.total_xp} / {rankProgress.next} XP
+                  </p>
+                </div>
+              )}
             </div>
 
-            {/* Bio - below name and cover */}
-            {profile.bio && (
-              <p className="text-sm text-text-secondary italic mt-4">
-                &ldquo;{profile.bio}&rdquo;
-              </p>
-            )}
-
-            {/* Rank progress bar - hidden for DEVELOPER accounts */}
+            {/* Mobile-only XP progress (below the row) */}
             {rank.tier !== "DEVELOPER" && (
-              <div className="max-w-xs mt-4">
+              <div className="sm:hidden mt-4 max-w-xs">
                 <div className="w-full h-2 bg-bg-elevated rounded-full overflow-hidden mb-1">
                   <div
                     className="h-full rounded-full transition-all"
@@ -212,6 +219,20 @@ export default function ProfileScreen({ state, navigate, userId, userEmail, onSi
                   {profile.total_xp} / {rankProgress.next} XP to next rank
                 </p>
               </div>
+            )}
+          </div>
+
+          {/* Divider */}
+          <div className="mx-6 mt-4 border-t border-border" />
+
+          {/* Bio - below divider */}
+          <div className="px-6 py-4">
+            {profile.bio ? (
+              <p className="text-sm text-text-secondary italic">
+                &ldquo;{profile.bio}&rdquo;
+              </p>
+            ) : (
+              <p className="text-xs text-text-muted italic">No bio yet — tap Edit Profile to add one.</p>
             )}
           </div>
         </div>
