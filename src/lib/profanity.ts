@@ -88,17 +88,6 @@ export function containsProfanity(text: string): boolean {
         return true;
       }
     }
-
-    // Also check if any profanity appears as a substring in the text
-    let found = false;
-    PROFANITY_LIST.forEach((badWord) => {
-      if (variant.includes(badWord)) {
-        found = true;
-      }
-    });
-    if (found) {
-      return true;
-    }
   }
 
   return false;
