@@ -18,11 +18,20 @@ export async function signOut() {
 }
 
 export async function getCurrentUser() {
-  const { data: { user } } = await supabase.auth.getUser();
-  return user;
+  try {
+    // Try getSession first (reads from local storage, more reliable)
+    const { data: { session } } = await supabase.auth.getSession();
+    if (session?.user) return session.user;
+    // Fallback to getUser (makes API call to verify)
+    const { data: { user } } = await supabase.auth.getUser();
+    return user;
+  } catch {
+    return null;
+  }
 }
 
 export async function getProfile(userId: string): Promise<DBProfile | null> {
+  if (!isSupabaseConfigured) return null;
   const { data, error } = await supabase
     .from("profiles")
     .select("*")
@@ -37,6 +46,8 @@ export async function getProfile(userId: string): Promise<DBProfile | null> {
  * This should be called after every successful authentication to handle first-time sign-ins.
  */
 export async function ensureProfile(userId: string, email?: string | null, avatarUrl?: string | null): Promise<DBProfile | null> {
+  if (!isSupabaseConfigured) return null;
+  
   // First check if profile already exists
   const existing = await getProfile(userId);
   if (existing) return existing;
