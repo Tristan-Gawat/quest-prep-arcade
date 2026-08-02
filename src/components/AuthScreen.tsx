@@ -107,7 +107,7 @@ export default function AuthScreen({ onSkip }: AuthScreenProps) {
             <div className="border-t border-border mt-4 pt-4 text-center">
               <button
                 onClick={onSkip}
-                className="text-xs text-text-muted hover:text-text-secondary transition-colors cursor-pointer"
+                className="btn-secondary text-xs w-full"
               >
                 Skip for now (progress won&apos;t be saved online)
               </button>
