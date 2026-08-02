@@ -43,6 +43,13 @@ export default function SettingsScreen({
     }
   };
 
+  const handleChangeAccount = async () => {
+    await signOut();
+    // Sign in again with Google (will show account picker)
+    const { signInWithGoogle } = await import("@/lib/auth");
+    await signInWithGoogle();
+  };
+
   return (
     <div className="flex-1 flex items-center justify-center p-4">
       <div className="w-full max-w-2xl fade-in">
@@ -175,12 +182,20 @@ export default function SettingsScreen({
           <h3 className="text-sm font-medium text-accent-red mb-4">
             Account
           </h3>
-          <button
-            onClick={handleReset}
-            className="px-5 py-2.5 text-sm rounded-lg bg-accent-red/10 border border-accent-red/30 text-accent-red hover:bg-accent-red/20 transition-all cursor-pointer"
-          >
-            {confirmReset ? "Are you sure?" : "Log Out"}
-          </button>
+          <div className="flex gap-3 flex-wrap">
+            <button
+              onClick={handleReset}
+              className="px-5 py-2.5 text-sm rounded-lg bg-accent-red/10 border border-accent-red/30 text-accent-red hover:bg-accent-red/20 transition-all cursor-pointer"
+            >
+              {confirmReset ? "Are you sure?" : "Log Out"}
+            </button>
+            <button
+              onClick={handleChangeAccount}
+              className="px-5 py-2.5 text-sm rounded-lg bg-accent-blue/10 border border-accent-blue/30 text-accent-blue hover:bg-accent-blue/20 transition-all cursor-pointer"
+            >
+              Change Account
+            </button>
+          </div>
         </div>
 
         {/* Back Button */}
