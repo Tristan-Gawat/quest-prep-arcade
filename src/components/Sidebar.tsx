@@ -32,6 +32,16 @@ export default function Sidebar({ currentScreen, navigate, user, userRole }: Sid
     if (item.minRole === "mod") return userRole === "developer" || userRole === "mod";
     return false;
   });
+
+  const handleSwitchAccount = () => {
+    // Open Google sign-in to switch to alt account
+    window.open(
+      `${window.location.origin}?switch_account=true`,
+      "_blank",
+      "width=500,height=600"
+    );
+  };
+
   return (
     <aside className="w-16 md:w-56 shrink-0 h-full bg-bg-secondary/50 border-r border-border flex flex-col relative z-10">
       {/* Logo */}
@@ -91,6 +101,18 @@ export default function Sidebar({ currentScreen, navigate, user, userRole }: Sid
                 </button>
               );
             })}
+
+            {/* Alt Account option for developers */}
+            {userRole === "developer" && (
+              <button
+                onClick={handleSwitchAccount}
+                className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all cursor-pointer text-text-secondary hover:text-text-primary hover:bg-bg-elevated border border-transparent"
+                title="Play as Alt Account"
+              >
+                <span className="text-base">🎭</span>
+                <span className="hidden md:inline font-medium">Alt Account</span>
+              </button>
+            )}
           </>
         )}
       </nav>

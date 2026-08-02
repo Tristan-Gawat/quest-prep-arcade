@@ -102,7 +102,26 @@ export default function ArenaScreen({ state, updateState, navigate }: ArenaScree
     setExecutionOutput(null);
 
     try {
-      const { executeCode } = await import("@/lib/code-runner");
+      const { executeCode, getSupportedLanguages } = await import("@/lib/code-runner");
+      const supported = getSupportedLanguages();
+
+      if (!supported.includes(selectedLang)) {
+        // Language not supported by Piston - use AI review instead
+        const { builtinReviewCode } = await import("@/lib/ai-builtin");
+        const review = await builtinReviewCode(
+          `Check this ${selectedLang} code for syntax errors and logical issues. Point out any errors:\n${challenge || ""}`,
+          code,
+          selectedLang
+        );
+        if (review) {
+          setExecutionOutput(review);
+        } else {
+          setExecutionOutput(`(${selectedLang} code cannot be executed in the browser - use Submit for AI review)`);
+        }
+        setLoading(false);
+        return;
+      }
+
       const result = await executeCode(selectedLang, code);
 
       if (result.success) {
@@ -120,24 +139,34 @@ export default function ArenaScreen({ state, updateState, navigate }: ArenaScree
   };
 
   const handleSubmitCode = async () => {
-    setSubmitted(true);
     setLoading(true);
+    setExecutionError(null);
+    setExecutionOutput(null);
 
-    // First run the code to check for errors
+    // First attempt to run the code for supported languages
     try {
-      const { executeCode } = await import("@/lib/code-runner");
-      const result = await executeCode(selectedLang || "", code);
+      const { executeCode, getSupportedLanguages } = await import("@/lib/code-runner");
+      const supported = getSupportedLanguages();
 
-      if (!result.success) {
-        setExecutionError(result.error || "Code has errors");
-        setExecutionOutput(result.output || null);
-      } else {
-        setExecutionOutput(result.output || "(no output)");
-        setExecutionError(null);
+      if (supported.includes(selectedLang || "")) {
+        const result = await executeCode(selectedLang || "", code);
+        if (!result.success) {
+          // Show the error - don't mark as submitted yet, let user fix
+          setExecutionError(result.error || "Code has errors — fix and try again!");
+          setExecutionOutput(result.output || null);
+          setLoading(false);
+          return; // Don't submit - let them fix
+        } else {
+          setExecutionOutput(result.output || "(no output)");
+          setExecutionError(null);
+        }
       }
     } catch {
-      // If Piston is unavailable, just proceed with AI review
+      // Piston unavailable - proceed with AI review only
     }
+
+    // Mark as submitted now that code passed (or execution was unavailable)
+    setSubmitted(true);
 
     // Get AI review
     if (code.trim()) {

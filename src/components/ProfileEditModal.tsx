@@ -22,6 +22,7 @@ export default function ProfileEditModal({
   const [bio, setBio] = useState((currentProfile as DBProfile & { bio?: string }).bio || "");
   const [avatarUrl, setAvatarUrl] = useState<string | null>(currentProfile.avatar_url);
   const [coverPhotoUrl, setCoverPhotoUrl] = useState<string | null>(currentProfile.cover_photo_url || null);
+  const [country, setCountry] = useState<string>(currentProfile.country || "");
   const [usernameError, setUsernameError] = useState<string | null>(null);
   const [bioError, setBioError] = useState<string | null>(null);
   const [uploadError, setUploadError] = useState<string | null>(null);
@@ -118,6 +119,7 @@ export default function ProfileEditModal({
       username,
       avatar_url: avatarUrl,
       cover_photo_url: coverPhotoUrl,
+      country: country || null,
     };
 
     // Include bio in updates
@@ -281,6 +283,50 @@ export default function ProfileEditModal({
                 {bio.length}/{BIO_MAX_LENGTH}
               </p>
             </div>
+          </div>
+
+          {/* Country Selector */}
+          <div>
+            <label className="block text-xs font-medium text-text-secondary mb-1.5">
+              Country
+            </label>
+            <select
+              value={country}
+              onChange={(e) => setCountry(e.target.value)}
+              className="w-full bg-bg-input border border-border rounded-lg px-4 py-2.5 text-sm text-text-primary focus:outline-none focus:border-accent-blue transition-colors"
+            >
+              <option value="">Select your country</option>
+              <option value="PH">Philippines</option>
+              <option value="US">United States</option>
+              <option value="GB">United Kingdom</option>
+              <option value="CA">Canada</option>
+              <option value="AU">Australia</option>
+              <option value="IN">India</option>
+              <option value="DE">Germany</option>
+              <option value="FR">France</option>
+              <option value="JP">Japan</option>
+              <option value="KR">South Korea</option>
+              <option value="BR">Brazil</option>
+              <option value="MX">Mexico</option>
+              <option value="ID">Indonesia</option>
+              <option value="NG">Nigeria</option>
+              <option value="SG">Singapore</option>
+              <option value="MY">Malaysia</option>
+              <option value="NZ">New Zealand</option>
+              <option value="ZA">South Africa</option>
+              <option value="AE">UAE</option>
+              <option value="SE">Sweden</option>
+              <option value="NL">Netherlands</option>
+              <option value="IT">Italy</option>
+              <option value="ES">Spain</option>
+              <option value="PK">Pakistan</option>
+              <option value="BD">Bangladesh</option>
+              <option value="VN">Vietnam</option>
+              <option value="TH">Thailand</option>
+              <option value="PL">Poland</option>
+              <option value="RO">Romania</option>
+              <option value="UA">Ukraine</option>
+            </select>
           </div>
         </div>
 

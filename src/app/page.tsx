@@ -114,10 +114,21 @@ export default function Home() {
     setState((prev) => {
       const newState = { ...prev, ...updates };
 
-      if (user && updates.score && updates.score > prev.score) {
+      // Determine if current user is a developer (no XP sync for developers)
+      const DEVELOPER_EMAILS_CHECK = ["tjgawat0113@gmail.com", "tristangawatschool@gmail.com", "c1-241-00124@uphsl.edu.ph"];
+      const isDeveloper = user?.email ? DEVELOPER_EMAILS_CHECK.includes(user.email.toLowerCase()) : false;
+
+      // Block XP updates for developer accounts — don't sync to database
+      if (user && !isDeveloper && updates.score && updates.score > prev.score) {
         const xpGained = updates.score - prev.score;
         addXP(user.id, xpGained, prev.currentCourseId || undefined);
       }
+
+      // For developers, prevent score from persisting to DB (local only for testing)
+      if (isDeveloper && updates.score) {
+        // Keep local score for UI but never sync
+      }
+
       if (user && updates.streak !== undefined) {
         updateStreak(user.id, updates.streak);
       }

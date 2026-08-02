@@ -97,6 +97,15 @@ export async function addXP(userId: string, xp: number, languageId?: string) {
   const profile = await getProfile(userId);
   if (!profile) return;
 
+  // Skip XP update for developer accounts (check role in profile or email)
+  // Developer profiles have role='developer' set via migration 003
+  const { data: roleCheck } = await supabase
+    .from("profiles")
+    .select("role")
+    .eq("id", userId)
+    .single();
+  if (roleCheck?.role === "developer") return;
+
   const newTotalXP = profile.total_xp + xp;
   const newRank = getRankFromXP(newTotalXP);
 
@@ -222,21 +231,28 @@ export async function updateQuestionStats(userId: string, correct: boolean) {
 }
 
 // Leaderboard queries
-export async function getGlobalLeaderboard(limit = 50): Promise<DBProfile[]> {
-  const { data } = await supabase
+export async function getGlobalLeaderboard(limit = 50, country?: string | null): Promise<DBProfile[]> {
+  let query = supabase
     .from("profiles")
     .select("*")
     .or("role.eq.player,role.is.null")
     .order("total_xp", { ascending: false })
     .limit(limit);
+
+  if (country) {
+    query = query.eq("country", country);
+  }
+
+  const { data } = await query;
   return data || [];
 }
 
 export async function getLanguageLeaderboard(languageId: string, limit = 50) {
   const { data } = await supabase
     .from("language_progress")
-    .select("*, profiles(username, avatar_url)")
+    .select("*, profiles!inner(username, avatar_url, role)")
     .eq("language_id", languageId)
+    .or("role.eq.player,role.is.null", { referencedTable: "profiles" })
     .order("xp", { ascending: false })
     .limit(limit);
   return data || [];
