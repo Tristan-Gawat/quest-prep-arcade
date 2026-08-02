@@ -226,6 +226,7 @@ export async function getGlobalLeaderboard(limit = 50): Promise<DBProfile[]> {
   const { data } = await supabase
     .from("profiles")
     .select("*")
+    .or("role.eq.player,role.is.null")
     .order("total_xp", { ascending: false })
     .limit(limit);
   return data || [];
