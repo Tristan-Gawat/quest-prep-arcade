@@ -25,6 +25,7 @@ export interface DBProfile {
   id: string;
   username: string;
   avatar_url: string | null;
+  cover_photo_url?: string | null;
   bio?: string;
   rank_tier: string;
   rank_division: number;

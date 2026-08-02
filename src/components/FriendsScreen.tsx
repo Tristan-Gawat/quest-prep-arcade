@@ -229,9 +229,15 @@ export default function FriendsScreen({ state, navigate, userId }: FriendsScreen
             ) : (
               <div className="card overflow-hidden divide-y divide-border">
                 {friends.map((friend) => (
-                  <div key={friend.id} className="flex items-center gap-3 px-4 py-3">
+                  <div key={friend.id} className="flex items-center gap-3 px-4 py-3 relative">
+                    {/* Mini cover photo strip */}
+                    {friend.cover_photo_url && (
+                      <div className="absolute inset-x-0 top-0 h-8 overflow-hidden opacity-20 pointer-events-none">
+                        <img src={friend.cover_photo_url} alt="" className="w-full h-full object-cover" />
+                      </div>
+                    )}
                     {/* Avatar */}
-                    <div className="relative">
+                    <div className="relative z-10">
                       {friend.avatar_url ? (
                         <img src={friend.avatar_url} alt="" className="w-10 h-10 rounded-full" />
                       ) : (
@@ -246,7 +252,7 @@ export default function FriendsScreen({ state, navigate, userId }: FriendsScreen
                     </div>
 
                     {/* Info */}
-                    <div className="flex-1 min-w-0">
+                    <div className="flex-1 min-w-0 relative z-10">
                       <p className="text-sm font-medium text-text-primary truncate">
                         {friend.username}
                       </p>
@@ -256,7 +262,7 @@ export default function FriendsScreen({ state, navigate, userId }: FriendsScreen
                     </div>
 
                     {/* Actions */}
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 relative z-10">
                       <button
                         onClick={() => handleChallenge(friend.id)}
                         className="inline-flex items-center gap-1 text-xs font-medium text-accent-blue hover:text-accent-blue/80 cursor-pointer bg-bg-card border border-border rounded-lg px-3 py-1.5 hover:bg-bg-elevated transition-all"
@@ -397,15 +403,21 @@ export default function FriendsScreen({ state, navigate, userId }: FriendsScreen
             ) : searchResults.length > 0 ? (
               <div className="card overflow-hidden divide-y divide-border">
                 {searchResults.map((user) => (
-                  <div key={user.id} className="flex items-center gap-3 px-4 py-3">
+                  <div key={user.id} className="flex items-center gap-3 px-4 py-3 relative">
+                    {/* Mini cover photo strip */}
+                    {user.cover_photo_url && (
+                      <div className="absolute inset-x-0 top-0 h-8 overflow-hidden opacity-20 pointer-events-none">
+                        <img src={user.cover_photo_url} alt="" className="w-full h-full object-cover" />
+                      </div>
+                    )}
                     {user.avatar_url ? (
-                      <img src={user.avatar_url} alt="" className="w-10 h-10 rounded-full" />
+                      <img src={user.avatar_url} alt="" className="w-10 h-10 rounded-full relative z-10" />
                     ) : (
-                      <div className="w-10 h-10 rounded-full bg-bg-elevated flex items-center justify-center text-sm text-text-secondary">
+                      <div className="w-10 h-10 rounded-full bg-bg-elevated flex items-center justify-center text-sm text-text-secondary relative z-10">
                         {user.username.charAt(0).toUpperCase()}
                       </div>
                     )}
-                    <div className="flex-1 min-w-0">
+                    <div className="flex-1 min-w-0 relative z-10">
                       <p className="text-sm font-medium text-text-primary truncate">
                         {user.username}
                       </p>
@@ -415,7 +427,7 @@ export default function FriendsScreen({ state, navigate, userId }: FriendsScreen
                     </div>
                     <button
                       onClick={() => handleSendRequest(user.id)}
-                      className="inline-flex items-center gap-1 text-xs font-medium text-accent-green hover:text-accent-green/80 cursor-pointer bg-bg-card border border-border rounded-lg px-3 py-1.5 hover:bg-bg-elevated transition-all"
+                      className="inline-flex items-center gap-1 text-xs font-medium text-accent-green hover:text-accent-green/80 cursor-pointer bg-bg-card border border-border rounded-lg px-3 py-1.5 hover:bg-bg-elevated transition-all relative z-10"
                     >
                       + Add Friend
                     </button>
@@ -427,15 +439,21 @@ export default function FriendsScreen({ state, navigate, userId }: FriendsScreen
                 <h3 className="text-sm font-medium text-text-secondary mb-3">Suggested Players</h3>
                 <div className="card overflow-hidden divide-y divide-border">
                   {searchResults.map((user) => (
-                    <div key={user.id} className="flex items-center gap-3 px-4 py-3">
+                    <div key={user.id} className="flex items-center gap-3 px-4 py-3 relative">
+                      {/* Mini cover photo strip */}
+                      {user.cover_photo_url && (
+                        <div className="absolute inset-x-0 top-0 h-8 overflow-hidden opacity-20 pointer-events-none">
+                          <img src={user.cover_photo_url} alt="" className="w-full h-full object-cover" />
+                        </div>
+                      )}
                       {user.avatar_url ? (
-                        <img src={user.avatar_url} alt="" className="w-10 h-10 rounded-full" />
+                        <img src={user.avatar_url} alt="" className="w-10 h-10 rounded-full relative z-10" />
                       ) : (
-                        <div className="w-10 h-10 rounded-full bg-bg-elevated flex items-center justify-center text-sm text-text-secondary">
+                        <div className="w-10 h-10 rounded-full bg-bg-elevated flex items-center justify-center text-sm text-text-secondary relative z-10">
                           {user.username.charAt(0).toUpperCase()}
                         </div>
                       )}
-                      <div className="flex-1 min-w-0">
+                      <div className="flex-1 min-w-0 relative z-10">
                         <p className="text-sm font-medium text-text-primary truncate">
                           {user.username}
                         </p>
@@ -445,7 +463,7 @@ export default function FriendsScreen({ state, navigate, userId }: FriendsScreen
                       </div>
                       <button
                         onClick={() => handleSendRequest(user.id)}
-                        className="inline-flex items-center gap-1 text-xs font-medium text-accent-green hover:text-accent-green/80 cursor-pointer bg-bg-card border border-border rounded-lg px-3 py-1.5 hover:bg-bg-elevated transition-all"
+                        className="inline-flex items-center gap-1 text-xs font-medium text-accent-green hover:text-accent-green/80 cursor-pointer bg-bg-card border border-border rounded-lg px-3 py-1.5 hover:bg-bg-elevated transition-all relative z-10"
                       >
                         + Add Friend
                       </button>
