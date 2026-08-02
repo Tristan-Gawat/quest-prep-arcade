@@ -258,7 +258,7 @@ export default function Home() {
           )}
 
           {state.currentScreen === "profile" && (
-            <ProfileScreen state={state} navigate={navigate} userId={user?.id || null} onSignOut={handleSignOut} />
+            <ProfileScreen state={state} navigate={navigate} userId={user?.id || null} userEmail={user?.email || null} onSignOut={handleSignOut} />
           )}
 
           {state.currentScreen === "leaderboard" && (
