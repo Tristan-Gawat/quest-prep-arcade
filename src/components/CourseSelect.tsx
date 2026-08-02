@@ -66,11 +66,11 @@ export default function CourseSelect({
               <div className="flex items-center gap-3 mb-3">
                 <span className="text-lg">🏫</span>
                 <h2 className="text-lg md:text-xl font-bold text-text-primary" style={{ fontFamily: 'var(--font-display)' }}>
-                  UPHSL College of Computer Studies
+                  College of Computer Studies
                 </h2>
               </div>
               <p className="text-xs text-accent-purple">
-                Exclusive content for @uphsl.edu.ph students
+                Exclusive for CCS students
               </p>
             </div>
 

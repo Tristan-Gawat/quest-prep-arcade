@@ -12,6 +12,7 @@ export const gamedevModules: SpecModule[] = [
     difficulty: "EASY",
     description: "Learn how to craft engaging game levels — flow, pacing, spatial storytelling, and player guidance.",
     concepts: ["level flow and pacing", "environmental storytelling", "player guidance techniques", "difficulty curves", "blockout and iteration"],
+    subLessons: ["Learn: Level flow and pacing","Learn: Environmental storytelling","Learn: Player guidance techniques","Learn: Difficulty curves","Learn: Blockout and iteration"],
   },
   {
     id: "gd-playtesting",
@@ -20,6 +21,7 @@ export const gamedevModules: SpecModule[] = [
     difficulty: "EASY",
     description: "Understand how to gather player feedback, run playtests, and iterate on game design effectively.",
     concepts: ["playtesting methodologies", "feedback collection", "A/B testing in games", "analytics interpretation", "iterative design process"],
+    subLessons: ["Learn: Playtesting methodologies","Learn: Feedback collection","Learn: A/B testing in games","Learn: Analytics interpretation","Learn: Iterative design process"],
   },
   {
     id: "gd-ui-ux",
@@ -28,6 +30,7 @@ export const gamedevModules: SpecModule[] = [
     difficulty: "MEDIUM",
     description: "Design intuitive game interfaces — HUDs, menus, accessibility, and player communication systems.",
     concepts: ["HUD design patterns", "menu flow architecture", "accessibility standards", "visual feedback systems", "responsive game UI"],
+    subLessons: ["Learn: HUD design patterns","Learn: Menu flow architecture","Learn: Accessibility standards","Learn: Visual feedback systems","Learn: Responsive game UI"],
   },
   {
     id: "gd-procedural-gen",
@@ -36,6 +39,7 @@ export const gamedevModules: SpecModule[] = [
     difficulty: "HARD",
     description: "Generate infinite content algorithmically — dungeons, terrain, loot tables, and narrative structures.",
     concepts: ["noise functions (Perlin/Simplex)", "wave function collapse", "L-systems", "procedural dungeon generation", "seed-based randomization"],
+    subLessons: ["Learn: Noise functions (Perlin/Simplex)","Learn: Wave function collapse","Learn: L-systems","Learn: Procedural dungeon generation","Learn: Seed-based randomization"],
   },
 
   // PROGRAMMING
@@ -46,6 +50,7 @@ export const gamedevModules: SpecModule[] = [
     difficulty: "EASY",
     description: "Master the core heartbeat of every game — update cycles, fixed timesteps, and game state management.",
     concepts: ["fixed vs variable timestep", "game state machines", "entity-component systems", "update and render separation", "delta time"],
+    subLessons: ["Learn: Fixed vs variable timestep","Learn: Game state machines","Learn: Entity-component systems","Learn: Update and render separation","Learn: Delta time"],
   },
   {
     id: "gd-input-systems",
@@ -54,6 +59,7 @@ export const gamedevModules: SpecModule[] = [
     difficulty: "EASY",
     description: "Handle player input across devices — keyboard, gamepad, touch, and gesture recognition systems.",
     concepts: ["input mapping and rebinding", "controller abstraction layers", "dead zones and sensitivity", "input buffering", "multiplatform input handling"],
+    subLessons: ["Learn: Input mapping and rebinding","Learn: Controller abstraction layers","Learn: Dead zones and sensitivity","Learn: Input buffering","Learn: Multiplatform input handling"],
   },
   {
     id: "gd-physics-engines",
@@ -62,6 +68,7 @@ export const gamedevModules: SpecModule[] = [
     difficulty: "MEDIUM",
     description: "Build and understand physics simulations — collision detection, rigid bodies, and force-based movement.",
     concepts: ["collision detection (AABB, SAT)", "rigid body dynamics", "raycasting", "physics materials and friction", "spatial partitioning"],
+    subLessons: ["Learn: Collision detection (AABB, SAT)","Learn: Rigid body dynamics","Learn: Raycasting","Learn: Physics materials and friction","Learn: Spatial partitioning"],
   },
   {
     id: "gd-game-math",
@@ -70,6 +77,7 @@ export const gamedevModules: SpecModule[] = [
     difficulty: "MEDIUM",
     description: "Master the math behind games — vectors, matrices, quaternions, and transformations in 2D/3D space.",
     concepts: ["vector operations (dot, cross)", "matrix transformations", "quaternion rotations", "linear interpolation (lerp)", "coordinate spaces"],
+    subLessons: ["Learn: Vector operations (dot, cross)","Learn: Matrix transformations","Learn: Quaternion rotations","Learn: Linear interpolation (lerp)","Learn: Coordinate spaces"],
   },
   {
     id: "gd-ai-pathfinding",
@@ -78,6 +86,7 @@ export const gamedevModules: SpecModule[] = [
     difficulty: "HARD",
     description: "Implement intelligent game agents — A* pathfinding, behavior trees, finite state machines, and steering behaviors.",
     concepts: ["A* pathfinding algorithm", "navigation meshes", "behavior trees", "finite state machines", "steering behaviors (seek, flee, wander)"],
+    subLessons: ["Learn: A* pathfinding algorithm","Learn: Navigation meshes","Learn: Behavior trees","Learn: Finite state machines","Learn: Steering behaviors (seek, flee, wander)"],
   },
   {
     id: "gd-multiplayer-networking",
@@ -86,6 +95,7 @@ export const gamedevModules: SpecModule[] = [
     difficulty: "EXPERT",
     description: "Build real-time multiplayer systems — client-server architecture, lag compensation, and state synchronization.",
     concepts: ["client-server architecture", "state synchronization", "lag compensation and prediction", "authoritative server model", "network interpolation"],
+    subLessons: ["Learn: Client-server architecture","Learn: State synchronization","Learn: Lag compensation and prediction","Learn: Authoritative server model","Learn: Network interpolation"],
   },
 
   // ART
@@ -96,6 +106,7 @@ export const gamedevModules: SpecModule[] = [
     difficulty: "HARD",
     description: "Write GPU shaders to create stunning visuals — lighting, post-processing, and real-time rendering techniques.",
     concepts: ["vertex and fragment shaders", "lighting models (Phong, PBR)", "post-processing effects", "shader math", "render pipeline stages"],
+    subLessons: ["Learn: Vertex and fragment shaders","Learn: Lighting models (Phong, PBR)","Learn: Post-processing effects","Learn: Shader math","Learn: Render pipeline stages"],
   },
   {
     id: "gd-animation-state",
@@ -104,6 +115,7 @@ export const gamedevModules: SpecModule[] = [
     difficulty: "MEDIUM",
     description: "Control character animations programmatically — blend trees, transitions, and animation controllers.",
     concepts: ["state machine design", "animation blending", "transition conditions", "inverse kinematics basics", "sprite animation systems"],
+    subLessons: ["Learn: State machine design","Learn: Animation blending","Learn: Transition conditions","Learn: Inverse kinematics basics","Learn: Sprite animation systems"],
   },
   {
     id: "gd-audio-systems",
@@ -112,6 +124,7 @@ export const gamedevModules: SpecModule[] = [
     difficulty: "MEDIUM",
     description: "Implement dynamic game audio — spatial sound, adaptive music, sound triggers, and audio mixing.",
     concepts: ["spatial/3D audio", "adaptive music systems", "sound event triggers", "audio mixing and buses", "audio pooling and optimization"],
+    subLessons: ["Learn: Spatial/3D audio","Learn: Adaptive music systems","Learn: Sound event triggers","Learn: Audio mixing and buses","Learn: Audio pooling and optimization"],
   },
 
   // PRODUCTION
@@ -122,6 +135,7 @@ export const gamedevModules: SpecModule[] = [
     difficulty: "MEDIUM",
     description: "Manage large game projects with Git and LFS — branching strategies, asset management, and team workflows.",
     concepts: ["Git LFS for large assets", "branching strategies for games", "merge conflict resolution", "asset pipeline versioning", "collaborative workflows"],
+    subLessons: ["Learn: Git LFS for large assets","Learn: Branching strategies for games","Learn: Merge conflict resolution","Learn: Asset pipeline versioning","Learn: Collaborative workflows"],
   },
   {
     id: "gd-optimization",
@@ -130,6 +144,7 @@ export const gamedevModules: SpecModule[] = [
     difficulty: "HARD",
     description: "Squeeze maximum performance from your game — profiling, memory management, and rendering optimization.",
     concepts: ["CPU/GPU profiling", "object pooling", "LOD systems", "draw call batching", "memory management and garbage collection"],
+    subLessons: ["Learn: CPU/GPU profiling","Learn: Object pooling","Learn: LOD systems","Learn: Draw call batching","Learn: Memory management and garbage collection"],
   },
   {
     id: "gd-publishing",
@@ -138,5 +153,6 @@ export const gamedevModules: SpecModule[] = [
     difficulty: "EXPERT",
     description: "Launch your game to the world — platform requirements, store listings, monetization models, and live ops.",
     concepts: ["platform certification requirements", "store optimization (ASO)", "monetization models (F2P, premium)", "live operations strategy", "analytics and KPIs"],
+    subLessons: ["Learn: Platform certification requirements","Learn: Store optimization (ASO)","Learn: Monetization models (F2P, premium)","Learn: Live operations strategy","Learn: Analytics and KPIs"],
   },
 ];

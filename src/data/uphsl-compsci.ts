@@ -12,6 +12,7 @@ export const compsciModules: SpecModule[] = [
     difficulty: "EASY",
     description: "Master fundamental data structures — arrays, linked lists, stacks, queues, trees, and hash maps.",
     concepts: ["arrays and linked lists", "stacks and queues", "binary trees and BSTs", "hash maps and sets", "heaps and priority queues"],
+    subLessons: ["Learn: Arrays and linked lists","Learn: Stacks and queues","Learn: Binary trees and BSTs","Learn: Hash maps and sets","Learn: Heaps and priority queues"],
   },
   {
     id: "ds-sorting-algorithms",
@@ -20,6 +21,7 @@ export const compsciModules: SpecModule[] = [
     difficulty: "EASY",
     description: "Implement and analyze classic sorting algorithms — understand time complexity and when to use each one.",
     concepts: ["bubble, selection, insertion sort", "merge sort", "quicksort", "time complexity analysis (Big-O)", "stability and in-place sorting"],
+    subLessons: ["Learn: Bubble, selection, insertion sort","Learn: Merge sort","Learn: Quicksort","Learn: Time complexity analysis (Big-O)","Learn: Stability and in-place sorting"],
   },
   {
     id: "ds-graph-algorithms",
@@ -28,6 +30,7 @@ export const compsciModules: SpecModule[] = [
     difficulty: "MEDIUM",
     description: "Traverse and analyze graphs — BFS, DFS, shortest paths, and minimum spanning trees.",
     concepts: ["BFS and DFS traversal", "Dijkstra's algorithm", "minimum spanning trees (Prim, Kruskal)", "topological sorting", "graph representations (adjacency list/matrix)"],
+    subLessons: ["Learn: BFS and DFS traversal","Learn: Dijkstra's algorithm","Learn: Minimum spanning trees (Prim, Kruskal)","Learn: Topological sorting","Learn: Graph representations (adjacency list/matrix)"],
   },
   {
     id: "ds-dynamic-programming",
@@ -36,6 +39,7 @@ export const compsciModules: SpecModule[] = [
     difficulty: "HARD",
     description: "Solve complex optimization problems by breaking them into overlapping subproblems with memoization and tabulation.",
     concepts: ["memoization vs tabulation", "optimal substructure", "overlapping subproblems", "knapsack and LCS problems", "state transition design"],
+    subLessons: ["Learn: Memoization vs tabulation","Learn: Optimal substructure","Learn: Overlapping subproblems","Learn: Knapsack and LCS problems","Learn: State transition design"],
   },
 
   // DATA
@@ -46,6 +50,7 @@ export const compsciModules: SpecModule[] = [
     difficulty: "EASY",
     description: "Transform raw messy data into analysis-ready datasets — handle missing values, outliers, and inconsistencies.",
     concepts: ["missing value imputation", "outlier detection", "data normalization/scaling", "encoding categorical variables", "data validation pipelines"],
+    subLessons: ["Learn: Missing value imputation","Learn: Outlier detection","Learn: Data normalization/scaling","Learn: Encoding categorical variables","Learn: Data validation pipelines"],
   },
   {
     id: "ds-statistical-analysis",
@@ -54,6 +59,7 @@ export const compsciModules: SpecModule[] = [
     difficulty: "MEDIUM",
     description: "Apply statistical methods to extract insights — hypothesis testing, distributions, and correlation analysis.",
     concepts: ["descriptive statistics", "probability distributions", "hypothesis testing (t-test, chi-square)", "correlation and regression", "confidence intervals"],
+    subLessons: ["Learn: Descriptive statistics","Learn: Probability distributions","Learn: Hypothesis testing (t-test, chi-square)","Learn: Correlation and regression","Learn: Confidence intervals"],
   },
   {
     id: "ds-database-design",
@@ -62,6 +68,7 @@ export const compsciModules: SpecModule[] = [
     difficulty: "MEDIUM",
     description: "Design efficient relational databases — normalization, indexing, query optimization, and schema design.",
     concepts: ["normalization (1NF-3NF)", "ER diagrams and schema design", "SQL joins and subqueries", "indexing strategies", "query optimization"],
+    subLessons: ["Learn: Normalization (1NF-3NF)","Learn: ER diagrams and schema design","Learn: SQL joins and subqueries","Learn: Indexing strategies","Learn: Query optimization"],
   },
   {
     id: "ds-data-visualization",
@@ -70,6 +77,7 @@ export const compsciModules: SpecModule[] = [
     difficulty: "EASY",
     description: "Communicate data insights effectively through charts, dashboards, and interactive visual storytelling.",
     concepts: ["chart type selection", "color theory for data", "dashboard design principles", "interactive visualizations", "storytelling with data"],
+    subLessons: ["Learn: Chart type selection","Learn: Color theory for data","Learn: Dashboard design principles","Learn: Interactive visualizations","Learn: Storytelling with data"],
   },
 
   // ML
@@ -80,6 +88,7 @@ export const compsciModules: SpecModule[] = [
     difficulty: "MEDIUM",
     description: "Understand core ML concepts — supervised vs unsupervised learning, model training, and evaluation metrics.",
     concepts: ["supervised vs unsupervised learning", "train/test splitting", "overfitting and regularization", "evaluation metrics (accuracy, F1, AUC)", "cross-validation"],
+    subLessons: ["Learn: Supervised vs unsupervised learning","Learn: Train/test splitting","Learn: Overfitting and regularization","Learn: Evaluation metrics (accuracy, F1, AUC)","Learn: Cross-validation"],
   },
   {
     id: "ds-neural-networks",
@@ -88,6 +97,7 @@ export const compsciModules: SpecModule[] = [
     difficulty: "HARD",
     description: "Build neural networks from scratch — perceptrons, backpropagation, activation functions, and architectures.",
     concepts: ["perceptrons and layers", "backpropagation algorithm", "activation functions (ReLU, sigmoid)", "CNNs and RNNs overview", "gradient descent optimization"],
+    subLessons: ["Learn: Perceptrons and layers","Learn: Backpropagation algorithm","Learn: Activation functions (ReLU, sigmoid)","Learn: CNNs and RNNs overview","Learn: Gradient descent optimization"],
   },
   {
     id: "ds-computer-vision",
@@ -96,6 +106,7 @@ export const compsciModules: SpecModule[] = [
     difficulty: "HARD",
     description: "Teach machines to see — image classification, object detection, and convolutional neural network architectures.",
     concepts: ["image preprocessing and augmentation", "convolutional neural networks", "object detection (YOLO, SSD)", "transfer learning", "image segmentation"],
+    subLessons: ["Learn: Image preprocessing and augmentation","Learn: Convolutional neural networks","Learn: Object detection (YOLO, SSD)","Learn: Transfer learning","Learn: Image segmentation"],
   },
   {
     id: "ds-nlp-basics",
@@ -104,6 +115,7 @@ export const compsciModules: SpecModule[] = [
     difficulty: "HARD",
     description: "Process and understand human language — tokenization, embeddings, sentiment analysis, and text classification.",
     concepts: ["tokenization and stemming", "word embeddings (Word2Vec, GloVe)", "sentiment analysis", "text classification", "sequence models (LSTM, Transformer basics)"],
+    subLessons: ["Learn: Tokenization and stemming","Learn: Word embeddings (Word2Vec, GloVe)","Learn: Sentiment analysis","Learn: Text classification","Learn: Sequence models (LSTM, Transformer basics)"],
   },
 
   // SYSTEMS
@@ -114,6 +126,7 @@ export const compsciModules: SpecModule[] = [
     difficulty: "MEDIUM",
     description: "Build robust APIs — RESTful design, authentication, rate limiting, and documentation best practices.",
     concepts: ["RESTful API principles", "authentication (JWT, OAuth)", "rate limiting and throttling", "API versioning", "OpenAPI/Swagger documentation"],
+    subLessons: ["Learn: RESTful API principles","Learn: Authentication (JWT, OAuth)","Learn: Rate limiting and throttling","Learn: API versioning","Learn: OpenAPI/Swagger documentation"],
   },
   {
     id: "ds-cloud-computing",
@@ -122,6 +135,7 @@ export const compsciModules: SpecModule[] = [
     difficulty: "MEDIUM",
     description: "Deploy and scale applications in the cloud — containers, serverless, and infrastructure as code.",
     concepts: ["containerization (Docker)", "cloud services (AWS/GCP/Azure)", "serverless functions", "infrastructure as code", "CI/CD pipelines"],
+    subLessons: ["Learn: Containerization (Docker)","Learn: Cloud services (AWS/GCP/Azure)","Learn: Serverless functions","Learn: Infrastructure as code","Learn: CI/CD pipelines"],
   },
   {
     id: "ds-big-data",
@@ -130,6 +144,7 @@ export const compsciModules: SpecModule[] = [
     difficulty: "EXPERT",
     description: "Process massive datasets — distributed computing, MapReduce, streaming pipelines, and data lakes.",
     concepts: ["MapReduce paradigm", "distributed file systems (HDFS)", "stream processing (Kafka, Spark)", "data lake architecture", "batch vs real-time processing"],
+    subLessons: ["Learn: MapReduce paradigm","Learn: Distributed file systems (HDFS)","Learn: Stream processing (Kafka, Spark)","Learn: Data lake architecture","Learn: Batch vs real-time processing"],
   },
   {
     id: "ds-ethics-ai",
@@ -138,5 +153,6 @@ export const compsciModules: SpecModule[] = [
     difficulty: "EXPERT",
     description: "Navigate the ethical landscape of AI — bias detection, fairness metrics, privacy, and responsible AI development.",
     concepts: ["algorithmic bias detection", "fairness metrics and mitigation", "data privacy (GDPR, differential privacy)", "explainable AI (XAI)", "responsible AI frameworks"],
+    subLessons: ["Learn: Algorithmic bias detection","Learn: Fairness metrics and mitigation","Learn: Data privacy (GDPR, differential privacy)","Learn: Explainable AI (XAI)","Learn: Responsible AI frameworks"],
   },
 ];

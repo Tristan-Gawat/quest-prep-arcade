@@ -12,6 +12,7 @@ export const multimediaModules: SpecModule[] = [
     difficulty: "EASY",
     description: "Create 3D assets from scratch — polygonal modeling, UV mapping, and basic sculpting techniques.",
     concepts: ["polygonal modeling techniques", "UV unwrapping and mapping", "mesh topology and edge flow", "modifiers and non-destructive workflows", "export formats and optimization"],
+    subLessons: ["Learn: Polygonal modeling techniques","Learn: UV unwrapping and mapping","Learn: Mesh topology and edge flow","Learn: Modifiers and non-destructive workflows","Learn: Export formats and optimization"],
   },
   {
     id: "mm-animation-principles",
@@ -20,6 +21,7 @@ export const multimediaModules: SpecModule[] = [
     difficulty: "EASY",
     description: "Master Disney's foundational animation principles — squash and stretch, timing, anticipation, and more.",
     concepts: ["squash and stretch", "timing and spacing", "anticipation and follow-through", "arcs and staging", "appeal and exaggeration"],
+    subLessons: ["Learn: Squash and stretch","Learn: Timing and spacing","Learn: Anticipation and follow-through","Learn: Arcs and staging","Learn: Appeal and exaggeration"],
   },
   {
     id: "mm-motion-graphics",
@@ -28,6 +30,7 @@ export const multimediaModules: SpecModule[] = [
     difficulty: "MEDIUM",
     description: "Create dynamic animated graphics — kinetic typography, logo reveals, infographics, and broadcast design.",
     concepts: ["keyframe animation principles", "easing curves and motion paths", "shape layer animation", "expression-based automation", "compositing for motion design"],
+    subLessons: ["Learn: Keyframe animation principles","Learn: Easing curves and motion paths","Learn: Shape layer animation","Learn: Expression-based automation","Learn: Compositing for motion design"],
   },
   {
     id: "mm-storyboarding",
@@ -36,6 +39,7 @@ export const multimediaModules: SpecModule[] = [
     difficulty: "EASY",
     description: "Plan visual narratives before production — shot composition, camera angles, and sequential storytelling.",
     concepts: ["shot composition rules", "camera angles and movement", "visual continuity", "animatic creation", "narrative pacing in frames"],
+    subLessons: ["Learn: Shot composition rules","Learn: Camera angles and movement","Learn: Visual continuity","Learn: Animatic creation","Learn: Narrative pacing in frames"],
   },
 
   // VIDEO
@@ -46,6 +50,7 @@ export const multimediaModules: SpecModule[] = [
     difficulty: "EASY",
     description: "Edit and composite video professionally — cutting, transitions, layering, and multi-track timelines.",
     concepts: ["non-linear editing workflow", "cut types and transitions", "multi-track compositing", "keyframe-based effects", "render settings and codecs"],
+    subLessons: ["Learn: Non-linear editing workflow","Learn: Cut types and transitions","Learn: Multi-track compositing","Learn: Keyframe-based effects","Learn: Render settings and codecs"],
   },
   {
     id: "mm-color-grading",
@@ -54,6 +59,7 @@ export const multimediaModules: SpecModule[] = [
     difficulty: "MEDIUM",
     description: "Shape the mood of your footage through color — primary correction, secondary grading, and LUT workflows.",
     concepts: ["color theory for film", "primary color correction", "secondary/selective grading", "LUT creation and application", "scopes (waveform, vectorscope, histogram)"],
+    subLessons: ["Learn: Color theory for film","Learn: Primary color correction","Learn: Secondary/selective grading","Learn: LUT creation and application","Learn: Scopes (waveform, vectorscope, histogram)"],
   },
   {
     id: "mm-vfx",
@@ -62,6 +68,7 @@ export const multimediaModules: SpecModule[] = [
     difficulty: "HARD",
     description: "Create photorealistic visual effects — green screen compositing, motion tracking, and particle systems.",
     concepts: ["chroma keying and rotoscoping", "3D motion tracking", "particle systems and simulations", "digital matte painting", "match moving and camera solve"],
+    subLessons: ["Learn: Chroma keying and rotoscoping","Learn: 3D motion tracking","Learn: Particle systems and simulations","Learn: Digital matte painting","Learn: Match moving and camera solve"],
   },
   {
     id: "mm-cinematography",
@@ -70,6 +77,7 @@ export const multimediaModules: SpecModule[] = [
     difficulty: "MEDIUM",
     description: "Master the art of digital filmmaking — camera systems, lighting setups, and cinematic composition.",
     concepts: ["camera sensor and lens selection", "three-point lighting", "frame composition and rule of thirds", "depth of field control", "white balance and exposure"],
+    subLessons: ["Learn: Camera sensor and lens selection","Learn: Three-point lighting","Learn: Frame composition and rule of thirds","Learn: Depth of field control","Learn: White balance and exposure"],
   },
 
   // AUDIO
@@ -80,6 +88,7 @@ export const multimediaModules: SpecModule[] = [
     difficulty: "MEDIUM",
     description: "Record, mix, and master professional audio — signal flow, EQ, compression, and spatial effects.",
     concepts: ["signal flow and gain staging", "EQ and frequency management", "compression and dynamics", "reverb and spatial effects", "mixing workflow and bus routing"],
+    subLessons: ["Learn: Signal flow and gain staging","Learn: EQ and frequency management","Learn: Compression and dynamics","Learn: Reverb and spatial effects","Learn: Mixing workflow and bus routing"],
   },
   {
     id: "mm-sound-design",
@@ -88,6 +97,7 @@ export const multimediaModules: SpecModule[] = [
     difficulty: "HARD",
     description: "Create original sounds from scratch — synthesis techniques, Foley recording, and layered sound design.",
     concepts: ["subtractive and FM synthesis", "Foley recording techniques", "sound layering and texturing", "envelope design (ADSR)", "field recording and processing"],
+    subLessons: ["Learn: Subtractive and FM synthesis","Learn: Foley recording techniques","Learn: Sound layering and texturing","Learn: Envelope design (ADSR)","Learn: Field recording and processing"],
   },
   {
     id: "mm-streaming-tech",
@@ -96,6 +106,7 @@ export const multimediaModules: SpecModule[] = [
     difficulty: "MEDIUM",
     description: "Build live streaming pipelines — encoding, protocols, CDN delivery, and adaptive bitrate streaming.",
     concepts: ["video encoding (H.264, H.265)", "streaming protocols (HLS, DASH, RTMP)", "CDN architecture", "adaptive bitrate streaming", "live production switching"],
+    subLessons: ["Learn: Video encoding (H.264, H.265)","Learn: Streaming protocols (HLS, DASH, RTMP)","Learn: CDN architecture","Learn: Adaptive bitrate streaming","Learn: Live production switching"],
   },
 
   // INTERACTIVE
@@ -106,6 +117,7 @@ export const multimediaModules: SpecModule[] = [
     difficulty: "HARD",
     description: "Build immersive augmented and virtual reality experiences — spatial UI, 3D interaction, and XR frameworks.",
     concepts: ["XR frameworks (WebXR, ARKit, ARCore)", "spatial UI/UX design", "3D interaction patterns", "head and hand tracking", "performance optimization for XR"],
+    subLessons: ["Learn: XR frameworks (WebXR, ARKit, ARCore)","Learn: Spatial UI/UX design","Learn: 3D interaction patterns","Learn: Head and hand tracking","Learn: Performance optimization for XR"],
   },
   {
     id: "mm-interactive-media",
@@ -114,6 +126,7 @@ export const multimediaModules: SpecModule[] = [
     difficulty: "MEDIUM",
     description: "Create engaging interactive experiences — installations, kiosks, touchscreen apps, and sensor-driven media.",
     concepts: ["interaction design principles", "sensor input (touch, motion, proximity)", "real-time generative visuals", "physical computing basics", "user engagement metrics"],
+    subLessons: ["Learn: Interaction design principles","Learn: Sensor input (touch, motion, proximity)","Learn: Real-time generative visuals","Learn: Physical computing basics","Learn: User engagement metrics"],
   },
   {
     id: "mm-typography-motion",
@@ -122,6 +135,7 @@ export const multimediaModules: SpecModule[] = [
     difficulty: "HARD",
     description: "Animate text as a storytelling medium — kinetic typography, expressive lettering, and typographic hierarchy in motion.",
     concepts: ["kinetic typography techniques", "typographic hierarchy in motion", "text animation timing", "font pairing for video", "expressive lettering animation"],
+    subLessons: ["Learn: Kinetic typography techniques","Learn: Typographic hierarchy in motion","Learn: Text animation timing","Learn: Font pairing for video","Learn: Expressive lettering animation"],
   },
   {
     id: "mm-digital-illustration",
@@ -130,6 +144,7 @@ export const multimediaModules: SpecModule[] = [
     difficulty: "EXPERT",
     description: "Create professional digital artwork — illustration techniques, concept art pipelines, and digital painting fundamentals.",
     concepts: ["digital painting techniques", "concept art workflows", "color theory and palette design", "perspective and composition", "brush customization and texturing"],
+    subLessons: ["Learn: Digital painting techniques","Learn: Concept art workflows","Learn: Color theory and palette design","Learn: Perspective and composition","Learn: Brush customization and texturing"],
   },
   {
     id: "mm-web-animation",
@@ -138,5 +153,6 @@ export const multimediaModules: SpecModule[] = [
     difficulty: "EXPERT",
     description: "Build performant web animations — CSS transitions, JavaScript animation libraries, scroll-driven effects, and SVG animation.",
     concepts: ["CSS transitions and keyframes", "JavaScript animation (GSAP, Framer Motion)", "scroll-driven animations", "SVG path animation", "performance optimization (GPU layers, requestAnimationFrame)"],
+    subLessons: ["Learn: CSS transitions and keyframes","Learn: JavaScript animation (GSAP, Framer Motion)","Learn: Scroll-driven animations","Learn: SVG path animation","Learn: Performance optimization (GPU layers, requestAnimationFrame)"],
   },
 ];
