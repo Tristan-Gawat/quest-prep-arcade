@@ -141,30 +141,10 @@ export default function ProfileScreen({ state, navigate, userId, userEmail, onSi
             <div className="w-full h-24 md:h-32 bg-gradient-to-r from-accent-blue/20 via-accent-purple/20 to-accent-cyan/20" />
           )}
 
-          {/* Profile info row: name/tag on left, avatar on right */}
+          {/* Profile info row: avatar on left, name/tag on right */}
           <div className="px-6 pb-6 md:pb-8 -mt-6">
-            <div className="flex items-end justify-between gap-4">
-              {/* Left side: Name + rank tag */}
-              <div className="flex-1 min-w-0 pt-8">
-                <h2 className="text-xl md:text-2xl font-semibold text-text-primary truncate">{profile.username}</h2>
-                {/* Rank tag below name */}
-                <div className="flex items-center gap-2 mt-1.5">
-                  <span
-                    className="inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-full"
-                    style={{ color: getRankColor(rank.tier), backgroundColor: getRankColor(rank.tier) + "18", border: `1px solid ${getRankColor(rank.tier)}40` }}
-                  >
-                    {getRankBadgeEmoji(rank.tier)} {getRankDisplay(rank)}
-                  </span>
-                </div>
-                <button
-                  onClick={() => setShowEditModal(true)}
-                  className="text-xs text-accent-blue hover:text-accent-blue/80 mt-2 cursor-pointer"
-                >
-                  Edit Profile
-                </button>
-              </div>
-
-              {/* Right side: Avatar */}
+            <div className="flex items-end gap-4">
+              {/* Left side: Avatar */}
               <div className="relative w-20 h-20 shrink-0 group">
                 {profile.avatar_url ? (
                   <img
@@ -188,6 +168,26 @@ export default function ProfileScreen({ state, navigate, userId, userEmail, onSi
                   title="Change profile picture"
                 >
                   +
+                </button>
+              </div>
+
+              {/* Right side: Name + rank tag */}
+              <div className="flex-1 min-w-0 pt-8">
+                <h2 className="text-xl md:text-2xl font-semibold text-text-primary truncate">{profile.username}</h2>
+                {/* Rank tag below name */}
+                <div className="flex items-center gap-2 mt-1.5">
+                  <span
+                    className="inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-full"
+                    style={{ color: getRankColor(rank.tier), backgroundColor: getRankColor(rank.tier) + "18", border: `1px solid ${getRankColor(rank.tier)}40` }}
+                  >
+                    {getRankBadgeEmoji(rank.tier)} {getRankDisplay(rank)}
+                  </span>
+                </div>
+                <button
+                  onClick={() => setShowEditModal(true)}
+                  className="text-xs text-accent-blue hover:text-accent-blue/80 mt-2 cursor-pointer"
+                >
+                  Edit Profile
                 </button>
               </div>
             </div>
