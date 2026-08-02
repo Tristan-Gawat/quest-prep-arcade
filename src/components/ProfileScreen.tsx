@@ -231,13 +231,18 @@ export default function ProfileScreen({ state, navigate, userId, userEmail, onSi
         </div>
 
         {/* Bio */}
-        {(profile as unknown as Record<string, unknown>).bio && (
-          <div className="card p-4 mb-6 text-center">
-            <p className="text-sm text-text-secondary italic">
-              "{(profile as unknown as Record<string, string>).bio}"
-            </p>
-          </div>
-        )}
+        {/* Bio */}
+        {(() => {
+          const bio = (profile as unknown as Record<string, unknown>)["bio"] as string | undefined;
+          if (!bio) return null;
+          return (
+            <div className="card p-4 mb-6 text-center">
+              <p className="text-sm text-text-secondary italic">
+                &ldquo;{bio}&rdquo;
+              </p>
+            </div>
+          );
+        })()}
 
         {/* Member since */}
         <div className="card p-4 mb-6 text-center">
