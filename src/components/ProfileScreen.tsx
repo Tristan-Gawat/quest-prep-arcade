@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { GameState, Screen } from "@/lib/state";
 import { getProfile, getUserLanguageProgress, signOut, signInWithGoogle, ensureProfile, getCurrentUser } from "@/lib/auth";
 import { DBProfile, DBLanguageProgress } from "@/lib/supabase";
-import { getRankDisplay, getRankColor, getRankBadgeEmoji, getXPForNextRank, RankTier } from "@/lib/ranking";
+import { getRankDisplay, getRankColor, getRankBadgeEmoji, getXPForNextRank, getRankFromXP, RankTier } from "@/lib/ranking";
 import { courses } from "@/data/courses";
 import ProfileEditModal from "@/components/ProfileEditModal";
 
@@ -12,10 +12,11 @@ interface ProfileScreenProps {
   state: GameState;
   navigate: (screen: Screen) => void;
   userId: string | null;
+  userEmail?: string | null;
   onSignOut: () => void;
 }
 
-export default function ProfileScreen({ state, navigate, userId, onSignOut }: ProfileScreenProps) {
+export default function ProfileScreen({ state, navigate, userId, userEmail, onSignOut }: ProfileScreenProps) {
   const [profile, setProfile] = useState<DBProfile | null>(null);
   const [langProgress, setLangProgress] = useState<DBLanguageProgress[]>([]);
   const [loading, setLoading] = useState(true);
@@ -110,7 +111,7 @@ export default function ProfileScreen({ state, navigate, userId, onSignOut }: Pr
     );
   }
 
-  const rank = { tier: profile.rank_tier as RankTier, division: profile.rank_division };
+  const rank = getRankFromXP(profile.total_xp, userEmail);
   const rankProgress = getXPForNextRank(profile.total_xp);
   const accuracy = profile.questions_answered > 0
     ? Math.round((profile.questions_correct / profile.questions_answered) * 100)
@@ -126,21 +127,32 @@ export default function ProfileScreen({ state, navigate, userId, onSignOut }: Pr
       <div className="max-w-2xl mx-auto fade-in">
         {/* Profile Header */}
         <div className="card p-6 md:p-8 mb-6 text-center">
-          {profile.avatar_url ? (
-            <img
-              src={profile.avatar_url}
-              alt={profile.username}
-              className="w-20 h-20 rounded-full mx-auto mb-4 border-2"
-              style={{ borderColor: getRankColor(rank.tier) }}
-            />
-          ) : (
-            <div
-              className="w-20 h-20 rounded-full mx-auto mb-4 flex items-center justify-center text-2xl border-2"
-              style={{ borderColor: getRankColor(rank.tier), backgroundColor: getRankColor(rank.tier) + "20" }}
+          {/* Avatar with + button */}
+          <div className="relative w-20 h-20 mx-auto mb-4 group">
+            {profile.avatar_url ? (
+              <img
+                src={profile.avatar_url}
+                alt={profile.username}
+                className="w-20 h-20 rounded-full border-2 object-cover"
+                style={{ borderColor: getRankColor(rank.tier) }}
+              />
+            ) : (
+              <div
+                className="w-20 h-20 rounded-full flex items-center justify-center text-2xl border-2"
+                style={{ borderColor: getRankColor(rank.tier), backgroundColor: getRankColor(rank.tier) + "20" }}
+              >
+                {profile.username.charAt(0).toUpperCase()}
+              </div>
+            )}
+            {/* Plus button overlay */}
+            <button
+              onClick={() => setShowEditModal(true)}
+              className="absolute bottom-0 right-0 w-7 h-7 rounded-full bg-accent-blue flex items-center justify-center text-white text-sm font-bold border-2 border-bg-card cursor-pointer hover:bg-accent-blue/80 transition-colors shadow-lg"
+              title="Change profile picture"
             >
-              {profile.username.charAt(0).toUpperCase()}
-            </div>
-          )}
+              +
+            </button>
+          </div>
           <h2 className="text-xl font-semibold text-text-primary mb-1">{profile.username}</h2>
           <button
             onClick={() => setShowEditModal(true)}
