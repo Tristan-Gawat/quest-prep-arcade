@@ -120,3 +120,7 @@ DROP POLICY IF EXISTS "Users can delete their own avatar" ON storage.objects;
 CREATE POLICY "Users can delete their own avatar"
   ON storage.objects FOR DELETE
   USING (bucket_id = 'avatars' AND auth.uid()::text = (storage.foldername(name))[1]);
+
+
+-- 9. Add role column to profiles
+ALTER TABLE profiles ADD COLUMN IF NOT EXISTS role TEXT DEFAULT 'player';

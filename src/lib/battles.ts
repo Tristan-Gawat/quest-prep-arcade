@@ -195,6 +195,7 @@ export async function createBattle(
       expected_output: problem.expectedOutput,
       starter_code: starterCode,
       time_limit_seconds: 300,
+      difficulty: problem.difficulty,
     })
     .select()
     .single();
@@ -444,4 +445,21 @@ export async function getBattleHistory(
   }
 
   return (data as DBCodeBattle[]) || [];
+}
+
+
+// XP rewards based on difficulty and battle outcome
+const BATTLE_XP_REWARDS = {
+  easy: { win: 50, draw: 15, loss: 5 },
+  medium: { win: 100, draw: 30, loss: 10 },
+  hard: { win: 200, draw: 60, loss: 20 },
+};
+
+/**
+ * Calculate XP reward for a battle based on difficulty and outcome.
+ */
+export function getBattleXPReward(difficulty: string | undefined, outcome: "win" | "draw" | "loss"): number {
+  const diff = (difficulty || "easy") as "easy" | "medium" | "hard";
+  const rewards = BATTLE_XP_REWARDS[diff] || BATTLE_XP_REWARDS.easy;
+  return rewards[outcome];
 }

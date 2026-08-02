@@ -21,6 +21,7 @@ export default function AdminUsers({ callerRole }: { callerRole?: string }) {
   const [loading, setLoading] = useState(true);
   const [actionLoading, setActionLoading] = useState<string | null>(null);
   const [confirmDelete, setConfirmDelete] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     loadUsers();
@@ -100,9 +101,26 @@ export default function AdminUsers({ callerRole }: { callerRole?: string }) {
           <button onClick={loadUsers} className="btn-secondary text-xs">🔄 Refresh</button>
         </div>
 
+        {/* Search */}
+        <div className="mb-4">
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search users by name or email..."
+            className="w-full bg-bg-input border border-border rounded-lg px-4 py-2.5 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent-blue transition-colors"
+          />
+        </div>
+
         {/* User table */}
         <div className="space-y-2">
-          {users.map((user) => (
+          {users
+            .filter(u => 
+              !searchQuery.trim() || 
+              u.username.toLowerCase().includes(searchQuery.toLowerCase()) ||
+              u.email.toLowerCase().includes(searchQuery.toLowerCase())
+            )
+            .map((user) => (
             <div key={user.id} className="card p-4 flex items-center gap-4 flex-wrap">
               {/* Avatar + info */}
               <div className="flex items-center gap-3 min-w-0 flex-1">

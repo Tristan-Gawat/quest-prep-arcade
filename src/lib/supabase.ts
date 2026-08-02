@@ -78,6 +78,7 @@ export interface DBCodeBattle {
   expected_output: string;
   starter_code: string;
   time_limit_seconds: number;
+  difficulty?: string;
   winner_id: string | null;
   challenger_code: string | null;
   opponent_code: string | null;

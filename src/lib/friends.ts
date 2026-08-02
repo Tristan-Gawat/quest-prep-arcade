@@ -301,7 +301,15 @@ export async function searchUsers(
   }
 
   if (!query || query.trim().length === 0) {
-    return [];
+    // Return random suggested users when no query
+    const { data, error } = await supabase
+      .from("profiles")
+      .select("*")
+      .neq("id", currentUserId)
+      .order("total_xp", { ascending: false })
+      .limit(10);
+    if (error || !data) return [];
+    return data as DBProfile[];
   }
 
   const { data, error } = await supabase

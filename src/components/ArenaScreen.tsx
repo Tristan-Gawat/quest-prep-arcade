@@ -87,8 +87,8 @@ export default function ArenaScreen({ state, updateState, navigate }: ArenaScree
   // Step 1: No challenge yet — show generate button
   if (!challenge) {
     return (
-      <div className="flex-1 flex items-center justify-center p-4">
-        <div className="max-w-lg w-full text-center fade-in">
+      <div className="flex-1 p-4 md:p-8 overflow-y-auto">
+        <div className="max-w-lg w-full mx-auto text-center fade-in pt-8">
           <div className="text-5xl mb-6">⚔️</div>
           <h2 className="text-xl md:text-2xl font-semibold text-text-primary mb-3">
             Code Arena
