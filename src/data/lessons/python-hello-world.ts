@@ -258,7 +258,7 @@ print(f"Player {name} scored {score} points")
 # GOOD: format numbers properly
 price = 29.99
 total = 1234567
-print(f"Price: ${price:.2f}")       # Price: $29.99
+print(f"Price: \${price:.2f}")       # Price: $29.99
 print(f"Users: {total:,}")          # Users: 1,234,567
 print(f"Percent: {0.856:.1%}")      # Percent: 85.6%
 

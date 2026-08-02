@@ -6,6 +6,7 @@ import { courses } from "@/data/courses";
 import { Module } from "@/data/curriculum";
 import { askBuiltinAI } from "@/lib/ai-builtin";
 import CodeBlock from "@/components/CodeBlock";
+import { getSubLessonContent } from "@/data/lessons";
 
 interface CourseModulesScreenProps {
   state: GameState;
@@ -62,14 +63,24 @@ export default function CourseModulesScreen({ state, updateState, navigate }: Co
     setAiAnswer("");
     setAiQuestion("");
     
-    // Use the pre-built static lesson content from the data file
-    const codeLang = course.id === "htmlcss" ? "html" : course.id === "csharp" ? "csharp" : course.id;
-    setLesson({
-      explanation: selectedModule.lesson.explanation,
-      code: selectedModule.lesson.codeExample,
-      breakdown: "",
-      together: "",
-    });
+    // Try to load pre-written lesson content first
+    const prewritten = getSubLessonContent(selectedModule.id, index);
+    if (prewritten) {
+      setLesson({
+        explanation: prewritten.definition + "\n\n" + prewritten.explanation,
+        code: prewritten.code,
+        breakdown: prewritten.breakdown,
+        together: prewritten.summary,
+      });
+    } else {
+      // Fallback to the module's basic lesson data
+      setLesson({
+        explanation: selectedModule.lesson.explanation,
+        code: selectedModule.lesson.codeExample,
+        breakdown: "",
+        together: "",
+      });
+    }
   };
 
   const askAboutLesson = async () => {
