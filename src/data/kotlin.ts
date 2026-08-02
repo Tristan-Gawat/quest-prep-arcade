@@ -50,7 +50,8 @@ val forced: String = weapon!! // KotlinNullPointerException if null`,
       { question: "What does the Elvis operator (?:) do?", choices: ["Checks equality", "Returns the left value if non-null, otherwise the right value", "Throws an exception", "Converts to non-null"], correct: 1, explanation: "The Elvis operator provides a fallback value when the left side is null: value ?: default." },
       { question: "What is a smart cast?", choices: ["Explicit type conversion", "The compiler automatically casts after a type/null check", "Casting with as keyword", "Runtime type checking"], correct: 1, explanation: "After a null check or type check, Kotlin automatically casts the variable to the non-null/specific type." },
     ],
-    challenge: {
+        subLessons: ["What is Null Safety?","How Null Safety works","Null Safety syntax & usage","Practical examples of Null Safety","Null Safety best practices"],
+challenge: {
       title: "Null-Safe Inventory",
       description: "Create a nullable String variable 'loot' set to \"Diamond Armor\". Use the safe call with let to print \"Found: Diamond Armor\". Create another nullable variable 'potion' set to null and use the Elvis operator to print \"Item: Empty Slot\".",
       starterCode: "// Create nullable loot\n\n// Safe call with let\n\n// Nullable potion with Elvis operator\n",
@@ -108,7 +109,8 @@ val highLevel = roster.filter { it.level >= 30 }`,
       { question: "What does copy() do on a data class?", choices: ["Deep clones all references", "Creates a new instance with optionally modified properties", "Copies to clipboard", "Duplicates in memory"], correct: 1, explanation: "copy() creates a new instance where you can override specific properties while keeping the rest." },
       { question: "How does == work on data classes?", choices: ["Reference equality", "Structural equality (compares all properties)", "Always false", "Only compares first property"], correct: 1, explanation: "Data classes override equals() to compare all constructor properties — two objects with the same data are equal." },
     ],
-    challenge: {
+        subLessons: ["What is Data Classes?","How Data Classes works","Data Classes syntax & usage","Practical examples of Data Classes","Data Classes best practices"],
+challenge: {
       title: "Item Data Class",
       description: "Create a data class `Item` with val name: String, val damage: Int, and val rarity: String. Create an item \"Storm Blade\" with damage 75 and rarity \"Epic\". Use copy() to create \"Storm Blade+\" with damage 100. Print the upgraded item's toString().",
       starterCode: "// Define Item data class\n\n// Create original and upgraded copy\n\n// Print upgraded item\n",
@@ -174,7 +176,8 @@ launch(Dispatchers.Main) { /* UI updates (Android) */ }`,
       { question: "What is the difference between launch and async?", choices: ["launch is faster", "launch returns Job (no result), async returns Deferred<T> (with result)", "async blocks the thread", "No difference"], correct: 1, explanation: "launch is fire-and-forget (returns Job), while async produces a result you can await." },
       { question: "What does structured concurrency guarantee?", choices: ["Faster execution", "All child coroutines complete or cancel when the parent scope ends", "Single-threaded execution", "No exceptions"], correct: 1, explanation: "Structured concurrency ensures no coroutine leaks — if a scope is cancelled, all children are cancelled too." },
     ],
-    challenge: {
+        subLessons: ["What is Coroutines?","How Coroutines works","Coroutines syntax & usage","Practical examples of Coroutines","Coroutines best practices"],
+challenge: {
       title: "Async Loot Fetch",
       description: "Write a runBlocking block that launches two async operations: one returns \"Gold\" after a delay, another returns \"Gems\" after a delay. Await both results and print \"Loot: Gold, Gems\".",
       starterCode: "import kotlinx.coroutines.*\n\n// Use runBlocking with async\n",
@@ -241,7 +244,8 @@ println(player) // Player(name=Hero the Brave, level=5, hp=200)`,
       { question: "Can extensions access private members of the class?", choices: ["Yes, always", "No, they can only access public/protected members", "Only if in the same file", "Only extension properties can"], correct: 1, explanation: "Extensions don't actually modify the class, so they cannot access private or protected members." },
       { question: "What does the 'apply' scope function do?", choices: ["Applies a transformation and returns result", "Configures an object and returns it (this as context)", "Maps values", "Creates a copy"], correct: 1, explanation: "apply uses 'this' as context, lets you configure the object, and returns the object itself — great for initialization!" },
     ],
-    challenge: {
+        subLessons: ["What is Extension Functions?","How Extension Functions works","Extension Functions syntax & usage","Practical examples of Extension Functions","Extension Functions best practices"],
+challenge: {
       title: "Custom String Extensions",
       description: "Create an extension function on Int called `toRank()` that returns \"Rookie\" for 1-10, \"Veteran\" for 11-30, and \"Elite\" for 31+. Call 25.toRank() and print \"Rank: Veteran\".",
       starterCode: "// Define extension function on Int\n\n// Call and print\n",
@@ -305,7 +309,8 @@ println(handleState(state))`,
       { question: "What does the compiler guarantee with sealed when expressions?", choices: ["No runtime errors", "All possible subtypes are handled (exhaustive check)", "Null safety", "Thread safety"], correct: 1, explanation: "The compiler warns/errors if you miss a sealed subclass in when — no 'else' branch needed when exhaustive." },
       { question: "Where must sealed class subclasses be defined?", choices: ["In any file", "In the same package (module for sealed interfaces)", "In the same function", "In a companion object"], correct: 1, explanation: "Sealed class subtypes must be in the same package, allowing the compiler to know all possible types at compile time." },
     ],
-    challenge: {
+        subLessons: ["What is Sealed Classes?","How Sealed Classes works","Sealed Classes syntax & usage","Practical examples of Sealed Classes","Sealed Classes best practices"],
+challenge: {
       title: "Quest Event System",
       description: "Create a sealed class `QuestEvent` with subclasses: Started(questName: String), ItemFound(itemName: String, value: Int), and Completed(reward: String). Write a when expression that handles all cases. Call it with Completed(\"Golden Trophy\") and print \"Quest Complete! Reward: Golden Trophy\".",
       starterCode: "// Define sealed class QuestEvent\n\n// Function to handle events\n\n// Call with Completed\n",
@@ -387,7 +392,8 @@ println(topScores) // [#1: 98, #2: 91, #3: 82]`,
       { question: "What does 'inline' do for higher-order functions?", choices: ["Makes them faster by caching", "Copies the function body and lambda at the call site, avoiding object allocation", "Makes them recursive", "Runs them at compile time"], correct: 1, explanation: "Inline replaces the function call with its body and inlines the lambda, eliminating the overhead of creating a function object." },
       { question: "What is a lambda with receiver (T.() -> Unit)?", choices: ["A lambda that receives T as parameter", "A lambda where 'this' refers to T, enabling DSL-style syntax", "A lambda that returns T", "A generic lambda"], correct: 1, explanation: "Receiver lambdas let you call methods on 'this' (the receiver) inside the lambda body — the foundation of Kotlin DSLs." },
     ],
-    challenge: {
+        subLessons: ["What is Higher-Order Functions?","How Higher-Order Functions works","Higher-Order Functions syntax & usage","Practical examples of Higher-Order Functions","Higher-Order Functions best practices"],
+challenge: {
       title: "Custom Transform Pipeline",
       description: "Create a higher-order function `transform(value: Int, vararg operations: (Int) -> Int): Int` that applies each operation sequentially. Call it with value 5 and operations that double, then add 10. Print the result: 20.",
       starterCode: "// Define transform function\n\n// Call with operations\n",

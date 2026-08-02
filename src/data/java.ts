@@ -38,7 +38,8 @@ hero.takeDamage(25);`,
       { question: "What is a constructor?", choices: ["A method that destroys objects", "A special method that initializes objects", "A static utility", "A type of variable"], correct: 1, explanation: "Constructors have the same name as the class and run when an object is created." },
       { question: "What does 'private' mean for a field?", choices: ["Accessible everywhere", "Only accessible within the same class", "Accessible in subclasses", "Accessible in the package"], correct: 1, explanation: "'private' restricts access to the declaring class only — encapsulation!" },
     ],
-    challenge: {
+        subLessons: ["What is Classes & Objects?","How Classes & Objects works","Classes & Objects syntax & usage","Practical examples of Classes & Objects","Classes & Objects best practices"],
+challenge: {
       title: "Spawn a Hero",
       description: "Create a class `Hero` with private fields `name` (String) and `level` (int). Add a constructor and a method `introduce()` that prints \"I am [name], level [level]\". Create an instance and call introduce().",
       starterCode: "// Define the Hero class\n\n\n// Create an instance and call introduce()\n",
@@ -91,7 +92,8 @@ System.out.println(e.attack());`,
       { question: "What does @Override do?", choices: ["Creates a new method", "Indicates a method replaces a parent method", "Makes a method static", "Hides the parent method"], correct: 1, explanation: "@Override tells the compiler you intend to replace a parent method — it catches typos!" },
       { question: "What is polymorphism?", choices: ["Having multiple constructors", "A parent reference calling child methods", "Multiple inheritance", "Method overloading only"], correct: 1, explanation: "Polymorphism lets a parent-type variable invoke the overridden method of the actual child object." },
     ],
-    challenge: {
+        subLessons: ["What is Inheritance & Polymorphism?","How Inheritance & Polymorphism works","Inheritance & Polymorphism syntax & usage","Practical examples of Inheritance & Polymorphism","Inheritance & Polymorphism best practices"],
+challenge: {
       title: "Enemy Evolution",
       description: "Create a base class `GameEntity` with a method `describe()` that returns \"Entity\". Create a subclass `Dragon` that overrides describe() to return \"Fire Dragon\". Use polymorphism to call describe().",
       starterCode: "// Define GameEntity base class\n\n\n// Define Dragon subclass\n\n\n// Use polymorphism and print\n",
@@ -137,7 +139,8 @@ System.out.println(visited.size()); // 1`,
       { question: "What does HashMap store?", choices: ["Ordered elements", "Key-value pairs", "Unique numbers", "Sorted strings"], correct: 1, explanation: "HashMap maps keys to values — each key is unique, values can repeat." },
       { question: "What happens when you add a duplicate to a HashSet?", choices: ["Exception thrown", "It's silently ignored", "It replaces the old one", "It adds at the end"], correct: 1, explanation: "HashSet ignores duplicates — add() returns false if the element already exists." },
     ],
-    challenge: {
+        subLessons: ["What is Collections Framework?","How Collections Framework works","Collections Framework syntax & usage","Practical examples of Collections Framework","Collections Framework best practices"],
+challenge: {
       title: "Loot Tracker",
       description: "Create a HashMap<String, Integer> called 'loot' that maps item names to quantities. Add \"Gold\" -> 100, \"Gems\" -> 5, \"Keys\" -> 3. Print the total number of items (sum of all values).",
       starterCode: "import java.util.*;\n\n// Create the loot map\n\n// Add items\n\n// Calculate and print total\n",
@@ -183,7 +186,8 @@ int total = scores.stream()
       { question: "What does filter() do in a stream?", choices: ["Transforms elements", "Keeps elements matching a condition", "Sorts elements", "Counts elements"], correct: 1, explanation: "filter() takes a predicate and keeps only elements where it returns true." },
       { question: "Are streams eager or lazy?", choices: ["Eager - process immediately", "Lazy - process only when terminal op is called", "Depends on the operation", "Always parallel"], correct: 1, explanation: "Streams are lazy — intermediate operations only execute when a terminal operation is invoked." },
     ],
-    challenge: {
+        subLessons: ["What is Streams & Lambdas?","How Streams & Lambdas works","Streams & Lambdas syntax & usage","Practical examples of Streams & Lambdas","Streams & Lambdas best practices"],
+challenge: {
       title: "Score Filter",
       description: "Given a list of player scores [120, 45, 89, 200, 67, 150], use streams to filter scores above 100, sort them, and collect to a list. Print the result.",
       starterCode: "import java.util.*;\nimport java.util.stream.*;\n\n// Create scores list\n\n// Use stream to filter, sort, collect\n\n// Print the result\n",
@@ -235,7 +239,8 @@ public static double sum(List<? extends Number> list) {
       { question: "What is the purpose of wildcards (?)?", choices: ["To match any single character", "To represent an unknown type in generics", "To create null types", "To define varargs"], correct: 1, explanation: "Wildcards represent unknown types, useful when the exact type doesn't matter." },
       { question: "Why use generics instead of Object?", choices: ["Better performance", "Compile-time type safety without casting", "Smaller bytecode", "Required by Java"], correct: 1, explanation: "Generics catch type errors at compile time and eliminate unsafe casts." },
     ],
-    challenge: {
+        subLessons: ["What is Generics?","How Generics works","Generics syntax & usage","Practical examples of Generics","Generics best practices"],
+challenge: {
       title: "Generic Power-Up Stack",
       description: "Create a generic class `PowerUpStack<T>` with methods push(T item), pop() returning T, and isEmpty() returning boolean. Use an internal ArrayList. Create a stack of Strings, push \"Speed\" and \"Shield\", pop one, and print it.",
       starterCode: "import java.util.*;\n\n// Define generic PowerUpStack<T>\n\n\n// Use it with Strings\n",
@@ -289,7 +294,8 @@ public void takeDamage(int hp, int damage) throws GameOverException {
       { question: "When does the 'finally' block execute?", choices: ["Only on success", "Only on exception", "Always, regardless of exception", "Only if catch is present"], correct: 2, explanation: "finally always executes — whether or not an exception was thrown — great for cleanup!" },
       { question: "How do you create a custom exception?", choices: ["Implement Exception interface", "Extend Exception or RuntimeException", "Use @Exception annotation", "Declare it with throws"], correct: 1, explanation: "Custom exceptions extend Exception (checked) or RuntimeException (unchecked)." },
     ],
-    challenge: {
+        subLessons: ["What is Exception Handling?","How Exception Handling works","Exception Handling syntax & usage","Practical examples of Exception Handling","Exception Handling best practices"],
+challenge: {
       title: "Boss Fight Error Handler",
       description: "Create a custom exception `InsufficientManaException` that extends Exception and stores the required mana (int). Write a method `castSpell(int current, int required)` that throws it if current < required. Catch it and print the message.",
       starterCode: "// Define InsufficientManaException\n\n\n// Write castSpell method\n\n\n// Try to cast with insufficient mana, catch and print\n",

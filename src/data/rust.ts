@@ -37,7 +37,8 @@ export const rustModules: Module[] = [
       { question: "How do you keep the original valid after assignment?", choices: ["Use &", "Use .clone()", "Use mut", "Use Box"], correct: 1, explanation: ".clone() creates a deep copy, so both variables own their own data." },
       { question: "Why don't integers move?", choices: ["They're special", "They implement Copy trait (stack-only, cheap to copy)", "They're references", "They're static"], correct: 1, explanation: "Types that implement Copy (integers, booleans, chars) are trivially copied on the stack." },
     ],
-    challenge: {
+        subLessons: ["What is Ownership?","How Ownership works","Ownership syntax & usage","Practical examples of Ownership","Ownership best practices"],
+challenge: {
       title: "Ownership Transfer",
       description: "Create a String \"Power Gem\". Write a function `take_item` that takes ownership of a String and prints it. Call it, then demonstrate that the original variable is no longer usable by creating a new one.",
       starterCode: "// Define take_item function\n\nfn main() {\n    // Create string and transfer ownership\n\n    // Create a new item since old one was moved\n\n}",
@@ -85,7 +86,8 @@ export const rustModules: Module[] = [
       { question: "Can you have mutable and immutable references simultaneously?", choices: ["Yes always", "No — they're mutually exclusive", "Only in functions", "Only with Clone"], correct: 1, explanation: "You can't mix &mut and & to the same data in overlapping scopes — prevents reading stale data." },
       { question: "What does & do before a variable?", choices: ["Takes ownership", "Creates an immutable reference (borrow)", "Clones it", "Makes it mutable"], correct: 1, explanation: "& creates an immutable reference — borrowing the value without taking ownership." },
     ],
-    challenge: {
+        subLessons: ["What is Borrowing & References?","How Borrowing & References works","Borrowing & References syntax & usage","Practical examples of Borrowing & References","Borrowing & References best practices"],
+challenge: {
       title: "Borrow the Loot",
       description: "Create a Vec<String> with items. Write a function `count_items` that borrows the vector (&Vec<String>) and returns the length. Call it and print the count, then print the vec to show it wasn't moved.",
       starterCode: "// Define count_items function\n\nfn main() {\n    // Create vector and borrow it\n\n}",
@@ -145,7 +147,8 @@ fn main() {
       { question: "What is an associated function?", choices: ["A method with self", "A function in impl without self (like a constructor)", "A free function", "A closure"], correct: 1, explanation: "Associated functions don't take self — called with :: syntax, often used as constructors (e.g., Player::new())." },
       { question: "What does #[derive(Debug)] do?", choices: ["Makes struct faster", "Auto-implements Debug trait for printing with {:?}", "Enables cloning", "Adds methods"], correct: 1, explanation: "#[derive(Debug)] auto-generates the Debug trait so you can print structs with {:?} or {:#?}." },
     ],
-    challenge: {
+        subLessons: ["What is Structs & Methods?","How Structs & Methods works","Structs & Methods syntax & usage","Practical examples of Structs & Methods","Structs & Methods best practices"],
+challenge: {
       title: "Build a Weapon",
       description: "Create a struct `Weapon` with fields name (String) and damage (i32). Add an impl block with a `new` associated function and a `describe` method that returns a formatted string. Create a sword and print its description.",
       starterCode: "// Define Weapon struct\n\n// Add impl block\n\nfn main() {\n    // Create and describe\n\n}",
@@ -198,7 +201,8 @@ fn main() {
       { question: "What happens if you miss a variant in match?", choices: ["Runtime error", "Compile error — match must be exhaustive", "Default case runs", "It's ignored"], correct: 1, explanation: "The compiler enforces exhaustiveness — you must handle every possible variant or use a _ wildcard." },
       { question: "What replaces null in Rust?", choices: ["nullptr", "Option<T> with Some(value) or None", "Empty string", "Default trait"], correct: 1, explanation: "Option<T> explicitly represents presence (Some) or absence (None) — no null pointer exceptions!" },
     ],
-    challenge: {
+        subLessons: ["What is Enums & Pattern Matching?","How Enums & Pattern Matching works","Enums & Pattern Matching syntax & usage","Practical examples of Enums & Pattern Matching","Enums & Pattern Matching best practices"],
+challenge: {
       title: "Game Event Matcher",
       description: "Create an enum `GameEvent` with variants: Score(i32), LevelUp(u32), GameOver. Write a function that matches on it and prints an appropriate message for each. Trigger the LevelUp variant.",
       starterCode: "// Define GameEvent enum\n\n// Write handle_event function\n\nfn main() {\n    // Create and handle a LevelUp event\n\n}",
@@ -260,7 +264,8 @@ fn main() {
       { question: "What is a trait object (dyn Trait)?", choices: ["A copied trait", "A runtime-polymorphic reference to any type implementing the trait", "A generic", "A macro"], correct: 1, explanation: "dyn Trait enables dynamic dispatch — a reference that can point to any type implementing the trait." },
       { question: "What does 'impl Trait' in a return type mean?", choices: ["Returns a trait object", "Returns some concrete type implementing the trait (static dispatch)", "Returns a reference", "Returns an enum"], correct: 1, explanation: "impl Trait as a return type means 'I return some specific type that implements this trait' — the caller doesn't know which." },
     ],
-    challenge: {
+        subLessons: ["What is Traits?","How Traits works","Traits syntax & usage","Practical examples of Traits","Traits best practices"],
+challenge: {
       title: "Trait Combatants",
       description: "Define a trait `Describable` with a method `describe(&self) -> String`. Implement it for a struct `Item` with name and rarity fields. Create an item and print its description.",
       starterCode: "// Define Describable trait\n\n// Define Item struct and implement trait\n\nfn main() {\n    // Create item and print description\n\n}",
@@ -323,7 +328,8 @@ fn main() {
       { question: "What does 'static lifetime mean?", choices: ["Can't change", "The reference is valid for the entire program duration", "Stack allocated", "No garbage collection"], correct: 1, explanation: "'static means the data lives for the entire program — like string literals or leaked allocations." },
       { question: "When must you write explicit lifetime annotations?", choices: ["Always", "When returning references derived from multiple inputs", "Never, they're optional", "Only in structs"], correct: 1, explanation: "Explicit annotations are needed when the compiler can't determine which input a returned reference comes from." },
     ],
-    challenge: {
+        subLessons: ["What is Lifetimes?","How Lifetimes works","Lifetimes syntax & usage","Practical examples of Lifetimes","Lifetimes best practices"],
+challenge: {
       title: "Lifetime Arena",
       description: "Write a function `first_word<'a>(s: &'a str) -> &'a str` that returns the first word (up to first space or whole string). Test with \"Arcade Champion\" and print the result.",
       starterCode: "// Define first_word with lifetime annotation\n\nfn main() {\n    // Call and print\n\n}",

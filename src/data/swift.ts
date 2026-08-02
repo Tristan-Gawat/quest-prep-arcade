@@ -47,7 +47,8 @@ let definite: String = playerName! // Crashes if nil`,
       { question: "What does the ?? operator do?", choices: ["Checks equality", "Provides a default value if the optional is nil", "Force unwraps", "Throws an error"], correct: 1, explanation: "The nil coalescing operator (??) returns the left value if non-nil, otherwise returns the right default value." },
       { question: "When does force unwrapping (!) crash?", choices: ["Always", "When the optional contains a value", "When the optional is nil", "Never in release builds"], correct: 2, explanation: "Force unwrapping with ! causes a runtime crash if the optional is nil — use only when you're 100% sure it has a value." },
     ],
-    challenge: {
+        subLessons: ["What is Optionals?","How Optionals works","Optionals syntax & usage","Practical examples of Optionals","Optionals best practices"],
+challenge: {
       title: "Safe Loot Box",
       description: "Create an optional String variable 'weapon' set to \"Dragon Blade\". Use if-let to safely unwrap it and print \"Equipped: Dragon Blade\". Then create a nil optional 'shield' and use ?? to print \"Shield: None\".",
       starterCode: "// Create optional weapon\n\n// Safely unwrap and print\n\n// Create nil shield and use nil coalescing\n",
@@ -111,7 +112,8 @@ print(player1.name) // "Changed" (shared!)`,
       { question: "Why must struct methods that modify properties use 'mutating'?", choices: ["It's optional style", "Structs are immutable by default, mutating allows modification", "It prevents copies", "It makes them thread-safe"], correct: 1, explanation: "Struct instances assigned to 'let' are fully immutable. 'mutating' marks methods that modify self and requires a 'var' instance." },
       { question: "When should you use a class instead of a struct?", choices: ["Always for performance", "When you need inheritance or shared references", "When you have more than 3 properties", "Classes are deprecated in Swift"], correct: 1, explanation: "Use classes when you need inheritance, reference semantics, or identity comparison (===)." },
     ],
-    challenge: {
+        subLessons: ["What is Structs & Classes?","How Structs & Classes works","Structs & Classes syntax & usage","Practical examples of Structs & Classes","Structs & Classes best practices"],
+challenge: {
       title: "Game Character Struct",
       description: "Create a struct `GameCharacter` with properties name (String), level (Int), and xp (Int). Add a mutating method `gainXP(_ amount: Int)` that adds XP and prints \"{name} gained {amount} XP! Total: {xp}\". Create a character \"Hero\" at level 1 with 0 xp, call gainXP(500).",
       starterCode: "// Define GameCharacter struct\n\n// Create instance and gain XP\n",
@@ -181,7 +183,8 @@ func battleReady(_ entity: any Damageable & Attackable) -> Bool {
       { question: "What do protocol extensions provide?", choices: ["Storage for properties", "Default implementations of protocol methods", "Inheritance from classes", "Generic constraints"], correct: 1, explanation: "Protocol extensions let you provide default behavior — conforming types get it for free or can override." },
       { question: "What does Protocol1 & Protocol2 mean?", choices: ["Inheritance chain", "Protocol composition — type must conform to both", "Logical AND of protocols", "Protocol intersection type"], correct: 1, explanation: "Protocol composition requires a type to conform to multiple protocols simultaneously." },
     ],
-    challenge: {
+        subLessons: ["What is Protocols?","How Protocols works","Protocols syntax & usage","Practical examples of Protocols","Protocols best practices"],
+challenge: {
       title: "Describable Protocol",
       description: "Create a protocol `Describable` with a method `describe() -> String`. Create a struct `Potion` with name (String) and power (Int) that conforms to Describable, returning \"{name} (Power: {power})\". Create a potion \"Elixir\" with power 50 and print its description.",
       starterCode: "// Define Describable protocol\n\n// Define Potion struct conforming to it\n\n// Create and print\n",
@@ -243,7 +246,8 @@ print(counter()) // 3`,
       { question: "What does 'capturing values' mean for closures?", choices: ["Copying all global variables", "The closure retains references to variables from its enclosing scope", "Storing return values", "Preventing garbage collection"], correct: 1, explanation: "Closures capture and store references to variables from the surrounding context, keeping them alive." },
       { question: "When is trailing closure syntax used?", choices: ["When a closure returns void", "When the last parameter of a function is a closure", "When using map/filter", "Only with sorted()"], correct: 1, explanation: "Trailing closure syntax lets you write the closure after the function's parentheses when it's the last argument." },
     ],
-    challenge: {
+        subLessons: ["What is Closures?","How Closures works","Closures syntax & usage","Practical examples of Closures","Closures best practices"],
+challenge: {
       title: "Score Transformer",
       description: "Create an array of scores [10, 25, 50, 75, 100]. Use the map closure to double each score, then use filter to keep only scores above 50. Print the result array.",
       starterCode: "// Create scores array\n\n// Map to double, then filter > 50\n\n// Print result\n",
@@ -315,7 +319,8 @@ for e in Element.allCases {
       { question: "How do you extract associated values?", choices: ["With dot notation", "Pattern matching in switch/if-case with let bindings", "Calling .value", "Using rawValue"], correct: 1, explanation: "Use 'case .name(let value)' in switch or 'if case' to destructure and bind associated values." },
       { question: "What does CaseIterable provide?", choices: ["A count property", "An allCases array of every enum case", "Equality checking", "String conversion"], correct: 1, explanation: "CaseIterable auto-generates an allCases property containing every case in the enum." },
     ],
-    challenge: {
+        subLessons: ["What is Enums with Associated Values?","How Enums with Associated Values works","Enums with Associated Values syntax & usage","Practical examples of Enums with Associated Values","Enums with Associated Values best practices"],
+challenge: {
       title: "Quest Result Enum",
       description: "Create an enum `QuestResult` with cases: success(reward: String, xp: Int) and failure(reason: String). Create a function `announce` that switches on a QuestResult and prints the appropriate message. Call it with .success(reward: \"Gold Sword\", xp: 500) printing \"Quest Complete! Reward: Gold Sword (+500 XP)\".",
       starterCode: "// Define QuestResult enum\n\n// Define announce function\n\n// Call with success case\n",
@@ -392,7 +397,8 @@ print(scores.total()) // 725`,
       { question: "What is an associated type in a protocol?", choices: ["A type alias", "A placeholder type defined by conforming types", "A generic parameter", "A nested class"], correct: 1, explanation: "Associated types are protocol-level generics — each conforming type decides what concrete type to use." },
       { question: "What does the 'where' clause add to generics?", choices: ["Runtime checks", "Additional type constraints beyond the basic declaration", "Error handling", "Memory management rules"], correct: 1, explanation: "Where clauses let you express complex constraints like requiring conformance to multiple protocols or matching associated types." },
     ],
-    challenge: {
+        subLessons: ["What is Generics?","How Generics works","Generics syntax & usage","Practical examples of Generics","Generics best practices"],
+challenge: {
       title: "Generic Stack",
       description: "Create a generic struct `Stack<Element>` with methods push(_ item: Element), pop() -> Element?, and a computed property isEmpty -> Bool. Use an internal array. Create a Stack<String>, push \"Fireball\" and \"Ice Blast\", pop one and print it.",
       starterCode: "// Define generic Stack\n\n// Create and use Stack<String>\n",

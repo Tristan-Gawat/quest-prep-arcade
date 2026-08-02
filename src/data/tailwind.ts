@@ -59,7 +59,8 @@ export const tailwindModules: Module[] = [
         explanation: "text-{size} controls font-size. 2xl = 1.5rem. Other sizes: sm, base, lg, xl, 3xl, etc.",
       },
     ],
-    challenge: {
+        subLessons: ["What is Utility Classes Basics?","How Utility Classes Basics works","Utility Classes Basics syntax & usage","Practical examples of Utility Classes Basics","Utility Classes Basics best practices"],
+challenge: {
       title: "Card Builder",
       description:
         "Create a card with: padding of 6 (p-6), white background (bg-white), large rounded corners (rounded-lg), and a large shadow (shadow-lg). Inside, add a bold heading with dark text.",
@@ -133,7 +134,8 @@ export const tailwindModules: Module[] = [
         explanation: "font-mono sets font-family to a monospace font — great for code and technical displays!",
       },
     ],
-    challenge: {
+        subLessons: ["What is Colors & Typography?","How Colors & Typography works","Colors & Typography syntax & usage","Practical examples of Colors & Typography","Colors & Typography best practices"],
+challenge: {
       title: "Achievement Badge",
       description:
         "Create a span element styled as a badge: small text (text-sm), semibold weight, green-100 background, green-800 text color, with small padding (px-2 py-1) and rounded corners.",
@@ -215,7 +217,8 @@ export const tailwindModules: Module[] = [
         explanation: "space-x-4 adds margin-left: 1rem to all children except the first — spacing between items!",
       },
     ],
-    challenge: {
+        subLessons: ["What is Spacing & Sizing?","How Spacing & Sizing works","Spacing & Sizing syntax & usage","Practical examples of Spacing & Sizing","Spacing & Sizing best practices"],
+challenge: {
       title: "Centered Container",
       description:
         "Create a div that is centered horizontally (mx-auto), has a max-width of 'lg' (max-w-lg), padding of 8 on all sides, and margin-top of 10. Add a heading inside.",
@@ -305,7 +308,8 @@ export const tailwindModules: Module[] = [
         explanation: "flex-1 = flex: 1 1 0% — the item grows and shrinks to fill available space.",
       },
     ],
-    challenge: {
+        subLessons: ["What is Flexbox Utilities?","How Flexbox Utilities works","Flexbox Utilities syntax & usage","Practical examples of Flexbox Utilities","Flexbox Utilities best practices"],
+challenge: {
       title: "Party Formation",
       description:
         "Create a flex container that spaces items evenly (justify-between), centers them vertically (items-center), with padding of 4. Place three span elements inside with names 'Tank', 'DPS', 'Healer'.",
@@ -375,7 +379,8 @@ export const tailwindModules: Module[] = [
         explanation: "gap-4 adds 1rem spacing between all grid cells — both rows and columns.",
       },
     ],
-    challenge: {
+        subLessons: ["What is Grid Utilities?","How Grid Utilities works","Grid Utilities syntax & usage","Practical examples of Grid Utilities","Grid Utilities best practices"],
+challenge: {
       title: "Inventory Grid",
       description:
         "Create a 4-column grid with gap-2 and padding-4. Place 8 div items inside, each with bg-gray-200 p-3 and rounded. The first item should span 2 columns.",
@@ -451,7 +456,8 @@ export const tailwindModules: Module[] = [
         explanation: "'hidden' hides by default (mobile), then md:block or md:flex shows it at medium screens and up.",
       },
     ],
-    challenge: {
+        subLessons: ["What is Responsive Design?","How Responsive Design works","Responsive Design syntax & usage","Practical examples of Responsive Design","Responsive Design best practices"],
+challenge: {
       title: "Responsive Quest List",
       description:
         "Create a grid that shows 1 column on mobile, 2 columns on sm screens, and 3 columns on lg screens. Add gap-4. Include 3 quest card divs.",
@@ -543,7 +549,8 @@ export const tailwindModules: Module[] = [
         explanation: "transition enables CSS transitions; duration-300 sets the animation time to 300ms for smooth changes.",
       },
     ],
-    challenge: {
+        subLessons: ["What is Hover & Focus States?","How Hover & Focus States works","Hover & Focus States syntax & usage","Practical examples of Hover & Focus States","Hover & Focus States best practices"],
+challenge: {
       title: "Interactive Button",
       description:
         "Create a button with blue-500 background, white text, rounded-lg, px-6 py-3. Add: hover changes to blue-700, transition with 200ms duration. Add focus:ring-2 focus:ring-blue-300.",
@@ -630,7 +637,8 @@ module.exports = {
         explanation: "Modifiers can be stacked! dark:hover:bg-blue-700 applies on hover specifically in dark mode.",
       },
     ],
-    challenge: {
+        subLessons: ["What is Dark Mode?","How Dark Mode works","Dark Mode syntax & usage","Practical examples of Dark Mode","Dark Mode best practices"],
+challenge: {
       title: "Dark Mode Card",
       description:
         "Create a div with: white background in light mode, gray-900 in dark mode. Text: gray-900 in light, white in dark. Add padding-6, rounded-lg. Include a heading that also switches colors.",
@@ -726,7 +734,8 @@ module.exports = {
         explanation: "Custom animations are defined in tailwind.config.js under theme.extend.keyframes and theme.extend.animation.",
       },
     ],
-    challenge: {
+        subLessons: ["What is Animations & Transitions?","How Animations & Transitions works","Animations & Transitions syntax & usage","Practical examples of Animations & Transitions","Animations & Transitions best practices"],
+challenge: {
       title: "Animated Power-Up",
       description:
         "Create a div that bounces (animate-bounce), has a large emoji '⭐' inside with text-4xl, and on hover scales to 125% (hover:scale-125) with a smooth 300ms transition.",
@@ -822,7 +831,8 @@ module.exports = {
         explanation: "ring utilities create outline-style rings using box-shadow — they don't affect layout like borders do!",
       },
     ],
-    challenge: {
+        subLessons: ["What is Component Patterns?","How Component Patterns works","Component Patterns syntax & usage","Practical examples of Component Patterns","Component Patterns best practices"],
+challenge: {
       title: "Health Bar Component",
       description:
         "Build a health bar: outer div with w-full bg-gray-200 rounded-full h-4. Inner div with h-full bg-green-500 rounded-full and width set to 60% (use style attribute). Add overflow-hidden on the outer div.",
@@ -932,7 +942,8 @@ module.exports = {
         explanation: "content tells Tailwind's purge engine which files to scan — only used classes end up in the final CSS!",
       },
     ],
-    challenge: {
+        subLessons: ["What is Custom Configuration?","How Custom Configuration works","Custom Configuration syntax & usage","Practical examples of Custom Configuration","Custom Configuration best practices"],
+challenge: {
       title: "Custom Theme Setup",
       description:
         "Write a tailwind.config.js snippet that extends colors with 'brand' having shades: light '#A29BFE', DEFAULT '#6C5CE7', dark '#5B4CC4'. Also add a custom font-family 'game' with 'Orbitron' as the font.",
@@ -1047,7 +1058,8 @@ module.exports = {
         explanation: "Components are higher-level classes like .btn, .card. Utilities are atomic single-purpose classes. The layer determines sort order.",
       },
     ],
-    challenge: {
+        subLessons: ["What is Advanced Customization?","How Advanced Customization works","Advanced Customization syntax & usage","Practical examples of Advanced Customization","Advanced Customization best practices"],
+challenge: {
       title: "Peer-Powered Toggle",
       description:
         "Create a checkbox input with class 'peer' and 'sr-only' (screen-reader only). Add a label that changes from gray-200 background to green-500 when checked (peer-checked:bg-green-500). Add a div that's hidden by default and shows when checked (hidden peer-checked:block).",

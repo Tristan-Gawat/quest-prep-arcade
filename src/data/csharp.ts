@@ -50,7 +50,8 @@ Console.WriteLine($"Mana: {mana ?? 0}");  // null-coalescing`,
         explanation: "$ before a string enables interpolation: $\"Value: {variable}\" embeds expressions directly.",
       },
     ],
-    challenge: {
+        subLessons: ["What is Variables & Types?","How Variables & Types works","Variables & Types syntax & usage","Practical examples of Variables & Types","Variables & Types best practices"],
+challenge: {
       title: "Hero Registration",
       description:
         "Declare variables: string name = 'Coder', int hp = 100, double xp = 0.0. Use string interpolation to print 'Coder has 100 HP and 0 XP'.",
@@ -128,7 +129,8 @@ Console.WriteLine($"Score: {score,10:F1}");  // padded`,
         explanation: "F2 is a format specifier: fixed-point with 2 decimal places.",
       },
     ],
-    challenge: {
+        subLessons: ["What is Console I/O?","How Console I/O works","Console I/O syntax & usage","Practical examples of Console I/O","Console I/O best practices"],
+challenge: {
       title: "Score Display",
       description:
         "Create a double variable 'score' with value 99.567. Print it formatted to 1 decimal place using $\"{score:F1}\". Expected output: 'Score: 99.6'.",
@@ -210,7 +212,8 @@ Console.WriteLine($"Rank: {rank}");`,
         explanation: "Switch is ideal when branching on one variable's multiple possible values — cleaner than long if-else chains.",
       },
     ],
-    challenge: {
+        subLessons: ["What is Conditionals & Logic?","How Conditionals & Logic works","Conditionals & Logic syntax & usage","Practical examples of Conditionals & Logic","Conditionals & Logic best practices"],
+challenge: {
       title: "Rank Calculator",
       description:
         "Given int score = 75, use a switch expression to assign a rank: >90 => 'Legend', >70 => 'Hero', >50 => 'Warrior', _ => 'Novice'. Print the rank.",
@@ -300,7 +303,8 @@ for (int i = 0; i < 10; i++)
         explanation: "do-while checks the condition AFTER the body, so it always executes at least once.",
       },
     ],
-    challenge: {
+        subLessons: ["What is Loops & Iteration?","How Loops & Iteration works","Loops & Iteration syntax & usage","Practical examples of Loops & Iteration","Loops & Iteration best practices"],
+challenge: {
       title: "Wave Countdown",
       description:
         "Use a for loop to count down from 5 to 1, printing 'Wave X' for each. After the loop, print 'Boss appears!'.",
@@ -390,7 +394,8 @@ Console.WriteLine(TotalDamage(5, 10, 15)); // 30`,
         explanation: "Overloading: same method name, different parameter lists — the compiler picks the right one.",
       },
     ],
-    challenge: {
+        subLessons: ["What is Methods & Parameters?","How Methods & Parameters works","Methods & Parameters syntax & usage","Practical examples of Methods & Parameters","Methods & Parameters best practices"],
+challenge: {
       title: "Combo Attack",
       description:
         "Write a method 'ComboAttack' that accepts params int[] hits and returns their sum. Call it with (10, 20, 30) and print the result.",
@@ -479,7 +484,8 @@ Console.WriteLine(hero.GetStatus());`,
         explanation: "'this' refers to the current instance — used to disambiguate or pass the object itself.",
       },
     ],
-    challenge: {
+        subLessons: ["What is Classes & OOP?","How Classes & OOP works","Classes & OOP syntax & usage","Practical examples of Classes & OOP","Classes & OOP best practices"],
+challenge: {
       title: "Build a Warrior",
       description:
         "Create a class 'Warrior' with properties Name (string, get/set) and Power (int, get/set). Add a constructor taking both values. Add a method Battlecry() that returns \"{Name} attacks with {Power} power!\". Create a Warrior 'Thor' with power 99 and print the battlecry.",
@@ -565,7 +571,8 @@ dragon.TakeDamage(100);  // Takes 50`,
         explanation: "'sealed' stops other classes from inheriting — useful for security and optimization.",
       },
     ],
-    challenge: {
+        subLessons: ["What is Inheritance & Interfaces?","How Inheritance & Interfaces works","Inheritance & Interfaces syntax & usage","Practical examples of Inheritance & Interfaces","Inheritance & Interfaces best practices"],
+challenge: {
       title: "Enemy Hierarchy",
       description:
         "Create an interface IEnemy with a method string Attack(). Create a class Goblin implementing IEnemy where Attack() returns 'Goblin slashes for 10 damage!'. Create a Goblin and print its Attack().",
@@ -639,7 +646,8 @@ bool allActive = players.All(p => p.Score > 0); // true`,
         explanation: "Any() returns true if any element satisfies the condition — short-circuits on first match!",
       },
     ],
-    challenge: {
+        subLessons: ["What is LINQ Queries?","How LINQ Queries works","LINQ Queries syntax & usage","Practical examples of LINQ Queries","LINQ Queries best practices"],
+challenge: {
       title: "Leaderboard Filter",
       description:
         "Given int[] scores = {45, 92, 78, 100, 33, 88}, use LINQ to filter scores >= 80, sort descending, and print each on a new line.",
@@ -739,7 +747,8 @@ async Task RiskyQuestAsync()
         explanation: "WhenAll runs multiple tasks concurrently and completes when ALL finish — great for parallel loading!",
       },
     ],
-    challenge: {
+        subLessons: ["What is Async/Await?","How Async/Await works","Async/Await syntax & usage","Practical examples of Async/Await","Async/Await best practices"],
+challenge: {
       title: "Parallel Quest Loader",
       description:
         "Write an async method 'FetchQuest' that takes a string name, awaits Task.Delay(100), and returns $\"{name} loaded\". Call it three times with Task.WhenAll for quests 'A', 'B', 'C', then print the count of results.",
@@ -829,7 +838,8 @@ string pick = ChooseRandom(new[] { "Fire", "Ice", "Thunder" });`,
         explanation: "Multiple type parameters are common — Dictionary<TKey, TValue>, Tuple<T1, T2>, etc.",
       },
     ],
-    challenge: {
+        subLessons: ["What is Generics?","How Generics works","Generics syntax & usage","Practical examples of Generics","Generics best practices"],
+challenge: {
       title: "Generic Loot Chest",
       description:
         "Create a generic class LootChest<T> with a private List<T>, methods Add(T item) and Count (property). Create a LootChest<string>, add 'Sword' and 'Shield', print the count.",
@@ -920,7 +930,8 @@ game.GainLevel(5);`,
         explanation: "+= adds a handler to the event's invocation list; -= removes it.",
       },
     ],
-    challenge: {
+        subLessons: ["What is Delegates & Events?","How Delegates & Events works","Delegates & Events syntax & usage","Practical examples of Delegates & Events","Delegates & Events best practices"],
+challenge: {
       title: "Event-Driven Scoring",
       description:
         "Create a Func<int, int> called 'doubler' that doubles a number. Create an Action<string> called 'logger' that prints the string. Use doubler on 25 and log the result as 'Score: 50'.",
@@ -1019,7 +1030,8 @@ var description = combo switch
         explanation: "[..] is the slice pattern matching zero or more elements — [.., 3] matches any array ending with 3.",
       },
     ],
-    challenge: {
+        subLessons: ["What is Pattern Matching?","How Pattern Matching works","Pattern Matching syntax & usage","Practical examples of Pattern Matching","Pattern Matching best practices"],
+challenge: {
       title: "Pattern Combat Classifier",
       description:
         "Write a method that takes an int 'damage' and uses a switch expression with relational patterns: >= 100 => 'CRITICAL', >= 50 and < 100 => 'HEAVY', >= 1 and < 50 => 'LIGHT', _ => 'MISS'. Call with 75 and print the result.",

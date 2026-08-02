@@ -27,7 +27,8 @@ function greet(name: string): string {
       { question: "What type annotation means 'any value'?", choices: ["unknown", "any", "void", "object"], correct: 1, explanation: "'any' disables type checking — use sparingly!" },
       { question: "What happens if you assign a string to a number variable?", choices: ["It converts automatically", "Compile error", "Runtime error", "Nothing"], correct: 1, explanation: "TypeScript catches type mismatches at compile time." },
     ],
-    challenge: {
+        subLessons: ["What is Type Annotations?","How Type Annotations works","Type Annotations syntax & usage","Practical examples of Type Annotations","Type Annotations best practices"],
+challenge: {
       title: "Typed Player Card",
       description: "Declare a variable `playerName` typed as string (value \"Hero\"), `level` typed as number (value 1), and a function `getInfo` that takes both and returns a string. Log getInfo(playerName, level).",
       starterCode: "// Add type annotations\n\n\n// Create getInfo function with typed params and return\n\n\n// Log the result\n",
@@ -69,7 +70,8 @@ let myRank: Rank = "CHAMPION";`,
       { question: "What's the difference between interface and type?", choices: ["No difference", "Interfaces are for objects, types are more flexible", "Types are faster", "Interfaces can't extend"], correct: 1, explanation: "Interfaces define object shapes; type aliases can also define unions, intersections, and primitives." },
       { question: "What does readonly do?", choices: ["Makes it optional", "Prevents reassignment after creation", "Makes it private", "Adds validation"], correct: 1, explanation: "readonly prevents a property from being changed after the object is created." },
     ],
-    challenge: {
+        subLessons: ["What is Interfaces & Types?","How Interfaces & Types works","Interfaces & Types syntax & usage","Practical examples of Interfaces & Types","Interfaces & Types best practices"],
+challenge: {
       title: "Quest Interface",
       description: "Define an interface `Quest` with: name (string), xpReward (number), isComplete (boolean), and optional description (string). Create a quest object and log its name.",
       starterCode: "// Define the Quest interface\n\n\n// Create a quest object\n\n\n// Log the quest name\n",
@@ -108,7 +110,8 @@ interface Inventory<T> {
       { question: "What's the benefit of generics over 'any'?", choices: ["Performance", "Type safety is preserved", "Shorter code", "Browser support"], correct: 1, explanation: "Generics maintain type information; 'any' loses all type safety." },
       { question: "Can you have multiple generic parameters?", choices: ["No, only one", "Yes, like <T, U>", "Only with classes", "Only 2 max"], correct: 1, explanation: "You can use multiple: <T, U, V> etc. for different type slots." },
     ],
-    challenge: {
+        subLessons: ["What is Generics?","How Generics works","Generics syntax & usage","Practical examples of Generics","Generics best practices"],
+challenge: {
       title: "Generic Loot Box",
       description: "Write a generic function `openBox<T>` that takes an array of T and returns a random item. Call it with [\"sword\", \"shield\", \"potion\"] and log the result.",
       starterCode: "// Write generic function openBox<T>\n\n\n// Call it with string array and log\n",
@@ -152,7 +155,8 @@ const scores: Leaderboard = { "Hero": 100 };`,
       { question: "How do you create a type with only 'name' and 'level' from Player?", choices: ["Omit<Player, 'guild'>", "Pick<Player, 'name' | 'level'>", "Partial<Player>", "Required<Player>"], correct: 1, explanation: "Pick<T, K> creates a type with only the specified keys." },
       { question: "What does Record<string, number> create?", choices: ["An array", "An object with string keys and number values", "A tuple", "A map class"], correct: 1, explanation: "Record<K, V> creates an object type with keys of type K and values of type V." },
     ],
-    challenge: {
+        subLessons: ["What is Utility Types?","How Utility Types works","Utility Types syntax & usage","Practical examples of Utility Types","Utility Types best practices"],
+challenge: {
       title: "Config Builder",
       description: "Given interface Config { theme: string; fontSize: number; darkMode: boolean; }, create a type PartialConfig using Partial<Config>. Create a variable with only theme set and log it.",
       starterCode: "// Define Config interface\n\n// Create PartialConfig type\n\n// Create partial config object\n\n// Log it\n",
@@ -191,7 +195,8 @@ type StringStats = Stringify<Stats>;
       { question: "What is a conditional type?", choices: ["An if statement", "T extends U ? X : Y pattern", "A runtime check", "An assertion"], correct: 1, explanation: "Conditional types use the extends ? : pattern to choose types based on conditions." },
       { question: "What does [K in keyof T] do in a mapped type?", choices: ["Loops over values", "Iterates over each key of T", "Creates an array", "Filters keys"], correct: 1, explanation: "It maps over each key K in T to create a new type for each property." },
     ],
-    challenge: {
+        subLessons: ["What is Conditional & Mapped Types?","How Conditional & Mapped Types works","Conditional & Mapped Types syntax & usage","Practical examples of Conditional & Mapped Types","Conditional & Mapped Types best practices"],
+challenge: {
       title: "Type Transformer",
       description: "Create a mapped type `Nullable<T>` that makes every property of T allow null (type becomes T[K] | null). Apply it to interface Stats { hp: number; mp: number } and create a variable with hp set to null.",
       starterCode: "// Define Nullable<T> mapped type\n\n// Define Stats interface\n\n// Create variable with nullable stats\n\n// Log hp\n",
@@ -237,7 +242,8 @@ function area(s: Shape): number {
       { question: "What is a discriminated union?", choices: ["Any union type", "A union where each member has a shared literal property", "An enum", "A class hierarchy"], correct: 1, explanation: "Discriminated unions use a common literal property (like 'kind') to distinguish members." },
       { question: "What does a type guard do?", choices: ["Prevents runtime errors", "Narrows a type within a code block", "Validates input", "Encrypts data"], correct: 1, explanation: "Type guards narrow a broader type to a more specific one within a conditional block." },
     ],
-    challenge: {
+        subLessons: ["What is Enums & Type Guards?","How Enums & Type Guards works","Enums & Type Guards syntax & usage","Practical examples of Enums & Type Guards","Enums & Type Guards best practices"],
+challenge: {
       title: "Game Entity System",
       description: "Create an enum Direction with Up, Down, Left, Right (string values). Write a function move(dir: Direction) that logs 'Moving [direction]'. Call it with Direction.Up.",
       starterCode: "// Define Direction enum\n\n// Write move function\n\n// Call it\n",

@@ -39,7 +39,8 @@ FROM heroes;`,
       { question: "What does ORDER BY score DESC do?", choices: ["Sorts ascending", "Sorts by score from highest to lowest", "Filters by score", "Groups by score"], correct: 1, explanation: "DESC sorts in descending order (highest first). ASC (default) sorts lowest first." },
       { question: "What does LIMIT 5 do?", choices: ["Limits column count", "Returns at most 5 rows", "Sets max value to 5", "Creates 5 copies"], correct: 1, explanation: "LIMIT restricts the number of rows returned — essential for pagination and performance." },
     ],
-    challenge: {
+        subLessons: ["What is SELECT Basics?","How SELECT Basics works","SELECT Basics syntax & usage","Practical examples of SELECT Basics","SELECT Basics best practices"],
+challenge: {
       title: "Top Players Query",
       description: "Write a query to select the name and score columns from the 'players' table, ordered by score descending, limited to the top 3 results.",
       starterCode: "-- Select top 3 players by score\n",
@@ -86,7 +87,8 @@ WHERE completed_at IS NULL;  -- incomplete quests`,
       { question: "What does LIKE 'A%' match?", choices: ["Exactly 'A'", "Any string starting with 'A'", "Strings containing 'A'", "Single character 'A'"], correct: 1, explanation: "% matches zero or more characters. 'A%' matches 'A', 'Arcade', 'Adventure', etc." },
       { question: "What's the difference between AND and OR?", choices: ["No difference", "AND requires all conditions true, OR requires at least one", "AND is faster", "OR is for numbers only"], correct: 1, explanation: "AND narrows results (all must pass); OR broadens results (any can pass)." },
     ],
-    challenge: {
+        subLessons: ["What is WHERE & Filtering?","How WHERE & Filtering works","WHERE & Filtering syntax & usage","Practical examples of WHERE & Filtering","WHERE & Filtering best practices"],
+challenge: {
       title: "Elite Monster Filter",
       description: "Write a query to find all monsters from the 'monsters' table where level is greater than 20 AND zone is either 'Dungeon' or 'Boss Room'. Select name and level.",
       starterCode: "-- Find high-level dungeon monsters\n",
@@ -133,7 +135,8 @@ JOIN players b ON a.zone = b.zone AND a.id < b.id;`,
       { question: "What appears in a LEFT JOIN when there's no match?", choices: ["Error", "NULL values for the right table columns", "Empty string", "Zero"], correct: 1, explanation: "LEFT JOIN keeps all left table rows — unmatched right columns are filled with NULL." },
       { question: "What is a self-join?", choices: ["A join without ON", "Joining a table to itself", "An automatic join", "A cross join"], correct: 1, explanation: "Self-joins relate rows within the same table — use aliases to treat it as two different tables." },
     ],
-    challenge: {
+        subLessons: ["What is JOINs?","How JOINs works","JOINs syntax & usage","Practical examples of JOINs","JOINs best practices"],
+challenge: {
       title: "Party Roster Join",
       description: "Write a query joining 'players' and 'classes' tables on players.class_id = classes.id. Select player name and class_name. Use INNER JOIN.",
       starterCode: "-- Join players with their class names\n",
@@ -184,7 +187,8 @@ ORDER BY zone, count DESC;`,
       { question: "Can you use a column in SELECT that's not in GROUP BY?", choices: ["Yes always", "No — it must be aggregated or in GROUP BY", "Only with DISTINCT", "Only with ORDER BY"], correct: 1, explanation: "Non-aggregated columns must be in GROUP BY — otherwise which row's value would the DB pick?" },
       { question: "What does COUNT(*) count?", choices: ["Only non-null values", "All rows including nulls", "Distinct values", "Columns"], correct: 1, explanation: "COUNT(*) counts all rows. COUNT(column) counts non-null values. COUNT(DISTINCT col) counts unique values." },
     ],
-    challenge: {
+        subLessons: ["What is GROUP BY & Aggregates?","How GROUP BY & Aggregates works","GROUP BY & Aggregates syntax & usage","Practical examples of GROUP BY & Aggregates","GROUP BY & Aggregates best practices"],
+challenge: {
       title: "Guild Leaderboard",
       description: "Write a query that counts players per guild from the 'players' table, only showing guilds with more than 2 members, ordered by count descending.",
       starterCode: "-- Count players per guild, filter small guilds\n",
@@ -243,7 +247,8 @@ WHERE EXISTS (
       { question: "What does a CTE (WITH clause) provide?", choices: ["Permanent table", "A named temporary result set for readability", "Performance boost always", "Index creation"], correct: 1, explanation: "CTEs name a query result, making complex queries more readable — like a temporary view." },
       { question: "What does EXISTS check?", choices: ["If table exists", "If the subquery returns at least one row", "If column is not null", "If value equals true"], correct: 1, explanation: "EXISTS returns true if the subquery produces any rows — efficient for existence checks." },
     ],
-    challenge: {
+        subLessons: ["What is Subqueries & CTEs?","How Subqueries & CTEs works","Subqueries & CTEs syntax & usage","Practical examples of Subqueries & CTEs","Subqueries & CTEs best practices"],
+challenge: {
       title: "Above Average Heroes",
       description: "Write a query using a subquery to find all players whose score is above the average score. Select name and score, ordered by score descending.",
       starterCode: "-- Find players above average score\n",
@@ -292,7 +297,8 @@ DROP INDEX idx_players_level;`,
       { question: "What is the leftmost prefix rule for composite indexes?", choices: ["Index on last column", "The index can serve queries that use columns from the left", "Always use all columns", "Right columns are faster"], correct: 1, explanation: "A composite index on (A, B, C) helps queries filtering on A, (A,B), or (A,B,C) — not B alone." },
       { question: "What does EXPLAIN show?", choices: ["Table structure", "The query execution plan — how the DB will run the query", "Index definitions", "Row count"], correct: 1, explanation: "EXPLAIN reveals whether indexes are used, join order, and estimated costs — essential for optimization." },
     ],
-    challenge: {
+        subLessons: ["What is Indexes & Performance?","How Indexes & Performance works","Indexes & Performance syntax & usage","Practical examples of Indexes & Performance","Indexes & Performance best practices"],
+challenge: {
       title: "Optimize the Quest Log",
       description: "Write SQL to: 1) Create an index on the 'quests' table for the 'player_id' column (often used in JOINs). 2) Create a composite index on 'quests' for (status, created_at) for filtering active quests by date.",
       starterCode: "-- Create index for player_id JOINs\n\n-- Create composite index for status + date filtering\n",

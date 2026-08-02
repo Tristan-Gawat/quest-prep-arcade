@@ -47,7 +47,8 @@ puts result.inspect # [3, 6, 9]`,
       { question: "What is the difference between a Proc and a Lambda?", choices: ["No difference", "Lambdas check argument count and return from themselves only", "Procs are faster", "Lambdas cannot be stored"], correct: 1, explanation: "Lambdas enforce correct argument count and 'return' only exits the lambda. Procs are more lenient and return from the enclosing method." },
       { question: "What does the & operator do with a proc?", choices: ["Creates a reference", "Converts a Proc to a block (or vice versa)", "Calls the proc", "Makes it a lambda"], correct: 1, explanation: "& converts a Proc object into a block that can be passed to methods like map, select, etc." },
     ],
-    challenge: {
+        subLessons: ["What is Blocks & Procs?","How Blocks & Procs works","Blocks & Procs syntax & usage","Practical examples of Blocks & Procs","Blocks & Procs best practices"],
+challenge: {
       title: "Custom Iterator",
       description: "Write a method `repeat_action(times)` that yields the current iteration number (starting at 1) to a block. Call it with 3 and a block that prints \"Hit #X!\" for each iteration. Output three lines.",
       starterCode: "# Define repeat_action method\n\n# Call with block\n",
@@ -134,7 +135,8 @@ hero.heal(20)`,
       { question: "How do modules differ from classes?", choices: ["Modules are faster", "Modules can't be instantiated and support mixins without inheritance", "Modules replace classes", "No difference"], correct: 1, explanation: "Modules provide namespacing and mixin capabilities but cannot be instantiated — they extend classes via include/extend." },
       { question: "What does 'include' do with a module?", choices: ["Imports the file", "Adds the module's methods as instance methods", "Creates a subclass", "Copies the module"], correct: 1, explanation: "include mixes in the module's methods as instance methods, available to all instances of the class." },
     ],
-    challenge: {
+        subLessons: ["What is Classes & Modules?","How Classes & Modules works","Classes & Modules syntax & usage","Practical examples of Classes & Modules","Classes & Modules best practices"],
+challenge: {
       title: "RPG Character Class",
       description: "Create a class `Warrior` with attr_accessor :name, attr_reader :power. Initialize with name and power (default 50). Add a method `battle_cry` that returns \"{name} roars with power {power}!\". Create a warrior \"Thor\" with power 99 and print the battle cry.",
       starterCode: "# Define Warrior class\n\n# Create instance and print battle cry\n",
@@ -203,7 +205,8 @@ puts settings # {difficulty: "hard", sound: true, music: false}`,
       { question: "What does Hash.new(0) do?", choices: ["Creates a hash with one zero element", "Sets the default value for missing keys to 0", "Limits hash size", "Creates an empty hash"], correct: 1, explanation: "Hash.new(0) sets the default return value to 0 for any key that hasn't been assigned — great for counters!" },
       { question: "What does .dig do?", choices: ["Searches all values", "Safely navigates nested hash/array structures returning nil if any key is missing", "Finds duplicate keys", "Removes nested keys"], correct: 1, explanation: "dig safely traverses nested structures — if any intermediate key is missing, it returns nil instead of raising an error." },
     ],
-    challenge: {
+        subLessons: ["What is Hashes?","How Hashes works","Hashes syntax & usage","Practical examples of Hashes","Hashes best practices"],
+challenge: {
       title: "Loot Table Hash",
       description: "Create a hash `loot` with symbol keys: sword (damage: 50), shield (defense: 30), potion (heal: 25). Use .map to create an array of strings describing each item. Print the result for sword: \"sword: {:damage=>50}\" isn't needed — just print the total number of items with \"Loot items: 3\".",
       starterCode: "# Create loot hash\n\n# Print count\n",
@@ -270,7 +273,8 @@ puts player.send(:fetch, :level)  # 42`,
       { question: "What does &:upcase do?", choices: ["Creates a string", "Converts the symbol to a proc that calls .upcase on each element", "Uppercases a symbol", "Is a reference to String class"], correct: 1, explanation: "&:method_name converts a symbol to a Proc that calls that method — shorthand for { |x| x.upcase }." },
       { question: "Can symbols be modified after creation?", choices: ["Yes, with mutating methods", "No, symbols are immutable", "Only with freeze", "Depends on Ruby version"], correct: 1, explanation: "Symbols are immutable by nature — you cannot change :hello to something else. This immutability makes them safe identifiers." },
     ],
-    challenge: {
+        subLessons: ["What is Symbols?","How Symbols works","Symbols syntax & usage","Practical examples of Symbols","Symbols best practices"],
+challenge: {
       title: "Symbol Power",
       description: "Create an array of string names [\"fire\", \"ice\", \"thunder\"]. Convert each to a symbol using map(&:to_sym). Print the resulting array as [:fire, :ice, :thunder].",
       starterCode: "# Create string array\n\n# Convert to symbols\n\n# Print result\n",
@@ -345,7 +349,8 @@ puts ArcadeUtils.format_score(1234567) # "1,234,567"`,
       { question: "What is the purpose of Gemfile.lock?", choices: ["Prevents gem installation", "Records exact versions installed for reproducible builds", "Encrypts gems", "Limits gem count"], correct: 1, explanation: "Gemfile.lock records the exact resolved versions so every developer and server uses identical dependencies." },
       { question: "What does 'bundle exec' do?", choices: ["Installs gems", "Runs a command in the context of the bundle's gem versions", "Creates a new bundle", "Executes tests"], correct: 1, explanation: "bundle exec ensures the command uses the exact gem versions from your Gemfile.lock, avoiding version conflicts." },
     ],
-    challenge: {
+        subLessons: ["What is Gems & Bundler?","How Gems & Bundler works","Gems & Bundler syntax & usage","Practical examples of Gems & Bundler","Gems & Bundler best practices"],
+challenge: {
       title: "Gem Module Design",
       description: "Create a module `GameUtils` with a VERSION constant set to \"1.0.0\" and a class method `self.format_health(current, max)` that returns a string like \"HP: 75/100\". Call it with (75, 100) and print the result.",
       starterCode: "# Define GameUtils module\n\n# Call and print\n",
@@ -445,7 +450,8 @@ end`,
       { question: "When is method_missing called?", choices: ["When a method has bugs", "When a method is called that doesn't exist on the object", "When a method returns nil", "When a method is private"], correct: 1, explanation: "method_missing is invoked when Ruby can't find the called method anywhere in the lookup chain — it's your last chance to handle it." },
       { question: "Why should you define respond_to_missing? alongside method_missing?", choices: ["It's required by Ruby", "So respond_to? returns true for dynamically handled methods", "For performance", "To prevent recursion"], correct: 1, explanation: "Without respond_to_missing?, respond_to? returns false for your dynamic methods, confusing other code that checks capabilities." },
     ],
-    challenge: {
+        subLessons: ["What is Metaprogramming?","How Metaprogramming works","Metaprogramming syntax & usage","Practical examples of Metaprogramming","Metaprogramming best practices"],
+challenge: {
       title: "Attribute Generator",
       description: "Create a class `GameEntity` that uses define_method in a loop to create getter methods for :name, :hp, and :level from an array of symbols. Initialize all three in the constructor. Create an entity with name \"Boss\", hp 500, level 10, and print \"Boss - HP: 500, Level: 10\".",
       starterCode: "# Define GameEntity with dynamic methods\n\n# Create and print\n",

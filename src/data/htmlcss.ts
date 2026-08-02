@@ -44,7 +44,8 @@ export const htmlcssModules: Module[] = [
         explanation: "<!DOCTYPE html> declares the document type as HTML5.",
       },
     ],
-    challenge: {
+        subLessons: ["What is HTML Structure & Tags?","How HTML Structure & Tags works","HTML Structure & Tags syntax & usage","Practical examples of HTML Structure & Tags","HTML Structure & Tags best practices"],
+challenge: {
       title: "Build a Game Card",
       description:
         'Write HTML with an <h2> containing "CODELAPSE", a <p> with "Level 1 - Variables", and a <button> saying "START". Just the body content, no full document needed.',
@@ -109,7 +110,8 @@ h1 {
         explanation: "Padding is space inside the border, margin is space outside.",
       },
     ],
-    challenge: {
+        subLessons: ["What is CSS Selectors & Properties?","How CSS Selectors & Properties works","CSS Selectors & Properties syntax & usage","Practical examples of CSS Selectors & Properties","CSS Selectors & Properties best practices"],
+challenge: {
       title: "Style an Arcade Button",
       description:
         'Write CSS for a .retro-btn class: background #FFDE4D, color black, border 4px solid black, padding 16px, and font-size 14px.',
@@ -178,7 +180,8 @@ h1 {
         explanation: "gap adds consistent spacing between flex items without using margins.",
       },
     ],
-    challenge: {
+        subLessons: ["What is Flexbox Layout?","How Flexbox Layout works","Flexbox Layout syntax & usage","Practical examples of Flexbox Layout","Flexbox Layout best practices"],
+challenge: {
       title: "Stats Bar Layout",
       description:
         "Write CSS for a .stats-bar container: display flex, justify-content space-between, align-items center, gap 12px, and padding 16px.",
@@ -237,7 +240,8 @@ h1 {
         explanation: "type='password' masks the input with dots/asterisks.",
       },
     ],
-    challenge: {
+        subLessons: ["What is Forms & Inputs?","How Forms & Inputs works","Forms & Inputs syntax & usage","Practical examples of Forms & Inputs","Forms & Inputs best practices"],
+challenge: {
       title: "Player Registration Form",
       description:
         'Create a form with: a text input (id="player-name", placeholder="Your Name"), a number input (id="age", min=13), and a submit button saying "JOIN ARCADE". Include labels.',
@@ -304,7 +308,8 @@ h1 {
         explanation: "auto-fit creates as many columns as will fit in the container width.",
       },
     ],
-    challenge: {
+        subLessons: ["What is CSS Grid Layout?","How CSS Grid Layout works","CSS Grid Layout syntax & usage","Practical examples of CSS Grid Layout","CSS Grid Layout best practices"],
+challenge: {
       title: "Arcade Dashboard Grid",
       description:
         "Write CSS for a .game-grid: display grid, 3 equal columns using fr, gap of 16px, and padding 20px.",
@@ -368,7 +373,8 @@ h1 {
         explanation: "transform is GPU-accelerated and doesn't trigger layout recalculations.",
       },
     ],
-    challenge: {
+        subLessons: ["What is CSS Animations & Transitions?","How CSS Animations & Transitions works","CSS Animations & Transitions syntax & usage","Practical examples of CSS Animations & Transitions","CSS Animations & Transitions best practices"],
+challenge: {
       title: "Pulse Animation",
       description:
         "Write a @keyframes rule called 'pulse' that scales from 1 to 1.1 and back. Then apply it to .pulse-btn with 1s duration, ease timing, and infinite repeat.",

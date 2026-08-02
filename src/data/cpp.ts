@@ -37,7 +37,8 @@ int main() {
       { question: "What's the difference between a pointer and a reference?", choices: ["No difference", "References can't be null or reassigned", "Pointers are faster", "References use more memory"], correct: 1, explanation: "References are safer aliases — once bound, they always refer to the same object and can't be null." },
       { question: "What is nullptr?", choices: ["Zero integer", "A null pointer literal in modern C++", "An empty string", "A void type"], correct: 1, explanation: "nullptr is the type-safe null pointer constant introduced in C++11, replacing NULL." },
     ],
-    challenge: {
+        subLessons: ["What is Pointers & References?","How Pointers & References works","Pointers & References syntax & usage","Practical examples of Pointers & References","Pointers & References best practices"],
+challenge: {
       title: "Pointer Power-Up",
       description: "Declare an int variable `score` set to 0. Create a pointer `scorePtr` to it. Use the pointer to set score to 9001. Print score to verify.",
       starterCode: "#include <iostream>\nusing namespace std;\n\nint main() {\n  // Declare score and pointer\n\n  // Modify through pointer\n\n  // Print score\n\n  return 0;\n}",
@@ -85,7 +86,8 @@ int main() {
       { question: "What's the advantage of unique_ptr?", choices: ["Faster allocation", "Automatically frees memory when out of scope", "Allows multiple owners", "Uses stack memory"], correct: 1, explanation: "unique_ptr automatically calls delete when it goes out of scope — no leaks possible!" },
       { question: "Which delete form is for arrays?", choices: ["delete", "delete[]", "free()", "remove[]"], correct: 1, explanation: "delete[] must be used for arrays allocated with new[] — it calls destructors for each element." },
     ],
-    challenge: {
+        subLessons: ["What is Dynamic Memory?","How Dynamic Memory works","Dynamic Memory syntax & usage","Practical examples of Dynamic Memory","Dynamic Memory best practices"],
+challenge: {
       title: "Smart Inventory",
       description: "Create a unique_ptr<int> called `gold` initialized to 500 using make_unique. Print the value. Then reassign it to a new value 1000 using *gold = 1000. Print again.",
       starterCode: "#include <iostream>\n#include <memory>\nusing namespace std;\n\nint main() {\n  // Create unique_ptr\n\n  // Print value\n\n  // Reassign value\n\n  // Print again\n\n  return 0;\n}",
@@ -142,7 +144,8 @@ delete e;  // virtual destructor ensures proper cleanup`,
       { question: "What does 'virtual' enable?", choices: ["Static dispatch", "Runtime polymorphism", "Multiple inheritance", "Template specialization"], correct: 1, explanation: "Virtual functions enable dynamic dispatch — the correct override is called based on actual object type." },
       { question: "What does '= 0' after a virtual method mean?", choices: ["Default implementation", "Pure virtual — makes the class abstract", "Returns zero", "Disables the method"], correct: 1, explanation: "Pure virtual functions have no implementation — the class becomes abstract and can't be instantiated." },
     ],
-    challenge: {
+        subLessons: ["What is Classes & OOP?","How Classes & OOP works","Classes & OOP syntax & usage","Practical examples of Classes & OOP","Classes & OOP best practices"],
+challenge: {
       title: "Polymorphic Enemies",
       description: "Create an abstract base class `Monster` with a pure virtual method `attack()` returning string. Create `Goblin` that returns \"Goblin slashes!\". Create an instance via base pointer and print attack().",
       starterCode: "#include <iostream>\n#include <string>\nusing namespace std;\n\n// Define abstract Monster class\n\n// Define Goblin subclass\n\n// Create and use\n",
@@ -197,7 +200,8 @@ int main() {
       { question: "What's the difference between map and unordered_map?", choices: ["No difference", "map is sorted, unordered_map uses hashing", "unordered_map is slower", "map uses less memory"], correct: 1, explanation: "map keeps keys sorted (O(log n)); unordered_map uses a hash table (O(1) average)." },
       { question: "What do iterators provide?", choices: ["Memory management", "A generic way to traverse any container", "Type checking", "Thread safety"], correct: 1, explanation: "Iterators abstract container traversal — algorithms work with any container through iterators." },
     ],
-    challenge: {
+        subLessons: ["What is STL Containers?","How STL Containers works","STL Containers syntax & usage","Practical examples of STL Containers","STL Containers best practices"],
+challenge: {
       title: "Sorted Leaderboard",
       description: "Create a vector<int> with scores {42, 99, 67, 88, 15}. Sort it in descending order. Print the top score (first element).",
       starterCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n  // Create vector\n\n  // Sort descending\n\n  // Print top score\n\n  return 0;\n}",
@@ -254,7 +258,8 @@ int main() {
       { question: "What is template specialization?", choices: ["Making templates faster", "Custom implementation for a specific type", "Using multiple templates", "Default template arguments"], correct: 1, explanation: "Specialization lets you provide a different implementation for specific types." },
       { question: "Can templates have non-type parameters?", choices: ["No, only types", "Yes, like int Size", "Only in C++20", "Only for classes"], correct: 1, explanation: "Templates can have non-type parameters like integers, used for compile-time constants (e.g., array sizes)." },
     ],
-    challenge: {
+        subLessons: ["What is Templates?","How Templates works","Templates syntax & usage","Practical examples of Templates","Templates best practices"],
+challenge: {
       title: "Template Pair",
       description: "Create a class template `Pair<T, U>` that holds two values of potentially different types. Add a method `first()` and `second()`. Create a Pair<string, int> with (\"Level\", 42) and print both values.",
       starterCode: "#include <iostream>\n#include <string>\nusing namespace std;\n\n// Define Pair template class\n\n\nint main() {\n  // Create and print\n\n  return 0;\n}",
@@ -316,7 +321,8 @@ int main() {
       { question: "What does std::move do?", choices: ["Physically moves memory", "Casts to an rvalue reference to enable move semantics", "Deletes the source", "Copies with optimization"], correct: 1, explanation: "std::move casts to && (rvalue reference), signaling the object can be 'moved from' (resources transferred)." },
       { question: "Why set moved-from pointer to nullptr?", choices: ["Performance", "To prevent double-delete in the destructor", "Style preference", "Compiler requires it"], correct: 1, explanation: "After moving, the source destructor still runs — if the pointer isn't nulled, it would delete transferred memory!" },
     ],
-    challenge: {
+        subLessons: ["What is RAII & Move Semantics?","How RAII & Move Semantics works","RAII & Move Semantics syntax & usage","Practical examples of RAII & Move Semantics","RAII & Move Semantics best practices"],
+challenge: {
       title: "Resource Guard",
       description: "Create a class `FileGuard` that prints \"File opened\" in the constructor and \"File closed\" in the destructor. Create an instance inside a scope block {} so the destructor fires automatically. Print \"Done\" after the block.",
       starterCode: "#include <iostream>\nusing namespace std;\n\n// Define FileGuard class\n\n\nint main() {\n  // Create scope block\n\n  // Print Done\n\n  return 0;\n}",

@@ -49,7 +49,8 @@ console.error("Game over!");`,
         explanation: "Template literals require backtick characters (`).",
       },
     ],
-    challenge: {
+        subLessons: ["What is Console & Output?","How Console & Output works","Console & Output syntax & usage","Practical examples of Console & Output","Console & Output best practices"],
+challenge: {
       title: "Welcome Message",
       description:
         "Create a variable `game` set to \"Arcade Quest\". Use console.log with a template literal to output: \"Now playing: Arcade Quest\"",
@@ -117,7 +118,8 @@ Boolean(""); // false`,
         explanation: "The + operator with a string triggers concatenation, so \"5\" + 3 becomes \"53\".",
       },
     ],
-    challenge: {
+        subLessons: ["What is Variables & Types?","How Variables & Types works","Variables & Types syntax & usage","Practical examples of Variables & Types","Variables & Types best practices"],
+challenge: {
       title: "Player Stats Setup",
       description:
         "Declare a const `GAME_TITLE` set to \"CodeLapse\", a let `playerHP` set to 100, and log them in a template literal: \"CodeLapse - HP: 100\".",
@@ -201,7 +203,8 @@ switch (rank) {
         explanation: "Without break, execution falls through to subsequent cases until a break is hit.",
       },
     ],
-    challenge: {
+        subLessons: ["What is Operators & Conditionals?","How Operators & Conditionals works","Operators & Conditionals syntax & usage","Practical examples of Operators & Conditionals","Operators & Conditionals best practices"],
+challenge: {
       title: "Rank Calculator",
       description:
         "Given `const score = 85`, use if/else to assign a `rank` variable: 90+ = \"S\", 80+ = \"A\", 70+ = \"B\", else \"C\". Log the rank.",
@@ -266,7 +269,8 @@ console.log(found); // "Goblin"`,
         explanation: "find() returns undefined if no element passes the test function.",
       },
     ],
-    challenge: {
+        subLessons: ["What is Arrays & Methods?","How Arrays & Methods works","Arrays & Methods syntax & usage","Practical examples of Arrays & Methods","Arrays & Methods best practices"],
+challenge: {
       title: "Quest Log Manager",
       description:
         "Create an array `quests` with [\"Slay Dragon\", \"Find Gem\", \"Save Town\"]. Use .filter() to keep only quests containing \"a\" (case-sensitive). Log the length of the filtered result.",
@@ -349,7 +353,8 @@ while (countdown > 0) {
         explanation: "forEach executes a function but returns nothing. map returns a new transformed array.",
       },
     ],
-    challenge: {
+        subLessons: ["What is Loops & Iteration?","How Loops & Iteration works","Loops & Iteration syntax & usage","Practical examples of Loops & Iteration","Loops & Iteration best practices"],
+challenge: {
       title: "Power Counter",
       description:
         "Use a for loop to sum all numbers from 1 to 5 (inclusive) into a variable `total`. Then log the total.",
@@ -423,7 +428,8 @@ console.log(calcXP(200, 1.5)); // 300`,
         explanation: "Default parameters provide a fallback value when the argument is undefined or not provided.",
       },
     ],
-    challenge: {
+        subLessons: ["What is Functions & Arrow Functions?","How Functions & Arrow Functions works","Functions & Arrow Functions syntax & usage","Practical examples of Functions & Arrow Functions","Functions & Arrow Functions best practices"],
+challenge: {
       title: "Damage Calculator",
       description:
         "Write an arrow function `calcDamage` that takes `weapon` (number) and `critical` (boolean, default false). If critical is true, return weapon * 2.5, else return weapon. Call with (80, true) and log result.",
@@ -498,7 +504,8 @@ console.log(\`\${name} leveled up to \${upgraded.level}!\`);`,
         explanation: "Computed property names let you use a variable or expression as the key: { [expr]: value }.",
       },
     ],
-    challenge: {
+        subLessons: ["What is Objects & Destructuring?","How Objects & Destructuring works","Objects & Destructuring syntax & usage","Practical examples of Objects & Destructuring","Objects & Destructuring best practices"],
+challenge: {
       title: "Character Builder",
       description:
         "Create an object `hero` with properties: name (\"Pixel\"), role (\"Mage\"), hp (120). Use destructuring to extract name and hp, then log: \"Pixel has 120 HP\".",
@@ -577,7 +584,8 @@ item.remove();`,
         explanation: "classList.add() adds a class. classList also has remove(), toggle(), and contains().",
       },
     ],
-    challenge: {
+        subLessons: ["What is DOM Manipulation?","How DOM Manipulation works","DOM Manipulation syntax & usage","Practical examples of DOM Manipulation","DOM Manipulation best practices"],
+challenge: {
       title: "Click Counter",
       description:
         "Simulate a click counter: declare `let count = 0`, write a function `handleClick` that increments count and logs \"Count: X\". Call handleClick() once.",
@@ -659,7 +667,8 @@ const data = await response.json();`,
         explanation: "Promise.all() takes an array of promises and resolves when all succeed, or rejects on the first failure.",
       },
     ],
-    challenge: {
+        subLessons: ["What is Async & Promises?","How Async & Promises works","Async & Promises syntax & usage","Practical examples of Async & Promises","Async & Promises best practices"],
+challenge: {
       title: "Quest Loader",
       description:
         "Write an async function `loadQuest` that awaits a Promise resolving to \"Epic Quest Loaded\" after 100ms. Log the result. Use the provided delay helper.",
@@ -753,7 +762,8 @@ console.log(w.health); // 150`,
         explanation: "Static methods are called on the class itself (MyClass.method()), not on instances.",
       },
     ],
-    challenge: {
+        subLessons: ["What is Classes & OOP?","How Classes & OOP works","Classes & OOP syntax & usage","Practical examples of Classes & OOP","Classes & OOP best practices"],
+challenge: {
       title: "RPG Entity System",
       description:
         "Create a class `Entity` with a constructor taking `name` and `hp`. Add a method `status()` that returns \"[name]: [hp] HP\". Create an instance with (\"Dragon\", 200) and log its status.",
@@ -837,7 +847,8 @@ export { default as Player } from './player.js';`,
         explanation: "Bundlers resolve imports, combine files, tree-shake unused code, and produce optimized output.",
       },
     ],
-    challenge: {
+        subLessons: ["What is Modules & Tooling?","How Modules & Tooling works","Modules & Tooling syntax & usage","Practical examples of Modules & Tooling","Modules & Tooling best practices"],
+challenge: {
       title: "Module Simulator",
       description:
         "Simulate module exports: create an object `MathModule` with properties `PI` (3.14159) and method `circleArea(r)` that returns PI * r * r. Destructure PI and circleArea from it, then log circleArea(10) rounded to 2 decimal places.",
@@ -940,7 +951,8 @@ ref.deref(); // { data: "important" }`,
         explanation: "yield pauses the generator and produces a value. Execution resumes on the next .next() call.",
       },
     ],
-    challenge: {
+        subLessons: ["What is Advanced Patterns?","How Advanced Patterns works","Advanced Patterns syntax & usage","Practical examples of Advanced Patterns","Advanced Patterns best practices"],
+challenge: {
       title: "Closure Factory",
       description:
         "Create a function `createMultiplier(factor)` that returns a new function which multiplies any number by factor. Create a `triple` function using createMultiplier(3), then log triple(7).",

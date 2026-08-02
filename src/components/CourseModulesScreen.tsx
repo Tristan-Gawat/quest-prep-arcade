@@ -39,16 +39,77 @@ export default function CourseModulesScreen({ state, updateState, navigate }: Co
   const filteredModules = filter === "all" ? allModules : allModules.filter((m) => m.tier === filter);
   const tiers = [...new Set(allModules.map((m) => m.tier))];
 
+  const [selectedModule, setSelectedModule] = useState<Module | null>(null);
+  const [selectedIndex, setSelectedIndex] = useState<number>(0);
+
   const handleSelectModule = (mod: Module, index: number) => {
-    updateState({
-      currentModuleIndex: index,
-      currentScreen: "lesson",
-    });
+    setSelectedModule(mod);
+    setSelectedIndex(index);
   };
 
   const completed = allModules.filter((m) => state.completedModules.includes(m.id)).length;
   const total = allModules.length;
   const progress = total > 0 ? Math.min((completed / total) * 100, 100) : 0;
+
+  // If a module is selected, show its sub-lessons
+  if (selectedModule) {
+    const subLessons = selectedModule.subLessons || [selectedModule.lesson.title];
+    return (
+      <div className="flex-1 p-4 md:p-8 overflow-y-auto relative z-10">
+        <div className="max-w-4xl mx-auto fade-in">
+          <button onClick={() => setSelectedModule(null)} className="text-xs text-text-muted hover:text-text-primary mb-4 cursor-pointer">
+            ← Back to modules
+          </button>
+
+          <div className="flex items-center gap-3 mb-2">
+            <span className="text-2xl">{course.icon}</span>
+            <div>
+              <h2 className="text-lg md:text-xl font-semibold text-text-primary">{selectedModule.title}</h2>
+              <p className="text-xs text-text-muted">{selectedModule.tier} • {course.name}</p>
+            </div>
+          </div>
+          <p className="text-sm text-text-secondary mb-6">{selectedModule.lesson.concept}</p>
+
+          {/* Sub-lesson list */}
+          <div className="space-y-2 mb-6">
+            {subLessons.map((sub, i) => (
+              <button
+                key={i}
+                onClick={() => {
+                  updateState({ currentModuleIndex: selectedIndex, currentScreen: "lesson" });
+                }}
+                className="w-full card p-4 text-left flex items-center gap-4 hover:border-accent-blue/40 transition-all cursor-pointer group"
+              >
+                <span className="w-7 h-7 flex items-center justify-center rounded-full bg-bg-elevated text-xs text-text-muted group-hover:bg-accent-blue/10 group-hover:text-accent-blue transition-colors">
+                  {i + 1}
+                </span>
+                <span className="text-sm text-text-primary group-hover:text-accent-blue transition-colors">
+                  {sub}
+                </span>
+                <span className="ml-auto text-text-muted group-hover:text-accent-blue text-sm">→</span>
+              </button>
+            ))}
+          </div>
+
+          {/* Quick actions */}
+          <div className="flex gap-3">
+            <button
+              onClick={() => updateState({ currentModuleIndex: selectedIndex, currentScreen: "quiz" })}
+              className="btn-secondary text-sm"
+            >
+              📝 Take Quiz
+            </button>
+            <button
+              onClick={() => updateState({ currentModuleIndex: selectedIndex, currentScreen: "challenge" })}
+              className="btn-secondary text-sm"
+            >
+              🖥️ Code Challenge
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex-1 p-4 md:p-8 overflow-y-auto relative z-10">

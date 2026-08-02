@@ -48,7 +48,8 @@ $hasStaff = in_array("Staff", $weapons); // true
       { question: "What type is a PHP associative array?", choices: ["A linked list", "An ordered map with string keys", "A hash table only", "A typed dictionary"], correct: 1, explanation: "PHP associative arrays are ordered maps where keys can be strings, making them extremely versatile." },
       { question: "What does count() return for an array?", choices: ["The memory size", "The number of elements", "The last index", "The max value"], correct: 1, explanation: "count() returns the total number of elements in the array." },
     ],
-    challenge: {
+        subLessons: ["What is Variables & Arrays?","How Variables & Arrays works","Variables & Arrays syntax & usage","Practical examples of Variables & Arrays","Variables & Arrays best practices"],
+challenge: {
       title: "Player Stats Array",
       description: "Create an associative array $player with keys 'name' => 'Hero', 'level' => 10, 'xp' => 2500. Print \"Hero is level 10 with 2500 XP\".",
       starterCode: "<?php\n// Create player array\n\n// Print player info\n?>",
@@ -104,7 +105,8 @@ echo $addBonus(100); // 110
       { question: "What is the syntax for an arrow function in PHP?", choices: ["(x) => x * 2", "fn($x) => $x * 2", "=> ($x) $x * 2", "arrow($x) { $x * 2 }"], correct: 1, explanation: "Arrow functions use fn keyword: fn($param) => expression — they auto-capture outer scope variables." },
       { question: "What does ...$args do in a function parameter?", choices: ["Spreads an array", "Accepts variable number of arguments", "Makes args optional", "Creates a reference"], correct: 1, explanation: "The splat operator ... collects all remaining arguments into an array (variadic parameters)." },
     ],
-    challenge: {
+        subLessons: ["What is Functions?","How Functions works","Functions syntax & usage","Practical examples of Functions","Functions best practices"],
+challenge: {
       title: "Power Calculator",
       description: "Create a function `powerUp(string $name, int $level, int $boost = 5): string` that returns \"{name} powered up to level {level + boost}!\". Call it with (\"Hero\", 10) and print the result.",
       starterCode: "<?php\n// Define powerUp function\n\n// Call and print\n?>",
@@ -184,7 +186,8 @@ $warrior->heal(20);
       { question: "What does 'abstract' mean for a class?", choices: ["It cannot be instantiated directly", "It has no methods", "It's automatically static", "It cannot have constructors"], correct: 0, explanation: "Abstract classes cannot be instantiated — they serve as blueprints that must be extended." },
       { question: "How do you call a parent constructor in PHP?", choices: ["super()", "parent::__construct()", "this.parent()", "$parent->construct()"], correct: 1, explanation: "Use parent::__construct() to call the parent class constructor from the child." },
     ],
-    challenge: {
+        subLessons: ["What is Object-Oriented PHP?","How Object-Oriented PHP works","Object-Oriented PHP syntax & usage","Practical examples of Object-Oriented PHP","Object-Oriented PHP best practices"],
+challenge: {
       title: "RPG Class System",
       description: "Create a class `Mage` with private property $mana (int), constructor setting name and mana, and a method `castSpell(): string` that returns \"{name} casts Fireball! (Mana: {mana})\". Create a mage named \"Wizard\" with 80 mana and print castSpell().",
       starterCode: "<?php\n// Define Mage class\n\n// Create instance and print\n?>",
@@ -247,7 +250,8 @@ try {
       { question: "What does PDO::FETCH_ASSOC return?", choices: ["Numeric array", "Associative array with column names as keys", "Object instance", "Raw SQL string"], correct: 1, explanation: "FETCH_ASSOC returns each row as an associative array indexed by column name." },
       { question: "What happens if you call rollBack() in a transaction?", choices: ["Saves partial changes", "Undoes all operations since beginTransaction()", "Deletes the database", "Restarts the connection"], correct: 1, explanation: "rollBack() undoes ALL changes made since beginTransaction() — it's all-or-nothing!" },
     ],
-    challenge: {
+        subLessons: ["What is Database Queries (PDO)?","How Database Queries (PDO) works","Database Queries (PDO) syntax & usage","Practical examples of Database Queries (PDO)","Database Queries (PDO) best practices"],
+challenge: {
       title: "Safe Query Builder",
       description: "Write a prepared statement that selects all players with a score above a variable $minScore (set to 1000). Use a named placeholder :min_score. Show the prepare and execute calls, then fetch all results as associative arrays. Print \"Found: \" followed by the count of results.",
       starterCode: "<?php\n// Assume $pdo is already connected\n$minScore = 1000;\n\n// Prepare and execute query\n\n// Fetch results and print count\n?>",
@@ -313,7 +317,8 @@ session_regenerate_id(true);
       { question: "Why call session_regenerate_id()?", choices: ["To improve performance", "To prevent session fixation attacks", "To create a new session", "To delete old sessions"], correct: 1, explanation: "Regenerating the session ID prevents attackers from using a known session ID to hijack sessions." },
       { question: "What does the 'httponly' cookie flag do?", choices: ["Only works on HTTP sites", "Prevents JavaScript from accessing the cookie", "Encrypts the cookie", "Makes it expire on close"], correct: 1, explanation: "httponly prevents client-side JavaScript from reading the cookie — protecting against XSS attacks!" },
     ],
-    challenge: {
+        subLessons: ["What is Sessions & Cookies?","How Sessions & Cookies works","Sessions & Cookies syntax & usage","Practical examples of Sessions & Cookies","Sessions & Cookies best practices"],
+challenge: {
       title: "Login Session Manager",
       description: "Write code that starts a session, checks if 'login_count' exists in $_SESSION. If it does, increment it. If not, set it to 1. Print \"Login count: X\" where X is the current count. For the expected output, assume this is the 3rd visit.",
       starterCode: "<?php\n// Start session\n\n// Check and update login count\n\n// Print login count\n?>",
@@ -390,7 +395,8 @@ function processId(int|string $id): string {
       { question: "How does match differ from switch?", choices: ["match uses loose comparison", "match uses strict comparison and returns a value", "match doesn't need break", "Both B and C are correct"], correct: 3, explanation: "match uses strict === comparison, returns a value, and doesn't fall through — no break needed!" },
       { question: "What does the nullsafe operator (?->) do?", choices: ["Throws an exception on null", "Returns null if any part of the chain is null", "Creates a null value", "Checks types at runtime"], correct: 1, explanation: "The nullsafe operator short-circuits to null if any intermediate value is null — no more nested if-null checks!" },
     ],
-    challenge: {
+        subLessons: ["What is Modern PHP 8 Features?","How Modern PHP 8 Features works","Modern PHP 8 Features syntax & usage","Practical examples of Modern PHP 8 Features","Modern PHP 8 Features best practices"],
+challenge: {
       title: "Modern Game Entity",
       description: "Create a class `GameItem` using constructor promotion with readonly string $name, int $power, and string $rarity = 'common'. Use a match expression to return an emoji based on rarity: 'legendary' => '⭐', 'rare' => '💎', default => '📦'. Print \"{emoji} {name} (Power: {power})\" for a legendary item named \"Excalibur\" with power 99.",
       starterCode: "<?php\n// Define GameItem with constructor promotion\n\n// Create legendary item and print\n?>",

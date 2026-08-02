@@ -44,7 +44,8 @@ int main() {
       { question: "What does sizeof() return?", choices: ["The value of a variable", "The number of bytes a type uses", "The address of a variable", "The maximum value of a type"], correct: 1, explanation: "sizeof() returns the size in bytes of a type or variable at compile time." },
       { question: "What is the result of integer division 7/2 in C?", choices: ["3.5", "3", "4", "Error"], correct: 1, explanation: "Integer division truncates the decimal — both operands are int, so the result is int (3)." },
     ],
-    challenge: {
+        subLessons: ["What is Variables & Types?","How Variables & Types works","Variables & Types syntax & usage","Practical examples of Variables & Types","Variables & Types best practices"],
+challenge: {
       title: "Type Explorer",
       description: "Declare an int called 'health' set to 100, a float called 'armor' set to 75.5, and a char called 'rank' set to 'S'. Print them in the format: \"Health: 100, Armor: 75.50, Rank: S\".",
       starterCode: "#include <stdio.h>\n\nint main() {\n  // Declare variables here\n\n  // Print them\n\n  return 0;\n}",
@@ -95,7 +96,8 @@ int main() {
       { question: "What does *ptr do when ptr is a pointer?", choices: ["Gets the address of ptr", "Accesses the value at the address ptr holds", "Declares a new pointer", "Multiplies ptr"], correct: 1, explanation: "Dereferencing (*ptr) accesses the value stored at the memory address the pointer holds." },
       { question: "What is a NULL pointer?", choices: ["A pointer to zero", "A pointer that doesn't point to valid memory", "An uninitialized variable", "A pointer to the stack"], correct: 1, explanation: "NULL indicates a pointer intentionally points to nothing — always check before dereferencing!" },
     ],
-    challenge: {
+        subLessons: ["What is Pointers?","How Pointers works","Pointers syntax & usage","Practical examples of Pointers","Pointers best practices"],
+challenge: {
       title: "Swap with Pointers",
       description: "Write a function `swap(int *a, int *b)` that swaps two integers using pointers. Swap variables x=10 and y=20, then print \"x=20, y=10\".",
       starterCode: "#include <stdio.h>\n\n// Define swap function\n\nint main() {\n  int x = 10, y = 20;\n\n  // Call swap\n\n  // Print result\n\n  return 0;\n}",
@@ -155,7 +157,8 @@ int main() {
       { question: "What happens if you don't call free()?", choices: ["Nothing, the OS handles it", "Memory leak — memory is never returned", "The program crashes immediately", "The variable is auto-deleted"], correct: 1, explanation: "Forgetting to free causes memory leaks — the memory stays allocated until the program ends." },
       { question: "What should you check after calling malloc?", choices: ["If the value is zero", "If the returned pointer is NULL", "If sizeof is correct", "If the stack has space"], correct: 1, explanation: "malloc returns NULL if allocation fails — always check before using the pointer!" },
     ],
-    challenge: {
+        subLessons: ["What is Dynamic Memory Allocation?","How Dynamic Memory Allocation works","Dynamic Memory Allocation syntax & usage","Practical examples of Dynamic Memory Allocation","Dynamic Memory Allocation best practices"],
+challenge: {
       title: "Dynamic Inventory",
       description: "Dynamically allocate an array of 3 integers using malloc. Set values to 10, 25, 50. Print their sum (85). Then free the memory.",
       starterCode: "#include <stdio.h>\n#include <stdlib.h>\n\nint main() {\n  // Allocate memory for 3 ints\n\n  // Set values\n\n  // Calculate and print sum\n\n  // Free memory\n\n  return 0;\n}",
@@ -215,7 +218,8 @@ int main() {
       { question: "What does typedef do with structs?", choices: ["Allocates memory", "Creates a type alias for cleaner syntax", "Makes the struct immutable", "Adds methods to the struct"], correct: 1, explanation: "typedef creates a new name for the struct type so you don't have to write 'struct' every time." },
       { question: "How are structs passed to functions by default?", choices: ["By reference", "By value (copy)", "By pointer", "By name"], correct: 1, explanation: "Structs are passed by value (copied) unless you explicitly pass a pointer for efficiency." },
     ],
-    challenge: {
+        subLessons: ["What is Structs?","How Structs works","Structs syntax & usage","Practical examples of Structs","Structs best practices"],
+challenge: {
       title: "Game Item Struct",
       description: "Create a typedef struct `Item` with fields: name (char[30]), damage (int), and weight (float). Create an item called \"Fire Sword\" with damage 45 and weight 3.2. Print \"Fire Sword: 45 dmg, 3.2 lbs\".",
       starterCode: "#include <stdio.h>\n#include <string.h>\n\n// Define Item struct\n\nint main() {\n  // Create and initialize item\n\n  // Print item details\n\n  return 0;\n}",
@@ -276,7 +280,8 @@ int main() {
       { question: "What is the difference between \"w\" and \"a\" modes?", choices: ["w reads, a writes", "w overwrites the file, a appends to the end", "w is binary, a is text", "No difference"], correct: 1, explanation: "\"w\" creates/truncates the file; \"a\" opens for appending at the end without erasing existing content." },
       { question: "Why must you call fclose()?", choices: ["To save the filename", "To flush buffers and release system resources", "To delete the file", "It's optional in modern C"], correct: 1, explanation: "fclose flushes unwritten data to disk and frees the file descriptor for the OS." },
     ],
-    challenge: {
+        subLessons: ["What is File I/O?","How File I/O works","File I/O syntax & usage","Practical examples of File I/O","File I/O best practices"],
+challenge: {
       title: "Score Logger",
       description: "Write a program that opens a file \"scores.txt\" in write mode, writes three lines: \"Level1: 500\", \"Level2: 750\", \"Level3: 1200\", then closes it. Reopen in read mode, read all lines with fgets, and print them. Print the total as \"Total: 2450\".",
       starterCode: "#include <stdio.h>\n\nint main() {\n  // Write scores to file\n\n  // Read and print scores\n\n  // Print total\n\n  return 0;\n}",
@@ -334,7 +339,8 @@ int main() {
       { question: "Why wrap macro arguments in parentheses?", choices: ["For readability", "To prevent operator precedence bugs", "Required by C standard", "To make them constants"], correct: 1, explanation: "Without parentheses, SQUARE(1+2) becomes (1+2*1+2)=5 instead of ((1+2)*(1+2))=9!" },
       { question: "What does #ifdef check?", choices: ["If a variable is defined", "If a macro is defined", "If a file exists", "If a function is declared"], correct: 1, explanation: "#ifdef checks if a macro has been defined with #define — great for conditional compilation." },
     ],
-    challenge: {
+        subLessons: ["What is Preprocessor Directives?","How Preprocessor Directives works","Preprocessor Directives syntax & usage","Practical examples of Preprocessor Directives","Preprocessor Directives best practices"],
+challenge: {
       title: "Config Macros",
       description: "Define a macro MAX_PLAYERS as 4, a macro GAME_VERSION as \"2.0\", and a function-like macro DOUBLE(x) that doubles a value. Print: \"Version 2.0 - Max Players: 4 - Double(5): 10\".",
       starterCode: "#include <stdio.h>\n\n// Define macros\n\nint main() {\n  // Print using macros\n\n  return 0;\n}",

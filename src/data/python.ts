@@ -44,7 +44,8 @@ print("A", "B", "C", sep="-")`,
         explanation: "Python is case-sensitive and print requires parentheses in Python 3.",
       },
     ],
-    challenge: {
+        subLessons: ["What is Hello World & Print?","How Hello World & Print works","Hello World & Print syntax & usage","Practical examples of Hello World & Print","Hello World & Print best practices"],
+challenge: {
       title: "First Output",
       description:
         'Print exactly: "Hello, Python!" on the first line and "I am learning to code!" on the second line.',
@@ -104,7 +105,8 @@ print(score)  # 150`,
         explanation: "Variable names can't start with numbers, use hyphens, or be reserved keywords.",
       },
     ],
-    challenge: {
+        subLessons: ["What is Variables & Data Types?","How Variables & Data Types works","Variables & Data Types syntax & usage","Practical examples of Variables & Data Types","Variables & Data Types best practices"],
+challenge: {
       title: "Create Your Player Card",
       description:
         'Create variables: player_name set to "Hero", level set to 1, and xp set to 0.0. Print each variable on its own line.',
@@ -164,7 +166,8 @@ print(template.format(name, 100))`,
         explanation: "int() converts a string to an integer value.",
       },
     ],
-    challenge: {
+        subLessons: ["What is Input & String Formatting?","How Input & String Formatting works","Input & String Formatting syntax & usage","Practical examples of Input & String Formatting","Input & String Formatting best practices"],
+challenge: {
       title: "Greeting Generator",
       description:
         'Create variables name="Arcade" and xp=500. Use an f-string to print: "Welcome to CodeLapse, Arcade! You have 500 XP."',
@@ -229,7 +232,8 @@ if has_key and level >= 5:
         explanation: "Python uses indentation (typically 4 spaces) to define code blocks.",
       },
     ],
-    challenge: {
+        subLessons: ["What is Conditionals?","How Conditionals works","Conditionals syntax & usage","Practical examples of Conditionals","Conditionals best practices"],
+challenge: {
       title: "Rank Calculator",
       description:
         "Write a program that assigns a rank based on XP: 1000+ = 'ELITE', 500-999 = 'CHAMPION', 100-499 = 'ROOKIE', below 100 = 'BEGINNER'. Set xp=750 and print the rank.",
@@ -294,7 +298,8 @@ for i in range(1, 11):
         explanation: "continue skips the rest of the current iteration and moves to the next one.",
       },
     ],
-    challenge: {
+        subLessons: ["What is Loops?","How Loops works","Loops syntax & usage","Practical examples of Loops","Loops best practices"],
+challenge: {
       title: "XP Counter",
       description:
         "Use a for loop to calculate total XP from quest rewards: [100, 250, 75, 300, 150]. Print the total.",
@@ -360,7 +365,8 @@ hp, mp, stamina = get_stats()`,
         explanation: "Default parameters have a preset value used when the caller doesn't provide one.",
       },
     ],
-    challenge: {
+        subLessons: ["What is Functions?","How Functions works","Functions syntax & usage","Practical examples of Functions","Functions best practices"],
+challenge: {
       title: "Power-Up Function",
       description:
         "Write a function called power_up that takes base_stat and boost (default=10). It should return base_stat + boost. Call it with (50, 25) and print the result.",
@@ -427,7 +433,8 @@ print(high)  # [30, 40, 50]`,
         explanation: "Slicing [1:3] returns elements at index 1 and 2 (end index excluded).",
       },
     ],
-    challenge: {
+        subLessons: ["What is Lists & Tuples?","How Lists & Tuples works","Lists & Tuples syntax & usage","Practical examples of Lists & Tuples","Lists & Tuples best practices"],
+challenge: {
       title: "Inventory Manager",
       description:
         'Create a list called inventory with ["health_potion", "mana_potion", "sword"]. Append "shield", remove "mana_potion", then use a list comprehension to create upper_inv containing each item in uppercase. Print the length of upper_inv.',
@@ -499,7 +506,8 @@ print(a | b)  # union: {1, 2, 3, 4}`,
         explanation: ".items() returns all key-value pairs as tuples.",
       },
     ],
-    challenge: {
+        subLessons: ["What is Dictionaries & Sets?","How Dictionaries & Sets works","Dictionaries & Sets syntax & usage","Practical examples of Dictionaries & Sets","Dictionaries & Sets best practices"],
+challenge: {
       title: "Character Stats",
       description:
         'Create a dictionary called stats with keys "hp" (100), "mp" (50), "attack" (25). Add a new key "defense" with value 15. Print the total of all values in the dictionary.',
@@ -574,7 +582,8 @@ class InsufficientMana(Exception):
         explanation: "Python uses 'raise' to throw/raise an exception manually.",
       },
     ],
-    challenge: {
+        subLessons: ["What is Error Handling?","How Error Handling works","Error Handling syntax & usage","Practical examples of Error Handling","Error Handling best practices"],
+challenge: {
       title: "Safe Division",
       description:
         "Write a function safe_divide(a, b) that returns a/b. If b is zero, catch the ZeroDivisionError and return \"Cannot divide by zero\". Call it with (10, 0) and print the result.",
@@ -646,7 +655,8 @@ with open("data.csv", "w", newline="") as f:
         explanation: "'a' (append) mode adds new content to the end without erasing existing data.",
       },
     ],
-    challenge: {
+        subLessons: ["What is File I/O?","How File I/O works","File I/O syntax & usage","Practical examples of File I/O","File I/O best practices"],
+challenge: {
       title: "Save Game Data",
       description:
         "Write a function save_scores(filename, scores) that takes a filename and a list of score integers. Write each score on its own line. Then read the file back and print the total of all scores. Use scores=[85, 92, 78].",
@@ -726,7 +736,8 @@ print(wizard)  # Gandalf (HP: 80)`,
         explanation: "In Python, you inherit by putting the parent class in parentheses: class Child(Parent).",
       },
     ],
-    challenge: {
+        subLessons: ["What is Object-Oriented Programming?","How Object-Oriented Programming works","Object-Oriented Programming syntax & usage","Practical examples of Object-Oriented Programming","Object-Oriented Programming best practices"],
+challenge: {
       title: "RPG Character Class",
       description:
         "Create a class called Warrior with __init__ taking name and strength (default=10). Add a method power_attack() that returns strength * 2. Add a __str__ method returning \"{name} (STR: {strength})\". Create a warrior named \"Thor\" with strength 15, print the warrior and their power_attack().",
@@ -810,7 +821,8 @@ print(double(5))  # 10`,
         explanation: "A closure is a nested function that captures and remembers variables from its enclosing scope.",
       },
     ],
-    challenge: {
+        subLessons: ["What is Decorators & Generators?","How Decorators & Generators works","Decorators & Generators syntax & usage","Practical examples of Decorators & Generators","Decorators & Generators best practices"],
+challenge: {
       title: "Timer Decorator",
       description:
         "Write a decorator called repeat(n) that makes a function run n times. Apply @repeat(3) to a function called say_hello() that prints \"Hello!\". The output should be \"Hello!\" printed 3 times.",

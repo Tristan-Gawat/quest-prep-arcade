@@ -32,6 +32,7 @@ export interface Module {
   lesson: Lesson;
   quiz: QuizQuestion[];
   challenge: CodeChallenge;
+  subLessons?: string[]; // Multiple sub-topics within this module
 }
 
 export interface Course {

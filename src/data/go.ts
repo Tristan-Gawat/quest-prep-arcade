@@ -44,7 +44,8 @@ func main() {
       { question: "What happens if main() exits while goroutines are running?", choices: ["They finish in background", "They are immediately killed", "They become threads", "They wait"], correct: 1, explanation: "When main() returns, all goroutines are terminated — use WaitGroup or channels to coordinate." },
       { question: "How much memory does a goroutine start with?", choices: ["1 MB", "A few KB (grows as needed)", "Same as OS thread", "No memory"], correct: 1, explanation: "Goroutines start with ~2-8 KB stack that grows dynamically — much lighter than OS threads!" },
     ],
-    challenge: {
+        subLessons: ["What is Goroutines?","How Goroutines works","Goroutines syntax & usage","Practical examples of Goroutines","Goroutines best practices"],
+challenge: {
       title: "Concurrent Quest Log",
       description: "Create a function `logQuest(name string, wg *sync.WaitGroup)` that prints \"Completed: [name]\". Launch 3 goroutines for quests \"Slay\", \"Find\", \"Deliver\" and wait for all to finish. Print \"All quests done!\" at the end.",
       starterCode: "package main\n\nimport (\n    \"fmt\"\n    \"sync\"\n)\n\n// Define logQuest function\n\nfunc main() {\n    // Launch goroutines and wait\n\n}",
@@ -103,7 +104,8 @@ func main() {
       { question: "How do you signal no more values on a channel?", choices: ["ch = nil", "close(ch)", "ch <- nil", "delete(ch)"], correct: 1, explanation: "close(ch) tells receivers no more values will be sent — range loops then exit." },
       { question: "What does 'select' do with channels?", choices: ["Filters values", "Waits on multiple channels, picks first ready", "Sorts channels", "Creates channels"], correct: 1, explanation: "select blocks until one of multiple channel operations is ready — like a switch for channels." },
     ],
-    challenge: {
+        subLessons: ["What is Channels?","How Channels works","Channels syntax & usage","Practical examples of Channels","Channels best practices"],
+challenge: {
       title: "Score Pipeline",
       description: "Create a buffered channel of int with capacity 3. Send values 10, 20, 30 into it, close it, then range over it and print each value with \"Score:\" prefix.",
       starterCode: "package main\n\nimport \"fmt\"\n\nfunc main() {\n    // Create buffered channel\n\n    // Send values and close\n\n    // Range and print\n\n}",
@@ -163,7 +165,8 @@ func main() {
       { question: "What is the empty interface (interface{})?", choices: ["An error", "Can hold any value (like any/Object)", "A nil interface", "An abstract class"], correct: 1, explanation: "interface{} (or 'any' in Go 1.18+) has no methods, so every type satisfies it." },
       { question: "What does a type assertion do?", choices: ["Validates types at compile time", "Extracts the concrete type from an interface value", "Creates a new type", "Casts primitives"], correct: 1, explanation: "Type assertions access the concrete value inside an interface: val, ok := i.(ConcreteType)." },
     ],
-    challenge: {
+        subLessons: ["What is Interfaces?","How Interfaces works","Interfaces syntax & usage","Practical examples of Interfaces","Interfaces best practices"],
+challenge: {
       title: "Shape Interface",
       description: "Define an interface `Shape` with method `Area() float64`. Implement it for `Circle` (radius float64). Create a function `printArea(s Shape)` that prints the area. Create a circle with radius 5 and print its area.",
       starterCode: "package main\n\nimport (\n    \"fmt\"\n    \"math\"\n)\n\n// Define Shape interface\n\n// Define Circle and implement Area\n\n// Define printArea function\n\nfunc main() {\n    // Create circle and print area\n\n}",
@@ -232,7 +235,8 @@ func main() {
       { question: "What are struct tags used for?", choices: ["Documentation only", "Metadata for serialization/reflection (e.g., JSON field names)", "Type constraints", "Memory alignment"], correct: 1, explanation: "Struct tags (backtick strings) provide metadata — commonly used for JSON, DB, and validation." },
       { question: "What does a pointer receiver (*Type) allow?", choices: ["Nothing special", "Modifying the struct's fields", "Multiple return values", "Concurrency"], correct: 1, explanation: "Pointer receivers (&self) can modify the struct. Value receivers work on a copy." },
     ],
-    challenge: {
+        subLessons: ["What is Structs & Embedding?","How Structs & Embedding works","Structs & Embedding syntax & usage","Practical examples of Structs & Embedding","Structs & Embedding best practices"],
+challenge: {
       title: "Embed and Extend",
       description: "Create a struct `Stats` with fields HP and MP (both int). Create a struct `Character` that embeds Stats and adds a Name field. Add a method `Info()` on Character that returns \"[Name]: HP=[HP] MP=[MP]\". Print it.",
       starterCode: "package main\n\nimport \"fmt\"\n\n// Define Stats struct\n\n// Define Character struct (embed Stats)\n\n// Add Info method\n\nfunc main() {\n    // Create character and print Info\n\n}",
@@ -290,7 +294,8 @@ func main() {
       { question: "What does the comma-ok idiom do with maps?", choices: ["Catches panics", "Checks if a key exists without panic", "Validates types", "Creates entries"], correct: 1, explanation: "val, ok := m[key] — ok is true if key exists, false otherwise. Avoids confusion with zero values." },
       { question: "What does append() return?", choices: ["Nothing, modifies in place", "A new slice (possibly with new backing array)", "An error", "The old slice"], correct: 1, explanation: "append() may allocate a new backing array if capacity is exceeded — always reassign: s = append(s, val)." },
     ],
-    challenge: {
+        subLessons: ["What is Slices & Maps?","How Slices & Maps works","Slices & Maps syntax & usage","Practical examples of Slices & Maps","Slices & Maps best practices"],
+challenge: {
       title: "Inventory Manager",
       description: "Create a map[string]int for item quantities. Add \"Potion\" -> 5, \"Arrow\" -> 20, \"Bomb\" -> 3. Use a range loop to find and print the item with the highest quantity.",
       starterCode: "package main\n\nimport \"fmt\"\n\nfunc main() {\n    // Create map\n\n    // Find max item\n\n    // Print result\n\n}",
@@ -352,7 +357,8 @@ func main() {
       { question: "What does fmt.Errorf with %w do?", choices: ["Formats and prints", "Wraps an error preserving the chain", "Creates a warning", "Logs the error"], correct: 1, explanation: "The %w verb wraps errors so errors.Is() and errors.As() can traverse the chain." },
       { question: "When should you use panic?", choices: ["For all errors", "Only for truly unrecoverable situations (programmer bugs)", "For user errors", "Never"], correct: 1, explanation: "panic is for unrecoverable bugs (nil deref, impossible state) — not for expected errors like file-not-found." },
     ],
-    challenge: {
+        subLessons: ["What is Error Handling?","How Error Handling works","Error Handling syntax & usage","Practical examples of Error Handling","Error Handling best practices"],
+challenge: {
       title: "Safe Division",
       description: "Write a function `divide(a, b float64) (float64, error)` that returns an error if b is 0. Call it with 10 and 0, handle the error and print it. Then call with 10 and 2 and print the result.",
       starterCode: "package main\n\nimport (\n    \"errors\"\n    \"fmt\"\n)\n\n// Define divide function\n\nfunc main() {\n    // Try division by zero\n\n    // Try valid division\n\n}",

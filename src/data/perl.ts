@@ -44,7 +44,8 @@ print "Next level: $next_level\\n";`,
         explanation: "Perl auto-converts '5' to numeric 5 in numeric context, so the result is 6.",
       },
     ],
-    challenge: {
+        subLessons: ["What is Scalars & Variables?","How Scalars & Variables works","Scalars & Variables syntax & usage","Practical examples of Scalars & Variables","Scalars & Variables best practices"],
+challenge: {
       title: "Hero Stats Setup",
       description:
         "Declare three scalars: $name set to 'ArcadeHero', $hp set to 100, and $score set to 0. Add 50 to $score, then print all stats in format: 'Name: ArcadeHero HP: 100 Score: 50'.",
@@ -110,7 +111,8 @@ for my $key (keys %stats) {
         explanation: "In scalar context, an array returns its count — useful for checking inventory size!",
       },
     ],
-    challenge: {
+        subLessons: ["What is Arrays & Hashes?","How Arrays & Hashes works","Arrays & Hashes syntax & usage","Practical examples of Arrays & Hashes","Arrays & Hashes best practices"],
+challenge: {
       title: "Inventory Manager",
       description:
         "Create an array @loot with ('Gold', 'Gem', 'Key'). Create a hash %prices mapping Gold=>100, Gem=>50, Key=>10. Print the price of 'Gem'.",
@@ -178,7 +180,8 @@ print "Gold count: $count\\n";  # 3`,
         explanation: "$1 holds the first parenthesized capture group match. $2 holds the second, etc.",
       },
     ],
-    challenge: {
+        subLessons: ["What is Regular Expressions?","How Regular Expressions works","Regular Expressions syntax & usage","Practical examples of Regular Expressions","Regular Expressions best practices"],
+challenge: {
       title: "Pattern Quest",
       description:
         "Given $text = 'Player scored 999 points', extract the number using a regex capture group and print it.",
@@ -253,7 +256,8 @@ close($log);`,
         explanation: "chomp() removes the trailing newline character — critical when reading files line by line.",
       },
     ],
-    challenge: {
+        subLessons: ["What is File Handling?","How File Handling works","File Handling syntax & usage","Practical examples of File Handling","File Handling best practices"],
+challenge: {
       title: "Save File Writer",
       description:
         "Open a file 'hero.txt' for writing, write 'HP:100' to it, close it. Then open it for reading, read the line, chomp it, and print it.",
@@ -326,7 +330,8 @@ my ($x, $y) = get_position();`,
         explanation: "Perl subroutines implicitly return the value of the last expression evaluated.",
       },
     ],
-    challenge: {
+        subLessons: ["What is Subroutines?","How Subroutines works","Subroutines syntax & usage","Practical examples of Subroutines","Subroutines best practices"],
+challenge: {
       title: "Damage Calculator",
       description:
         "Write a subroutine 'calc_damage' that takes $base and $crit_multiplier. If $crit_multiplier is undefined, default it to 1. Return $base * $crit_multiplier. Call it with (50, 3) and print the result.",
@@ -395,7 +400,8 @@ print $hero->describe() . "\\n";`,
         explanation: "ClassName->new(args) is the standard constructor call in Perl OOP.",
       },
     ],
-    challenge: {
+        subLessons: ["What is OOP with Moose/Moo?","How OOP with Moose/Moo works","OOP with Moose/Moo syntax & usage","Practical examples of OOP with Moose/Moo","OOP with Moose/Moo best practices"],
+challenge: {
       title: "Build a Character Class",
       description:
         "Create a package 'Warrior' using Moo with attributes: name (ro, required), strength (rw, default 10). Add a method 'power_attack' that returns strength * 2. Create a warrior named 'Thorin' and print the power_attack result.",
@@ -464,7 +470,8 @@ print $party[1]{role} . "\\n";  # support`,
         explanation: "{} creates an anonymous hashref. [] creates an anonymous arrayref.",
       },
     ],
-    challenge: {
+        subLessons: ["What is References & Data Structures?","How References & Data Structures works","References & Data Structures syntax & usage","Practical examples of References & Data Structures","References & Data Structures best practices"],
+challenge: {
       title: "Nested Dungeon Map",
       description:
         "Create a hashref $dungeon with keys 'name' => 'Shadow Cave' and 'levels' => an arrayref of [1, 2, 3]. Print the dungeon name and the second level number.",
@@ -542,7 +549,8 @@ print "Total: $total\\n";`,
         explanation: "grep filters a list, returning elements where the block evaluates to true.",
       },
     ],
-    challenge: {
+        subLessons: ["What is One-Liners & CLI Magic?","How One-Liners & CLI Magic works","One-Liners & CLI Magic syntax & usage","Practical examples of One-Liners & CLI Magic","One-Liners & CLI Magic best practices"],
+challenge: {
       title: "Log Filter",
       description:
         "Given @logs = ('INFO: start', 'ERROR: crash', 'INFO: running', 'ERROR: timeout'), use grep to filter only ERROR lines and print each one.",
@@ -618,7 +626,8 @@ try {
         explanation: "The JSON module (or JSON::XS for speed) provides encode_json and decode_json.",
       },
     ],
-    challenge: {
+        subLessons: ["What is CPAN Modules?","How CPAN Modules works","CPAN Modules syntax & usage","Practical examples of CPAN Modules","CPAN Modules best practices"],
+challenge: {
       title: "JSON Power-Up",
       description:
         "Use the JSON module to encode a hashref {weapon => 'Sword', damage => 50} to a JSON string, then decode it back and print the damage value.",
@@ -706,7 +715,8 @@ warn "Low mana warning!" if $mana < 10;`,
         explanation: "Try::Tiny provides clean syntax and fixes subtle bugs where $@ can be reset unexpectedly.",
       },
     ],
-    challenge: {
+        subLessons: ["What is Error Handling & Exceptions?","How Error Handling & Exceptions works","Error Handling & Exceptions syntax & usage","Practical examples of Error Handling & Exceptions","Error Handling & Exceptions best practices"],
+challenge: {
       title: "Boss Battle Error Guard",
       description:
         "Write code that uses eval{} to catch a die('Boss HP is zero'). Capture the error in $@ and print 'Victory: Boss HP is zero'.",
@@ -794,7 +804,8 @@ my ($name, $val) = unpack("A5 n", $packed);`,
         explanation: "pack() converts Perl values to binary strings using a template — essential for file formats and protocols.",
       },
     ],
-    challenge: {
+        subLessons: ["What is Advanced String Processing?","How Advanced String Processing works","Advanced String Processing syntax & usage","Practical examples of Advanced String Processing","Advanced String Processing best practices"],
+challenge: {
       title: "Cipher Master",
       description:
         "Take the string 'Uryyb Jbeyq' and apply ROT13 decoding using tr///. ROT13 maps A-M to N-Z and vice versa. Print the decoded result.",
@@ -880,7 +891,8 @@ print "Items: " . scalar(@data) . "\\n";`,
         explanation: "Both 'scalar @array' and assigning to a scalar variable force scalar context.",
       },
     ],
-    challenge: {
+        subLessons: ["What is Context: Scalar vs List?","How Context: Scalar vs List works","Context: Scalar vs List syntax & usage","Practical examples of Context: Scalar vs List","Context: Scalar vs List best practices"],
+challenge: {
       title: "Context Shapeshifter",
       description:
         "Create an array @spells with ('Fire', 'Ice', 'Thunder', 'Heal'). Print the count using scalar context (not a loop). Then use a regex in list context to extract all numbers from 'Damage: 25 50 75' and print them space-separated.",
