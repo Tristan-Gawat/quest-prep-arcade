@@ -22,6 +22,8 @@ import SpecModulesScreen from "@/components/SpecModulesScreen";
 import SpecLessonScreen from "@/components/SpecLessonScreen";
 import CourseModulesScreen from "@/components/CourseModulesScreen";
 import Ticker from "@/components/Ticker";
+import AdminConsole from "@/components/AdminConsole";
+import AdminUsers from "@/components/AdminUsers";
 
 export default function Home() {
   const [state, setState] = useState<GameState>(() => {
@@ -148,6 +150,10 @@ export default function Home() {
 
   const rank = getRankFromXP(state.score, user?.email);
 
+  // Determine user role for admin features
+  const DEVELOPER_EMAILS = ["tjgawat0113@gmail.com", "tristangawatschool@gmail.com", "c1-241-00124@uphsl.edu.ph"];
+  const userRole = user?.email && DEVELOPER_EMAILS.includes(user.email.toLowerCase()) ? "developer" : "player";
+
   return (
     <main className="h-screen flex overflow-hidden">
       {/* Sidebar */}
@@ -155,6 +161,7 @@ export default function Home() {
         currentScreen={state.currentScreen}
         navigate={navigate}
         user={user}
+        userRole={userRole}
       />
 
       {/* Main content area */}
@@ -240,6 +247,14 @@ export default function Home() {
 
           {state.currentScreen === "spec-lesson" && (
             <SpecLessonScreen state={state} updateState={updateState} navigate={navigate} />
+          )}
+
+          {state.currentScreen === "admin-console" && (
+            <AdminConsole />
+          )}
+
+          {state.currentScreen === "admin-users" && (
+            <AdminUsers />
           )}
         </div>
 

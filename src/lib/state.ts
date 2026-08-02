@@ -34,7 +34,9 @@ export type Screen =
   | "arena"
   | "learn-new"
   | "spec-modules"
-  | "spec-lesson";
+  | "spec-lesson"
+  | "admin-console"
+  | "admin-users";
 
 const STORAGE_KEY = "codelapse-state";
 
