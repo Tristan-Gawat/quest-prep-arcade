@@ -3,6 +3,9 @@
 import { useState, useEffect } from "react";
 import { GameState, Screen } from "@/lib/state";
 import { cybersecModules } from "@/data/uphsl-cybersec";
+import { gamedevModules } from "@/data/uphsl-gamedev";
+import { compsciModules } from "@/data/uphsl-compsci";
+import { multimediaModules } from "@/data/uphsl-multimedia";
 import { courses } from "@/data/courses";
 import { askBuiltinAI } from "@/lib/ai-builtin";
 import CodeBlock from "@/components/CodeBlock";
@@ -13,14 +16,17 @@ interface SpecLessonScreenProps {
   navigate: (screen: Screen) => void;
 }
 
+const ALL_SPEC_MODULES = [...cybersecModules, ...gamedevModules, ...compsciModules, ...multimediaModules];
+
 export default function SpecLessonScreen({ state, updateState, navigate }: SpecLessonScreenProps) {
   const [lesson, setLesson] = useState<{ explanation: string; code: string } | null>(null);
   const [loading, setLoading] = useState(true);
+  const [pickingLang, setPickingLang] = useState(false);
 
   const moduleId = state.currentSpecModuleId;
   const languageId = state.currentSpecLanguage;
 
-  const specModule = cybersecModules.find((m) => m.id === moduleId);
+  const specModule = ALL_SPEC_MODULES.find((m) => m.id === moduleId);
   const course = courses.find((c) => c.id === languageId);
   const langName = course?.name || languageId || "Python";
   const codeLang = languageId === "htmlcss" ? "html" : languageId === "csharp" ? "csharp" : languageId || "python";
@@ -68,6 +74,33 @@ Keep it educational and ethical. Mention that these techniques should only be us
   }, []);
 
   if (!specModule || !course) {
+    // Show language picker if module exists but no language selected
+    if (specModule && !languageId) {
+      return (
+        <div className="flex-1 p-4 md:p-8 overflow-y-auto relative z-10">
+          <div className="max-w-4xl mx-auto fade-in">
+            <button onClick={() => navigate("spec-modules")} className="text-xs text-text-muted hover:text-text-primary mb-4 cursor-pointer">
+              ← Back to modules
+            </button>
+            <h2 className="text-lg font-semibold text-text-primary mb-2">{specModule.title}</h2>
+            <p className="text-sm text-text-secondary mb-6">Choose a programming language to learn this in:</p>
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3">
+              {courses.map((c) => (
+                <button
+                  key={c.id}
+                  onClick={() => updateState({ currentSpecLanguage: c.id })}
+                  className="card p-3 text-center hover:border-accent-blue/50 cursor-pointer group"
+                >
+                  <span className="text-xl block mb-1 group-hover:scale-110 transition-transform">{c.icon}</span>
+                  <span className="text-[10px] text-text-muted">{c.name}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
     return (
       <div className="flex-1 flex items-center justify-center">
         <div className="card p-8 text-center">

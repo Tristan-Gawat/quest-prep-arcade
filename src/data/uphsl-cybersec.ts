@@ -4,11 +4,10 @@
 export interface SpecModule {
   id: string;
   title: string;
-  category: "offense" | "defense" | "forensics" | "fundamentals";
+  category: string;
   description: string;
   difficulty: "EASY" | "MEDIUM" | "HARD" | "EXPERT";
   concepts: string[];
-  // The lesson content is generated per-language when user picks one
 }
 
 export const cybersecModules: SpecModule[] = [
