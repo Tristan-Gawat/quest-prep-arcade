@@ -16,7 +16,7 @@ interface UserEntry {
   created_at: string;
 }
 
-export default function AdminUsers() {
+export default function AdminUsers({ callerRole }: { callerRole?: string }) {
   const [users, setUsers] = useState<UserEntry[]>([]);
   const [loading, setLoading] = useState(true);
   const [actionLoading, setActionLoading] = useState<string | null>(null);
@@ -143,7 +143,7 @@ export default function AdminUsers() {
                 >
                   <option value="player">Player</option>
                   <option value="mod">Mod</option>
-                  <option value="developer">Developer</option>
+                  {callerRole === "developer" && <option value="developer">Developer</option>}
                 </select>
 
                 {confirmDelete === user.id ? (

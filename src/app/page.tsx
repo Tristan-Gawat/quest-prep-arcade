@@ -254,7 +254,7 @@ export default function Home() {
           )}
 
           {state.currentScreen === "admin-users" && (
-            <AdminUsers />
+            <AdminUsers callerRole={userRole} />
           )}
         </div>
 
