@@ -19,7 +19,7 @@ interface SpecLessonScreenProps {
 const ALL_SPEC_MODULES = [...cybersecModules, ...gamedevModules, ...compsciModules, ...multimediaModules];
 
 export default function SpecLessonScreen({ state, updateState, navigate }: SpecLessonScreenProps) {
-  const [lesson, setLesson] = useState<{ explanation: string; code: string } | null>(null);
+  const [lesson, setLesson] = useState<{ explanation: string; code: string; breakdown?: string; together?: string } | null>(null);
   const [loading, setLoading] = useState(true);
   const [pickingLang, setPickingLang] = useState(false);
   const [subLessons, setSubLessons] = useState<string[]>([]);
@@ -88,32 +88,46 @@ export default function SpecLessonScreen({ state, updateState, navigate }: SpecL
     setLesson(null);
 
     const subTopic = subLessons[index];
-    const prompt = `Teach me about "${subTopic}" as part of "${specModule!.title}", using ${langName} as the programming language.
+    const secNote = state.currentSpecId === "uphsl-cybersec" ? " This is for educational purposes only — always get proper authorization." : "";
+    const prompt = `Teach me about "${subTopic}" as part of "${specModule!.title}", using ${langName}.
 
-Provide:
-1. A clear explanation (2-3 paragraphs) of how this works
-2. A practical ${langName} code example (15-25 lines) demonstrating the concept
+Give me a DETAILED lesson with these 4 sections:
 
-Format your response as:
-EXPLANATION:
-(your explanation here)
+OVERVIEW:
+Explain what this concept is and why it matters (2-3 paragraphs).
 
 CODE:
-(your code here)
+A complete working ${langName} code example (20-35 lines). Make it practical and real-world. No markdown backticks.
 
-Keep it educational. If security-related, mention using only with proper authorization.`;
+BREAKDOWN:
+Go through the code section by section explaining:
+- What each part does and why
+- The meaning of key functions/variables/keywords
+- What would happen if you changed something
 
-    const result = await askBuiltinAI(prompt, 800);
+TOGETHER:
+Explain how all parts connect and the full flow from start to finish.${secNote}`;
+
+    const result = await askBuiltinAI(prompt, 1500);
 
     if (result.success && result.content) {
-      const parts = result.content.split(/CODE:/i);
-      const explanation = (parts[0] || "").replace(/^EXPLANATION:/i, "").trim();
-      const code = (parts[1] || `// ${subTopic} - ${langName}\n// Code example`).trim().replace(/^```[\w]*\n?/, "").replace(/\n?```$/, "");
-      setLesson({ explanation, code });
+      const overviewMatch = result.content.match(/OVERVIEW:([\s\S]*?)(?=CODE:)/i);
+      const codeMatch = result.content.match(/CODE:([\s\S]*?)(?=BREAKDOWN:)/i);
+      const breakdownMatch = result.content.match(/BREAKDOWN:([\s\S]*?)(?=TOGETHER:)/i);
+      const togetherMatch = result.content.match(/TOGETHER:([\s\S]*?)$/i);
+
+      const overview = (overviewMatch?.[1] || result.content).trim();
+      const code = (codeMatch?.[1] || "").trim().replace(/^\`\`\`[\w]*\n?/, "").replace(/\n?\`\`\`$/, "");
+      const breakdown = (breakdownMatch?.[1] || "").trim();
+      const together = (togetherMatch?.[1] || "").trim();
+
+      setLesson({ explanation: overview, code: code || `// ${subTopic}\n// Code example`, breakdown, together });
     } else {
       setLesson({
-        explanation: `This sub-lesson covers: ${subTopic}\n\nPart of the "${specModule!.title}" module. The AI is currently unavailable — try again in a moment.`,
+        explanation: `This sub-lesson covers: ${subTopic}\n\nThe AI is currently unavailable — try again in a moment.`,
         code: `// ${subTopic}\n// ${langName} example\n// AI will generate code when available`,
+        breakdown: "",
+        together: "",
       });
     }
   };
@@ -204,7 +218,7 @@ Keep it educational. If security-related, mention using only with proper authori
         ) : (
           <>
             <div className="card p-5 md:p-6 mb-6">
-              <p className="text-xs font-medium text-accent-cyan mb-3">Lesson</p>
+              <p className="text-xs font-medium text-accent-cyan mb-3">Overview</p>
               <div className="text-sm text-text-secondary leading-relaxed whitespace-pre-wrap">
                 {lesson.explanation}
               </div>
@@ -213,6 +227,24 @@ Keep it educational. If security-related, mention using only with proper authori
             {lesson.code && (
               <div className="mb-6">
                 <CodeBlock code={lesson.code} language={codeLang} label={`${subLessons[currentSubLesson]} — ${langName}`} />
+              </div>
+            )}
+
+            {lesson.breakdown && (
+              <div className="card p-5 md:p-6 mb-6 border-l-4 border-l-accent-purple">
+                <p className="text-xs font-medium text-accent-purple mb-3">Code Breakdown — Line by Line</p>
+                <div className="text-sm text-text-secondary leading-relaxed whitespace-pre-wrap">
+                  {lesson.breakdown}
+                </div>
+              </div>
+            )}
+
+            {lesson.together && (
+              <div className="card p-5 md:p-6 mb-6 border-l-4 border-l-accent-green">
+                <p className="text-xs font-medium text-accent-green mb-3">How It All Works Together</p>
+                <div className="text-sm text-text-secondary leading-relaxed whitespace-pre-wrap">
+                  {lesson.together}
+                </div>
               </div>
             )}
 
