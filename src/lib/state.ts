@@ -38,6 +38,7 @@ export type Screen =
   | "admin-console"
   | "admin-users"
   | "friends"
+  | "chat"
   | "code-battle"
   | "battle-lobby";
 

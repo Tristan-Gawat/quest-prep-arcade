@@ -36,6 +36,8 @@ export default function FriendsScreen({ state, navigate, userId }: FriendsScreen
   const [loadingSearch, setLoadingSearch] = useState(false);
   const [actionError, setActionError] = useState<string | null>(null);
   const [actionSuccess, setActionSuccess] = useState<string | null>(null);
+  const [selectedProfile, setSelectedProfile] = useState<DBProfile | null>(null);
+  const [showAutocomplete, setShowAutocomplete] = useState(false);
 
   const loadFriends = useCallback(async () => {
     if (!userId) return;
@@ -380,61 +382,102 @@ export default function FriendsScreen({ state, navigate, userId }: FriendsScreen
         {/* Find Tab */}
         {activeTab === "find" && (
           <div>
-            {/* Search Input */}
-            <div className="mb-4">
+            {/* Search Input with Autocomplete */}
+            <div className="mb-4 relative">
               <input
                 type="text"
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={(e) => {
+                  setSearchQuery(e.target.value);
+                  setShowAutocomplete(true);
+                  setSelectedProfile(null);
+                }}
+                onFocus={() => setShowAutocomplete(true)}
                 placeholder="Search by username..."
                 className="w-full bg-bg-input border border-border rounded-lg px-4 py-2.5 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent-blue transition-colors"
               />
+
+              {/* Autocomplete Dropdown */}
+              {showAutocomplete && searchQuery.trim() && searchResults.length > 0 && (
+                <div className="absolute z-20 w-full mt-1 bg-bg-card border border-border rounded-lg shadow-lg max-h-60 overflow-y-auto">
+                  {searchResults.map((user) => (
+                    <button
+                      key={user.id}
+                      onClick={() => {
+                        setSelectedProfile(user);
+                        setShowAutocomplete(false);
+                        setSearchQuery(user.username);
+                      }}
+                      className="w-full flex items-center gap-3 px-4 py-2.5 hover:bg-bg-elevated transition-colors cursor-pointer text-left"
+                    >
+                      {user.avatar_url ? (
+                        <img src={user.avatar_url} alt="" className="w-8 h-8 rounded-full shrink-0" />
+                      ) : (
+                        <div className="w-8 h-8 rounded-full bg-bg-elevated flex items-center justify-center text-xs text-text-secondary shrink-0">
+                          {user.username.charAt(0).toUpperCase()}
+                        </div>
+                      )}
+                      <div className="min-w-0">
+                        <p className="text-sm font-medium text-text-primary truncate">{user.username}</p>
+                        <p className="text-xs text-text-muted">{user.total_xp.toLocaleString()} XP</p>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
 
-            {/* Search Results */}
-            {loadingSearch ? (
+            {/* Selected Profile Card */}
+            {selectedProfile && (
+              <div className="card p-5 mb-6 border-l-4 border-l-accent-blue">
+                <div className="flex items-center gap-4 mb-4">
+                  {selectedProfile.avatar_url ? (
+                    <img src={selectedProfile.avatar_url} alt="" className="w-14 h-14 rounded-full" />
+                  ) : (
+                    <div className="w-14 h-14 rounded-full bg-bg-elevated flex items-center justify-center text-lg text-text-secondary">
+                      {selectedProfile.username.charAt(0).toUpperCase()}
+                    </div>
+                  )}
+                  <div>
+                    <h3 className="text-base font-semibold text-text-primary">{selectedProfile.username}</h3>
+                    <p className="text-xs text-text-muted">{selectedProfile.rank_tier} • Division {selectedProfile.rank_division}</p>
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-3 mb-4">
+                  <div className="bg-bg-elevated rounded-lg p-3 text-center">
+                    <p className="text-lg font-bold text-accent-yellow">{selectedProfile.total_xp.toLocaleString()}</p>
+                    <p className="text-[10px] text-text-muted">Total XP</p>
+                  </div>
+                  <div className="bg-bg-elevated rounded-lg p-3 text-center">
+                    <p className="text-lg font-bold text-accent-green">{selectedProfile.modules_completed}</p>
+                    <p className="text-[10px] text-text-muted">Modules Completed</p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => handleSendRequest(selectedProfile.id)}
+                  className="w-full btn-primary text-sm"
+                >
+                  + Add Friend
+                </button>
+              </div>
+            )}
+
+            {/* Loading state */}
+            {loadingSearch && (
               <div className="text-center py-12">
                 <p className="text-sm text-accent-blue pulse-soft">Searching...</p>
               </div>
-            ) : searchQuery.trim() && searchResults.length === 0 ? (
+            )}
+
+            {/* No results */}
+            {!loadingSearch && searchQuery.trim() && searchResults.length === 0 && !selectedProfile && (
               <div className="card p-8 text-center">
                 <p className="text-sm text-text-muted">No users found matching &quot;{searchQuery}&quot;</p>
               </div>
-            ) : searchResults.length > 0 ? (
-              <div className="card overflow-hidden divide-y divide-border">
-                {searchResults.map((user) => (
-                  <div key={user.id} className="flex items-center gap-3 px-4 py-3 relative">
-                    {/* Mini cover photo strip */}
-                    {user.cover_photo_url && (
-                      <div className="absolute inset-x-0 top-0 h-8 overflow-hidden opacity-20 pointer-events-none">
-                        <img src={user.cover_photo_url} alt="" className="w-full h-full object-cover" />
-                      </div>
-                    )}
-                    {user.avatar_url ? (
-                      <img src={user.avatar_url} alt="" className="w-10 h-10 rounded-full relative z-10" />
-                    ) : (
-                      <div className="w-10 h-10 rounded-full bg-bg-elevated flex items-center justify-center text-sm text-text-secondary relative z-10">
-                        {user.username.charAt(0).toUpperCase()}
-                      </div>
-                    )}
-                    <div className="flex-1 min-w-0 relative z-10">
-                      <p className="text-sm font-medium text-text-primary truncate">
-                        {user.username}
-                      </p>
-                      <p className="text-xs text-text-muted">
-                        {user.total_xp.toLocaleString()} XP
-                      </p>
-                    </div>
-                    <button
-                      onClick={() => handleSendRequest(user.id)}
-                      className="inline-flex items-center gap-1 text-xs font-medium text-accent-green hover:text-accent-green/80 cursor-pointer bg-bg-card border border-border rounded-lg px-3 py-1.5 hover:bg-bg-elevated transition-all relative z-10"
-                    >
-                      + Add Friend
-                    </button>
-                  </div>
-                ))}
-              </div>
-            ) : !searchQuery.trim() && searchResults.length > 0 ? (
+            )}
+
+            {/* Suggested Players (when no search query) */}
+            {!searchQuery.trim() && !selectedProfile && searchResults.length > 0 && (
               <div>
                 <h3 className="text-sm font-medium text-text-secondary mb-3">Suggested Players</h3>
                 <div className="card overflow-hidden divide-y divide-border">
@@ -471,11 +514,13 @@ export default function FriendsScreen({ state, navigate, userId }: FriendsScreen
                   ))}
                 </div>
               </div>
-            ) : !searchQuery.trim() ? (
+            )}
+
+            {!searchQuery.trim() && !selectedProfile && searchResults.length === 0 && !loadingSearch && (
               <div className="card p-8 text-center">
                 <p className="text-sm text-text-muted pulse-soft">Loading suggested players...</p>
               </div>
-            ) : null}
+            )}
           </div>
         )}
 

@@ -124,3 +124,49 @@ CREATE POLICY "Users can delete their own avatar"
 
 -- 9. Add role column to profiles
 ALTER TABLE profiles ADD COLUMN IF NOT EXISTS role TEXT DEFAULT 'player';
+
+
+
+-- 10. Messages table for real-time chat between friends
+CREATE TABLE IF NOT EXISTS messages (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  sender_id UUID NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,
+  receiver_id UUID NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,
+  content TEXT NOT NULL,
+  is_read BOOLEAN NOT NULL DEFAULT false,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+-- Indexes for fast message lookups
+CREATE INDEX IF NOT EXISTS idx_messages_sender ON messages(sender_id);
+CREATE INDEX IF NOT EXISTS idx_messages_receiver ON messages(receiver_id);
+CREATE INDEX IF NOT EXISTS idx_messages_conversation ON messages(sender_id, receiver_id, created_at);
+CREATE INDEX IF NOT EXISTS idx_messages_unread ON messages(receiver_id, is_read) WHERE is_read = false;
+
+-- Enable RLS
+ALTER TABLE messages ENABLE ROW LEVEL SECURITY;
+
+-- Messages policies
+DROP POLICY IF EXISTS "Users can view their own messages" ON messages;
+CREATE POLICY "Users can view their own messages"
+  ON messages FOR SELECT
+  USING (auth.uid() = sender_id OR auth.uid() = receiver_id);
+
+DROP POLICY IF EXISTS "Users can send messages" ON messages;
+CREATE POLICY "Users can send messages"
+  ON messages FOR INSERT
+  WITH CHECK (auth.uid() = sender_id);
+
+DROP POLICY IF EXISTS "Receivers can mark messages as read" ON messages;
+CREATE POLICY "Receivers can mark messages as read"
+  ON messages FOR UPDATE
+  USING (auth.uid() = receiver_id)
+  WITH CHECK (auth.uid() = receiver_id);
+
+DROP POLICY IF EXISTS "Users can delete their own sent messages" ON messages;
+CREATE POLICY "Users can delete their own sent messages"
+  ON messages FOR DELETE
+  USING (auth.uid() = sender_id);
+
+-- Enable Supabase Realtime for messages (live chat updates)
+ALTER PUBLICATION supabase_realtime ADD TABLE messages;
