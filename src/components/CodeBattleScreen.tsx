@@ -2,9 +2,10 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { GameState, Screen } from "@/lib/state";
-import { subscribeToBattle, submitBattleCode } from "@/lib/battles";
+import { subscribeToBattle, submitBattleCode, getBattleXPReward } from "@/lib/battles";
 import { executeCode } from "@/lib/code-runner";
 import { DBCodeBattle, supabase } from "@/lib/supabase";
+import { addXP } from "@/lib/auth";
 
 interface CodeBattleScreenProps {
   state: GameState;
@@ -30,6 +31,7 @@ export default function CodeBattleScreen({ state, navigate, userId, battleId }: 
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const subscriptionRef = useRef<{ unsubscribe: () => void } | null>(null);
   const hasAutoSubmitted = useRef(false);
+  const hasAwardedXP = useRef(false);
 
   const isChallenger = battle?.challenger_id === userId;
 
@@ -268,6 +270,14 @@ export default function CodeBattleScreen({ state, navigate, userId, battleId }: 
   if (showResults && battle.status === "completed") {
     const won = battle.winner_id === userId;
     const isDraw = !battle.winner_id;
+    const outcome = won ? "win" : isDraw ? "draw" : "loss";
+    const xpEarned = getBattleXPReward(battle.difficulty, outcome);
+
+    // Award XP when results are first shown
+    if (userId && xpEarned > 0 && !hasAwardedXP.current) {
+      hasAwardedXP.current = true;
+      addXP(userId, xpEarned);
+    }
 
     const challengerTime = battle.challenger_completed_at && battle.started_at
       ? Math.round((new Date(battle.challenger_completed_at).getTime() - new Date(battle.started_at).getTime()) / 1000)
@@ -298,7 +308,10 @@ export default function CodeBattleScreen({ state, navigate, userId, battleId }: 
             <div className="mb-6">
               <span className="text-xs text-text-muted">XP Earned</span>
               <p className="text-lg font-bold text-accent-yellow">
-                +{won ? 100 : isDraw ? 25 : 10} XP
+                +{xpEarned} XP
+              </p>
+              <p className="text-xs text-text-muted mt-1">
+                {battle.difficulty ? battle.difficulty.charAt(0).toUpperCase() + battle.difficulty.slice(1) : "Easy"} difficulty
               </p>
             </div>
 
