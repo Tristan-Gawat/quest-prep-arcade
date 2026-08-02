@@ -65,11 +65,12 @@ export default function Home() {
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user || null);
-      if (session?.user && state.currentScreen === "start") {
-        setState(prev => ({ ...prev, currentScreen: "course-select" }));
-      }
-      // Ensure profile exists for newly authenticated users
       if (session?.user) {
+        // User just authenticated — navigate to courses if on start screen
+        if (state.currentScreen === "start") {
+          setState(prev => ({ ...prev, currentScreen: "course-select" }));
+        }
+        // Ensure profile exists for newly authenticated users
         ensureProfile(
           session.user.id,
           session.user.email,

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { GameState, Screen } from "@/lib/state";
-import { getProfile, getUserLanguageProgress, signOut, signInWithGoogle, ensureProfile } from "@/lib/auth";
+import { getProfile, getUserLanguageProgress, signOut, signInWithGoogle, ensureProfile, getCurrentUser } from "@/lib/auth";
 import { DBProfile, DBLanguageProgress } from "@/lib/supabase";
 import { getRankDisplay, getRankColor, getRankBadgeEmoji, getXPForNextRank, RankTier } from "@/lib/ranking";
 import { courses } from "@/data/courses";
@@ -18,17 +18,31 @@ export default function ProfileScreen({ state, navigate, userId, onSignOut }: Pr
   const [profile, setProfile] = useState<DBProfile | null>(null);
   const [langProgress, setLangProgress] = useState<DBLanguageProgress[]>([]);
   const [loading, setLoading] = useState(true);
+  const [resolvedUserId, setResolvedUserId] = useState<string | null>(userId);
 
   useEffect(() => {
     async function load() {
-      if (!userId) { setLoading(false); return; }
+      let uid = userId;
+
+      // If userId prop is null, double-check the Supabase session directly
+      // This handles cases where the parent's user state is stale (e.g., after OAuth redirect)
+      if (!uid) {
+        const currentUser = await getCurrentUser();
+        if (currentUser) {
+          uid = currentUser.id;
+          setResolvedUserId(uid);
+        }
+      }
+
+      if (!uid) { setLoading(false); return; }
+
       // Try to get the profile — if it doesn't exist, create one
-      let p = await getProfile(userId);
+      let p = await getProfile(uid);
       if (!p) {
         // Profile doesn't exist yet — this happens on first sign-in
-        p = await ensureProfile(userId);
+        p = await ensureProfile(uid);
       }
-      const lp = await getUserLanguageProgress(userId);
+      const lp = await getUserLanguageProgress(uid);
       setProfile(p);
       setLangProgress(lp);
       setLoading(false);
@@ -50,7 +64,7 @@ export default function ProfileScreen({ state, navigate, userId, onSignOut }: Pr
 
   if (!profile) {
     // If userId exists, the user IS signed in but profile creation failed
-    if (userId) {
+    if (resolvedUserId) {
       return (
         <div className="flex-1 flex items-center justify-center p-4">
           <div className="card p-8 text-center max-w-md fade-in">
