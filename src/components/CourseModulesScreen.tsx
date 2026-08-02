@@ -4,7 +4,7 @@ import { useState } from "react";
 import { GameState, Screen } from "@/lib/state";
 import { courses } from "@/data/courses";
 import { Module } from "@/data/curriculum";
-import { generateFullLesson } from "@/lib/lesson-generator";
+import { askBuiltinAI } from "@/lib/ai-builtin";
 import CodeBlock from "@/components/CodeBlock";
 
 interface CourseModulesScreenProps {
@@ -44,6 +44,9 @@ export default function CourseModulesScreen({ state, updateState, navigate }: Co
   const [selectedModule, setSelectedModule] = useState<Module | null>(null);
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
   const [currentSubLesson, setCurrentSubLesson] = useState<number>(-1);
+  const [aiQuestion, setAiQuestion] = useState("");
+  const [aiAnswer, setAiAnswer] = useState("");
+  const [aiLoading, setAiLoading] = useState(false);
   const [lesson, setLesson] = useState<{ explanation: string; code: string; breakdown?: string; together?: string } | null>(null);
 
   const handleSelectModule = (mod: Module, index: number) => {
@@ -53,17 +56,31 @@ export default function CourseModulesScreen({ state, updateState, navigate }: Co
     setLesson(null);
   };
 
-  const loadSubLesson = async (index: number) => {
+  const loadSubLesson = (index: number) => {
     if (!selectedModule || !course) return;
     setCurrentSubLesson(index);
-    setLesson(null);
+    setAiAnswer("");
+    setAiQuestion("");
+    
+    // Use the pre-built static lesson content from the data file
+    const codeLang = course.id === "htmlcss" ? "html" : course.id === "csharp" ? "csharp" : course.id;
+    setLesson({
+      explanation: selectedModule.lesson.explanation,
+      code: selectedModule.lesson.codeExample,
+      breakdown: "",
+      together: "",
+    });
+  };
 
-    const subLessons = selectedModule.subLessons || [selectedModule.lesson.title];
-    const subTopic = subLessons[index];
-    const langName = course.name;
-
-    const result = await generateFullLesson(subTopic, selectedModule.title, langName);
-    setLesson(result);
+  const askAboutLesson = async () => {
+    if (!aiQuestion.trim() || !selectedModule) return;
+    setAiLoading(true);
+    const result = await askBuiltinAI(
+      `A student is learning "${selectedModule.title}" in ${course?.name}. They're looking at this code:\n\n${selectedModule.lesson.codeExample}\n\nTheir question: "${aiQuestion}"\n\nAnswer clearly and briefly (2-3 paragraphs max). Reference specific lines if relevant.`,
+      500
+    );
+    setAiAnswer(result.success ? result.content : "AI unavailable — try again.");
+    setAiLoading(false);
   };
 
   const completed = allModules.filter((m) => state.completedModules.includes(m.id)).length;
@@ -78,7 +95,7 @@ export default function CourseModulesScreen({ state, updateState, navigate }: Co
     return (
       <div className="flex-1 p-4 md:p-8 overflow-y-auto relative z-10">
         <div className="max-w-4xl mx-auto slide-up">
-          <button onClick={() => { setCurrentSubLesson(-1); setLesson(null); }} className="text-xs text-text-muted hover:text-text-primary mb-4 cursor-pointer">
+          <button onClick={() => { setCurrentSubLesson(-1); setLesson(null); }} className="inline-flex items-center gap-1 text-xs font-medium text-accent-blue hover:text-accent-blue/80 mb-4 cursor-pointer bg-bg-card border border-border rounded-lg px-3 py-1.5 hover:bg-bg-elevated transition-all">
             ← Back to sub-lessons
           </button>
 
@@ -122,6 +139,33 @@ export default function CourseModulesScreen({ state, updateState, navigate }: Co
                 </div>
               )}
 
+              {/* Ask AI about this lesson */}
+              <div className="card p-4 mb-6">
+                <p className="text-xs font-medium text-accent-purple mb-2">🤖 Ask AI about this lesson</p>
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    value={aiQuestion}
+                    onChange={(e) => setAiQuestion(e.target.value)}
+                    onKeyDown={(e) => e.key === "Enter" && askAboutLesson()}
+                    placeholder="e.g., What does line 3 do? Why use this function?"
+                    className="flex-1 bg-bg-input border border-border rounded-lg text-xs text-text-primary p-2.5 outline-none focus:border-border-focus"
+                  />
+                  <button
+                    onClick={askAboutLesson}
+                    disabled={!aiQuestion.trim() || aiLoading}
+                    className="btn-primary text-xs px-3 shrink-0"
+                  >
+                    {aiLoading ? "..." : "Ask"}
+                  </button>
+                </div>
+                {aiAnswer && (
+                  <div className="mt-3 p-3 bg-bg-elevated rounded-lg">
+                    <p className="text-xs text-text-secondary whitespace-pre-wrap">{aiAnswer}</p>
+                  </div>
+                )}
+              </div>
+
               <div className="flex gap-3">
                 {currentSubLesson > 0 && (
                   <button onClick={() => loadSubLesson(currentSubLesson - 1)} className="btn-secondary text-sm">← Previous</button>
@@ -148,7 +192,7 @@ export default function CourseModulesScreen({ state, updateState, navigate }: Co
     return (
       <div className="flex-1 p-4 md:p-8 overflow-y-auto relative z-10">
         <div className="max-w-4xl mx-auto fade-in">
-          <button onClick={() => setSelectedModule(null)} className="text-xs text-text-muted hover:text-text-primary mb-4 cursor-pointer">
+          <button onClick={() => setSelectedModule(null)} className="inline-flex items-center gap-1 text-xs font-medium text-accent-blue hover:text-accent-blue/80 mb-4 cursor-pointer bg-bg-card border border-border rounded-lg px-3 py-1.5 hover:bg-bg-elevated transition-all">
             ← Back to modules
           </button>
 
@@ -203,7 +247,7 @@ export default function CourseModulesScreen({ state, updateState, navigate }: Co
   return (
     <div className="flex-1 p-4 md:p-8 overflow-y-auto relative z-10">
       <div className="max-w-6xl mx-auto fade-in">
-        <button onClick={() => navigate("course-select")} className="text-xs text-text-muted hover:text-text-primary mb-4 cursor-pointer">
+        <button onClick={() => navigate("course-select")} className="inline-flex items-center gap-1 text-xs font-medium text-accent-blue hover:text-accent-blue/80 mb-4 cursor-pointer bg-bg-card border border-border rounded-lg px-3 py-1.5 hover:bg-bg-elevated transition-all">
           ← Back to courses
         </button>
 

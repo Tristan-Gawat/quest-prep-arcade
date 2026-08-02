@@ -242,7 +242,7 @@ Each question has 4 choices and "correct" is the index (0-3) of the right answer
       return (
         <div className="flex-1 p-4 md:p-8 overflow-y-auto relative z-10">
           <div className="max-w-4xl mx-auto fade-in">
-            <button onClick={() => { setQuizMode("none"); setSelectedModule(null); }} className="text-xs text-text-muted hover:text-text-primary mb-4 cursor-pointer">
+            <button onClick={() => { setQuizMode("none"); setSelectedModule(null); }} className="inline-flex items-center gap-1 text-xs font-medium text-accent-blue hover:text-accent-blue/80 mb-4 cursor-pointer bg-bg-card border border-border rounded-lg px-3 py-1.5 hover:bg-bg-elevated transition-all">
               ← Back
             </button>
             <h2 className="text-lg font-semibold text-text-primary mb-2">🖥️ Code Challenge: {selectedModule.title}</h2>
@@ -270,7 +270,7 @@ Each question has 4 choices and "correct" is the index (0-3) of the right answer
     return (
       <div className="flex-1 p-4 md:p-8 overflow-y-auto relative z-10">
         <div className="max-w-4xl mx-auto fade-in">
-          <button onClick={() => setCodeLang(null)} className="text-xs text-text-muted hover:text-text-primary mb-4 cursor-pointer">
+          <button onClick={() => setCodeLang(null)} className="inline-flex items-center gap-1 text-xs font-medium text-accent-blue hover:text-accent-blue/80 mb-4 cursor-pointer bg-bg-card border border-border rounded-lg px-3 py-1.5 hover:bg-bg-elevated transition-all">
             ← Change language
           </button>
           <div className="flex items-center gap-2 mb-4">
@@ -308,7 +308,7 @@ Each question has 4 choices and "correct" is the index (0-3) of the right answer
     return (
       <div className="flex-1 p-4 md:p-8 overflow-y-auto relative z-10">
         <div className="max-w-4xl mx-auto fade-in">
-          <button onClick={() => setSelectedModule(null)} className="text-xs text-text-muted hover:text-text-primary mb-4 cursor-pointer">
+          <button onClick={() => setSelectedModule(null)} className="inline-flex items-center gap-1 text-xs font-medium text-accent-blue hover:text-accent-blue/80 mb-4 cursor-pointer bg-bg-card border border-border rounded-lg px-3 py-1.5 hover:bg-bg-elevated transition-all">
             ← Back to modules
           </button>
           <div className="card p-6 mb-6">
@@ -349,7 +349,7 @@ Each question has 4 choices and "correct" is the index (0-3) of the right answer
   return (
     <div className="flex-1 p-4 md:p-8 overflow-y-auto relative z-10">
       <div className="max-w-6xl mx-auto fade-in">
-        <button onClick={() => navigate("course-select")} className="text-xs text-text-muted hover:text-text-primary mb-4 cursor-pointer">
+        <button onClick={() => navigate("course-select")} className="inline-flex items-center gap-1 text-xs font-medium text-accent-blue hover:text-accent-blue/80 mb-4 cursor-pointer bg-bg-card border border-border rounded-lg px-3 py-1.5 hover:bg-bg-elevated transition-all">
           ← Back to courses
         </button>
 

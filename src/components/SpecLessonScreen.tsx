@@ -62,7 +62,7 @@ export default function SpecLessonScreen({ state, updateState, navigate }: SpecL
     return (
       <div className="flex-1 p-4 md:p-8 overflow-y-auto relative z-10">
         <div className="max-w-4xl mx-auto fade-in">
-          <button onClick={() => navigate("spec-modules")} className="text-xs text-text-muted hover:text-text-primary mb-4 cursor-pointer">
+          <button onClick={() => navigate("spec-modules")} className="inline-flex items-center gap-1 text-xs font-medium text-accent-blue hover:text-accent-blue/80 mb-4 cursor-pointer bg-bg-card border border-border rounded-lg px-3 py-1.5 hover:bg-bg-elevated transition-all">
             ← Back to modules
           </button>
           <h2 className="text-lg font-semibold text-text-primary mb-2">{specModule.title}</h2>
@@ -107,7 +107,7 @@ export default function SpecLessonScreen({ state, updateState, navigate }: SpecL
     return (
       <div className="flex-1 p-4 md:p-8 overflow-y-auto relative z-10">
         <div className="max-w-4xl mx-auto fade-in">
-          <button onClick={() => navigate("spec-modules")} className="text-xs text-text-muted hover:text-text-primary mb-4 cursor-pointer">
+          <button onClick={() => navigate("spec-modules")} className="inline-flex items-center gap-1 text-xs font-medium text-accent-blue hover:text-accent-blue/80 mb-4 cursor-pointer bg-bg-card border border-border rounded-lg px-3 py-1.5 hover:bg-bg-elevated transition-all">
             ← Back to modules
           </button>
 
@@ -150,7 +150,7 @@ export default function SpecLessonScreen({ state, updateState, navigate }: SpecL
       <div className="max-w-4xl mx-auto slide-up">
         <button
           onClick={() => { setCurrentSubLesson(-1); setLesson(null); }}
-          className="text-xs text-text-muted hover:text-text-primary mb-4 cursor-pointer"
+          className="inline-flex items-center gap-1 text-xs font-medium text-accent-blue hover:text-accent-blue/80 mb-4 cursor-pointer bg-bg-card border border-border rounded-lg px-3 py-1.5 hover:bg-bg-elevated transition-all"
         >
           ← Back to sub-lessons
         </button>
