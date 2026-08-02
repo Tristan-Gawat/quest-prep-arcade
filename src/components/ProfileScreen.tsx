@@ -6,6 +6,7 @@ import { getProfile, getUserLanguageProgress, signOut, signInWithGoogle, ensureP
 import { DBProfile, DBLanguageProgress } from "@/lib/supabase";
 import { getRankDisplay, getRankColor, getRankBadgeEmoji, getXPForNextRank, getRankFromXP, RankTier } from "@/lib/ranking";
 import { courses } from "@/data/courses";
+import { getEarnedTags } from "@/lib/achievements";
 import ProfileEditModal from "@/components/ProfileEditModal";
 
 interface ProfileScreenProps {
@@ -171,7 +172,7 @@ export default function ProfileScreen({ state, navigate, userId, userEmail, onSi
                 </button>
               </div>
 
-              {/* Middle: Name + rank tag + edit */}
+              {/* Middle: Name + edit */}
               <div className="flex-1 min-w-0 pt-8">
                 <h2 className="text-xl md:text-2xl font-semibold text-text-primary truncate">{profile.username}</h2>
                 <div className="flex items-center gap-2 mt-1">
@@ -190,25 +191,39 @@ export default function ProfileScreen({ state, navigate, userId, userEmail, onSi
                 </button>
               </div>
 
-              {/* Right side: XP progress (hidden for developers) */}
-              {rank.tier !== "DEVELOPER" && (
-                <div className="hidden sm:block shrink-0 w-36 pt-8">
-                  <div className="w-full h-2 bg-bg-elevated rounded-full overflow-hidden mb-1">
-                    <div
-                      className="h-full rounded-full transition-all"
-                      style={{ width: `${rankProgress.progress}%`, backgroundColor: getRankColor(rank.tier) }}
-                    />
+              {/* Right side: Rank + XP progress (hidden for developers) */}
+              {rank.tier !== "DEVELOPER" ? (
+                <div className="hidden sm:flex flex-col items-end shrink-0 pt-8 gap-1.5">
+                  <span
+                    className="inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-full"
+                    style={{ color: getRankColor(rank.tier), backgroundColor: getRankColor(rank.tier) + "18", border: `1px solid ${getRankColor(rank.tier)}40` }}
+                  >
+                    {getRankBadgeEmoji(rank.tier)} {getRankDisplay(rank)}
+                  </span>
+                  <div className="w-36">
+                    <div className="w-full h-2 bg-bg-elevated rounded-full overflow-hidden mb-1">
+                      <div
+                        className="h-full rounded-full transition-all"
+                        style={{ width: `${rankProgress.progress}%`, backgroundColor: getRankColor(rank.tier) }}
+                      />
+                    </div>
+                    <p className="text-[10px] text-text-muted text-right">
+                      {profile.total_xp} / {rankProgress.next} XP
+                    </p>
                   </div>
-                  <p className="text-[10px] text-text-muted text-right">
-                    {profile.total_xp} / {rankProgress.next} XP
-                  </p>
                 </div>
-              )}
+              ) : null}
             </div>
 
-            {/* Mobile-only XP progress (below the row) */}
+            {/* Mobile-only rank + XP progress (below the row) */}
             {rank.tier !== "DEVELOPER" && (
               <div className="sm:hidden mt-4 max-w-xs">
+                <span
+                  className="inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-full mb-2"
+                  style={{ color: getRankColor(rank.tier), backgroundColor: getRankColor(rank.tier) + "18", border: `1px solid ${getRankColor(rank.tier)}40` }}
+                >
+                  {getRankBadgeEmoji(rank.tier)} {getRankDisplay(rank)}
+                </span>
                 <div className="w-full h-2 bg-bg-elevated rounded-full overflow-hidden mb-1">
                   <div
                     className="h-full rounded-full transition-all"
@@ -256,6 +271,29 @@ export default function ProfileScreen({ state, navigate, userId, userEmail, onSi
             <p className="text-xs text-text-muted">Best Streak</p>
           </div>
         </div>
+
+        {/* Achievement Tags */}
+        {(() => {
+          const tags = getEarnedTags(state);
+          return tags.length > 0 ? (
+            <div className="card p-5 mb-6">
+              <h3 className="text-sm font-medium text-text-primary mb-3">Achievement Tags</h3>
+              <div className="flex flex-wrap gap-2">
+                {tags.map((tag) => (
+                  <span
+                    key={tag.id}
+                    className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full border transition-all hover:scale-105"
+                    style={{ color: tag.color, backgroundColor: tag.color + "15", borderColor: tag.color + "40" }}
+                    title={tag.description}
+                  >
+                    <span>{tag.icon}</span>
+                    {tag.label}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ) : null;
+        })()}
 
         {/* Language Progress */}
         <div className="card p-6 mb-6">
