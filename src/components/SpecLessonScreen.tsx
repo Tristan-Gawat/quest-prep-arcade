@@ -89,39 +89,70 @@ export default function SpecLessonScreen({ state, updateState, navigate }: SpecL
 
     const subTopic = subLessons[index];
     const secNote = state.currentSpecId === "uphsl-cybersec" ? " This is for educational purposes only — always get proper authorization." : "";
-    const prompt = `Teach me about "${subTopic}" as part of "${specModule!.title}", using ${langName}.
+    const prompt = `You are teaching a student about "${subTopic}" (part of "${specModule!.title}") using ${langName}.
 
-Give me a DETAILED lesson with these 4 sections:
+Write a COMPLETE, DETAILED lesson. You MUST include ALL 4 sections exactly as labeled below:
 
 OVERVIEW:
-Explain what this concept is and why it matters (2-3 paragraphs).
+Write 2-3 paragraphs explaining what ${subTopic} is, why it matters, and where it is used in real applications. Be thorough and beginner-friendly.
 
 CODE:
-A complete working ${langName} code example (20-35 lines). Make it practical and real-world. No markdown backticks.
+Write a COMPLETE, WORKING ${langName} code example (25-40 lines) that demonstrates ${subTopic}. Include comments explaining key lines. Do NOT use markdown backticks around the code.
 
 BREAKDOWN:
-Go through the code section by section explaining:
-- What each part does and why
-- The meaning of key functions/variables/keywords
-- What would happen if you changed something
+Explain the code section by section:
+- Line 1-3: what these imports/setup do
+- Line 4-8: what this function/block does
+- Continue for every meaningful section
+- Explain what each variable name means
+- Explain what would happen if you changed a value
+- Explain any keywords or built-in functions used
 
 TOGETHER:
-Explain how all parts connect and the full flow from start to finish.${secNote}`;
+Write 1-2 paragraphs explaining how all the pieces connect. Describe the full execution flow from start to finish. Explain what the program outputs and why.${secNote}
 
-    const result = await askBuiltinAI(prompt, 1500);
+IMPORTANT: You MUST write the exact labels "OVERVIEW:", "CODE:", "BREAKDOWN:", and "TOGETHER:" on their own lines to separate each section.`;
+
+    const result = await askBuiltinAI(prompt, 2000);
 
     if (result.success && result.content) {
-      const overviewMatch = result.content.match(/OVERVIEW:([\s\S]*?)(?=CODE:)/i);
-      const codeMatch = result.content.match(/CODE:([\s\S]*?)(?=BREAKDOWN:)/i);
-      const breakdownMatch = result.content.match(/BREAKDOWN:([\s\S]*?)(?=TOGETHER:)/i);
-      const togetherMatch = result.content.match(/TOGETHER:([\s\S]*?)$/i);
+      // Try structured parsing first
+      const overviewMatch = result.content.match(/OVERVIEW:\s*([\s\S]*?)(?=\nCODE:)/i);
+      const codeMatch = result.content.match(/CODE:\s*([\s\S]*?)(?=\nBREAKDOWN:)/i);
+      const breakdownMatch = result.content.match(/BREAKDOWN:\s*([\s\S]*?)(?=\nTOGETHER:)/i);
+      const togetherMatch = result.content.match(/TOGETHER:\s*([\s\S]*?)$/i);
 
-      const overview = (overviewMatch?.[1] || result.content).trim();
-      const code = (codeMatch?.[1] || "").trim().replace(/^\`\`\`[\w]*\n?/, "").replace(/\n?\`\`\`$/, "");
-      const breakdown = (breakdownMatch?.[1] || "").trim();
-      const together = (togetherMatch?.[1] || "").trim();
+      let overview = (overviewMatch?.[1] || "").trim();
+      let code = (codeMatch?.[1] || "").trim();
+      let breakdown = (breakdownMatch?.[1] || "").trim();
+      let together = (togetherMatch?.[1] || "").trim();
 
-      setLesson({ explanation: overview, code: code || `// ${subTopic}\n// Code example`, breakdown, together });
+      // Clean code block markers
+      code = code.replace(/^```[\w]*\n?/, "").replace(/\n?```$/, "").trim();
+
+      // If structured parsing failed (no sections found), try to split intelligently
+      if (!overview && !code) {
+        const content = result.content;
+        // Look for any code block
+        const codeBlockMatch = content.match(/```[\w]*\n([\s\S]*?)\n```/);
+        if (codeBlockMatch) {
+          code = codeBlockMatch[1];
+          const beforeCode = content.slice(0, content.indexOf("```")).trim();
+          const afterCode = content.slice(content.lastIndexOf("```") + 3).trim();
+          overview = beforeCode;
+          breakdown = afterCode;
+        } else {
+          // No code block found — treat entire response as overview
+          overview = content;
+          code = `# ${subTopic} - ${langName}\n# The AI response did not include a separate code block.\n# Try regenerating this lesson.`;
+        }
+      }
+
+      // Ensure we have meaningful content
+      if (!overview) overview = `This lesson covers ${subTopic} as part of ${specModule!.title}.`;
+      if (!code) code = `# ${subTopic}\n# ${langName} example`;
+
+      setLesson({ explanation: overview, code, breakdown, together });
     } else {
       setLesson({
         explanation: `This sub-lesson covers: ${subTopic}\n\nThe AI is currently unavailable — try again in a moment.`,
