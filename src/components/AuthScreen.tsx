@@ -31,32 +31,60 @@ export default function AuthScreen({ onSkip }: AuthScreenProps) {
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 md:p-8">
-      <div className="w-full max-w-5xl flex flex-col md:flex-row gap-8 md:gap-12 items-center fade-in">
+      <div className="w-full max-w-5xl flex flex-col-reverse md:flex-row gap-8 md:gap-12 items-center fade-in">
 
-        {/* Left side — About */}
+        {/* Left side — About (on mobile: appears below sign-in) */}
         <div className="flex-1 text-left">
-          <img src="/logo.svg" alt="CodeLapse" className="w-14 h-14 mb-5" />
-          <h1 className="text-3xl md:text-4xl font-bold text-text-primary mb-2" style={{ fontFamily: 'var(--font-display)' }}>
-            CodeLapse
-          </h1>
-          <p className="text-sm text-accent-purple font-medium mb-8">
-            AI-Powered Learning Platform
-          </p>
-
-          <div className="mb-6">
-            <h2 className="text-sm font-semibold text-text-primary mb-3">Why CodeLapse?</h2>
-            <p className="text-sm text-text-secondary leading-relaxed">
-              I built CodeLapse because I believe everyone deserves access to quality coding education — for free. Whether you&apos;re a complete beginner or an experienced dev picking up a new language, this platform adapts to your level and grows with you. The AI learns new topics and teaches them back, so the curriculum never stops expanding. Learn at your own pace, compete on leaderboards, and join a community of coders leveling up together.
+          <div className="hidden md:block">
+            <img src="/logo.svg" alt="CodeLapse" className="w-14 h-14 mb-5" />
+            <h1 className="text-3xl md:text-4xl font-bold text-text-primary mb-2" style={{ fontFamily: 'var(--font-display)' }}>
+              CodeLapse
+            </h1>
+            <p className="text-sm text-accent-purple font-medium mb-8">
+              AI-Powered Learning Platform
             </p>
           </div>
 
-          <div className="border-t border-border pt-4">
-            <AboutCreator />
+          <details className="md:hidden card p-4 mb-4" open={false}>
+            <summary className="text-xs font-medium text-accent-purple cursor-pointer">
+              Why CodeLapse?
+            </summary>
+            <div className="mt-3">
+              <p className="text-xs text-text-secondary leading-relaxed mb-4">
+                I built CodeLapse because I believe everyone deserves access to quality coding education — for free. Whether you&apos;re a complete beginner or an experienced dev picking up a new language, this platform adapts to your level and grows with you. The AI learns new topics and teaches them back, so the curriculum never stops expanding. Learn at your own pace, compete on leaderboards, and join a community of coders leveling up together.
+              </p>
+              <div className="border-t border-border pt-3">
+                <AboutCreator />
+              </div>
+            </div>
+          </details>
+
+          <div className="hidden md:block">
+            <div className="mb-6">
+              <h2 className="text-sm font-semibold text-text-primary mb-3">Why CodeLapse?</h2>
+              <p className="text-sm text-text-secondary leading-relaxed">
+                I built CodeLapse because I believe everyone deserves access to quality coding education — for free. Whether you&apos;re a complete beginner or an experienced dev picking up a new language, this platform adapts to your level and grows with you. The AI learns new topics and teaches them back, so the curriculum never stops expanding. Learn at your own pace, compete on leaderboards, and join a community of coders leveling up together.
+              </p>
+            </div>
+
+            <div className="border-t border-border pt-4">
+              <AboutCreator />
+            </div>
           </div>
         </div>
 
         {/* Right side — Sign In */}
         <div className="w-full md:w-96 shrink-0">
+          <div className="md:hidden text-center mb-6">
+            <img src="/logo.svg" alt="CodeLapse" className="w-14 h-14 mx-auto mb-4" />
+            <h1 className="text-2xl font-bold text-text-primary mb-1" style={{ fontFamily: 'var(--font-display)' }}>
+              CodeLapse
+            </h1>
+            <p className="text-xs text-accent-purple font-medium">
+              AI-Powered Learning Platform
+            </p>
+          </div>
+
           <div className="card p-8">
             <h3 className="text-lg font-semibold text-text-primary mb-2 text-center">Get Started</h3>
             <p className="text-xs text-text-secondary mb-6 text-center">
