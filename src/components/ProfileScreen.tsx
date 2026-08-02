@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { GameState, Screen } from "@/lib/state";
-import { getProfile, getUserLanguageProgress, signOut, signInWithGoogle } from "@/lib/auth";
+import { getProfile, getUserLanguageProgress, signOut, signInWithGoogle, ensureProfile } from "@/lib/auth";
 import { DBProfile, DBLanguageProgress } from "@/lib/supabase";
 import { getRankDisplay, getRankColor, getRankBadgeEmoji, getXPForNextRank, RankTier } from "@/lib/ranking";
 import { courses } from "@/data/courses";
@@ -22,7 +22,12 @@ export default function ProfileScreen({ state, navigate, userId, onSignOut }: Pr
   useEffect(() => {
     async function load() {
       if (!userId) { setLoading(false); return; }
-      const p = await getProfile(userId);
+      // Try to get the profile — if it doesn't exist, create one
+      let p = await getProfile(userId);
+      if (!p) {
+        // Profile doesn't exist yet — this happens on first sign-in
+        p = await ensureProfile(userId);
+      }
       const lp = await getUserLanguageProgress(userId);
       setProfile(p);
       setLangProgress(lp);
@@ -44,6 +49,25 @@ export default function ProfileScreen({ state, navigate, userId, onSignOut }: Pr
   };
 
   if (!profile) {
+    // If userId exists, the user IS signed in but profile creation failed
+    if (userId) {
+      return (
+        <div className="flex-1 flex items-center justify-center p-4">
+          <div className="card p-8 text-center max-w-md fade-in">
+            <div className="text-4xl mb-4">⚠️</div>
+            <p className="text-lg font-semibold text-text-primary mb-2">Profile Unavailable</p>
+            <p className="text-sm text-text-secondary mb-6">We couldn&apos;t load your profile. This may be a temporary issue. Try refreshing the page.</p>
+            <button onClick={() => window.location.reload()} className="btn-primary text-sm w-full mb-3">
+              Refresh Page
+            </button>
+            <button onClick={() => navigate("course-select")} className="btn-secondary text-sm w-full">
+              ← Back to Courses
+            </button>
+          </div>
+        </div>
+      );
+    }
+
     return (
       <div className="flex-1 flex items-center justify-center p-4">
         <div className="card p-8 text-center max-w-md fade-in">

@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import { GameState, loadState, saveState, getInitialState } from "@/lib/state";
 import { Screen } from "@/lib/state";
 import { supabase, isSupabaseConfigured } from "@/lib/supabase";
-import { addXP, updateStreak, updateQuestionStats, completeModule as dbCompleteModule } from "@/lib/auth";
+import { addXP, updateStreak, updateQuestionStats, completeModule as dbCompleteModule, ensureProfile } from "@/lib/auth";
 import { getRankFromXP, getRankDisplay, getRankColor, getRankBadgeEmoji } from "@/lib/ranking";
 import { User } from "@supabase/supabase-js";
 import AuthScreen from "@/components/AuthScreen";
@@ -46,6 +46,14 @@ export default function Home() {
       try {
         const { data: { session } } = await supabase.auth.getSession();
         setUser(session?.user || null);
+        // Ensure profile exists for the logged-in user
+        if (session?.user) {
+          ensureProfile(
+            session.user.id,
+            session.user.email,
+            session.user.user_metadata?.avatar_url || null
+          );
+        }
       } catch {
         // Supabase not reachable — continue without auth
       }
@@ -59,6 +67,14 @@ export default function Home() {
       setUser(session?.user || null);
       if (session?.user && state.currentScreen === "start") {
         setState(prev => ({ ...prev, currentScreen: "course-select" }));
+      }
+      // Ensure profile exists for newly authenticated users
+      if (session?.user) {
+        ensureProfile(
+          session.user.id,
+          session.user.email,
+          session.user.user_metadata?.avatar_url || null
+        );
       }
     });
 
