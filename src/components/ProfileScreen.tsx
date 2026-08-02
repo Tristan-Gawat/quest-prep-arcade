@@ -6,6 +6,7 @@ import { getProfile, getUserLanguageProgress, signOut, signInWithGoogle, ensureP
 import { DBProfile, DBLanguageProgress } from "@/lib/supabase";
 import { getRankDisplay, getRankColor, getRankBadgeEmoji, getXPForNextRank, RankTier } from "@/lib/ranking";
 import { courses } from "@/data/courses";
+import ProfileEditModal from "@/components/ProfileEditModal";
 
 interface ProfileScreenProps {
   state: GameState;
@@ -19,6 +20,7 @@ export default function ProfileScreen({ state, navigate, userId, onSignOut }: Pr
   const [langProgress, setLangProgress] = useState<DBLanguageProgress[]>([]);
   const [loading, setLoading] = useState(true);
   const [resolvedUserId, setResolvedUserId] = useState<string | null>(userId);
+  const [showEditModal, setShowEditModal] = useState(false);
 
   useEffect(() => {
     async function load() {
@@ -140,6 +142,12 @@ export default function ProfileScreen({ state, navigate, userId, onSignOut }: Pr
             </div>
           )}
           <h2 className="text-xl font-semibold text-text-primary mb-1">{profile.username}</h2>
+          <button
+            onClick={() => setShowEditModal(true)}
+            className="text-xs text-accent-blue hover:text-accent-blue/80 mb-2 cursor-pointer"
+          >
+            Edit Profile
+          </button>
           <p className="text-sm font-medium mb-4" style={{ color: getRankColor(rank.tier) }}>
             {getRankBadgeEmoji(rank.tier)} {getRankDisplay(rank)}
           </p>
@@ -227,6 +235,19 @@ export default function ProfileScreen({ state, navigate, userId, onSignOut }: Pr
           </button>
         </div>
       </div>
+
+      {/* Profile Edit Modal */}
+      {showEditModal && resolvedUserId && (
+        <ProfileEditModal
+          userId={resolvedUserId}
+          currentProfile={profile}
+          onClose={() => setShowEditModal(false)}
+          onSaved={(updatedProfile) => {
+            setProfile(updatedProfile);
+            setShowEditModal(false);
+          }}
+        />
+      )}
     </div>
   );
 }

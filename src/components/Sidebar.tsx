@@ -14,6 +14,8 @@ const NAV_ITEMS: { id: Screen; label: string; icon: string }[] = [
   { id: "course-select", label: "Courses", icon: "📚" },
   { id: "learn-new", label: "AI Learn", icon: "🧠" },
   { id: "arena", label: "Arena", icon: "⚔️" },
+  { id: "battle-lobby", label: "Battle", icon: "🎯" },
+  { id: "friends", label: "Friends", icon: "👥" },
   { id: "leaderboard", label: "Leaderboard", icon: "🏆" },
   { id: "profile", label: "Profile", icon: "👤" },
 ];

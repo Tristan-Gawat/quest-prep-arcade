@@ -36,7 +36,10 @@ export type Screen =
   | "spec-modules"
   | "spec-lesson"
   | "admin-console"
-  | "admin-users";
+  | "admin-users"
+  | "friends"
+  | "code-battle"
+  | "battle-lobby";
 
 const STORAGE_KEY = "codelapse-state";
 
