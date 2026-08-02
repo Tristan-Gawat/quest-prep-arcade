@@ -15,7 +15,7 @@ interface StatsBarProps {
 }
 
 export default function StatsBar({ state, onSettings, onHome, onProfile, onLeaderboard, user }: StatsBarProps) {
-  const rank = getRankFromXP(state.score);
+  const rank = getRankFromXP(state.score, user?.email);
 
   return (
     <div className="p-3 md:p-4">

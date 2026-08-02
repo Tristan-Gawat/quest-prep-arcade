@@ -6,14 +6,21 @@
 // GRANDMASTER V → IV → III → II → I
 // CHAMPION (single tier - the pinnacle)
 
-export type RankTier = "BEGINNER" | "ROOKIE" | "ELITE" | "MASTER" | "GRANDMASTER" | "CHAMPION";
+export type RankTier = "BEGINNER" | "ROOKIE" | "ELITE" | "MASTER" | "GRANDMASTER" | "CHAMPION" | "DEVELOPER";
 
 export interface Rank {
   tier: RankTier;
   division: number; // 0 for BEGINNER/CHAMPION; 3,2,1 for ROOKIE; 5,4,3,2,1 for others
 }
 
-export const RANK_ORDER: RankTier[] = ["BEGINNER", "ROOKIE", "ELITE", "MASTER", "GRANDMASTER", "CHAMPION"];
+export const RANK_ORDER: RankTier[] = ["BEGINNER", "ROOKIE", "ELITE", "MASTER", "GRANDMASTER", "CHAMPION", "DEVELOPER"];
+
+// Developer accounts — always show DEVELOPER rank regardless of XP
+const DEVELOPER_EMAILS = [
+  "tjgawat0113@gmail.com",
+  "tristangawatschool@gmail.com",
+  "c1-241-00124@uphsl.edu.ph",
+];
 
 // XP thresholds for each rank tier + division
 const RANK_THRESHOLDS: { tier: RankTier; division: number; xpRequired: number }[] = [
@@ -45,7 +52,12 @@ const RANK_THRESHOLDS: { tier: RankTier; division: number; xpRequired: number }[
   { tier: "CHAMPION", division: 0, xpRequired: 75000 },
 ];
 
-export function getRankFromXP(xp: number): Rank {
+export function getRankFromXP(xp: number, email?: string | null): Rank {
+  // Developer accounts always get DEVELOPER rank
+  if (email && DEVELOPER_EMAILS.includes(email.toLowerCase())) {
+    return { tier: "DEVELOPER", division: 0 };
+  }
+
   let result: Rank = { tier: "BEGINNER", division: 0 };
   for (const threshold of RANK_THRESHOLDS) {
     if (xp >= threshold.xpRequired) {
@@ -60,6 +72,7 @@ export function getRankFromXP(xp: number): Rank {
 export function getRankDisplay(rank: Rank): string {
   if (rank.tier === "CHAMPION") return "CHAMPION";
   if (rank.tier === "BEGINNER") return "BEGINNER";
+  if (rank.tier === "DEVELOPER") return "DEVELOPER";
   const romanNumerals: Record<number, string> = {
     1: "I", 2: "II", 3: "III", 4: "IV", 5: "V",
   };
@@ -74,6 +87,7 @@ export function getRankColor(tier: RankTier): string {
     case "MASTER": return "#c58af9";      // purple
     case "GRANDMASTER": return "#fdd663"; // gold
     case "CHAMPION": return "#ff7eb3";    // pink/legendary
+    case "DEVELOPER": return "#00ffaa";   // neon green
   }
 }
 
@@ -108,5 +122,6 @@ export function getRankBadgeEmoji(tier: RankTier): string {
     case "MASTER": return "👑";
     case "GRANDMASTER": return "💎";
     case "CHAMPION": return "🏆";
+    case "DEVELOPER": return "⚡";
   }
 }

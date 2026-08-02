@@ -146,7 +146,7 @@ export default function Home() {
     );
   }
 
-  const rank = getRankFromXP(state.score);
+  const rank = getRankFromXP(state.score, user?.email);
 
   return (
     <main className="h-screen flex overflow-hidden">
