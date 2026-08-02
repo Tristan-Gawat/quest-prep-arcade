@@ -8,6 +8,7 @@ interface CourseSelectProps {
   updateState: (updates: Partial<GameState>) => void;
   navigate: (screen: Screen) => void;
   userEmail?: string | null;
+  userRole?: string;
 }
 
 const UPHSL_PROGRAMS = [
@@ -46,10 +47,11 @@ export default function CourseSelect({
   updateState,
   navigate,
   userEmail,
+  userRole,
 }: CourseSelectProps) {
   const DEVELOPER_EMAILS = ["tjgawat0113@gmail.com", "tristangawatschool@gmail.com", "c1-241-00124@uphsl.edu.ph"];
   const isDeveloper = userEmail ? DEVELOPER_EMAILS.includes(userEmail.toLowerCase()) : false;
-  const isUPHSL = userEmail?.endsWith("@uphsl.edu.ph") || isDeveloper;
+  const isUPHSL = userEmail?.endsWith("@uphsl.edu.ph") || isDeveloper || userRole === "mod";
   const handleSelectCourse = (courseId: string) => {
     updateState({
       currentCourseId: courseId,
