@@ -15,6 +15,9 @@ export interface GameState {
   aiProvider: "openai" | "anthropic";
   generatedModules: Record<string, import("@/data/curriculum").Module[]>;
   totalModulesGenerated: number;
+  currentSpecId: string | null;
+  currentSpecModuleId: string | null;
+  currentSpecLanguage: string | null;
 }
 
 export type Screen =
@@ -28,7 +31,9 @@ export type Screen =
   | "profile"
   | "leaderboard"
   | "arena"
-  | "learn-new";
+  | "learn-new"
+  | "spec-modules"
+  | "spec-lesson";
 
 const STORAGE_KEY = "codelapse-state";
 
@@ -50,6 +55,9 @@ export function getInitialState(): GameState {
     aiProvider: "openai",
     generatedModules: {},
     totalModulesGenerated: 0,
+    currentSpecId: null,
+    currentSpecModuleId: null,
+    currentSpecLanguage: null,
   };
 }
 

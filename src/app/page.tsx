@@ -18,6 +18,8 @@ import ProfileScreen from "@/components/ProfileScreen";
 import LeaderboardScreen from "@/components/LeaderboardScreen";
 import ArenaScreen from "@/components/ArenaScreen";
 import LearnNewScreen from "@/components/LearnNewScreen";
+import SpecModulesScreen from "@/components/SpecModulesScreen";
+import SpecLessonScreen from "@/components/SpecLessonScreen";
 import Ticker from "@/components/Ticker";
 
 export default function Home() {
@@ -225,6 +227,14 @@ export default function Home() {
 
           {state.currentScreen === "learn-new" && (
             <LearnNewScreen state={state} updateState={updateState} navigate={navigate} userId={user?.id || null} />
+          )}
+
+          {state.currentScreen === "spec-modules" && (
+            <SpecModulesScreen state={state} updateState={updateState} navigate={navigate} />
+          )}
+
+          {state.currentScreen === "spec-lesson" && (
+            <SpecLessonScreen state={state} updateState={updateState} navigate={navigate} />
           )}
         </div>
 

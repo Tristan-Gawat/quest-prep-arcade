@@ -79,7 +79,9 @@ export default function CourseSelect({
               {UPHSL_PROGRAMS.map((program) => (
                 <button
                   key={program.id}
-                  onClick={() => navigate("course-select")}
+                  onClick={() => {
+                    updateState({ currentSpecId: program.id, currentScreen: "spec-modules" });
+                  }}
                   className="relative overflow-hidden rounded-xl p-5 text-left transition-all hover:translate-y-[-2px] cursor-pointer group border-2"
                   style={{ borderColor: program.color + "40", background: program.color + "08" }}
                 >
