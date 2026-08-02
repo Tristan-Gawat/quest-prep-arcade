@@ -300,14 +300,22 @@ export default function CourseModulesScreen({ state, updateState, navigate }: Co
               <button
                 key={mod.id}
                 onClick={() => handleSelectModule(mod, realIndex)}
-                className={`card p-4 text-left transition-all hover:translate-y-[-2px] hover:border-accent-blue/40 cursor-pointer group ${isCompleted ? "border-accent-green/40" : ""}`}
+                className={`card p-4 text-left transition-all hover:translate-y-[-2px] hover:border-accent-blue/40 cursor-pointer group relative ${isCompleted ? "border-accent-green/60 bg-accent-green/5 ring-1 ring-accent-green/20" : ""}`}
               >
+                {/* Completed checkmark badge */}
+                {isCompleted && (
+                  <div className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-accent-green flex items-center justify-center shadow-md z-10">
+                    <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                )}
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-[9px] font-medium px-1.5 py-0.5 rounded" style={{ color: TIER_COLORS[mod.tier], background: TIER_COLORS[mod.tier] + "15" }}>
                     {mod.tier}
                   </span>
                   {isCompleted && (
-                    <span className="text-[10px] text-accent-green">✓</span>
+                    <span className="text-[10px] font-medium text-accent-green">Done</span>
                   )}
                 </div>
                 <h3 className="text-xs font-medium text-text-primary mt-1 mb-1 group-hover:text-accent-blue transition-colors line-clamp-2">

@@ -21,12 +21,15 @@ export default function ProfileEditModal({
   const [username, setUsername] = useState(currentProfile.username);
   const [bio, setBio] = useState((currentProfile as DBProfile & { bio?: string }).bio || "");
   const [avatarUrl, setAvatarUrl] = useState<string | null>(currentProfile.avatar_url);
+  const [coverPhotoUrl, setCoverPhotoUrl] = useState<string | null>(currentProfile.cover_photo_url || null);
   const [usernameError, setUsernameError] = useState<string | null>(null);
   const [bioError, setBioError] = useState<string | null>(null);
   const [uploadError, setUploadError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [uploadingCover, setUploadingCover] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const coverInputRef = useRef<HTMLInputElement>(null);
 
   const BIO_MAX_LENGTH = 150;
 
@@ -75,11 +78,37 @@ export default function ProfileEditModal({
     }
   };
 
+  const uploadCoverPhoto = async (file: File) => {
+    setUploadingCover(true);
+    setUploadError(null);
+    const ext = file.name.split(".").pop();
+    const path = `${userId}/cover.${ext}`;
+    const { error } = await supabase.storage.from("avatars").upload(path, file, { upsert: true });
+    if (error) {
+      setUploadError(error.message);
+      setUploadingCover(false);
+      return;
+    }
+    const {
+      data: { publicUrl },
+    } = supabase.storage.from("avatars").getPublicUrl(path);
+    setCoverPhotoUrl(publicUrl);
+    setUploadingCover(false);
+  };
+
+  const handleCoverFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      uploadCoverPhoto(file);
+    }
+  };
+
   const isValid =
     username.trim().length > 0 &&
     !usernameError &&
     !bioError &&
-    !uploading;
+    !uploading &&
+    !uploadingCover;
 
   const handleSave = async () => {
     if (!isValid) return;
@@ -88,6 +117,7 @@ export default function ProfileEditModal({
     const updates: Partial<DBProfile> & { bio?: string } = {
       username,
       avatar_url: avatarUrl,
+      cover_photo_url: coverPhotoUrl,
     };
 
     // Include bio in updates
@@ -104,6 +134,7 @@ export default function ProfileEditModal({
       ...currentProfile,
       username,
       avatar_url: avatarUrl,
+      cover_photo_url: coverPhotoUrl,
     };
 
     onSaved(updatedProfile);
@@ -168,6 +199,46 @@ export default function ProfileEditModal({
             )}
             {uploadError && (
               <p className="text-xs text-red-400 mt-2">{uploadError}</p>
+            )}
+          </div>
+
+          {/* Cover Photo Section */}
+          <div>
+            <label className="block text-xs font-medium text-text-secondary mb-1.5">
+              Cover Photo
+            </label>
+            <div className="relative w-full h-24 rounded-lg overflow-hidden bg-bg-elevated border border-border group">
+              {coverPhotoUrl ? (
+                <img
+                  src={coverPhotoUrl}
+                  alt="Cover"
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center bg-gradient-to-r from-accent-blue/10 via-accent-purple/10 to-accent-cyan/10">
+                  <span className="text-xs text-text-muted">No cover photo</span>
+                </div>
+              )}
+              {/* Upload overlay */}
+              <button
+                onClick={() => coverInputRef.current?.click()}
+                disabled={uploadingCover}
+                className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"
+              >
+                <span className="text-xs font-medium text-white px-3 py-1.5 bg-accent-blue/80 rounded-lg">
+                  {uploadingCover ? "Uploading..." : "Change Cover"}
+                </span>
+              </button>
+              <input
+                ref={coverInputRef}
+                type="file"
+                accept="image/*"
+                onChange={handleCoverFileSelect}
+                className="hidden"
+              />
+            </div>
+            {uploadingCover && (
+              <p className="text-xs text-accent-blue mt-1.5 pulse-soft">Uploading cover...</p>
             )}
           </div>
 
