@@ -126,7 +126,7 @@ export default function ProfileScreen({ state, navigate, userId, userEmail, onSi
     <div className="flex-1 p-4 md:p-8 overflow-y-auto">
       <div className="max-w-2xl mx-auto fade-in">
         {/* Profile Header */}
-        <div className="card mb-6 text-center overflow-hidden">
+        <div className="card mb-6 overflow-hidden">
           {/* Cover Photo Banner */}
           {profile.cover_photo_url ? (
             <div className="relative w-full h-32 md:h-40">
@@ -135,60 +135,73 @@ export default function ProfileScreen({ state, navigate, userId, userEmail, onSi
                 alt="Cover"
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-bg-card/80 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-bg-card/90 via-transparent to-transparent" />
             </div>
           ) : (
-            <div className="w-full h-20 md:h-24 bg-gradient-to-r from-accent-blue/20 via-accent-purple/20 to-accent-cyan/20" />
+            <div className="w-full h-24 md:h-32 bg-gradient-to-r from-accent-blue/20 via-accent-purple/20 to-accent-cyan/20" />
           )}
 
-          <div className={`px-6 pb-6 md:pb-8 ${profile.cover_photo_url ? "-mt-10" : "-mt-8"}`}>
-            {/* Avatar with + button */}
-            <div className="relative w-20 h-20 mx-auto mb-4 group">
-              {profile.avatar_url ? (
-                <img
-                  src={profile.avatar_url}
-                  alt={profile.username}
-                  className="w-20 h-20 rounded-full border-2 object-cover shadow-lg"
-                  style={{ borderColor: getRankColor(rank.tier) }}
-                />
-              ) : (
-                <div
-                  className="w-20 h-20 rounded-full flex items-center justify-center text-2xl border-2 shadow-lg"
-                  style={{ borderColor: getRankColor(rank.tier), backgroundColor: getRankColor(rank.tier) + "20" }}
-                >
-                  {profile.username.charAt(0).toUpperCase()}
+          {/* Profile info row: name/tag on left, avatar on right */}
+          <div className="px-6 pb-6 md:pb-8 -mt-6">
+            <div className="flex items-end justify-between gap-4">
+              {/* Left side: Name + rank tag */}
+              <div className="flex-1 min-w-0 pt-8">
+                <h2 className="text-xl md:text-2xl font-semibold text-text-primary truncate">{profile.username}</h2>
+                {/* Rank tag below name */}
+                <div className="flex items-center gap-2 mt-1.5">
+                  <span
+                    className="inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-full"
+                    style={{ color: getRankColor(rank.tier), backgroundColor: getRankColor(rank.tier) + "18", border: `1px solid ${getRankColor(rank.tier)}40` }}
+                  >
+                    {getRankBadgeEmoji(rank.tier)} {getRankDisplay(rank)}
+                  </span>
                 </div>
-              )}
-              {/* Plus button overlay */}
-              <button
-                onClick={() => setShowEditModal(true)}
-                className="absolute bottom-0 right-0 w-7 h-7 rounded-full bg-accent-blue flex items-center justify-center text-white text-sm font-bold border-2 border-bg-card cursor-pointer hover:bg-accent-blue/80 transition-colors shadow-lg"
-                title="Change profile picture"
-              >
-                +
-              </button>
-            </div>
-            <h2 className="text-xl font-semibold text-text-primary mb-1">{profile.username}</h2>
-            <button
-              onClick={() => setShowEditModal(true)}
-              className="text-xs text-accent-blue hover:text-accent-blue/80 mb-2 cursor-pointer"
-            >
-              Edit Profile
-            </button>
-            <p className="text-sm font-medium mb-2" style={{ color: getRankColor(rank.tier) }}>
-              {getRankBadgeEmoji(rank.tier)} {getRankDisplay(rank)}
-            </p>
+                <button
+                  onClick={() => setShowEditModal(true)}
+                  className="text-xs text-accent-blue hover:text-accent-blue/80 mt-2 cursor-pointer"
+                >
+                  Edit Profile
+                </button>
+              </div>
 
-            {/* Bio - inline in header card */}
+              {/* Right side: Avatar */}
+              <div className="relative w-20 h-20 shrink-0 group">
+                {profile.avatar_url ? (
+                  <img
+                    src={profile.avatar_url}
+                    alt={profile.username}
+                    className="w-20 h-20 rounded-full border-3 object-cover shadow-lg"
+                    style={{ borderColor: getRankColor(rank.tier) }}
+                  />
+                ) : (
+                  <div
+                    className="w-20 h-20 rounded-full flex items-center justify-center text-2xl border-3 shadow-lg"
+                    style={{ borderColor: getRankColor(rank.tier), backgroundColor: getRankColor(rank.tier) + "20" }}
+                  >
+                    {profile.username.charAt(0).toUpperCase()}
+                  </div>
+                )}
+                {/* Plus button overlay */}
+                <button
+                  onClick={() => setShowEditModal(true)}
+                  className="absolute bottom-0 right-0 w-7 h-7 rounded-full bg-accent-blue flex items-center justify-center text-white text-sm font-bold border-2 border-bg-card cursor-pointer hover:bg-accent-blue/80 transition-colors shadow-lg"
+                  title="Change profile picture"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+
+            {/* Bio - below name and cover */}
             {profile.bio && (
-              <p className="text-sm text-text-secondary italic max-w-sm mx-auto mb-4">
+              <p className="text-sm text-text-secondary italic mt-4">
                 &ldquo;{profile.bio}&rdquo;
               </p>
             )}
 
             {/* Rank progress bar - hidden for DEVELOPER accounts */}
             {rank.tier !== "DEVELOPER" && (
-              <div className="max-w-xs mx-auto">
+              <div className="max-w-xs mt-4">
                 <div className="w-full h-2 bg-bg-elevated rounded-full overflow-hidden mb-1">
                   <div
                     className="h-full rounded-full transition-all"
