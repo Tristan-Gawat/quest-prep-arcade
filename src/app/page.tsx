@@ -25,6 +25,7 @@ import CourseModulesScreen from "@/components/CourseModulesScreen";
 import Ticker from "@/components/Ticker";
 import AdminConsole from "@/components/AdminConsole";
 import FriendsScreen from "@/components/FriendsScreen";
+import ChatScreen from "@/components/ChatScreen";
 import BattleLobbyScreen from "@/components/BattleLobbyScreen";
 import CodeBattleScreen from "@/components/CodeBattleScreen";
 import AdminUsers from "@/components/AdminUsers";
@@ -291,6 +292,10 @@ export default function Home() {
 
           {state.currentScreen === "friends" && (
             <FriendsScreen state={state} navigate={navigate} userId={user?.id || null} />
+          )}
+
+          {state.currentScreen === "chat" && (
+            <ChatScreen state={state} navigate={navigate} userId={user?.id || null} />
           )}
 
           {state.currentScreen === "battle-lobby" && (

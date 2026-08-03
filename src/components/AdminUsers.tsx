@@ -22,6 +22,8 @@ export default function AdminUsers({ callerRole }: { callerRole?: string }) {
   const [actionLoading, setActionLoading] = useState<string | null>(null);
   const [confirmDelete, setConfirmDelete] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [selectedUser, setSelectedUser] = useState<UserEntry | null>(null);
 
   useEffect(() => {
     loadUsers();
@@ -101,16 +103,134 @@ export default function AdminUsers({ callerRole }: { callerRole?: string }) {
           <button onClick={loadUsers} className="btn-secondary text-xs">🔄 Refresh</button>
         </div>
 
-        {/* Search */}
-        <div className="mb-4">
+        {/* Search with Autocomplete */}
+        <div className="mb-4 relative">
           <input
             type="text"
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            onChange={(e) => {
+              setSearchQuery(e.target.value);
+              setShowDropdown(true);
+              setSelectedUser(null);
+            }}
+            onFocus={() => setShowDropdown(true)}
             placeholder="Search users by name or email..."
             className="w-full bg-bg-input border border-border rounded-lg px-4 py-2.5 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent-blue transition-colors"
           />
+
+          {/* Autocomplete Dropdown */}
+          {showDropdown && searchQuery.trim() && (
+            <div className="absolute z-20 w-full mt-1 bg-bg-card border border-border rounded-lg shadow-lg max-h-60 overflow-y-auto">
+              {users
+                .filter(u =>
+                  u.username.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                  u.email.toLowerCase().includes(searchQuery.toLowerCase())
+                )
+                .slice(0, 8)
+                .map((user) => (
+                  <button
+                    key={user.id}
+                    onClick={() => {
+                      setSelectedUser(user);
+                      setShowDropdown(false);
+                      setSearchQuery(user.username);
+                    }}
+                    className="w-full flex items-center gap-3 px-4 py-2.5 hover:bg-bg-elevated transition-colors cursor-pointer text-left"
+                  >
+                    {user.avatar_url ? (
+                      <img src={user.avatar_url} alt="" className="w-8 h-8 rounded-full shrink-0" />
+                    ) : (
+                      <div className="w-8 h-8 rounded-full bg-bg-elevated flex items-center justify-center text-xs text-text-muted shrink-0">
+                        {user.username?.charAt(0)?.toUpperCase() || "?"}
+                      </div>
+                    )}
+                    <div className="min-w-0">
+                      <p className="text-sm font-medium text-text-primary truncate">{user.username}</p>
+                      <p className="text-[10px] text-text-muted truncate">{user.email}</p>
+                    </div>
+                    <span
+                      className="text-[10px] font-medium px-2 py-0.5 rounded-full ml-auto shrink-0"
+                      style={{ color: ROLE_COLORS[user.role] || "#9aa0a6", background: (ROLE_COLORS[user.role] || "#9aa0a6") + "15" }}
+                    >
+                      {user.role.toUpperCase()}
+                    </span>
+                  </button>
+                ))}
+              {users.filter(u =>
+                u.username.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                u.email.toLowerCase().includes(searchQuery.toLowerCase())
+              ).length === 0 && (
+                <div className="px-4 py-3 text-center text-sm text-text-muted">No users found</div>
+              )}
+            </div>
+          )}
         </div>
+
+        {/* Selected User Profile Card */}
+        {selectedUser && (
+          <div className="card p-5 mb-6 border-l-4 border-l-accent-green">
+            <div className="flex items-center gap-4 mb-4">
+              {selectedUser.avatar_url ? (
+                <img src={selectedUser.avatar_url} alt="" className="w-14 h-14 rounded-full" />
+              ) : (
+                <div className="w-14 h-14 rounded-full bg-bg-elevated flex items-center justify-center text-lg text-text-muted">
+                  {selectedUser.username?.charAt(0)?.toUpperCase() || "?"}
+                </div>
+              )}
+              <div className="flex-1">
+                <h3 className="text-base font-semibold text-text-primary">{selectedUser.username}</h3>
+                <p className="text-xs text-text-muted">{selectedUser.email}</p>
+                <p className="text-xs text-text-muted mt-0.5">Joined {new Date(selectedUser.created_at).toLocaleDateString()}</p>
+              </div>
+              <span
+                className="text-xs font-medium px-3 py-1 rounded-full"
+                style={{ color: ROLE_COLORS[selectedUser.role] || "#9aa0a6", background: (ROLE_COLORS[selectedUser.role] || "#9aa0a6") + "15" }}
+              >
+                {selectedUser.role.toUpperCase()}
+              </span>
+            </div>
+            <div className="grid grid-cols-3 gap-3 mb-4">
+              <div className="bg-bg-elevated rounded-lg p-3 text-center">
+                <p className="text-lg font-bold text-accent-yellow">{selectedUser.total_xp.toLocaleString()}</p>
+                <p className="text-[10px] text-text-muted">XP</p>
+              </div>
+              <div className="bg-bg-elevated rounded-lg p-3 text-center">
+                <p className="text-lg font-bold text-accent-green">{selectedUser.modules_completed}</p>
+                <p className="text-[10px] text-text-muted">Modules</p>
+              </div>
+              <div className="bg-bg-elevated rounded-lg p-3 text-center">
+                <p className="text-lg font-bold text-accent-blue">{selectedUser.rank_tier}</p>
+                <p className="text-[10px] text-text-muted">Rank</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <label className="text-xs text-text-muted">Change Role:</label>
+              <select
+                value={selectedUser.role}
+                onChange={(e) => {
+                  changeRole(selectedUser.id, e.target.value);
+                  setSelectedUser({ ...selectedUser, role: e.target.value });
+                }}
+                disabled={actionLoading === selectedUser.id}
+                className="bg-bg-input border border-border rounded text-xs text-text-primary p-1.5 cursor-pointer"
+              >
+                <option value="player">Player</option>
+                <option value="mod">Mod</option>
+                {callerRole === "developer" && <option value="developer">Developer</option>}
+              </select>
+              <button
+                onClick={() => {
+                  deleteUser(selectedUser.id);
+                  setSelectedUser(null);
+                }}
+                disabled={actionLoading === selectedUser.id}
+                className="ml-auto px-3 py-1.5 text-xs rounded bg-accent-red/10 text-accent-red hover:bg-accent-red/20 cursor-pointer transition-all"
+              >
+                Delete User
+              </button>
+            </div>
+          </div>
+        )}
 
         {/* User table */}
         <div className="space-y-2">
