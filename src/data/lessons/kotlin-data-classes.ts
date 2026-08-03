@@ -71,9 +71,9 @@ sealed class GameState {
 
 fun handleState(state: GameState): String = when (state) {
     is GameState.Loading -> "Loading..."
-    is GameState.Playing -> "Level ${state.level} - Score: ${state.score}"
-    is GameState.Paused -> "Paused: ${state.reason}"
-    is GameState.GameOver -> "Game Over! Score: ${state.finalScore}"
+    is GameState.Playing -> "Level \${state.level} - Score: \${state.score}"
+    is GameState.Paused -> "Paused: \${state.reason}"
+    is GameState.GameOver -> "Game Over! Score: \${state.finalScore}"
     // No else needed - compiler knows all cases!
 }
 
@@ -138,8 +138,8 @@ val score = input?.let { it.toIntOrNull() } ?: 0
 // when expression (pattern matching)
 fun describe(obj: Any): String = when (obj) {
     is Int -> "Integer: $obj"
-    is String -> "String of length ${obj.length}"
-    is List<*> -> "List of ${obj.size} items"
+    is String -> "String of length \${obj.length}"
+    is List<*> -> "List of \${obj.size} items"
     else -> "Unknown"
 }
 
@@ -205,7 +205,7 @@ fun CoroutineScope.gameLoop() = launch {
         for (event in events) {
             when (event) {
                 is GameEvent.Score -> score += event.points
-                is GameEvent.PowerUp -> println("Power up: ${event.type}")
+                is GameEvent.PowerUp -> println("Power up: \${event.type}")
             }
         }
     }
