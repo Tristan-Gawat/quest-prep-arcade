@@ -51,7 +51,7 @@ body::before {
     linear-gradient(90deg, rgba(255,255,255,0.01) 1px, transparent 1px);
   background-size: 60px 60px;
   pointer-events: none;
-  z-index: 0;
+  z-index: -1;
 }
 
 /* Scrollbar */
@@ -88,6 +88,20 @@ body::before {
 
 .fade-in { animation: fadeIn 0.3s ease; }
 .slide-up { animation: slideUp 0.4s ease; }
+
+/* Mobile touch improvements */
+button, a, [role="button"], summary {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* Ensure minimum touch target size on mobile */
+@media (pointer: coarse) {
+  button, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
 .pulse-soft { animation: pulse-soft 2s ease infinite; }
 .flash-correct { animation: flash-correct 1s ease; }
 .flash-wrong { animation: flash-wrong 1s ease; }

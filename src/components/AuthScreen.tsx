@@ -30,7 +30,7 @@ export default function AuthScreen({ onSkip }: AuthScreenProps) {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 md:p-8">
+    <div className="min-h-screen flex items-center justify-center p-4 md:p-8 relative z-10">
       <div className="w-full max-w-5xl flex flex-col-reverse md:flex-row gap-8 md:gap-12 items-center fade-in">
 
         {/* Left side — About (on mobile: appears below sign-in) */}
@@ -93,7 +93,7 @@ export default function AuthScreen({ onSkip }: AuthScreenProps) {
 
             <button
               onClick={handleGoogleSignIn}
-              className="w-full flex items-center justify-center gap-3 bg-white text-gray-800 font-medium py-3 px-6 rounded-lg hover:bg-gray-100 transition-all cursor-pointer mb-4"
+              className="w-full flex items-center justify-center gap-3 bg-white text-gray-800 font-medium py-4 px-6 rounded-lg hover:bg-gray-100 active:scale-[0.98] transition-all cursor-pointer mb-4 min-h-[48px] relative z-10 touch-manipulation"
             >
               <svg width="20" height="20" viewBox="0 0 24 24">
                 <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -107,7 +107,7 @@ export default function AuthScreen({ onSkip }: AuthScreenProps) {
             <div className="border-t border-border mt-4 pt-4 text-center">
               <button
                 onClick={onSkip}
-                className="btn-secondary text-xs w-full"
+                className="btn-secondary text-xs w-full min-h-[44px] relative z-10 touch-manipulation"
               >
                 Skip for now (progress won&apos;t be saved online)
               </button>
