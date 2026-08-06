@@ -34,13 +34,59 @@ export default function AdminUsers({ callerRole }: { callerRole?: string }) {
     const { data: { session } } = await supabase.auth.getSession();
     const token = session?.access_token;
 
-    const response = await fetch("/api/admin/users", {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    try {
+      const response = await fetch("/api/admin/users", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
 
-    if (response.ok) {
-      const data = await response.json();
-      setUsers(data.users || []);
+      if (response.ok) {
+        const data = await response.json();
+        setUsers(data.users || []);
+      } else {
+        console.error("Failed to load users:", response.status);
+        // Fallback: load directly from profiles table (without email)
+        const { data: profiles } = await supabase
+          .from("profiles")
+          .select("*")
+          .order("created_at", { ascending: false });
+
+        if (profiles) {
+          setUsers(profiles.map(p => ({
+            id: p.id,
+            username: p.username,
+            email: "—",
+            avatar_url: p.avatar_url,
+            role: (p as Record<string, unknown>).role as string || (p.rank_tier === "DEVELOPER" ? "developer" : "player"),
+            rank_tier: p.rank_tier,
+            rank_division: p.rank_division,
+            total_xp: p.total_xp,
+            modules_completed: p.modules_completed,
+            created_at: p.created_at,
+          })));
+        }
+      }
+    } catch (err) {
+      console.error("Error loading users:", err);
+      // Fallback: load directly from profiles table
+      const { data: profiles } = await supabase
+        .from("profiles")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+      if (profiles) {
+        setUsers(profiles.map(p => ({
+          id: p.id,
+          username: p.username,
+          email: "—",
+          avatar_url: p.avatar_url,
+          role: p.rank_tier === "DEVELOPER" ? "developer" : "player",
+          rank_tier: p.rank_tier,
+          rank_division: p.rank_division,
+          total_xp: p.total_xp,
+          modules_completed: p.modules_completed,
+          created_at: p.created_at,
+        })));
+      }
     }
     setLoading(false);
   };
@@ -261,6 +307,7 @@ export default function AdminUsers({ callerRole }: { callerRole?: string }) {
               <div className="flex items-center gap-4 text-xs text-text-muted shrink-0">
                 <span>{user.total_xp.toLocaleString()} XP</span>
                 <span>{user.modules_completed} modules</span>
+                <span className="hidden md:inline">Joined {new Date(user.created_at).toLocaleDateString()}</span>
               </div>
 
               {/* Role badge */}
