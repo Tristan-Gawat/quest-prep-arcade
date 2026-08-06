@@ -20,6 +20,7 @@ const DEVELOPER_EMAILS = [
   "tjgawat0113@gmail.com",
   "tristangawatschool@gmail.com",
   "c1-241-00124@uphsl.edu.ph",
+  "giegajames13@gmail.com",
 ];
 
 // XP thresholds for each rank tier + division

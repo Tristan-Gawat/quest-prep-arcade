@@ -184,7 +184,7 @@ export default function Home() {
   const rank = getRankFromXP(state.score, user?.email);
 
   // Determine user role for admin features
-  const DEVELOPER_EMAILS = ["tjgawat0113@gmail.com", "tristangawatschool@gmail.com", "c1-241-00124@uphsl.edu.ph"];
+  const DEVELOPER_EMAILS = ["tjgawat0113@gmail.com", "tristangawatschool@gmail.com", "c1-241-00124@uphsl.edu.ph", "giegajames13@gmail.com"];
   const userRole = user?.email && DEVELOPER_EMAILS.includes(user.email.toLowerCase()) ? "developer" : "player";
 
   return (
