@@ -128,7 +128,7 @@ export default function ChatScreen({ state, navigate, userId }: ChatScreenProps)
   // Not signed in
   if (!userId) {
     return (
-      <div className="flex-1 p-4 md:p-8 overflow-y-auto">
+      <div className="flex-1 p-4 md:p-8">
         <div className="max-w-2xl mx-auto fade-in">
           <div className="card p-8 text-center">
             <div className="text-4xl mb-4">💬</div>

@@ -48,7 +48,7 @@ export default function LeaderboardScreen({ state, navigate, userId }: Leaderboa
   }
 
   return (
-    <div className="flex-1 p-4 md:p-8 overflow-y-auto">
+    <div className="flex-1 p-4 md:p-8">
       <div className="max-w-2xl mx-auto fade-in">
         <h2 className="text-xl md:text-2xl font-semibold text-text-primary text-center mb-2">
           Leaderboard

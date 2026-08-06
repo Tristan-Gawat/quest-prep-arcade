@@ -112,7 +112,7 @@ export default function LearnNewScreen({ state, updateState, navigate, userId }:
   const hasAI = true;
 
   return (
-    <div className="flex-1 p-4 md:p-8 overflow-y-auto">
+    <div className="flex-1 p-4 md:p-8">
       <div className="max-w-3xl mx-auto fade-in">
         <h2 className="text-xl font-semibold text-text-primary mb-2">🧠 AI Learning Engine</h2>
         <p className="text-sm text-text-secondary mb-6">

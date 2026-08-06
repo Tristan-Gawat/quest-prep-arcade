@@ -87,7 +87,7 @@ export default function ArenaScreen({ state, updateState, navigate }: ArenaScree
   // Step 1: No challenge yet — show generate button
   if (!challenge) {
     return (
-      <div className="flex-1 p-4 md:p-8 overflow-y-auto">
+      <div className="flex-1 p-4 md:p-8">
         <div className="max-w-lg w-full mx-auto text-center fade-in pt-8">
           <div className="text-5xl mb-6">⚔️</div>
           <h2 className="text-xl md:text-2xl font-semibold text-text-primary mb-3">
@@ -121,7 +121,7 @@ export default function ArenaScreen({ state, updateState, navigate }: ArenaScree
   // Step 2: Challenge shown, pick a language
   if (!selectedLang) {
     return (
-      <div className="flex-1 p-4 md:p-8 overflow-y-auto">
+      <div className="flex-1 p-4 md:p-8">
         <div className="max-w-3xl mx-auto fade-in">
           <h2 className="text-lg font-semibold text-text-primary mb-2">⚔️ Arena Challenge</h2>
 
@@ -164,7 +164,7 @@ export default function ArenaScreen({ state, updateState, navigate }: ArenaScree
   const langForEditor = selectedLang === "htmlcss" ? "html" : selectedLang === "tailwind" ? "css" : selectedLang;
 
   return (
-    <div className="flex-1 p-4 md:p-8 overflow-y-auto">
+    <div className="flex-1 p-4 md:p-8">
       <div className="max-w-3xl mx-auto slide-up">
         <div className="flex items-center gap-3 mb-4">
           <span className="text-lg">{selectedCourse?.icon}</span>

@@ -123,7 +123,7 @@ export default function ProfileScreen({ state, navigate, userId, userEmail, onSi
   };
 
   return (
-    <div className="flex-1 p-4 md:p-8 overflow-y-auto">
+    <div className="flex-1 p-4 md:p-8">
       <div className="max-w-2xl mx-auto fade-in">
         {/* Profile Header */}
         <div className="card mb-6 overflow-hidden">

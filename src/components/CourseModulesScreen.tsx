@@ -104,7 +104,7 @@ export default function CourseModulesScreen({ state, updateState, navigate }: Co
     const codeLang = course.id === "htmlcss" ? "html" : course.id === "csharp" ? "csharp" : course.id;
 
     return (
-      <div className="flex-1 p-4 md:p-8 overflow-y-auto relative z-10">
+      <div className="flex-1 p-4 md:p-8 relative z-10">
         <div className="max-w-4xl mx-auto slide-up">
           <button onClick={() => { setCurrentSubLesson(-1); setLesson(null); }} className="inline-flex items-center gap-1 text-xs font-medium text-accent-blue hover:text-accent-blue/80 mb-4 cursor-pointer bg-bg-card border border-border rounded-lg px-3 py-1.5 hover:bg-bg-elevated transition-all">
             ← Back to sub-lessons
@@ -201,7 +201,7 @@ export default function CourseModulesScreen({ state, updateState, navigate }: Co
   if (selectedModule) {
     const subLessons = selectedModule.subLessons || [selectedModule.lesson.title];
     return (
-      <div className="flex-1 p-4 md:p-8 overflow-y-auto relative z-10">
+      <div className="flex-1 p-4 md:p-8 relative z-10">
         <div className="max-w-4xl mx-auto fade-in">
           <button onClick={() => setSelectedModule(null)} className="inline-flex items-center gap-1 text-xs font-medium text-accent-blue hover:text-accent-blue/80 mb-4 cursor-pointer bg-bg-card border border-border rounded-lg px-3 py-1.5 hover:bg-bg-elevated transition-all">
             ← Back to modules
@@ -256,7 +256,7 @@ export default function CourseModulesScreen({ state, updateState, navigate }: Co
   }
 
   return (
-    <div className="flex-1 p-4 md:p-8 overflow-y-auto relative z-10">
+    <div className="flex-1 p-4 md:p-8 relative z-10">
       <div className="max-w-6xl mx-auto fade-in">
         <button onClick={() => navigate("course-select")} className="inline-flex items-center gap-1 text-xs font-medium text-accent-blue hover:text-accent-blue/80 mb-4 cursor-pointer bg-bg-card border border-border rounded-lg px-3 py-1.5 hover:bg-bg-elevated transition-all">
           ← Back to courses

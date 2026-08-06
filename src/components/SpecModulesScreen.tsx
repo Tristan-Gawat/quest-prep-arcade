@@ -240,7 +240,7 @@ Each question has 4 choices and "correct" is the index (0-3) of the right answer
     // Step 1: Pick language
     if (!codeLang) {
       return (
-        <div className="flex-1 p-4 md:p-8 overflow-y-auto relative z-10">
+        <div className="flex-1 p-4 md:p-8 relative z-10">
           <div className="max-w-4xl mx-auto fade-in">
             <button onClick={() => { setQuizMode("none"); setSelectedModule(null); }} className="inline-flex items-center gap-1 text-xs font-medium text-accent-blue hover:text-accent-blue/80 mb-4 cursor-pointer bg-bg-card border border-border rounded-lg px-3 py-1.5 hover:bg-bg-elevated transition-all">
               ← Back
@@ -268,7 +268,7 @@ Each question has 4 choices and "correct" is the index (0-3) of the right answer
     const editorLang = codeLang === "htmlcss" ? "html" : codeLang === "tailwind" ? "css" : codeLang;
 
     return (
-      <div className="flex-1 p-4 md:p-8 overflow-y-auto relative z-10">
+      <div className="flex-1 p-4 md:p-8 relative z-10">
         <div className="max-w-4xl mx-auto fade-in">
           <button onClick={() => setCodeLang(null)} className="inline-flex items-center gap-1 text-xs font-medium text-accent-blue hover:text-accent-blue/80 mb-4 cursor-pointer bg-bg-card border border-border rounded-lg px-3 py-1.5 hover:bg-bg-elevated transition-all">
             ← Change language
@@ -306,7 +306,7 @@ Each question has 4 choices and "correct" is the index (0-3) of the right answer
   // === LANGUAGE PICKER (for lesson) ===
   if (selectedModule && quizMode === "none") {
     return (
-      <div className="flex-1 p-4 md:p-8 overflow-y-auto relative z-10">
+      <div className="flex-1 p-4 md:p-8 relative z-10">
         <div className="max-w-4xl mx-auto fade-in">
           <button onClick={() => setSelectedModule(null)} className="inline-flex items-center gap-1 text-xs font-medium text-accent-blue hover:text-accent-blue/80 mb-4 cursor-pointer bg-bg-card border border-border rounded-lg px-3 py-1.5 hover:bg-bg-elevated transition-all">
             ← Back to modules
@@ -347,7 +347,7 @@ Each question has 4 choices and "correct" is the index (0-3) of the right answer
   const categories = [...new Set(spec.modules.map((m) => m.category))];
 
   return (
-    <div className="flex-1 p-4 md:p-8 overflow-y-auto relative z-10">
+    <div className="flex-1 p-4 md:p-8 relative z-10">
       <div className="max-w-6xl mx-auto fade-in">
         <button onClick={() => navigate("course-select")} className="inline-flex items-center gap-1 text-xs font-medium text-accent-blue hover:text-accent-blue/80 mb-4 cursor-pointer bg-bg-card border border-border rounded-lg px-3 py-1.5 hover:bg-bg-elevated transition-all">
           ← Back to courses

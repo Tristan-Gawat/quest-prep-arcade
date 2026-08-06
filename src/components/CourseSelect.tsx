@@ -60,7 +60,7 @@ export default function CourseSelect({
   };
 
   return (
-    <div className="flex-1 p-4 md:p-8 overflow-y-auto relative z-10">
+    <div className="flex-1 p-4 md:p-8 relative z-10">
       <div className="max-w-6xl mx-auto fade-in">
 
         {/* UPHSL Exclusive Section */}

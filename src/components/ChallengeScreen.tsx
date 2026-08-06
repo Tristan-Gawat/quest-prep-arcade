@@ -157,7 +157,7 @@ export default function ChallengeScreen({
   };
 
   return (
-    <div className="flex-1 p-4 md:p-8 overflow-y-auto relative z-10">
+    <div className="flex-1 p-4 md:p-8 relative z-10">
       <div className="max-w-4xl mx-auto slide-up">
         {/* Header */}
         <div className="flex items-center gap-3 mb-6">

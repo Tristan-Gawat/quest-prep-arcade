@@ -146,7 +146,7 @@ export default function FriendsScreen({ state, navigate, userId }: FriendsScreen
   // Not signed in state
   if (!userId) {
     return (
-      <div className="flex-1 p-4 md:p-8 overflow-y-auto">
+      <div className="flex-1 p-4 md:p-8">
         <div className="max-w-2xl mx-auto fade-in">
           <div className="card p-8 text-center">
             <div className="text-4xl mb-4">👥</div>
@@ -170,7 +170,7 @@ export default function FriendsScreen({ state, navigate, userId }: FriendsScreen
   }
 
   return (
-    <div className="flex-1 p-4 md:p-8 overflow-y-auto">
+    <div className="flex-1 p-4 md:p-8">
       <div className="max-w-2xl mx-auto fade-in">
         {/* Header */}
         <h2 className="text-xl md:text-2xl font-semibold text-text-primary text-center mb-2">

@@ -43,7 +43,7 @@ export default function AdminConsole() {
   };
 
   return (
-    <div className="flex-1 p-4 md:p-8 overflow-y-auto relative z-10">
+    <div className="flex-1 p-4 md:p-8 relative z-10">
       <div className="max-w-4xl mx-auto fade-in">
         <h2 className="text-xl font-bold text-text-primary mb-2" style={{ fontFamily: "var(--font-display)" }}>
           🖥️ Developer Console

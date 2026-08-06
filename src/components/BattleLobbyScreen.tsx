@@ -173,7 +173,7 @@ export default function BattleLobbyScreen({ state, navigate, userId, setBattleId
   };
 
   return (
-    <div className="flex-1 p-4 md:p-8 overflow-y-auto">
+    <div className="flex-1 p-4 md:p-8">
       <div className="max-w-4xl mx-auto fade-in">
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
